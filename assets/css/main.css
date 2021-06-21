@@ -1685,3 +1685,7 @@ input, select, textarea {
 		  margin-right: auto;
 		  width: 50%;
 		}
+
+		.icon-home {
+			height: 80%;
+		}
