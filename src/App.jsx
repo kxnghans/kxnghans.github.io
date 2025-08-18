@@ -36,7 +36,7 @@ export default function App() {
     };
 
     return (
-        <div className="bg-gray-200 dark:bg-black text-gray-800 dark:text-gray-300 min-h-screen font-sans flex">
+        <div className="bg-gray-200 dark:bg-dark-bg text-gray-800 dark:text-gray-400 min-h-screen font-sans flex">
             <Sidebar 
                 isOpen={isSidebarOpen} 
                 setActivePage={setActivePage} 
@@ -49,7 +49,7 @@ export default function App() {
                     toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 
                     setActivePage={setActivePage} 
                 />
-                <main className={`flex-1 overflow-y-auto bg-gray-100 dark:bg-[#121212] ${activePage === 'Home' ? 'overflow-y-hidden' : ''}`}>
+                <main className={`flex-1 overflow-y-auto bg-gray-100 dark:bg-dark-bg ${activePage === 'Home' ? 'overflow-y-hidden' : ''}`}>
                     <div className={`p-4 sm:p-6 md:p-8 ${activePage === 'Home' ? 'h-full flex flex-col' : ''}`}>
                         {renderPage()}
                     </div>

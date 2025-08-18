@@ -1,23 +1,49 @@
 import React from 'react';
+import Section from './Section';
+import ProjectModal from '../modals/ProjectModal';
+import { ChevronLeftIcon, ChevronRightIcon } from '../icons/Icons';
+import { projectData } from '../../data/projects';
 
-const ProfileSummaryCard = () => (
-    <div className="bg-gray-100 dark:bg-[#181818] rounded-2xl p-6 mb-8 bevel-light dark:bevel-dark">
-         <div className="flex flex-col md:flex-row items-center">
-            <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Kobby Hanson"
-                className="w-32 h-32 rounded-full mb-6 md:mb-0 md:mr-8 object-cover border-4 border-red-600 shadow-lg"
-            />
-            <div className="text-center md:text-left">
-                <h1 className="text-4xl font-bold text-gray-900 dark:text-white">Kobby Hanson</h1>
-                <p className="text-lg text-gray-500 dark:text-gray-400">Systems Engineer (Lead) & Sr. Business Analyst</p>
-                <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                    <p>Masters in Data Science - UC Berkeley</p>
-                    <p>Bachelors in Electrical Engineering - UCCS</p>
+const ProjectSlideshow = () => {
+    const [selectedProject, setSelectedProject] = React.useState(null);
+    const slideshowRef = React.useRef(null);
+
+    const scroll = (scrollOffset) => {
+        slideshowRef.current.scrollBy({ left: scrollOffset, behavior: 'smooth' });
+    };
+
+    return (
+        <Section title="Recommendations (Projects)" className="flex-1 flex flex-col min-h-0 !p-0 md:!p-2 lg:!p-4">
+            <div className="relative flex-1 flex items-center">
+                <button onClick={() => scroll(-320)} className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-200/80 hover:bg-white dark:bg-dark-card/80 dark:hover:bg-dark-shadow-light p-2 rounded-full transition-colors z-10">
+                    <ChevronLeftIcon />
+                </button>
+                <div ref={slideshowRef} className="flex overflow-x-auto snap-x snap-mandatory space-x-4 pb-4 scrollbar-hide h-full items-center px-12">
+                    {projectData.map((project, index) => (
+                        <div key={index} 
+                             className="snap-start flex-shrink-0 w-72 md:w-80 bg-gray-200 bevel-light dark:neumorphic-outset-dark rounded-lg overflow-hidden cursor-pointer transform hover:-translate-y-1 transition-transform duration-300" 
+                             onClick={() => setSelectedProject(project)}>
+                            <img src={project.imageUrl} alt={project.title} className="w-full h-40 object-cover" />
+                            <div className="p-4">
+                                <h3 className="text-lg font-bold mb-2 text-gray-900 dark:text-gray-300 truncate">{project.title}</h3>
+                                <div className="text-gray-600 dark:text-gray-400 text-sm h-16 overflow-hidden space-y-1">
+                                    {project.highlights.slice(0, 2).map((highlight, i) => (
+                                        <p key={i} className="truncate">
+                                            <span className="font-semibold text-gray-700 dark:text-gray-300">{highlight.label}:</span> {highlight.value}
+                                        </p>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
+                <button onClick={() => scroll(320)} className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-200/80 hover:bg-white dark:bg-dark-card/80 dark:hover:bg-dark-shadow-light p-2 rounded-full transition-colors z-10">
+                    <ChevronRightIcon />
+                </button>
             </div>
-        </div>
-    </div>
-);
+            {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
+        </Section>
+    );
+}
 
-export default ProfileSummaryCard;
+export default ProjectSlideshow;

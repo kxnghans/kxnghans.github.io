@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  /* Scoped classes to only apply when .dark is present */
+  /* Class for raised/extruded elements like cards and buttons */
+  .dark .neumorphic-outset-dark {
+    background-color: #242529; /* dark-card color */
+    box-shadow: 6px 6px 12px #1a1b1e, /* dark-shadow-dark */
+                -6px -6px 12px #2e2f34; /* dark-shadow-light */
+  }
+
+  /* Class for pressed elements like input fields */
+  .dark .neumorphic-inset-dark {
+    background-color: #242529; /* dark-card color */
+    box-shadow: inset 6px 6px 12px #1a1b1e, /* dark-shadow-dark */
+                inset -6px -6px 12px #2e2f34; /* dark-shadow-light */
+  }
+}
+
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
@@ -26,36 +43,10 @@
     animation: fade-in 0.3s ease-out forwards;
 }
 
+/* Original Bevel styles for Light Mode */
 .bevel-light {
     box-shadow: -3px -3px 7px rgba(255, 255, 255, 0.7), 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
-
-.bevel-dark {
-    box-shadow: -3px -3px 6px rgba(50, 50, 50, 0.6), 3px 3px 6px rgba(0, 0, 0, 0.6);
-}
-
-.bevel-dark-inset {
-    box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.6), inset 2px 2px 4px rgba(50, 50, 50, 0.6);
-}
-
 .bevel-light-inset {
     box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.7);
-}
-
-.bevel-button-light {
-    border-bottom: 3px solid rgba(0,0,0,0.15);
-}
-
-.bevel-button-light:active {
-    border-bottom-width: 1px;
-    transform: translateY(2px);
-}
-
-.bevel-button-dark {
-    border-bottom: 3px solid rgba(0,0,0,0.8);
-}
-
-.bevel-button-dark:active {
-    border-bottom-width: 1px;
-    transform: translateY(2px);
 }

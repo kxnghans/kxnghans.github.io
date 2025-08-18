@@ -10,10 +10,12 @@ const AwardsPage = () => {
         <Section title="Awards & Certifications">
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {awardsData.map((award, index) => (
-                    <div key={index} className="bg-gray-200 dark:bg-[#181818] rounded-lg overflow-hidden cursor-pointer transform hover:-translate-y-2 transition-transform duration-300 bevel-light dark:bevel-dark" onClick={() => setSelectedItem(award)}>
+                    <div key={index} 
+                         className="bg-gray-200 bevel-light dark:neumorphic-outset-dark rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2" 
+                         onClick={() => setSelectedItem(award)}>
                         <img src={award.imageUrl} alt={award.title} className="w-full h-40 object-cover" />
                         <div className="p-4">
-                            <h3 className="text-lg font-bold mb-1 text-gray-900 dark:text-white truncate">{award.title}</h3>
+                            <h3 className="text-lg font-bold mb-1 text-gray-900 dark:text-gray-300 truncate">{award.title}</h3>
                             <p className="text-gray-600 dark:text-gray-400 text-sm h-10 overflow-hidden">{award.subtitle}</p>
                         </div>
                     </div>

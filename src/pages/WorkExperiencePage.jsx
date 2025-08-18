@@ -10,14 +10,16 @@ const WorkExperiencePage = () => {
         <Section title="Work Experience">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {workData.map((job, index) => (
-                       <div key={index} className="bg-gray-200 dark:bg-[#181818] rounded-lg overflow-hidden cursor-pointer transform hover:-translate-y-2 transition-transform duration-300 bevel-light dark:bevel-dark" onClick={() => setSelectedItem(job)}>
+                       <div key={index} 
+                            className="bg-gray-200 bevel-light dark:neumorphic-outset-dark rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2" 
+                            onClick={() => setSelectedItem(job)}>
                         <img src={job.imageUrl} alt={job.title} className="w-full h-48 object-cover" />
                         <div className="p-4">
                             <h4 className="text-xl font-bold text-red-500 dark:text-red-400 truncate">{job.title}</h4>
                              <div className="text-gray-600 dark:text-gray-400 text-sm h-20 overflow-hidden space-y-1 mt-2">
                                 {job.highlights.map((highlight, i) => (
                                     <p key={i} className="truncate">
-                                        <span className="font-semibold">{highlight.label}:</span> {highlight.value}
+                                        <span className="font-semibold text-gray-700 dark:text-gray-300">{highlight.label}:</span> {highlight.value}
                                     </p>
                                 ))}
                             </div>
