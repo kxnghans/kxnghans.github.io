@@ -4,8 +4,12 @@ import ProjectSlideshow from '../components/ui/ProjectSlideshow';
 
 const HomePage = () => (
     <div className="h-full flex flex-col">
-        <ProfileSummaryCard />
-        <ProjectSlideshow />
+        <div className="mb-8">
+            <ProfileSummaryCard />
+        </div>
+        <div className="mb-8">
+            <ProjectSlideshow />
+        </div>
     </div>
 );
 

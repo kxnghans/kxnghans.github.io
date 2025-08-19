@@ -48,6 +48,7 @@ export default function App() {
                 <Header 
                     toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 
                     setActivePage={setActivePage} 
+                    activePage={activePage} 
                 />
                 <main className={`flex-1 overflow-y-auto bg-gray-100 dark:bg-dark-bg ${activePage === 'Home' ? 'overflow-y-hidden' : ''}`}>
                     <div className={`p-4 sm:p-6 md:p-8 ${activePage === 'Home' ? 'h-full flex flex-col' : ''}`}>

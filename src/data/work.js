@@ -1,11 +1,11 @@
 export const workData = [
     {
-        title: "Systems Eng (Lead) & Sr. Business Analyst",
+        title: "Lead Systems Engineer & Sr Business Analyst",
         subtitle: "Lockheed Martin, Space | June 2020 to Present",
         details: ["Drove the end-to-end execution strategy for centralizing LM-Space's procurement software programs, utilizing Agile methodologies to drive efficient development, integration and delivery.", "Managed enterprise-wide deployment of custom Kubernetes clusters for disconnected and classified programs and leveraged bundled Openshift operators, automating environment setup to cut deployment times from months to days.", "Optimized engineering development by spearheading comprehensive requirements gathering and business analysis to strategically allocate resources, define clear roadmaps, and design robust system architectures."],
         imageUrl: "https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         highlights: [
-            { label: 'Role', value: 'Lead Systems Engineer' },
+            { label: 'Role', value: 'Lead Systems Engineer & Sr Business Analyst' },
             { label: 'Focus', value: 'Agile, Kubernetes, DevOps' },
             { label: 'Key Skill', value: 'Business Analysis' },
         ]

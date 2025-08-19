@@ -50,3 +50,18 @@
 .bevel-light-inset {
     box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.7);
 }
+
+@media (max-width: 768px) {
+    .bevel-light {
+        box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.7), 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .bevel-light-inset {
+        box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1), inset -1px -1px 3px rgba(255, 255, 255, 0.7);
+    }
+    .dark .neumorphic-outset-dark {
+        box-shadow: 4px 4px 8px #1a1b1e, -4px -4px 8px #2e2f34;
+    }
+    .dark .neumorphic-inset-dark {
+        box-shadow: inset 4px 4px 8px #1a1b1e, inset -4px -4px 8px #2e2f34;
+    }
+}

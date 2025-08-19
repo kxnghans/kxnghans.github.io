@@ -1,7 +1,7 @@
 import React from 'react';
 import { MenuIcon, SearchIcon, MicIcon } from '../icons/Icons';
 
-const Header = ({ toggleSidebar, setActivePage }) => (
+const Header = ({ toggleSidebar, setActivePage, activePage }) => (
     <header className="bg-gray-100/80 dark:bg-[#181818]/90 backdrop-blur-sm p-3 flex justify-between items-center sticky top-0 z-40 border-b border-gray-300 dark:border-gray-800">
         <div className="flex items-center">
             <button onClick={toggleSidebar} className="p-2 rounded-full hover:bg-gray-300 dark:hover:bg-gray-800 transition-colors mr-4">
@@ -21,7 +21,7 @@ const Header = ({ toggleSidebar, setActivePage }) => (
                     <SearchIcon />
                 </div>
             </div>
-            <button className="ml-3 p-2 bg-gray-200 dark:bg-gray-900 rounded-full hover:bg-gray-300 dark:hover:bg-gray-800 transition-colors">
+            <button className="ml-3 p-2 rounded-full hover:bg-gray-300 dark:hover:bg-gray-800 transition-colors bevel-light-inset dark:bevel-dark-inset">
                 <MicIcon />
             </button>
         </div>
@@ -29,7 +29,7 @@ const Header = ({ toggleSidebar, setActivePage }) => (
             <img
                 src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Profile"
-                className="w-10 h-10 rounded-full object-cover cursor-pointer border-2 border-transparent hover:border-red-500 transition-all"
+                className={`w-10 h-10 rounded-full object-cover cursor-pointer border-2 border-transparent hover:border-red-500 transition-all ${activePage === 'Home' ? 'opacity-0' : 'opacity-100'}`}
                 onClick={() => setActivePage('Home')}
             />
         </div>
