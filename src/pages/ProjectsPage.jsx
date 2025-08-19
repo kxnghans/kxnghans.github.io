@@ -11,15 +11,13 @@ const ProjectsPage = () => {
                 {projectData.map((project, index) => (
                     <div key={index} 
                          className="bg-gray-200 bevel-light dark:neumorphic-outset-dark rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-2" 
-                         onClick={() => setSelectedProject(project)}>
+                         onClick={() => setSelectedProject(project.details)}>
                         <img src={project.imageUrl} alt={project.title} className="w-full h-48 object-cover" />
                         <div className="p-4">
                             <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-gray-300 truncate">{project.title}</h3>
                             <div className="text-gray-600 dark:text-gray-400 text-sm h-24 overflow-hidden space-y-1">
-                                {project.highlights.map((highlight, i) => (
-                                    <p key={i} className="truncate">
-                                        <span className="font-semibold text-gray-700 dark:text-gray-300">{highlight.label}:</span> {highlight.value}
-                                    </p>
+                                {project.summary.map((line, i) => (
+                                    <p key={i} className="truncate">{line}</p>
                                 ))}
                             </div>
                         </div>

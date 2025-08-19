@@ -1,8 +1,52 @@
-export const awardsData = [
-    { title: "UCCS President's List", subtitle: "Highest tier honor for students in the Electrical Engineering department.", details: ["Awarded for achieving a perfect 4.0 GPA during the semester."], type: "Award", imageUrl: "https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { title: "Airman of the Year", subtitle: "Top honor at 22nd Numbered Air Force (22 NAF) level.", details: ["Recognized as the top performer among all Airmen in the 22 NAF, a second tier of command."], type: "Award", imageUrl: "https://images.unsplash.com/photo-1611118384283-090741a12154?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { title: "Honor Graduate", subtitle: "Air Force Basic Training", details: ["Graduated in the top 10% of a class of 800 recruits, demonstrating exceptional discipline and performance."], type: "Award", imageUrl: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { title: "Certified Scrum Master", subtitle: "Scrum Alliance", details: ["Certified in Agile and Scrum methodologies, capable of leading teams in complex product development."], type: "Certification", imageUrl: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { title: "Systems Engineering Bootcamp", subtitle: "Internal Lockheed Martin Training", details: ["Completed an intensive bootcamp covering the principles and practices of modern systems engineering."], type: "Certification", imageUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { title: "Data Analytics & Program Management", subtitle: "LinkedIn Learning", details: ["Completed 10 specialized courses on LinkedIn Learning, focusing on data analytics, program management, and software development."], type: "Certification", imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+export const awards = [
+    {
+        title: "UCCS President's & Dean's Lists",
+        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        summary: [
+            "Honor: 7x President's & Dean's Lists",
+            "Criteria: 3.75-4.0 GPA"
+        ],
+        details: {
+            title: "UCCS President's & Dean's Lists",
+            subtitle: "7-time recipient",
+            details: [
+                "Recognized for achieving academic excellence with a GPA between 3.75 and 4.0 while enrolled in a minimum of 12 credit hours per semester.",
+                "Earned this distinction seven times while balancing a role as a software engineer, serving in the Air Force Reserves, and completing a deployment mid-schooling."
+            ]
+        }
+    },
+    {
+        title: "Airman of the Year",
+        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        summary: [
+            "Award: Airman of the Year",
+            "Level: 22nd Numbered Air Force"
+        ],
+        details: {
+            title: "Airman of the Year",
+            subtitle: "Top honor at the 22nd Numbered Air Force (NAF) level",
+            details: [
+                "Earned for outstanding performance during my first deployment.",
+                "Won at every level of competition: squadron, group, and wing (base), before advancing to the NAF level.",
+                "Achieved 1st runner-up at the Major Command level, the highest tier of competition."
+            ]
+        }
+    },
+    {
+        title: "Honor Graduate, Air Force Basic Training",
+        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        summary: [
+            "Achievement: Honor Graduate",
+            "Details: Top 10% of 800 recruits"
+        ],
+        details: {
+            title: "Honor Graduate",
+            subtitle: "Air Force Basic Training",
+            details: [
+                "Recognized for excelling in all aspects of training, including physical fitness, academics, and military bearing.",
+                "Scored a minimum of 90% in each category to be considered.",
+                "Placed in the top 10% of a graduating flight of 800 trainees."
+            ]
+        }
+    }
 ];

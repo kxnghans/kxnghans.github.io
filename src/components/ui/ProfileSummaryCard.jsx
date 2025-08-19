@@ -10,7 +10,7 @@ const ProfileSummaryCard = () => (
             />
             <div className="text-center sm:text-left">
                 <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 dark:text-gray-200">Kobby Hanson</h1>
-                <p className="text-md sm:text-lg text-gray-500 dark:text-gray-400">Lead Systems Engineer & Sr Business Analyst</p>
+                <p className="text-md sm:text-lg text-gray-500 dark:text-gray-400">Systems Engineer & Sr Business Analyst</p>
                 <p className="text-md sm:text-lg text-red-500 dark:text-red-400"><a href="https://hansondeck.com" target="_blank" rel="noopener noreferrer">Entrepreneur</a></p>
                 <div className="mt-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                     <p>Masters in Data Science - UC Berkeley</p>
