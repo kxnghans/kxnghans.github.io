@@ -9,7 +9,7 @@ import HomePage from './pages/HomePage';
 import ProjectsPage from './pages/ProjectsPage';
 import EducationPage from './pages/EducationPage';
 import WorkExperiencePage from './pages/WorkExperiencePage';
-import AwardsPage from './pages/AwardsPage';
+import HonorsPage from './pages/HonorsPage';
 import ContactPage from './pages/ContactPage';
 
 export default function App() {
@@ -29,7 +29,7 @@ export default function App() {
             case 'Projects': return <ProjectsPage />;
             case 'Education': return <EducationPage />;
             case 'Work Experience': return <WorkExperiencePage />;
-            case 'Awards': return <AwardsPage />;
+            case 'Honors': return <HonorsPage />;
             case 'More': return <ContactPage />;
             default: return <HomePage />;
         }
@@ -50,8 +50,8 @@ export default function App() {
                     setActivePage={setActivePage} 
                     activePage={activePage} 
                 />
-                <main className={`flex-1 overflow-y-auto bg-gray-100 dark:bg-dark-bg ${activePage === 'Home' ? 'overflow-y-hidden' : ''}`}>
-                    <div className={`p-4 sm:p-6 md:p-8 ${activePage === 'Home' ? 'h-full flex flex-col' : ''}`}>
+                <main className="flex-1 overflow-y-auto bg-gray-100 dark:bg-dark-bg">
+                    <div className="p-4 sm:p-6 md:p-8">
                         {renderPage()}
                     </div>
                 </main>

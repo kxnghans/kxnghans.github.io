@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeIcon, ProjectsIcon, EducationIcon, WorkIcon, AwardsIcon, MoreIcon, SunIcon, MoonIcon } from '../icons/Icons';
+import { HomeIcon, ProjectsIcon, EducationIcon, WorkIcon, HonorsIcon, MoreIcon, SunIcon, MoonIcon } from '../icons/Icons';
 
 const Sidebar = ({ isOpen, setActivePage, activePage, theme, setTheme }) => {
     const navItems = [
@@ -7,7 +7,7 @@ const Sidebar = ({ isOpen, setActivePage, activePage, theme, setTheme }) => {
         { name: 'Projects', icon: <ProjectsIcon /> },
         { name: 'Education', icon: <EducationIcon /> },
         { name: 'Work Experience', icon: <WorkIcon /> },
-        { name: 'Awards', icon: <AwardsIcon /> },
+        { name: 'Honors', icon: <HonorsIcon /> },
         { name: 'More', icon: <MoreIcon /> },
     ];
 
@@ -19,7 +19,7 @@ const Sidebar = ({ isOpen, setActivePage, activePage, theme, setTheme }) => {
                         <li key={item.name} className="px-2">
                             <button
                                 onClick={() => setActivePage(item.name)}
-                                className={`flex items-center w-full my-1 p-3 rounded-lg transition-colors duration-200 ${isOpen ? 'justify-start' : 'justify-center'} ${activePage === item.name ? 'bg-red-600/20 text-red-500' : 'hover:bg-gray-200 dark:hover:bg-gray-800'}`}>
+                                className={`flex items-center my-1 rounded-lg transition-colors duration-200 ${isOpen ? 'justify-start w-full p-3' : 'w-14 h-14 flex justify-center items-center'} ${activePage === item.name ? 'bg-red-600/20 text-red-500' : 'hover:bg-gray-200 dark:hover:bg-gray-800'}`}>
                                 <div className="flex-shrink-0">{item.icon}</div>
                                 <span className={`ml-4 whitespace-nowrap transition-opacity duration-200 ${isOpen ? 'opacity-100' : 'opacity-0 h-0 w-0 pointer-events-none'}`}>{item.name}</span>
                             </button>
