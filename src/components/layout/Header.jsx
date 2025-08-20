@@ -268,8 +268,8 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
             showVisualCues
               ? 'bg-red-500 text-white bevel-light-inset dark:bevel-dark-inset scale-105 shadow-lg shadow-red-500/40 animate-pulse'
               : isMicActive
-              ? 'bg-gray-300 dark:bg-gray-700 bevel-light-inset dark:bevel-dark-inset'
-              : 'hover:bg-gray-300 dark:hover:bg-gray-800 bevel-light-inset dark:bevel-dark-inset'
+              ? 'bg-gray-200 dark:bg-black bevel-light-inset dark:bevel-dark-inset'
+              : 'bg-gray-200 dark:bg-black hover:bg-gray-300 dark:hover:bg-gray-800 bevel-light-inset dark:bevel-dark-inset'
           }`}
         >
           <MicIcon
