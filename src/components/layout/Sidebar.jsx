@@ -21,7 +21,7 @@ const Sidebar = ({ isOpen, setActivePage, activePage, theme, setTheme }) => {
                                 onClick={() => setActivePage(item.name)}
                                 className={`flex items-center my-1 rounded-lg transition-colors duration-200 ${isOpen ? 'justify-start w-full p-3' : 'w-14 h-14 flex justify-center items-center'} ${activePage === item.name ? 'bg-red-600/20 text-red-500' : 'hover:bg-gray-200 dark:hover:bg-gray-800'}`}>
                                 <div className="flex-shrink-0">{item.icon}</div>
-                                <span className={`ml-4 whitespace-nowrap transition-opacity duration-200 ${isOpen ? 'opacity-100' : 'opacity-0 h-0 w-0 ml-0 pointer-events-none'}`}>{item.name}</span>
+                                <span className={`whitespace-nowrap transition-opacity duration-200 ${isOpen ? 'opacity-100 ml-4' : 'opacity-0 h-0 w-0 pointer-events-none'}`}>{item.name}</span>
                             </button>
                         </li>
                     ))}
