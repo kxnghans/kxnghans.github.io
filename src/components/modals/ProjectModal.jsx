@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProjectModal = ({ project, onClose }) => (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
-        <div className="bg-gray-100 dark:bg-[#181818] rounded-lg max-w-2xl w-full relative transform transition-all duration-300 bevel-light dark:bevel-dark">
+        <div className="bg-gray-100 dark:bg-[#181818] rounded-lg w-3/5 relative transform transition-all duration-300 bevel-light dark:bevel-dark">
             <button onClick={onClose} className="absolute top-3 right-3 text-gray-400 hover:text-white text-3xl z-10">&times;</button>
             <div className="p-6">
                 <h2 className="text-3xl font-bold mb-4 text-red-500">{project.title}</h2>

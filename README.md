@@ -28,6 +28,15 @@ To get a local copy up and running, follow these simple steps.
     npm run dev
     ```
 
+## Project Intent
+
+The main goal of this project is to create a personal portfolio website that is:
+
+*   **Visually appealing:** The website should have a modern and clean design that is easy on the eyes.
+*   **Responsive:** The website should be fully responsive and work on all devices, from mobile phones to desktop computers.
+*   **Easy to navigate:** The website should be easy to navigate, with a clear and intuitive layout.
+*   **Easy to maintain:** The code should be well-organized and easy to maintain, so that I can easily update the content in the future.
+
 ## File Structure
 
 Here is a brief overview of the project's file structure:
@@ -68,12 +77,3 @@ Here is a brief overview of the project's file structure:
 *   **`postcss.config.js`**: The configuration file for PostCSS.
 *   **`tailwind.config.js`**: The configuration file for Tailwind CSS.
 *   **`vite.config.js`**: The configuration file for Vite.
-
-## Project Intent
-
-The main goal of this project is to create a personal portfolio website that is:
-
-*   **Visually appealing:** The website should have a modern and clean design that is easy on the eyes.
-*   **Responsive:** The website should be fully responsive and work on all devices, from mobile phones to desktop computers.
-*   **Easy to navigate:** The website should be easy to navigate, with a clear and intuitive layout.
-*   **Easy to maintain:** The code should be well-organized and easy to maintain, so that I can easily update the content in the future.
