@@ -27,7 +27,7 @@ const ProjectSlideshow = () => {
                             <img src={project.imageUrl} alt={project.title} className="w-full h-32 sm:h-40 object-cover" />
                             <div className="p-3 sm:p-4">
                                 <h3 className="text-md sm:text-lg font-bold mb-2 text-gray-900 dark:text-gray-300 truncate">{project.title}</h3>
-                                <div className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm h-12 sm:h-16 overflow-hidden space-y-1">
+                                <div className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm overflow-hidden space-y-1">
                                     {project.summary.map((item, i) => (
                                         <p key={i} className="truncate">{item}</p>
                                     ))}

@@ -29,7 +29,7 @@ const SkillsSlideshow = () => {
                             <img src={placeholderImageUrl} alt={skill.title} className="w-full h-32 sm:h-40 object-cover" />
                             <div className="p-3 sm:p-4">
                                 <h3 className="text-md sm:text-lg font-bold mb-2 text-gray-900 dark:text-gray-300 truncate">{skill.title}</h3>
-                                <div className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm h-12 sm:h-16 overflow-hidden space-y-1">
+                                <div className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm h-16 overflow-hidden">
                                     {(() => {
                                         let allDetails = [];
                                         if (skill.details) {
@@ -44,17 +44,44 @@ const SkillsSlideshow = () => {
                                             });
                                         }
 
-                                        let displayString = "";
-                                        allDetails.forEach((item, i) => {
-                                            displayString += item;
-                                            if (i < allDetails.length - 1) {
-                                                displayString += ", ";
+                                        let fullText = allDetails.join(", ");
+                                        const words = fullText.split(" ");
+                                        let processedWords = [];
+                                        let currentLineWordCount = 0;
+                                        let linesFormed = 0;
+
+                                        for (let i = 0; i < words.length; i++) {
+                                            if (linesFormed < 2) {
+                                                if (currentLineWordCount < 5) {
+                                                    processedWords.push(words[i]);
+                                                    currentLineWordCount++;
+                                                } else {
+                                                    linesFormed++;
+                                                    if (linesFormed < 2) {
+                                                        processedWords.push("<br/>");
+                                                        processedWords.push(words[i]);
+                                                        currentLineWordCount = 1;
+                                                    } else {
+                                                        break;
+                                                    }
+                                                }
+                                            } else {
+                                                break;
                                             }
-                                            if ((i + 1) % 5 === 0 && i !== allDetails.length - 1) {
-                                                displayString += "<br />";
-                                            }
-                                        });
-                                        return <span dangerouslySetInnerHTML={{ __html: displayString }} />;
+                                        }
+
+                                        let displayText = processedWords.join(" ");
+                                        displayText = displayText.replace(/<br\/>/g, "<br/>"); // Ensure proper line breaks
+
+                                        // Remove trailing comma and space if present before adding ellipsis
+                                        if (displayText.endsWith(", ")) {
+                                            displayText = displayText.slice(0, -2);
+                                        }
+
+                                        // Always add ellipsis
+                                        displayText += `<span class="text-red-500">...</span>`;
+
+                                        return <span dangerouslySetInnerHTML={{ __html: displayText }} />;
                                     })()}
                                 </div>
                             </div>
