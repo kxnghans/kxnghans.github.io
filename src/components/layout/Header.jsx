@@ -1,69 +1,104 @@
+/**
+ * @file Header.jsx
+ * @description This component renders the main header of the application.
+ * It includes the navigation menu toggle, the application title, a search bar with voice input, and a profile icon.
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { MenuIcon, SearchIcon, MicIcon } from '../icons/Icons';
 
 const Header = ({ toggleSidebar, setActivePage, activePage }) => {
+  // STATE MANAGEMENT
+  // -------------------
+
+  // `isMicActive`: Tracks if the microphone is currently listening.
   const [isMicActive, setIsMicActive] = useState(false);
+  // `showVisualCues`: Controls the visual feedback animations for voice input.
   const [showVisualCues, setShowVisualCues] = useState(false);
+  // `searchText`: Stores the text in the search bar, controlled by both typing and voice input.
   const [searchText, setSearchText] = useState('');
+  // `placeholderText`: The placeholder text for the search bar, which changes based on mic state.
   const [placeholderText, setPlaceholderText] = useState('Search');
+
+  // REFS
+  // -----
+
+  // `recognitionRef`: Holds the SpeechRecognition instance.
   const recognitionRef = useRef(null);
+  // `inputRef`: A ref for the search input element to control focus.
   const inputRef = useRef(null);
+  // `silenceTimeoutRef`: Manages the timeout for detecting silence after speech.
   const silenceTimeoutRef = useRef(null);
+  // `lastSpeechTimeRef`: Tracks the timestamp of the last detected speech.
   const lastSpeechTimeRef = useRef(null);
+  // `visualCuesTimeoutRef`: Manages the timeout for starting the visual cues.
   const visualCuesTimeoutRef = useRef(null);
+
+  // SPEECH RECOGNITION SETUP
+  // -------------------------
 
   useEffect(() => {
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
+
     if (SpeechRecognition) {
       const recognition = new SpeechRecognition();
-      recognition.continuous = true;
-      recognition.interimResults = true;
+      recognition.continuous = true; // Keep listening even after a pause.
+      recognition.interimResults = true; // Get results as the user speaks.
       recognition.lang = 'en-US';
 
+      /**
+       * `onstart`: Triggered when the speech recognition service starts listening.
+       */
       recognition.onstart = () => {
-        // Start visual cues after 500ms delay
+        // Start visual cues after a 500ms delay.
         visualCuesTimeoutRef.current = setTimeout(() => {
           setShowVisualCues(true);
           setPlaceholderText('Start talking...');
-          // Focus input after delay to show ring with other visual cues
-          inputRef.current?.focus();
+
+          // Delay the input focus by an additional 50ms (total 550ms)
+          // to isolate the ring animation from other visual cues.
+          setTimeout(() => {
+            inputRef.current?.focus();
+          }, 50);
         }, 500);
       };
 
+      /**
+       * `onresult`: Triggered when the speech recognition service has a result.
+       * This can be an interim or a final result.
+       */
       recognition.onresult = (event) => {
         let finalTranscript = '';
         let interimTranscript = '';
         let hasNewSpeech = false;
 
+        // Loop through the results to build the transcript.
         for (let i = 0; i < event.results.length; i++) {
           if (event.results[i].isFinal) {
             finalTranscript += event.results[i][0].transcript;
             hasNewSpeech = true;
           } else {
             interimTranscript += event.results[i][0].transcript;
-            // Only consider it new speech if there's actual content
             if (event.results[i][0].transcript.trim()) {
               hasNewSpeech = true;
             }
           }
         }
-        
+
         setSearchText((finalTranscript + interimTranscript).trim());
 
-        // Update last speech time and reset timeout only when there's actual speech
+        // Custom silence detection to stop the mic automatically.
         if (hasNewSpeech) {
           lastSpeechTimeRef.current = Date.now();
-          
-          // Clear existing timeout
+
           if (silenceTimeoutRef.current) {
             clearTimeout(silenceTimeoutRef.current);
           }
-          
-          // Set new timeout for silence detection
+
           silenceTimeoutRef.current = setTimeout(() => {
-            // Double-check that enough time has passed since last speech
-            const timeSinceLastSpeech = Date.now() - (lastSpeechTimeRef.current || 0);
+            const timeSinceLastSpeech =
+              Date.now() - (lastSpeechTimeRef.current || 0);
             if (timeSinceLastSpeech >= 2000) {
               recognitionRef.current?.stop();
             }
@@ -71,14 +106,15 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
         }
       };
 
-      // Remove the onspeechend handler as it interferes with our custom silence detection
-      // recognition.onspeechend = () => { ... }; // REMOVED
-
+      /**
+       * `onend`: Triggered when the speech recognition service stops listening.
+       */
       recognition.onend = () => {
         setIsMicActive(false);
         setShowVisualCues(false);
         setPlaceholderText('Search');
-        // Clear any remaining timeouts
+
+        // Clean up any running timeouts.
         if (silenceTimeoutRef.current) {
           clearTimeout(silenceTimeoutRef.current);
           silenceTimeoutRef.current = null;
@@ -87,10 +123,12 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
           clearTimeout(visualCuesTimeoutRef.current);
           visualCuesTimeoutRef.current = null;
         }
-        // Blur input to remove any focus ring
-        inputRef.current?.blur();
+        inputRef.current?.blur(); // Remove focus from the input.
       };
 
+      /**
+       * `onerror`: Triggered when there is a speech recognition error.
+       */
       recognition.onerror = (event) => {
         console.error('Speech recognition error:', event.error);
         let errorMessage = 'An error occurred. Try again.';
@@ -104,8 +142,8 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
         setPlaceholderText(errorMessage);
         setIsMicActive(false);
         setShowVisualCues(false);
-        
-        // Clear timeouts on error
+
+        // Clean up any running timeouts.
         if (silenceTimeoutRef.current) {
           clearTimeout(silenceTimeoutRef.current);
           silenceTimeoutRef.current = null;
@@ -121,21 +159,22 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
       console.warn('Speech Recognition API not supported in this browser.');
     }
 
-    // Cleanup
+    // Cleanup function to stop recognition and clear timeouts when the component unmounts.
     return () => {
       recognitionRef.current?.stop();
       if (silenceTimeoutRef.current) {
         clearTimeout(silenceTimeoutRef.current);
-        silenceTimeoutRef.current = null;
       }
       if (visualCuesTimeoutRef.current) {
         clearTimeout(visualCuesTimeoutRef.current);
-        visualCuesTimeoutRef.current = null;
       }
     };
   }, []);
 
-  // Global click handler to stop mic when clicking outside
+  // EFFECT: CLICK OUTSIDE HANDLER
+  // -----------------------------
+
+  // This effect adds a global click listener to deactivate the mic if the user clicks outside the search area.
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (isMicActive) {
@@ -147,14 +186,12 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
           inputField &&
           !inputField.contains(event.target)
         ) {
-          // Immediately reset all visual cues
+          // Reset all visual cues and stop the microphone.
           setShowVisualCues(false);
           setPlaceholderText('Search');
           if (visualCuesTimeoutRef.current) {
             clearTimeout(visualCuesTimeoutRef.current);
-            visualCuesTimeoutRef.current = null;
           }
-          // Blur input to remove focus ring
           inputRef.current?.blur();
           recognitionRef.current?.stop();
         }
@@ -165,53 +202,60 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, [isMicActive]);
 
+  // EVENT HANDLERS
+  // --------------
+
+  /**
+   * `toggleMic`: Toggles the microphone on and off.
+   */
   const toggleMic = () => {
     if (recognitionRef.current) {
       if (!isMicActive) {
         setIsMicActive(true);
         setSearchText('');
-        // Reset speech tracking and visual cues
+        // Reset all tracking and visual states before starting.
         lastSpeechTimeRef.current = null;
         setShowVisualCues(false);
         if (silenceTimeoutRef.current) {
           clearTimeout(silenceTimeoutRef.current);
-          silenceTimeoutRef.current = null;
         }
         if (visualCuesTimeoutRef.current) {
           clearTimeout(visualCuesTimeoutRef.current);
-          visualCuesTimeoutRef.current = null;
         }
-        
+
         try {
           recognitionRef.current.start();
         } catch (e) {
+          // This can happen if start() is called while it's already starting.
           console.warn('Speech recognition already running.');
         }
-        // Don't focus input initially to prevent instant ring - focus will happen after delay
       } else {
-        // Manual deactivation - immediately reset all visual cues
+        // Manually deactivating the mic.
         setIsMicActive(false);
         setShowVisualCues(false);
         setPlaceholderText('Search');
-        // Clear visual cues timeout if stopping manually
         if (visualCuesTimeoutRef.current) {
           clearTimeout(visualCuesTimeoutRef.current);
-          visualCuesTimeoutRef.current = null;
         }
-        // Blur input to remove focus ring
         inputRef.current?.blur();
         recognitionRef.current.stop();
       }
     }
   };
 
+  /**
+   * `handleSearchChange`: Updates the search text state when the user types.
+   */
   const handleSearchChange = (event) => {
     setSearchText(event.target.value);
   };
 
+  // RENDER
+  // ------
+
   return (
     <header className="bg-gray-100/80 dark:bg-[#181818]/90 backdrop-blur-sm p-3 flex justify-between items-center sticky top-0 z-40 border-b border-gray-300 dark:border-gray-800">
-      {/* Left side */}
+      {/* Left Section: Menu Toggle and App Title */}
       <div className="flex items-center">
         <button
           onClick={toggleSidebar}
@@ -241,7 +285,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
         </div>
       </div>
 
-      {/* Search bar + mic */}
+      {/* Center Section: Search Bar and Microphone Button */}
       <div className="flex-1 max-w-xl mx-4 hidden md:flex items-center">
         <div className="relative w-full">
           <input
@@ -259,14 +303,14 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
           </div>
         </div>
 
-        {/* Mic button */}
+        {/* Mic Button */}
         <button
           id="mic-button"
           onClick={toggleMic}
           aria-label="Toggle microphone"
           className={`ml-3 p-2 rounded-full transition-all transform duration-200 ${
             showVisualCues
-              ? 'bg-red-500 text-white bevel-light-inset dark:bevel-dark-inset scale-105 shadow-lg shadow-red-500/40 animate-pulse'
+              ? 'bg-red-500 text-white bevel-light-inset dark:bevel-dark-inset scale-105 shadow-lg shadow-red-500/40 animate-gentle-pulse'
               : isMicActive
               ? 'bg-gray-200 dark:bg-black bevel-light-inset dark:bevel-dark-inset'
               : 'bg-gray-200 dark:bg-black hover:bg-gray-300 dark:hover:bg-gray-800 bevel-light-inset dark:bevel-dark-inset'
@@ -284,7 +328,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
         </button>
       </div>
 
-      {/* Right side (profile) */}
+      {/* Right Section: Profile Image */}
       <div className="flex items-center">
         <img
           src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3"
