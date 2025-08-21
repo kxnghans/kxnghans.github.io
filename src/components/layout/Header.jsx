@@ -4,7 +4,9 @@
  * It includes the navigation menu toggle, the application title, a search bar with voice input, and a profile icon.
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { SearchContext } from '../../context/SearchContext';
+import SearchResults from '../search/SearchResults';
 import { MenuIcon, SearchIcon, MicIcon } from '../icons/Icons';
 
 const Header = ({ toggleSidebar, setActivePage, activePage }) => {
@@ -15,8 +17,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
   const [isMicActive, setIsMicActive] = useState(false);
   // `showVisualCues`: Controls the visual feedback animations for voice input.
   const [showVisualCues, setShowVisualCues] = useState(false);
-  // `searchText`: Stores the text in the search bar, controlled by both typing and voice input.
-  const [searchText, setSearchText] = useState('');
+  const { searchQuery, setSearchQuery } = useContext(SearchContext);
   // `placeholderText`: The placeholder text for the search bar, which changes based on mic state.
   const [placeholderText, setPlaceholderText] = useState('Search');
 
@@ -247,7 +248,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
    * `handleSearchChange`: Updates the search text state when the user types.
    */
   const handleSearchChange = (event) => {
-    setSearchText(event.target.value);
+    setSearchQuery(event.target.value);
   };
 
   // RENDER
@@ -292,7 +293,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
             type="text"
             ref={inputRef}
             placeholder={placeholderText}
-            value={searchText}
+            value={searchQuery}
             onChange={handleSearchChange}
             className={`w-full bg-gray-200 dark:bg-black rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-red-500 focus:outline-none bevel-light-inset dark:bevel-dark-inset transition-all duration-200 ${
               showVisualCues ? 'ring-2 ring-red-500' : ''
@@ -301,6 +302,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
           <div className="absolute left-3 top-1/2 -translate-y-1/2">
             <SearchIcon />
           </div>
+          <SearchResults setActivePage={setActivePage} />
         </div>
 
         {/* Mic Button */}
