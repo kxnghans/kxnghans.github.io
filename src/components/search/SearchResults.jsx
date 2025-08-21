@@ -13,12 +13,62 @@ const ICONS = {
   Honor: <FaAward />,
 };
 
+const Highlight = ({ text, highlight }) => {
+  if (!highlight.trim()) {
+    return <span>{text}</span>;
+  }
+  const regex = new RegExp(`(${highlight})`, 'gi');
+  const parts = text.split(regex);
+  return (
+    <span>
+      {parts.map((part, i) =>
+        regex.test(part) ? (
+          <span key={i} className="bg-yellow-200 text-black">
+            {part}
+          </span>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </span>
+  );
+};
+
+const smartTruncate = (str, n, query) => {
+  if (!str) return "";
+  const words = str.split(" ");
+  if (words.length <= n) return str;
+
+  const queryIndex = words.findIndex(word => word.toLowerCase().includes(query.toLowerCase()));
+
+  if (queryIndex !== -1) {
+    const half = Math.floor(n / 2);
+    let start = Math.max(0, queryIndex - half);
+    let end = Math.min(words.length, queryIndex + half);
+
+    if (end - start < n) {
+      if (start === 0) {
+        end = Math.min(words.length, n);
+      } else if (end === words.length) {
+        start = Math.max(0, words.length - n);
+      }
+    }
+
+    let snippet = words.slice(start, end).join(" ");
+    if (start > 0) snippet = "..." + snippet;
+    if (end < words.length) snippet = snippet + "...";
+    return snippet;
+  } else {
+    return words.slice(0, n).join(" ") + "...";
+  }
+};
+
 const SearchResults = ({ setActivePage }) => {
-  const { searchResults, loading } = useContext(SearchContext);
+  const { searchQuery, searchResults, loading } = useContext(SearchContext);
 
   if (loading) {
     return (
-      <div className="absolute mt-2 w-full bg-white shadow-lg rounded-lg p-4">
+      <div className="absolute w-full bg-white dark:bg-dark-card shadow-lg rounded-lg p-4 top-full mt-1">
         <p>Loading...</p>
       </div>
     );
@@ -33,14 +83,18 @@ const SearchResults = ({ setActivePage }) => {
   };
 
   return (
-    <div className="absolute mt-2 w-full bg-white shadow-lg rounded-lg">
+    <div className="absolute w-full bg-white dark:bg-dark-card shadow-lg rounded-lg overflow-hidden top-full mt-1">
       <ul>
-        {searchResults.map(result => (
-          <li key={result.id} onClick={() => handleResultClick(result.page)} className="p-4 hover:bg-gray-100 cursor-pointer flex items-center">
-            <span className="mr-4">{ICONS[result.type]}</span>
+        {searchResults.map((result, index) => (
+          <li key={result.id} onClick={() => handleResultClick(result.page)} className={`p-4 bg-gray-50 dark:bg-dark-card hover:bg-gray-100 dark:hover:bg-dark-bg cursor-pointer flex items-center border-b border-gray-200 dark:border-gray-700 last:border-b-0`}>
+            <span className="mr-4 text-gray-500 dark:text-gray-400">{ICONS[result.type]}</span>
             <div>
-              <p className="font-bold">{result.title}</p>
-              <p className="text-sm text-gray-600">{result.description}</p>
+              <p className="font-bold text-gray-800 dark:text-gray-200">
+                <span className="text-gray-500 dark:text-gray-400">[{result.type}]</span> <Highlight text={result.title} highlight={searchQuery} />
+              </p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                <Highlight text={smartTruncate(result.description, 8, searchQuery)} highlight={searchQuery} />
+              </p>
             </div>
           </li>
         ))}
