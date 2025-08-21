@@ -1,7 +1,7 @@
 
 import React, { useContext, useRef, useState, useEffect } from 'react';
 import { SearchContext } from '../../context/SearchContext';
-import { FaCog, FaProjectDiagram, FaBriefcase, FaGraduationCap, FaCertificate, FaUsers, FaAward } from 'react-icons/fa';
+import { FaCog, FaProjectDiagram, FaBriefcase, FaGraduationCap, FaCertificate, FaUsers, FaAward, FaChevronDown } from 'react-icons/fa';
 
 const ICONS = {
   Project: <FaProjectDiagram />,
@@ -66,14 +66,32 @@ const smartTruncate = (str, n, query) => {
 const SearchResults = ({ setActivePage }) => {
   const { searchQuery, searchResults, loading } = useContext(SearchContext);
   const [maxHeight, setMaxHeight] = useState('none');
+  const [showArrow, setShowArrow] = useState(false);
   const itemRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    if (itemRef.current) {
+    if (itemRef.current && containerRef.current) {
       const itemHeight = itemRef.current.offsetHeight;
-      setMaxHeight(`${7 * itemHeight}px`);
+      const numVisible = 7;
+      if (searchResults.length > numVisible) {
+        setMaxHeight(`${numVisible * itemHeight}px`);
+        setShowArrow(true);
+      } else {
+        setMaxHeight('none');
+        setShowArrow(false);
+      }
     }
   }, [searchResults.length]);
+
+  const handleScroll = (e) => {
+    const { scrollTop, scrollHeight, clientHeight } = e.target;
+    if (scrollHeight - scrollTop === clientHeight) {
+      setShowArrow(false);
+    } else {
+      setShowArrow(true);
+    }
+  };
 
   if (loading) {
     return (
@@ -92,7 +110,7 @@ const SearchResults = ({ setActivePage }) => {
   };
 
   return (
-    <div style={{ maxHeight }} className="absolute w-full bg-white dark:bg-dark-card shadow-lg rounded-lg top-full mt-1 overflow-y-auto">
+    <div ref={containerRef} style={{ maxHeight }} onScroll={handleScroll} className="absolute w-full bg-white dark:bg-dark-card shadow-lg rounded-lg top-full mt-1 overflow-y-auto">
       <ul className="overflow-hidden">
         {searchResults.map((result, index) => (
           <li ref={index === 0 ? itemRef : null} key={result.id} onClick={() => handleResultClick(result.page)} className={`p-4 bg-gray-50 dark:bg-dark-card hover:bg-gray-100 dark:hover:bg-dark-bg cursor-pointer flex items-center border-b border-gray-200 dark:border-gray-700 last:border-b-0`}>
@@ -108,6 +126,11 @@ const SearchResults = ({ setActivePage }) => {
           </li>
         ))}
       </ul>
+      {showArrow && (
+        <div className="sticky bottom-0 w-full text-center py-1 bg-white dark:bg-dark-card border-t border-gray-200 dark:border-gray-700">
+          <FaChevronDown className="mx-auto animate-bounce text-gray-500 dark:text-gray-400" />
+        </div>
+      )}
     </div>
   );
 };
