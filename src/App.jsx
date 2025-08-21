@@ -13,15 +13,57 @@ import HonorsPage from './pages/HonorsPage';
 import ContactPage from './pages/ContactPage';
 
 export default function App() {
-    const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = React.useState(window.innerWidth >= 768);
     const [activePage, setActivePage] = React.useState('Home');
     const [theme, setTheme] = React.useState('dark');
+    const [isSmallScreen, setIsSmallScreen] = React.useState(window.innerWidth < 768);
+    const sidebarRef = React.useRef(null);
 
     React.useEffect(() => {
         const root = window.document.documentElement;
         root.classList.remove(theme === 'dark' ? 'light' : 'dark');
         root.classList.add(theme);
     }, [theme]);
+
+    React.useEffect(() => {
+        const handleResize = () => {
+            const small = window.innerWidth < 768;
+            setIsSmallScreen(small);
+            if (!small) {
+                setIsSidebarOpen(true);
+            }
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    React.useEffect(() => {
+        let timer;
+        if (isSmallScreen && isSidebarOpen) {
+            timer = setTimeout(() => {
+                setIsSidebarOpen(false);
+            }, 5000);
+        }
+        return () => clearTimeout(timer);
+    }, [isSmallScreen, isSidebarOpen]);
+
+    React.useEffect(() => {
+        const handleInteraction = (e) => {
+            if (isSmallScreen && isSidebarOpen && sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+                setIsSidebarOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleInteraction);
+        document.addEventListener('touchstart', handleInteraction);
+        document.addEventListener('scroll', handleInteraction, true);
+
+        return () => {
+            document.removeEventListener('mousedown', handleInteraction);
+            document.removeEventListener('touchstart', handleInteraction);
+            document.removeEventListener('scroll', handleInteraction, true);
+        };
+    }, [isSmallScreen, isSidebarOpen]);
 
     const renderPage = () => {
         switch (activePage) {
@@ -37,13 +79,15 @@ export default function App() {
 
     return (
         <div className="bg-gray-200 dark:bg-dark-bg text-gray-800 dark:text-gray-400 min-h-screen font-sans flex">
-            <Sidebar 
-                isOpen={isSidebarOpen} 
-                setActivePage={setActivePage} 
-                activePage={activePage} 
-                theme={theme} 
-                setTheme={setTheme} 
-            />
+            <div ref={sidebarRef}>
+                <Sidebar 
+                    isOpen={isSidebarOpen} 
+                    setActivePage={setActivePage} 
+                    activePage={activePage} 
+                    theme={theme} 
+                    setTheme={setTheme} 
+                />
+            </div>
             <div className="flex-1 flex flex-col h-screen overflow-hidden">
                 <Header 
                     toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 

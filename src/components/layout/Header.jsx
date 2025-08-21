@@ -87,7 +87,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
           }
         }
 
-        setSearchText((finalTranscript + interimTranscript).trim());
+        setSearchQuery((finalTranscript + interimTranscript).trim());
 
         // Custom silence detection to stop the mic automatically.
         if (hasNewSpeech) {
@@ -170,7 +170,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
         clearTimeout(visualCuesTimeoutRef.current);
       }
     };
-  }, []);
+  }, [setSearchQuery]);
 
   // EFFECT: CLICK OUTSIDE HANDLER
   // -----------------------------
@@ -213,7 +213,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
     if (recognitionRef.current) {
       if (!isMicActive) {
         setIsMicActive(true);
-        setSearchText('');
+        setSearchQuery('');
         // Reset all tracking and visual states before starting.
         lastSpeechTimeRef.current = null;
         setShowVisualCues(false);
@@ -333,7 +333,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
       {/* Right Section: Profile Image */}
       <div className="flex items-center">
         <img
-          src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3"
+          src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format=fit&crop&ixlib=rb-4.0.3"
           alt="Profile"
           className={`w-10 h-10 rounded-full object-cover cursor-pointer border-2 border-transparent hover:border-red-500 transition-all ${
             activePage === 'Home' ? 'opacity-0' : 'opacity-100'
