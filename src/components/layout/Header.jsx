@@ -8,6 +8,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { SearchContext } from '../../context/SearchContext';
 import SearchResults from '../search/SearchResults';
 import { FaBars, FaSearch, FaMicrophone, FaPlayCircle } from 'react-icons/fa';
+import profileImage from '../../../assets/Kobs DP.png';
 
 const Header = ({ toggleSidebar, setActivePage, activePage }) => {
   // STATE MANAGEMENT
@@ -323,7 +324,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
       {/* Right Section: Profile Image */}
       <div className="flex items-center">
         <img
-          src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format=fit&crop&ixlib=rb-4.0.3"
+          src={profileImage}
           alt="Profile"
           className={`w-10 h-10 rounded-full object-cover cursor-pointer border-2 border-transparent hover:border-red-500 transition-all ${
             activePage === 'Home' ? 'opacity-0' : 'opacity-100'

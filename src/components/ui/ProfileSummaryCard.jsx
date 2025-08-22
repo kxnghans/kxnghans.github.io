@@ -1,10 +1,11 @@
 import React from 'react';
+import profileImage from '../../../assets/Kobs DP.png';
 
 const ProfileSummaryCard = () => (
     <div className="bg-gray-100 bevel-light dark:neumorphic-outset-dark rounded-2xl p-4 sm:p-6 mb-8">
          <div className="flex flex-col sm:flex-row items-center">
             <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src={profileImage}
                 alt="Kobby Hanson"
                 className="w-24 h-24 sm:w-32 sm:h-32 rounded-full mb-4 sm:mb-0 sm:mr-6 object-cover border-4 border-red-600 shadow-lg"
             />

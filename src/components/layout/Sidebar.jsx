@@ -1,13 +1,13 @@
 import React from 'react';
-import { FaHome, FaProjectDiagram, FaGraduationCap, FaBriefcase, FaAward, FaBars, FaSun, FaMoon } from 'react-icons/fa';
+import { FaHome, FaCode, FaGraduationCap, FaBriefcase, FaMedal, FaBars, FaSun, FaMoon } from 'react-icons/fa';
 
 const Sidebar = ({ isOpen, setActivePage, activePage, theme, setTheme }) => {
     const navItems = [
         { name: 'Home', icon: <FaHome size={22} /> },
         { name: 'Education', icon: <FaGraduationCap size={22} /> },
         { name: 'Work Experience', icon: <FaBriefcase size={22} /> },
-        { name: 'Projects', icon: <FaProjectDiagram size={22} /> },
-        { name: 'Honors', icon: <FaAward size={22} /> },
+        { name: 'Projects', icon: <FaCode size={22} /> },
+        { name: 'Honors', icon: <FaMedal size={22} /> },
         { name: 'More', icon: <FaBars size={22} /> },
     ];
 
