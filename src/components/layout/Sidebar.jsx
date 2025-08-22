@@ -1,14 +1,14 @@
 import React from 'react';
-import { HomeIcon, ProjectsIcon, EducationIcon, WorkIcon, HonorsIcon, MoreIcon, SunIcon, MoonIcon } from '../icons/Icons';
+import { FaHome, FaProjectDiagram, FaGraduationCap, FaBriefcase, FaAward, FaBars, FaSun, FaMoon } from 'react-icons/fa';
 
 const Sidebar = ({ isOpen, setActivePage, activePage, theme, setTheme }) => {
     const navItems = [
-        { name: 'Home', icon: <HomeIcon /> },
-        { name: 'Education', icon: <EducationIcon /> },
-        { name: 'Work Experience', icon: <WorkIcon /> },
-        { name: 'Projects', icon: <ProjectsIcon /> },
-        { name: 'Honors', icon: <HonorsIcon /> },
-        { name: 'More', icon: <MoreIcon /> },
+        { name: 'Home', icon: <FaHome size={22} /> },
+        { name: 'Education', icon: <FaGraduationCap size={22} /> },
+        { name: 'Work Experience', icon: <FaBriefcase size={22} /> },
+        { name: 'Projects', icon: <FaProjectDiagram size={22} /> },
+        { name: 'Honors', icon: <FaAward size={22} /> },
+        { name: 'More', icon: <FaBars size={22} /> },
     ];
 
     return (
@@ -32,7 +32,7 @@ const Sidebar = ({ isOpen, setActivePage, activePage, theme, setTheme }) => {
                     onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                     className={`flex items-center w-full p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors ${isOpen ? 'justify-start' : 'justify-center'}`}
                 >
-                    <div className="flex-shrink-0">{theme === 'dark' ? <SunIcon /> : <MoonIcon />}</div>
+                    <div className="flex-shrink-0">{theme === 'dark' ? <FaSun size={20} /> : <FaMoon size={20} />}</div>
                     <span className={`ml-4 whitespace-nowrap transition-opacity duration-200 ${isOpen ? 'opacity-100' : 'opacity-0 h-0 w-0 pointer-events-none'}`}>
                         {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
                     </span>
