@@ -1,7 +1,7 @@
 export const projectData = [
     {
         title: "Cloud Migration",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg",
         summary: [
             "Time: Overnight builds in 1 hour",
             "Cost: Over $10k saved",
@@ -21,7 +21,7 @@ export const projectData = [
     },
     {
         title: "Facilities Automation",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.pexels.com/photos/25913209/pexels-photo-25913209.jpeg",
         summary: [
             "Savings: $55k+ saved monthly",
             "Tools: Microsoft Power Platform",
@@ -41,7 +41,7 @@ export const projectData = [
     },
     {
         title: "Product Adoption Strategy",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.pexels.com/photos/3184638/pexels-photo-3184638.jpeg",
         summary: [
             "Adoption: 800% usage increase",
             "Funding: Secured additional $1M",
@@ -61,7 +61,7 @@ export const projectData = [
     },
     {
         title: "Logistics Data Pipeline",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://plus.unsplash.com/premium_photo-1726797616358-5221a54d066b?q=80&w=2466&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         summary: [
             "Productivity: 66% increase in efficiency",
             "Tools: Power Query, Excel",
@@ -81,7 +81,7 @@ export const projectData = [
     },
     {
         title: "Innovation Dashboard",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://plus.unsplash.com/premium_photo-1695185954894-e9382c6f4da8?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         summary: [
             "Savings: $1.1M saved in first year",
             "Tools: Power BI",
@@ -101,7 +101,7 @@ export const projectData = [
     },
     {
         title: "Youth Mentorship Bootcamp",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.pexels.com/photos/5905615/pexels-photo-5905615.jpeg",
         summary: [
             "Role: Founder & Lead Mentor",
             "Outcome: Launched a community app",

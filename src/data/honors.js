@@ -1,10 +1,10 @@
 export const honors = [
     {
-        title: "UCCS President's & Dean's Lists",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        title: "President's & Dean's Lists",
+        imageUrl: "https://images.pexels.com/photos/7978845/pexels-photo-7978845.jpeg",
         summary: [
-            "Honor: 7x President's & Dean's Lists",
-            "Criteria: 3.75-4.0 GPA"
+            "Details: 7x at UCCS",
+            "Criteria: 3.75 - 4.0 GPA"
         ],
         details: {
             title: "UCCS President's & Dean's Lists",
@@ -17,9 +17,9 @@ export const honors = [
     },
     {
         title: "Airman of the Year",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.unsplash.com/photo-1682623764632-d92c4891fbc7?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         summary: [
-            "Award: Airman of the Year",
+            "Summary: Air Force",
             "Level: 22nd Numbered Air Force"
         ],
         details: {
@@ -33,10 +33,10 @@ export const honors = [
         }
     },
     {
-        title: "Honor Graduate, Air Force Basic Training",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        title: "Honor Graduate",
+        imageUrl: "https://images.unsplash.com/photo-1638752095450-da1cc175f679?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDExfHx8ZW58MHx8fHx8",
         summary: [
-            "Achievement: Honor Graduate",
+            "Awarded: Air Force Basic Training",
             "Details: Top 10% of 800 recruits"
         ],
         details: {

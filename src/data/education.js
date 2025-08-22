@@ -1,7 +1,7 @@
 export const educationData = [
     {
         title: "Masters in Data Science",
-        imageUrl: "https://images.unsplash.com/photo-1623454171350-b1835c013f5a?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.0.3&w=1000&q=80",
+        imageUrl: "https://media.istockphoto.com/id/2200128716/photo/ai-powers-big-data-analysis-and-automation-workflows-showcasing-neural-networks-and-data.webp?a=1&b=1&s=612x612&w=0&k=20&c=Wct3RqstuZiHOEexd0kSDNufRHJZ_ZcCeBUAkbWKjDo=",
         summary: [
             "Degree: Masters",
             "GPA: 4.0",
@@ -18,7 +18,7 @@ export const educationData = [
     },
     {
         title: "Bachelors in Electrical Engineering",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.unsplash.com/photo-1727119313143-779799ad0aed?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         summary: [
             "Degree: Bachelors",
             "GPA: 3.67",
