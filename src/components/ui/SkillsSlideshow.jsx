@@ -1,6 +1,6 @@
 import React from 'react';
 import Section from './Section';
-import { ChevronLeftIcon, ChevronRightIcon } from '../icons/Icons';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import { skillsData } from '../../data/skills';
 import DetailModal from '../modals/DetailModal';
 
@@ -18,7 +18,7 @@ const SkillsSlideshow = () => {
         <Section title="Skills" className="flex-1 flex flex-col min-h-0 !p-0 sm:!p-2 md:!p-4">
             <div className="relative flex-1 flex items-center">
                 <button onClick={() => scroll(-320)} className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-200/80 hover:bg-white dark:bg-dark-card/80 dark:hover:bg-dark-shadow-light p-1 sm:p-2 rounded-full transition-colors z-10">
-                    <ChevronLeftIcon />
+                    <FaChevronLeft />
                 </button>
                 <div ref={slideshowRef} className="flex overflow-x-auto snap-x snap-mandatory space-x-4 pt-4 pb-4 pl-4 scroll-pl-4 scrollbar-hide h-full items-center">
                     <div className="flex-shrink-0 w-8 sm:w-10 md:w-12"></div>
@@ -90,7 +90,7 @@ const SkillsSlideshow = () => {
                     <div className="flex-shrink-0 w-4 sm:w-6 md:w-8"></div>
                 </div>
                 <button onClick={() => scroll(320)} className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-200/80 hover:bg-white dark:bg-dark-card/80 dark:hover:bg-dark-shadow-light p-1 sm:p-2 rounded-full transition-colors z-10">
-                    <ChevronRightIcon />
+                    <FaChevronRight />
                 </button>
             </div>
             {selectedSkill && <DetailModal item={selectedSkill} onClose={() => setSelectedSkill(null)} />}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Section from './Section';
 import ProjectModal from '../modals/ProjectModal';
-import { ChevronLeftIcon, ChevronRightIcon } from '../icons/Icons';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import { projectData } from '../../data/projects';
 
 const ProjectSlideshow = () => {
@@ -16,7 +16,7 @@ const ProjectSlideshow = () => {
         <Section title={<>Recommendations <span className="text-gray-400 dark:text-gray-600">(Projects)</span></>} className="flex-1 flex flex-col min-h-0 !p-0 sm:!p-2 md:!p-4">
             <div className="relative flex-1 flex items-center">
                 <button onClick={() => scroll(-320)} className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-200/80 hover:bg-white dark:bg-dark-card/80 dark:hover:bg-dark-shadow-light p-1 sm:p-2 rounded-full transition-colors z-10">
-                    <ChevronLeftIcon />
+                    <FaChevronLeft />
                 </button>
                 <div ref={slideshowRef} className="flex overflow-x-auto snap-x snap-mandatory space-x-4 pt-4 pb-4 pl-4 scroll-pl-4 scrollbar-hide h-full items-center">
                     <div className="flex-shrink-0 w-8 sm:w-10 md:w-12"></div>
@@ -38,7 +38,7 @@ const ProjectSlideshow = () => {
                     <div className="flex-shrink-0 w-4 sm:w-6 md:w-8"></div>
                 </div>
                 <button onClick={() => scroll(320)} className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-200/80 hover:bg-white dark:bg-dark-card/80 dark:hover:bg-dark-shadow-light p-1 sm:p-2 rounded-full transition-colors z-10">
-                    <ChevronRightIcon />
+                    <FaChevronRight />
                 </button>
             </div>
             {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}

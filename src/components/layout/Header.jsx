@@ -7,7 +7,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { SearchContext } from '../../context/SearchContext';
 import SearchResults from '../search/SearchResults';
-import { MenuIcon, SearchIcon, MicIcon } from '../icons/Icons';
+import { FaBars, FaSearch, FaMicrophone } from 'react-icons/fa6';
 
 const Header = ({ toggleSidebar, setActivePage, activePage }) => {
   // STATE MANAGEMENT
@@ -263,7 +263,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
           aria-label="Toggle sidebar"
           className="p-2 rounded-full hover:bg-gray-300 dark:hover:bg-gray-800 transition-colors mr-4"
         >
-          <MenuIcon />
+          <FaBars />
         </button>
         <div
           className="flex items-center cursor-pointer"
@@ -300,7 +300,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
             }`}
           />
           <div className="absolute left-3 top-1/2 -translate-y-1/2">
-            <SearchIcon />
+            <FaSearch />
           </div>
           <SearchResults setActivePage={setActivePage} />
         </div>
@@ -318,7 +318,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
               : 'bg-gray-200 dark:bg-black hover:bg-gray-300 dark:hover:bg-gray-800 bevel-light-inset dark:bevel-dark-inset'
           }`}
         >
-          <MicIcon
+          <FaMicrophone
             className={
               showVisualCues
                 ? 'text-white drop-shadow-md'
