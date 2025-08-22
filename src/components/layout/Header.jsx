@@ -7,7 +7,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { SearchContext } from '../../context/SearchContext';
 import SearchResults from '../search/SearchResults';
-import { MenuIcon, SearchIcon, MicIcon } from '../icons/Icons';
+import { FaBars, FaSearch, FaMicrophone, FaPlayCircle } from 'react-icons/fa';
 
 const Header = ({ toggleSidebar, setActivePage, activePage }) => {
   // STATE MANAGEMENT
@@ -263,23 +263,13 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
           aria-label="Toggle sidebar"
           className="p-2 rounded-full hover:bg-gray-300 dark:hover:bg-gray-800 transition-colors mr-4"
         >
-          <MenuIcon />
+          <FaBars size={25} />
         </button>
         <div
           className="flex items-center cursor-pointer"
           onClick={() => setActivePage('Home')}
         >
-          <svg
-            className="w-8 h-8 text-red-600 mr-2"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-              clipRule="evenodd"
-            />
-          </svg>
+          <FaPlayCircle size={28} className="text-red-600 mr-3" />
           <h1 className="text-xl font-bold tracking-wider hidden sm:block">
             Kobby Hanson
           </h1>
@@ -300,7 +290,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
             }`}
           />
           <div className="absolute left-3 top-1/2 -translate-y-1/2">
-            <SearchIcon />
+            <FaSearch size={15} />
           </div>
           <SearchResults setActivePage={setActivePage} />
         </div>
@@ -318,15 +308,15 @@ const Header = ({ toggleSidebar, setActivePage, activePage }) => {
               : 'bg-gray-200 dark:bg-black hover:bg-gray-300 dark:hover:bg-gray-800 bevel-light-inset dark:bevel-dark-inset'
           }`}
         >
-          <MicIcon
-            className={
+          <div className="w-6 h-6 flex items-center justify-center">
+            <FaMicrophone size={19} className={
               showVisualCues
                 ? 'text-white drop-shadow-md'
                 : isMicActive
                 ? 'text-gray-600 dark:text-gray-300'
                 : 'text-gray-500 dark:text-gray-400'
-            }
-          />
+            } />
+          </div>
         </button>
       </div>
 
