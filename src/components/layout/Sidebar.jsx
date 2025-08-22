@@ -1,14 +1,14 @@
 import React from 'react';
-import { FaHome, FaBook, FaBriefcase, FaProjectDiagram, FaAward, FaEllipsisH, FaSun, FaMoon } from 'react-icons/fa6';
+import { HomeIcon, ProjectsIcon, EducationIcon, WorkIcon, HonorsIcon, MoreIcon, SunIcon, MoonIcon } from '../icons/Icons';
 
 const Sidebar = ({ isOpen, setActivePage, activePage, theme, setTheme }) => {
     const navItems = [
-        { name: 'Home', icon: <FaHome /> },
-        { name: 'Education', icon: <FaBook /> },
-        { name: 'Work Experience', icon: <FaBriefcase /> },
-        { name: 'Projects', icon: <FaProjectDiagram /> },
-        { name: 'Honors', icon: <FaAward /> },
-        { name: 'More', icon: <FaEllipsisH /> },
+        { name: 'Home', icon: <HomeIcon /> },
+        { name: 'Education', icon: <EducationIcon /> },
+        { name: 'Work Experience', icon: <WorkIcon /> },
+        { name: 'Projects', icon: <ProjectsIcon /> },
+        { name: 'Honors', icon: <HonorsIcon /> },
+        { name: 'More', icon: <MoreIcon /> },
     ];
 
     return (
@@ -32,7 +32,7 @@ const Sidebar = ({ isOpen, setActivePage, activePage, theme, setTheme }) => {
                     onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                     className={`flex items-center w-full p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors ${isOpen ? 'justify-start' : 'justify-center'}`}
                 >
-                    <div className="flex-shrink-0">{theme === 'dark' ? <FaSun /> : <FaMoon />}</div>
+                    <div className="flex-shrink-0">{theme === 'dark' ? <SunIcon /> : <MoonIcon />}</div>
                     <span className={`ml-4 whitespace-nowrap transition-opacity duration-200 ${isOpen ? 'opacity-100' : 'opacity-0 h-0 w-0 pointer-events-none'}`}>
                         {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
                     </span>

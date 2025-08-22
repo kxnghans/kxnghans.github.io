@@ -48,6 +48,7 @@ Here is a brief overview of the project's file structure:
 ├── src
 │   ├── assets
 │   ├── components
+│   │   ├── icons
 │   │   ├── layout
 │   │   ├── modals
 │   │   └── ui
@@ -65,6 +66,7 @@ Here is a brief overview of the project's file structure:
 *   **`public/`**: Contains the public assets of the application, such as the `favicon.ico`.
 *   **`src/`**: Contains the main source code of the application.
     *   **`components/`**: Contains all the reusable React components.
+        *   **`icons/`**: Contains all the SVG icons used in the application.
         *   **`layout/`**: Contains the main layout components, such as the `Header` and `Sidebar`.
         *   **`modals/`**: Contains the modal components used in the application.
         *   **`ui/`**: Contains the UI components, such as `Buttons`, `Cards`, and `Slideshows`.
@@ -75,7 +77,3 @@ Here is a brief overview of the project's file structure:
 *   **`postcss.config.js`**: The configuration file for PostCSS.
 *   **`tailwind.config.js`**: The configuration file for Tailwind CSS.
 *   **`vite.config.js`**: The configuration file for Vite.
-
-## Icons
-
-All icons in this project are from the `react-icons` library. This allows for a consistent look and feel across the application and makes it easy to add new icons as needed.
