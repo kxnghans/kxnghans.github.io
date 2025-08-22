@@ -4,9 +4,9 @@ import { HomeIcon, ProjectsIcon, EducationIcon, WorkIcon, HonorsIcon, MoreIcon, 
 const Sidebar = ({ isOpen, setActivePage, activePage, theme, setTheme }) => {
     const navItems = [
         { name: 'Home', icon: <HomeIcon /> },
-        { name: 'Projects', icon: <ProjectsIcon /> },
         { name: 'Education', icon: <EducationIcon /> },
         { name: 'Work Experience', icon: <WorkIcon /> },
+        { name: 'Projects', icon: <ProjectsIcon /> },
         { name: 'Honors', icon: <HonorsIcon /> },
         { name: 'More', icon: <MoreIcon /> },
     ];
