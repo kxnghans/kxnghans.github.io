@@ -175,30 +175,42 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
       </div>
 
       {/* Right Section: Search Toggle and Profile Image */}
-      <div className="flex items-center justify-end flex-1 lg:hidden">
+      <div className="flex-1 lg:hidden relative h-10">
         {/* Search Toggle for small screens */}
-        <button
-          onClick={() => setIsSearchVisible(!isSearchVisible)}
-          aria-label="Toggle Search"
-          className={`p-1.5 md:p-2 rounded-full transition-all transform duration-200 lg:hidden mr-2 ${
-            isSearchVisible
-              ? 'bg-red-500 text-white'
-              : 'bg-gray-200 dark:bg-black hover:bg-gray-300 dark:hover:bg-gray-800 bevel-light-inset bevel-dark-inset'
+        <div
+          className={`absolute top-1/2 -translate-y-1/2 transition-all duration-500 ease-in-out transform ${
+            activePage === 'Home'
+              ? 'left-full -translate-x-full'
+              : 'left-1/2 -translate-x-1/2'
           }`}
         >
-          <div className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center text-[1rem] md:text-[1.2rem]">
-            <FaSearch className={isSearchVisible && theme === 'dark' ? 'text-gray-800' : isSearchVisible ? 'text-white' : 'text-gray-500 dark:text-gray-400'} />
-          </div>
-        </button>
+          <button
+            onClick={() => setIsSearchVisible(!isSearchVisible)}
+            aria-label="Toggle Search"
+            className={`p-1.5 md:p-2 rounded-full transition-all transform duration-200 lg:hidden ${
+              isSearchVisible
+                ? 'bg-red-500 text-white'
+                : 'bg-gray-200 dark:bg-black hover:bg-gray-300 dark:hover:bg-gray-800 bevel-light-inset bevel-dark-inset'
+            }`}
+          >
+            <div className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center text-[1rem] md:text-[1.2rem]">
+              <FaSearch className={isSearchVisible && theme === 'dark' ? 'text-gray-800' : isSearchVisible ? 'text-white' : 'text-gray-500 dark:text-gray-400'} />
+            </div>
+          </button>
+        </div>
 
-        <img
-          src={profileImage}
-          alt="Profile"
-          className={`w-10 h-10 rounded-full object-cover cursor-pointer border-2 border-transparent hover:border-red-500 transition-all transform ${
-            activePage === 'Home' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
-          }`}
-          onClick={() => setActivePage('Home')}
-        />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2">
+          <img
+            src={profileImage}
+            alt="Profile"
+            className={`w-10 h-10 rounded-full object-cover cursor-pointer border-2 border-transparent hover:border-red-500 transform ${
+              activePage === 'Home'
+                ? 'opacity-0 scale-0'
+                : 'opacity-100 scale-100 transition-all duration-500 delay-150'
+            }`}
+            onClick={() => setActivePage('Home')}
+          />
+        </div>
       </div>
 
       {/* Mobile Search Popup */}
