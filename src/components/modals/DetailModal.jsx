@@ -28,7 +28,7 @@ const DetailModal = ({ item, onClose }) => {
 
     return (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fade-in">
-            <div ref={modalRef} className="bg-gray-100 dark:bg-[#181818] rounded-lg w-3/5 h-3/4 relative transform transition-all duration-300 bevel-light dark:bevel-dark flex flex-col">
+            <div ref={modalRef} className="bg-gray-100 dark:bg-[#181818] rounded-lg w-11/12 md:w-4/5 lg:w-3/5 h-5/6 lg:h-3/4 relative transform transition-all duration-300 bevel-light dark:bevel-dark flex flex-col">
                 <button onClick={onClose} className="absolute top-3 right-3 text-gray-400 hover:text-white text-3xl z-10"><CloseIcon /></button>
                 <div className="p-6 py-4 overflow-y-auto max-h-full">
                     <h2 className="text-3xl font-bold mb-2 text-red-500">{item.modalDetails ? item.modalDetails.title : item.title}</h2>

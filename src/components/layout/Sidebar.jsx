@@ -3,12 +3,12 @@ import { FaHome, FaCode, FaGraduationCap, FaBriefcase, FaMedal, FaBars, FaSun, F
 
 const Sidebar = ({ isOpen, setActivePage, activePage, theme, setTheme }) => {
     const navItems = [
-        { name: 'Home', icon: <FaHome size={22} /> },
-        { name: 'Education', icon: <FaGraduationCap size={22} /> },
-        { name: 'Work Experience', icon: <FaBriefcase size={22} /> },
-        { name: 'Projects', icon: <FaCode size={22} /> },
-        { name: 'Honors', icon: <FaMedal size={22} /> },
-        { name: 'More', icon: <FaBars size={22} /> },
+        { name: 'Home', icon: <div className="text-[1.6rem]"><FaHome /></div> },
+        { name: 'Education', icon: <div className="text-[1.6rem]"><FaGraduationCap /></div> },
+        { name: 'Work Experience', icon: <div className="text-[1.6rem]"><FaBriefcase /></div> },
+        { name: 'Projects', icon: <div className="text-[1.6rem]"><FaCode /></div> },
+        { name: 'Honors', icon: <div className="text-[1.6rem]"><FaMedal /></div> },
+        { name: 'More', icon: <div className="text-[1.6rem]"><FaBars /></div> },
     ];
 
     return (
@@ -32,7 +32,7 @@ const Sidebar = ({ isOpen, setActivePage, activePage, theme, setTheme }) => {
                     onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                     className={`flex items-center w-full p-3 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors ${isOpen ? 'justify-start' : 'justify-center'}`}
                 >
-                    <div className="flex-shrink-0">{theme === 'dark' ? <FaSun size={20} /> : <FaMoon size={20} />}</div>
+                    <div className="flex-shrink-0 text-[1.4rem]">{theme === 'dark' ? <FaSun /> : <FaMoon />}</div>
                     <span className={`ml-4 whitespace-nowrap transition-opacity duration-200 ${isOpen ? 'opacity-100' : 'opacity-0 h-0 w-0 pointer-events-none'}`}>
                         {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
                     </span>
