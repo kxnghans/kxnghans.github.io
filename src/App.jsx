@@ -13,10 +13,10 @@ import HonorsPage from './pages/HonorsPage';
 import ContactPage from './pages/ContactPage';
 
 export default function App() {
-    const [isSidebarOpen, setIsSidebarOpen] = React.useState(window.innerWidth >= 768);
+    const [isSidebarOpen, setIsSidebarOpen] = React.useState(window.innerWidth >= 1024);
     const [activePage, setActivePage] = React.useState('Home');
     const [theme, setTheme] = React.useState('dark');
-    const [isSmallScreen, setIsSmallScreen] = React.useState(window.innerWidth < 768);
+    const [isMediumScreen, setIsMediumScreen] = React.useState(window.innerWidth < 1024);
     const sidebarRef = React.useRef(null);
 
     React.useEffect(() => {
@@ -27,11 +27,8 @@ export default function App() {
 
     React.useEffect(() => {
         const handleResize = () => {
-            const small = window.innerWidth < 768;
-            setIsSmallScreen(small);
-            if (!small) {
-                setIsSidebarOpen(true);
-            }
+            const medium = window.innerWidth < 1024;
+            setIsMediumScreen(medium);
         };
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
@@ -39,17 +36,17 @@ export default function App() {
 
     React.useEffect(() => {
         let timer;
-        if (isSmallScreen && isSidebarOpen) {
+        if (isMediumScreen && isSidebarOpen) {
             timer = setTimeout(() => {
                 setIsSidebarOpen(false);
             }, 5000);
         }
         return () => clearTimeout(timer);
-    }, [isSmallScreen, isSidebarOpen]);
+    }, [isMediumScreen, isSidebarOpen]);
 
     React.useEffect(() => {
         const handleInteraction = (e) => {
-            if (isSmallScreen && isSidebarOpen && sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+            if (isMediumScreen && isSidebarOpen && sidebarRef.current && !sidebarRef.current.contains(e.target)) {
                 setIsSidebarOpen(false);
             }
         };
@@ -63,7 +60,7 @@ export default function App() {
             document.removeEventListener('touchstart', handleInteraction);
             document.removeEventListener('scroll', handleInteraction, true);
         };
-    }, [isSmallScreen, isSidebarOpen]);
+    }, [isMediumScreen, isSidebarOpen]);
 
     const renderPage = () => {
         switch (activePage) {
@@ -92,7 +89,8 @@ export default function App() {
                 <Header 
                     toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 
                     setActivePage={setActivePage} 
-                    activePage={activePage} 
+                    activePage={activePage}
+                    theme={theme}
                 />
                 <main className="flex-1 overflow-y-auto bg-gray-100 dark:bg-dark-bg">
                     <div className="p-4 sm:p-6 md:p-8">

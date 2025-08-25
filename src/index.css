@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-size: 16px; /* Default font size */
+  }
+
+  /* Medium screens */
+  @media (max-width: 1024px) {
+    html {
+      font-size: 14.4px; /* 90% of 16px */
+    }
+  }
+
+  /* Small screens */
+  @media (max-width: 768px) {
+    html {
+      font-size: 12px; /* 75% of 16px */
+    }
+  }
+}
+
 @layer components {
   /* Scoped classes to only apply when .dark is present */
   /* Class for raised/extruded elements like cards and buttons */
@@ -49,6 +69,10 @@
 }
 .bevel-light-inset {
     box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.7);
+}
+
+.dark .bevel-dark-inset {
+    border: 1px solid #4a4a4a;
 }
 
 @media (max-width: 768px) {

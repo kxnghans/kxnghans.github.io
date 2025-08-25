@@ -15,7 +15,7 @@ const SkillsSlideshow = () => {
     const placeholderImageUrl = "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
     return (
-        <Section title="Skills" className="flex-1 flex flex-col min-h-0 !p-0 sm:!p-2 md:!p-4">
+        <Section title="Skills" className="flex-1 flex flex-col min-h-0">
             <div className="relative flex-1 flex items-center">
                 <button onClick={() => scroll(-320)} className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-200/80 hover:bg-white dark:bg-dark-card/80 dark:hover:bg-dark-shadow-light p-1 sm:p-2 rounded-full transition-colors z-10">
                     <ChevronLeftIcon />
