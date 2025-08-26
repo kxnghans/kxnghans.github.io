@@ -1,7 +1,7 @@
 export const workData = [
     {
         title: "Systems Engineer & Sr Business Analyst",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://plus.unsplash.com/premium_photo-1744345196324-94c618a49bc3?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         summary: [
             "Role: Lead SE & BA",
             "Focus: Agile, Kubernetes, DevOps",
@@ -21,7 +21,7 @@ export const workData = [
     },
     {
         title: "Software Developer",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg",
         summary: [
             "Stack: VueJS, PHP, SQL",
             "Projects: Education & Healthcare Apps",
@@ -39,7 +39,7 @@ export const workData = [
     },
     {
         title: "Supply Chain Manager",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://www.berlinsbi.com/uploads/sites/2/2024/09/logics-ansupply.webp",
         summary: [
             "Leadership: Led a team of 10",
             "Focus: Logistics & Data Analysis",

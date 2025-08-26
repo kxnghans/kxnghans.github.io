@@ -1,7 +1,7 @@
 export const communityData = [
     {
         title: "Photography Business & Media Lead",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.pexels.com/photos/4432468/pexels-photo-4432468.jpeg",
         summary: [
             "Venture: Photography Business",
             "Role: Church Media Team Lead"
@@ -33,7 +33,7 @@ export const communityData = [
     },
     {
         title: "President of the Reader's and Writer’s Club",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         summary: [
             "Role: President",
             "Achievement: Tripled Club Membership"
@@ -48,7 +48,7 @@ export const communityData = [
     },
     {
         title: "Code Quest",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg",
         summary: [
             "Event: Lockheed Martin Code Quest",
             "Role: Technical Proctor",
@@ -65,7 +65,7 @@ export const communityData = [
     },
     {
         title: "Vegas Strong Thunderbird Airshow",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.pexels.com/photos/13412245/pexels-photo-13412245.jpeg",
         summary: [
             "Event: Vegas Strong Airshow",
             "Role: Community Engagement"

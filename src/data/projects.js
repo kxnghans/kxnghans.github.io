@@ -1,7 +1,7 @@
 export const projectData = [
     {
         title: "Cloud Migration",
-        imageUrl: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg",
+        imageUrl: "https://plus.unsplash.com/premium_photo-1733306493254-52b143296396?q=80&w=1093&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         summary: [
             "Time: Overnight builds in 1 hour",
             "Cost: Over $10k saved",
@@ -121,7 +121,7 @@ export const projectData = [
     },
     {
         title: "COVID-19 Contingency Plan",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://plus.unsplash.com/premium_photo-1733328013343-e5ee77acaf05?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         summary: [
             "Performance: 91% mission capable rate",
             "Skills: Contingency Planning, Data Analysis",
@@ -141,7 +141,7 @@ export const projectData = [
     },
     {
         title: "Photography Business",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.pexels.com/photos/1787220/pexels-photo-1787220.jpeg",
         summary: [
             "Venture: Photography LLC",
             "Revenue: $10K in first year",
@@ -161,7 +161,7 @@ export const projectData = [
     },
     {
         title: "Autonomous Robotics",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.unsplash.com/photo-1655088651367-f9f4e1328f08?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         summary: [
             "Project: Autonomous RC Car",
             "Tech: Arduino, C, GPS, Sonar,",
@@ -181,7 +181,7 @@ export const projectData = [
     },
     {
         title: "Computer Vision",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg",
         summary: [
             "Focus: Neural Networks",
             "Application: Facial Recognition & Classification",
@@ -203,7 +203,7 @@ export const projectData = [
     },
     {
         title: "Stock Prediction",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.pexels.com/photos/30381207/pexels-photo-30381207.jpeg",
         summary: [
             "Project: Stock Prediction Tool",
             "Tech: RNN, LSTM, Stable Diffusion",
@@ -223,7 +223,7 @@ export const projectData = [
     },
     {
         title: "Immersive Flight Sim",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://images.unsplash.com/photo-1585836452451-3f85c51df7e0?q=80&w=927&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         summary: [
             "Client: National Museum of WWII Aviation",
             "Tech: Unreal Engine, C#, Raspberry Pi",
@@ -243,7 +243,7 @@ export const projectData = [
     },
     {
         title: "Circuit Design",
-        imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl: "https://plus.unsplash.com/premium_photo-1683121713210-97667d2e83c8?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         summary: [
             "Focus: CMOS Op-Amp Design",
             "Tools: AutoCAD, LTSpice, MATLAB",

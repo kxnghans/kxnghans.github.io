@@ -20,6 +20,7 @@ export const certificationsData = [
         title: "Microsoft Power Platform",
         imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         summary: [
+            "Citizen Developer Certified",
             "Training: Microsoft Power Platform",
             "Provider: Microsoft"
         ],
@@ -27,6 +28,7 @@ export const certificationsData = [
             title: "Microsoft Power Platform",
             subtitle: "Certifications & Training",
             details: [
+                "Citizen Developer Certified: Certified in building applications using low-code platforms, demonstrating proficiency in creating and deploying business solutions.",
                 "App in a day: Participated in the \"App in a Day\" training, where I developed and deployed a work queue app to solve a practical business problem.",
                 "Dashboard in a day: Attained proficiency in data visualization by completing the \"Dashboard in a Day\" training, building interactive dashboards with sales data in Power BI.",
                 "Fabric in a day: Gained exposure to modern data analytics by completing the \"Fabric in a Day\" training, where I pipelined business data on transaction sales, customers, location, and product info into the unified Microsoft Fabric platform.",
