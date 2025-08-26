@@ -30,7 +30,7 @@ const ContactPage = () => (
                     {/* GitHub */}
                     <div className="flex items-center">
                         <FaGithub className="w-6 h-6 mr-3 text-red-500" />
-                        <a href="https://github.com/kxnghans" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400">kxnghans.github.io</a>
+                        <a href="https://github.com/kxnghans" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400">github.com/kxnghans</a>
                     </div>
 
                     {/* Website */}
@@ -43,6 +43,7 @@ const ContactPage = () => (
                     <form className="space-y-4">
                         <input type="text" placeholder="Your Name" className="w-full p-3 bg-gray-200 text-gray-800 dark:text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition-shadow bevel-light-inset dark:neumorphic-inset-dark" />
                         <input type="email" placeholder="Your Email" className="w-full p-3 bg-gray-200 text-gray-800 dark:text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition-shadow bevel-light-inset dark:neumorphic-inset-dark" />
+                        <input type="text" placeholder="Subject" className="w-full p-3 bg-gray-200 text-gray-800 dark:text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition-shadow bevel-light-inset dark:neumorphic-inset-dark" />
                         <textarea placeholder="Your Message" rows="4" className="w-full p-3 bg-gray-200 text-gray-800 dark:text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition-shadow bevel-light-inset dark:neumorphic-inset-dark"></textarea>
                         <button type="submit" className="w-full text-gray-800 dark:text-gray-300 font-bold py-3 px-4 rounded-lg transition-all duration-200 transform hover:opacity-80 active:scale-95 bevel-light dark:neumorphic-outset-dark">Send Message <FaPaperPlane style={{ display: 'inline' }} /></button>
                     </form>
