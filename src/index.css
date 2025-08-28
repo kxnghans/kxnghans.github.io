@@ -27,77 +27,92 @@
   /* Class for raised/extruded elements like cards and buttons */
   .dark .neumorphic-outset-dark {
     background-color: #242529; /* dark-card color */
-    box-shadow: 6px 6px 12px #1a1b1e, /* dark-shadow-dark */
-                -6px -6px 12px #2e2f34; /* dark-shadow-light */
+    box-shadow:
+      6px 6px 12px #1a1b1e,
+      /* dark-shadow-dark */ -6px -6px 12px #2e2f34; /* dark-shadow-light */
   }
 
   /* Class for pressed elements like input fields */
   .dark .neumorphic-inset-dark {
     background-color: #242529; /* dark-card color */
-    box-shadow: inset 6px 6px 12px #1a1b1e, /* dark-shadow-dark */
-                inset -6px -6px 12px #2e2f34; /* dark-shadow-light */
+    box-shadow:
+      inset 6px 6px 12px #1a1b1e,
+      /* dark-shadow-dark */ inset -6px -6px 12px #2e2f34; /* dark-shadow-light */
   }
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .scrollbar-hide {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 @keyframes fade-in {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .animate-fade-in {
-    animation: fade-in 0.3s ease-out forwards;
+  animation: fade-in 0.3s ease-out forwards;
 }
 
 /* Original Bevel styles for Light Mode */
 .bevel-light {
-    box-shadow: -3px -3px 7px rgba(255, 255, 255, 0.7), 3px 3px 5px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    -3px -3px 7px rgba(255, 255, 255, 0.7),
+    3px 3px 5px rgba(0, 0, 0, 0.1);
 }
 .bevel-light-inset {
-    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.7);
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.1),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.7);
 }
 
 .dark .bevel-dark-inset {
-    border: 1px solid #4a4a4a;
+  border: 1px solid #4a4a4a;
 }
 
 @media (max-width: 768px) {
-    .bevel-light {
-        box-shadow: -2px -2px 5px rgba(255, 255, 255, 0.7), 2px 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .bevel-light-inset {
-        box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1), inset -1px -1px 3px rgba(255, 255, 255, 0.7);
-    }
-    .dark .neumorphic-outset-dark {
-        box-shadow: 4px 4px 8px #1a1b1e, -4px -4px 8px #2e2f34;
-    }
-    .dark .neumorphic-inset-dark {
-        box-shadow: inset 4px 4px 8px #1a1b1e, inset -4px -4px 8px #2e2f34;
-    }
+  .bevel-light {
+    box-shadow:
+      -2px -2px 5px rgba(255, 255, 255, 0.7),
+      2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .bevel-light-inset {
+    box-shadow:
+      inset 1px 1px 3px rgba(0, 0, 0, 0.1),
+      inset -1px -1px 3px rgba(255, 255, 255, 0.7);
+  }
+  .dark .neumorphic-outset-dark {
+    box-shadow:
+      4px 4px 8px #1a1b1e,
+      -4px -4px 8px #2e2f34;
+  }
+  .dark .neumorphic-inset-dark {
+    box-shadow:
+      inset 4px 4px 8px #1a1b1e,
+      inset -4px -4px 8px #2e2f34;
+  }
 }
 
 /* Autofill detection */
 @keyframes onAutoFillStart {
-  from { }
-  to { }
+  from {
+  }
+  to {
+  }
 }
 
 .detect-autofill:-webkit-autofill {
   animation-name: onAutoFillStart;
   animation-fill-mode: both;
 }
-

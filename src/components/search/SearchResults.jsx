@@ -1,7 +1,15 @@
-
-import React, { useContext, useRef, useState, useEffect } from 'react';
-import { SearchContext } from '../../context/SearchContext';
-import { FaCog, FaProjectDiagram, FaBriefcase, FaGraduationCap, FaCertificate, FaUsers, FaAward, FaChevronDown } from 'react-icons/fa';
+import React, { useContext, useRef, useState, useEffect } from "react";
+import { SearchContext } from "../../context/SearchContext";
+import {
+  FaCog,
+  FaProjectDiagram,
+  FaBriefcase,
+  FaGraduationCap,
+  FaCertificate,
+  FaUsers,
+  FaAward,
+  FaChevronDown,
+} from "react-icons/fa";
 
 const ICONS = {
   Project: <FaProjectDiagram />,
@@ -17,7 +25,7 @@ const Highlight = ({ text, highlight }) => {
   if (!highlight.trim()) {
     return <span>{text}</span>;
   }
-  const regex = new RegExp(`(${highlight})`, 'gi');
+  const regex = new RegExp(`(${highlight})`, "gi");
   const parts = text.split(regex);
   return (
     <span>
@@ -28,7 +36,7 @@ const Highlight = ({ text, highlight }) => {
           </span>
         ) : (
           <span key={i}>{part}</span>
-        )
+        ),
       )}
     </span>
   );
@@ -39,7 +47,9 @@ const smartTruncate = (str, n, query) => {
   const words = str.split(" ");
   if (words.length <= n) return str;
 
-  const queryIndex = words.findIndex(word => word.toLowerCase().includes(query.toLowerCase()));
+  const queryIndex = words.findIndex((word) =>
+    word.toLowerCase().includes(query.toLowerCase()),
+  );
 
   if (queryIndex !== -1) {
     const half = Math.floor(n / 2);
@@ -65,7 +75,7 @@ const smartTruncate = (str, n, query) => {
 
 const SearchResults = ({ setActivePage }) => {
   const { searchQuery, searchResults, loading } = useContext(SearchContext);
-  const [maxHeight, setMaxHeight] = useState('none');
+  const [maxHeight, setMaxHeight] = useState("none");
   const [showArrow, setShowArrow] = useState(false);
   const itemRef = useRef(null);
   const containerRef = useRef(null);
@@ -78,7 +88,7 @@ const SearchResults = ({ setActivePage }) => {
         setMaxHeight(`${numVisible * itemHeight}px`);
         setShowArrow(true);
       } else {
-        setMaxHeight('none');
+        setMaxHeight("none");
         setShowArrow(false);
       }
     }
@@ -95,7 +105,7 @@ const SearchResults = ({ setActivePage }) => {
 
   if (loading) {
     return (
-      <div className="absolute w-full bg-white dark:bg-dark-card shadow-lg rounded-lg p-4 top-full mt-1">
+      <div className="absolute top-full mt-1 w-full rounded-lg bg-white p-4 shadow-lg dark:bg-dark-card">
         <p>Loading...</p>
       </div>
     );
@@ -110,24 +120,42 @@ const SearchResults = ({ setActivePage }) => {
   };
 
   return (
-    <div ref={containerRef} style={{ maxHeight }} onScroll={handleScroll} className="absolute w-full bg-white dark:bg-dark-card shadow-lg rounded-lg top-full mt-1 overflow-y-auto">
+    <div
+      ref={containerRef}
+      style={{ maxHeight }}
+      onScroll={handleScroll}
+      className="absolute top-full mt-1 w-full overflow-y-auto rounded-lg bg-white shadow-lg dark:bg-dark-card"
+    >
       <ul className="overflow-hidden">
         {searchResults.map((result, index) => (
-          <li ref={index === 0 ? itemRef : null} key={result.id} onClick={() => handleResultClick(result.page)} className={`p-4 bg-gray-50 dark:bg-dark-card hover:bg-gray-100 dark:hover:bg-dark-bg cursor-pointer flex items-center border-b border-gray-200 dark:border-gray-700 last:border-b-0`}>
-            <span className="mr-4 text-gray-800 dark:text-gray-200">{ICONS[result.type]}</span>
+          <li
+            ref={index === 0 ? itemRef : null}
+            key={result.id}
+            onClick={() => handleResultClick(result.page)}
+            className={`flex cursor-pointer items-center border-b border-gray-200 bg-gray-50 p-4 last:border-b-0 hover:bg-gray-100 dark:border-gray-700 dark:bg-dark-card dark:hover:bg-dark-bg`}
+          >
+            <span className="mr-4 text-gray-800 dark:text-gray-200">
+              {ICONS[result.type]}
+            </span>
             <div>
               <p className="font-bold text-gray-800 dark:text-gray-200">
-                <span className="text-gray-500 dark:text-gray-400">[{result.type}]</span> <Highlight text={result.title} highlight={searchQuery} />
+                <span className="text-gray-500 dark:text-gray-400">
+                  [{result.type}]
+                </span>{" "}
+                <Highlight text={result.title} highlight={searchQuery} />
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                <Highlight text={smartTruncate(result.description, 8, searchQuery)} highlight={searchQuery} />
+                <Highlight
+                  text={smartTruncate(result.description, 8, searchQuery)}
+                  highlight={searchQuery}
+                />
               </p>
             </div>
           </li>
         ))}
       </ul>
       {showArrow && (
-        <div className="sticky bottom-0 w-full text-center py-1 bg-white dark:bg-dark-card border-t border-gray-200 dark:border-gray-700">
+        <div className="sticky bottom-0 w-full border-t border-gray-200 bg-white py-1 text-center dark:border-gray-700 dark:bg-dark-card">
           <FaChevronDown className="mx-auto animate-bounce text-gray-500 dark:text-gray-400" />
         </div>
       )}

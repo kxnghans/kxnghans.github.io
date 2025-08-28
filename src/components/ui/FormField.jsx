@@ -1,36 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 // You can create a custom hook for theme detection to make it even cleaner
 const useTheme = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   useEffect(() => {
     const root = window.document.documentElement;
-    const observer = new MutationObserver(() => setIsDarkMode(root.classList.contains('dark')));
-    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
-    setIsDarkMode(root.classList.contains('dark')); // Initial check
+    const observer = new MutationObserver(() =>
+      setIsDarkMode(root.classList.contains("dark")),
+    );
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+    setIsDarkMode(root.classList.contains("dark")); // Initial check
     return () => observer.disconnect();
   }, []);
   return isDarkMode;
 };
 
-const FormField = ({ name, type, placeholder, register, validation, errors, setValue }) => {
+const FormField = ({
+  name,
+  type,
+  placeholder,
+  register,
+  validation,
+  errors,
+  setValue,
+}) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isAutofilled, setIsAutofilled] = useState(false);
   const isDarkMode = useTheme();
 
   const handleAutoFill = (e) => {
-    if (e.animationName === 'onAutoFillStart') {
+    if (e.animationName === "onAutoFillStart") {
       setIsAutofilled(true);
-      setValue(name, e.target.value, { shouldValidate: true, shouldDirty: true });
+      setValue(name, e.target.value, {
+        shouldValidate: true,
+        shouldDirty: true,
+      });
     }
   };
-  
+
   const getInputStyle = () => {
-    const baseShadowLight = 'inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.7)';
-    const baseShadowDark = 'inset 6px 6px 12px #1a1b1e, inset -6px -6px 12px #2e2f34';
-    const blueFocusRing = '0 0 0 1.5px #3b82f6';
-    const redErrorRing = '0 0 0 1.5px #ef4444';
-    const autofillTint = 'inset 0 0 0 1000px rgba(59, 130, 246, 0.1)';
+    const baseShadowLight =
+      "inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.7)";
+    const baseShadowDark =
+      "inset 6px 6px 12px #1a1b1e, inset -6px -6px 12px #2e2f34";
+    const blueFocusRing = "0 0 0 1.5px #3b82f6";
+    const redErrorRing = "0 0 0 1.5px #ef4444";
+    const autofillTint = "inset 0 0 0 1000px rgba(59, 130, 246, 0.1)";
 
     let shadows = [isDarkMode ? baseShadowDark : baseShadowLight];
     if (isAutofilled) shadows.push(autofillTint);
@@ -38,8 +53,8 @@ const FormField = ({ name, type, placeholder, register, validation, errors, setV
     if (isFocused) shadows.unshift(blueFocusRing);
 
     return {
-      backgroundColor: isDarkMode ? '#242529' : '#e5e7eb',
-      boxShadow: shadows.join(', '),
+      backgroundColor: isDarkMode ? "#242529" : "#e5e7eb",
+      boxShadow: shadows.join(", "),
     };
   };
 
@@ -48,12 +63,12 @@ const FormField = ({ name, type, placeholder, register, validation, errors, setV
   const handleChange = (e) => {
     setIsAutofilled(false);
     registeredProps.onChange(e);
-  }
+  };
 
   const handleBlur = (e) => {
     setIsFocused(false);
     registeredProps.onBlur(e);
-  }
+  };
 
   const commonProps = {
     ...registeredProps,
@@ -63,17 +78,20 @@ const FormField = ({ name, type, placeholder, register, validation, errors, setV
     onBlur: handleBlur,
     onAnimationStart: handleAutoFill,
     style: getInputStyle(),
-    className: "w-full p-3 text-gray-800 dark:text-gray-300 rounded-lg transition-shadow outline-none detect-autofill",
+    className:
+      "w-full p-3 text-gray-800 dark:text-gray-300 rounded-lg transition-shadow outline-none detect-autofill",
   };
 
   return (
     <div>
-      {type === 'textarea' ? (
+      {type === "textarea" ? (
         <textarea {...commonProps} rows="4"></textarea>
       ) : (
         <input type={type} {...commonProps} />
       )}
-      {errors[name] && <p className="mt-1 text-xs text-red-500">{errors[name].message}</p>}
+      {errors[name] && (
+        <p className="mt-1 text-xs text-red-500">{errors[name].message}</p>
+      )}
     </div>
   );
 };

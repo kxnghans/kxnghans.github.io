@@ -1,25 +1,37 @@
-import React from 'react';
-import profileImage from '../../../assets/Kobs DP.png';
+import React from "react";
+import profileImage from "../../../assets/Kobs DP.png";
 
 const ProfileSummaryCard = () => (
-    <div className="bg-gray-100 bevel-light dark:neumorphic-outset-dark rounded-2xl p-4 sm:p-6 mb-8">
-         <div className="flex flex-col sm:flex-row items-center">
-            <img
-                src={profileImage}
-                alt="Kobby Hanson"
-                className="w-24 h-24 sm:w-32 sm:h-32 rounded-full mb-4 sm:mb-0 sm:mr-6 object-cover border-4 border-red-600 shadow-lg"
-            />
-            <div className="text-center sm:text-left">
-                <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 dark:text-gray-200">Kobby Hanson</h1>
-                <p className="text-md sm:text-lg text-gray-500 dark:text-gray-400">Systems Engineer & Sr Business Analyst</p>
-                <p className="text-md sm:text-lg text-red-500 dark:text-red-400"><a href="https://hansondeck.com" target="_blank" rel="noopener noreferrer">Entrepreneur</a></p>
-                <div className="mt-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-                    <p>Masters in Data Science - UC Berkeley</p>
-                    <p>Bachelors in Electrical Engineering - UCCS</p>
-                </div>
-            </div>
+  <div className="bevel-light dark:neumorphic-outset-dark mb-8 rounded-2xl bg-gray-100 p-4 sm:p-6">
+    <div className="flex flex-col items-center sm:flex-row">
+      <img
+        src={profileImage}
+        alt="Kobby Hanson"
+        className="mb-4 h-24 w-24 rounded-full border-4 border-red-600 object-cover shadow-lg sm:mb-0 sm:mr-6 sm:h-32 sm:w-32"
+      />
+      <div className="text-center sm:text-left">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-200 sm:text-4xl">
+          Kobby Hanson
+        </h1>
+        <p className="text-md text-gray-500 dark:text-gray-400 sm:text-lg">
+          Systems Engineer & Sr Business Analyst
+        </p>
+        <p className="text-md text-red-500 dark:text-red-400 sm:text-lg">
+          <a
+            href="https://hansondeck.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Entrepreneur
+          </a>
+        </p>
+        <div className="mt-2 text-xs text-gray-500 dark:text-gray-400 sm:text-sm">
+          <p>Masters in Data Science - UC Berkeley</p>
+          <p>Bachelors in Electrical Engineering - UCCS</p>
         </div>
+      </div>
     </div>
+  </div>
 );
 
 export default ProfileSummaryCard;

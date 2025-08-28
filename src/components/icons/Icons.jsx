@@ -1,12 +1,16 @@
-import React from 'react';
+import React from "react";
 import {
   FaChevronLeft,
   FaChevronRight,
-  FaWindowClose,            // Added for the close button
-  FaExternalLinkAlt,  // Added for external links
-} from 'react-icons/fa';
+  FaWindowClose, // Added for the close button
+  FaExternalLinkAlt, // Added for external links
+} from "react-icons/fa";
 
-export const ChevronLeftIcon = () => <FaChevronLeft className="w-6 h-6" />;
-export const ChevronRightIcon = () => <FaChevronRight className="w-6 h-6" />;
-export const CloseIcon = () => <FaWindowClose className="w-6 h-6 text-red-500" />;
-export const ExternalLinkIcon = () => <FaExternalLinkAlt className="inline-block w-4 h-4 ml-1" />;
+export const ChevronLeftIcon = () => <FaChevronLeft className="h-6 w-6" />;
+export const ChevronRightIcon = () => <FaChevronRight className="h-6 w-6" />;
+export const CloseIcon = () => (
+  <FaWindowClose className="h-6 w-6 text-red-500" />
+);
+export const ExternalLinkIcon = () => (
+  <FaExternalLinkAlt className="ml-1 inline-block h-4 w-4" />
+);
