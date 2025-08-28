@@ -1,5 +1,5 @@
 import React from 'react';
-import { Toaster } from 'sonner';
+import Toast from './components/ui/Toast';
 
 // Layout Components
 import Header from './components/layout/Header';
@@ -77,19 +77,7 @@ export default function App() {
 
     return (
         <div className="bg-gray-200 dark:bg-dark-bg text-gray-800 dark:text-gray-400 min-h-screen font-sans flex">
-            <Toaster 
-                position="bottom-center"
-                richColors
-                toastOptions={{
-                    classNames: {
-                        toast: 'bg-gray-200 dark:bg-dark-surface text-gray-800 dark:text-gray-300 border-none p-4 rounded-lg bevel-light dark:neumorphic-outset-dark',
-                        title: 'font-semibold',
-                        success: '!bg-green-200 dark:!bg-green-800',
-                        error: '!bg-red-200 dark:!bg-red-800',
-                        loading: '!bg-blue-200 dark:!bg-blue-800',
-                    },
-                }}
-            />
+            <Toast />
             <div ref={sidebarRef}>
                 <Sidebar 
                     isOpen={isSidebarOpen} 

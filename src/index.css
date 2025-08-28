@@ -89,3 +89,15 @@
         box-shadow: inset 4px 4px 8px #1a1b1e, inset -4px -4px 8px #2e2f34;
     }
 }
+
+/* Autofill detection */
+@keyframes onAutoFillStart {
+  from { }
+  to { }
+}
+
+.detect-autofill:-webkit-autofill {
+  animation-name: onAutoFillStart;
+  animation-fill-mode: both;
+}
+
