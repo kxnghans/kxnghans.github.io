@@ -6,7 +6,7 @@
 import React, { useContext } from "react";
 import { SearchContext } from "../../context/SearchContext";
 import SearchResults from "./SearchResults";
-import { FaSearch, FaMicrophone } from "react-icons/fa";
+import { FaSearch, FaMicrophone, FaTimesCircle } from "react-icons/fa";
 
 const SearchBar = ({
   setActivePage,
@@ -16,6 +16,7 @@ const SearchBar = ({
   toggleMic,
   inputRef,
   theme,
+  micRef,
 }) => {
   const { searchQuery, setSearchQuery } = useContext(SearchContext);
 
@@ -32,19 +33,28 @@ const SearchBar = ({
           placeholder={placeholderText}
           value={searchQuery}
           onChange={handleSearchChange}
-          className={`bevel-light-inset bevel-dark-inset w-full rounded-full bg-gray-200 py-2 pl-10 pr-4 text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-black md:text-base ${
+          className={`bevel-light-inset bevel-dark-inset w-full rounded-full bg-gray-200 py-2 pl-10 pr-10 text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-black md:text-base ${
             showVisualCues ? "ring-2 ring-red-500" : ""
           }`}
         />
         <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[1rem] md:text-[1.2rem]">
           <FaSearch className="text-gray-500 dark:text-gray-400" />
         </div>
+        {searchQuery && (
+          <button
+            onClick={() => setSearchQuery("")}
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-10"
+          >
+            <FaTimesCircle className="h-4 w-4 text-gray-400 hover:text-red-500" />
+          </button>
+        )}
         <SearchResults setActivePage={setActivePage} />
       </div>
 
       {/* Mic Button */}
       <button
         id="mic-button"
+        ref={micRef}
         onClick={toggleMic}
         aria-label="Toggle microphone"
         className={`ml-3 transform rounded-full p-2 transition-all duration-200 ${
