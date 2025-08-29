@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Section from "./Section";
 import { ChevronLeftIcon, ChevronRightIcon } from "../icons/Icons";
 
@@ -9,9 +9,21 @@ const Slideshow = ({
   renderModal,
   getModalItem,
   sectionClassName,
+  activeSlide,
 }) => {
   const [selectedItem, setSelectedItem] = React.useState(null);
   const slideshowRef = React.useRef(null);
+  const slideRefs = React.useRef([]);
+
+  useEffect(() => {
+    if (activeSlide !== undefined && slideRefs.current[activeSlide]) {
+      slideRefs.current[activeSlide].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+    }
+  }, [activeSlide]);
 
   const scroll = (scrollOffset) => {
     slideshowRef.current.scrollBy({ left: scrollOffset, behavior: "smooth" });
@@ -44,6 +56,7 @@ const Slideshow = ({
           {data.map((item, index) => (
             <div
               key={index}
+              ref={(el) => (slideRefs.current[index] = el)}
               className="bevel-light dark:neumorphic-outset-dark w-64 flex-shrink-0 transform cursor-pointer snap-start overflow-hidden rounded-lg bg-gray-200 transition-transform duration-300 hover:-translate-y-1 sm:w-72 md:w-80"
               onClick={() => handleCardClick(item)}
             >

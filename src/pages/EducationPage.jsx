@@ -12,6 +12,7 @@ const EducationPage = () => {
         {education.map((edu, index) => (
           <div
             key={index}
+            id={`education-${index}`}
             className="bevel-light dark:neumorphic-outset-dark cursor-pointer overflow-hidden rounded-lg bg-gray-200 transition-all duration-300 hover:-translate-y-2"
             onClick={() => setSelectedItem(edu.details)}
           >
@@ -24,10 +25,10 @@ const EducationPage = () => {
               <h3 className="mb-2 truncate text-lg font-bold text-red-500 dark:text-red-400">
                 {edu.title}
               </h3>
-              <div className="h-20 space-y-1 overflow-hidden text-sm text-gray-600 dark:text-gray-400">
+              <div className="h-24 space-y-1 overflow-hidden text-sm text-gray-600 dark:text-gray-400">
                 {edu.summary.map((line, i) => (
                   <p key={i} className="truncate">
-                    {line}
+                    {i === 0 ? <strong>{line}</strong> : line}
                   </p>
                 ))}
               </div>

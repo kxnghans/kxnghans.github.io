@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import Slideshow from "./Slideshow";
 import DetailModal from "../modals/DetailModal";
 import { community } from "../../data";
+import { SearchContext } from "../../context/SearchContext";
 
 const DefaultCard = ({ item }) => (
   <>
@@ -25,16 +26,20 @@ const DefaultCard = ({ item }) => (
   </>
 );
 
-const CommunitySlideshow = () => (
-  <Slideshow
-    title="Community Involvement"
-    data={community}
-    renderCard={(item) => <DefaultCard item={item} />}
-    renderModal={({ item, onClose }) => (
-      <DetailModal item={item} onClose={onClose} />
-    )}
-    getModalItem={(item) => item.details}
-  />
-);
+const CommunitySlideshow = () => {
+  const { activeSlides } = useContext(SearchContext);
+  return (
+    <Slideshow
+      title="Community Involvement"
+      data={community}
+      renderCard={(item) => <DefaultCard item={item} />}
+      renderModal={({ item, onClose }) => (
+        <DetailModal item={item} onClose={onClose} />
+      )}
+      getModalItem={(item) => item.details}
+      activeSlide={activeSlides["community-slideshow"]}
+    />
+  );
+};
 
 export default CommunitySlideshow;

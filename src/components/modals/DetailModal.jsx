@@ -42,9 +42,9 @@ const DetailModal = ({ item, onClose }) => {
           <h2 className="mb-2 text-3xl font-bold text-red-500">
             {item.modalDetails ? item.modalDetails.title : item.title}
           </h2>
-          {item.modalDetails && item.modalDetails.subtitle && (
+          {(item.modalDetails?.subtitle || item.subtitle) && (
             <p className="mb-4 text-lg text-gray-500 dark:text-gray-400">
-              {item.modalDetails.subtitle}
+              {item.modalDetails?.subtitle || item.subtitle}
             </p>
           )}
           <div className="mb-4 leading-relaxed text-gray-600 dark:text-gray-300">

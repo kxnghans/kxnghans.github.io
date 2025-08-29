@@ -12,6 +12,7 @@ const WorkExperiencePage = () => {
         {work.map((job, index) => (
           <div
             key={index}
+            id={`work-${index}`}
             className="bevel-light dark:neumorphic-outset-dark cursor-pointer overflow-hidden rounded-lg bg-gray-200 transition-all duration-300 hover:-translate-y-2"
             onClick={() => setSelectedItem(job.details)}
           >
@@ -24,10 +25,10 @@ const WorkExperiencePage = () => {
               <h4 className="truncate text-xl font-bold text-red-500 dark:text-red-400">
                 {job.title}
               </h4>
-              <div className="mt-2 h-20 space-y-1 overflow-hidden text-sm text-gray-600 dark:text-gray-400">
+              <div className="mt-2 h-24 space-y-1 overflow-hidden text-sm text-gray-600 dark:text-gray-400">
                 {job.summary.map((line, i) => (
                   <p key={i} className="truncate">
-                    {line}
+                    {i === 0 ? <strong>{line}</strong> : line}
                   </p>
                 ))}
               </div>

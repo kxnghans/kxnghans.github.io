@@ -14,6 +14,7 @@ const HonorsPage = () => {
           {honors.map((honor, index) => (
             <div
               key={index}
+              id={`honor-${index}`}
               className="bevel-light dark:neumorphic-outset-dark cursor-pointer overflow-hidden rounded-lg bg-gray-200 transition-all duration-300 hover:-translate-y-2"
               onClick={() => setSelectedItem(honor.details)}
             >

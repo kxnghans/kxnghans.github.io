@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import Slideshow from "./Slideshow";
 import DetailModal from "../modals/DetailModal";
 import { skills } from "../../data";
+import { SearchContext } from "../../context/SearchContext";
 
 const placeholderImageUrl =
   "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
@@ -49,16 +50,20 @@ const SkillCard = ({ item }) => (
   </>
 );
 
-const SkillsSlideshow = () => (
-  <Slideshow
-    title="Skills"
-    data={skills}
-    renderCard={(item) => <SkillCard item={item} />}
-    renderModal={({ item, onClose }) => (
-      <DetailModal item={item} onClose={onClose} />
-    )}
-    sectionClassName="flex min-h-0 flex-1 flex-col"
-  />
-);
+const SkillsSlideshow = () => {
+  const { activeSlides } = useContext(SearchContext);
+  return (
+    <Slideshow
+      title="Skills"
+      data={skills}
+      renderCard={(item) => <SkillCard item={item} />}
+      renderModal={({ item, onClose }) => (
+        <DetailModal item={item} onClose={onClose} />
+      )}
+      sectionClassName="flex min-h-0 flex-1 flex-col"
+      activeSlide={activeSlides["skills-slideshow"]}
+    />
+  );
+};
 
 export default SkillsSlideshow;
