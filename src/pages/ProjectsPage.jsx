@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Section from "../components/ui/Section";
 import ProjectModal from "../components/modals/ProjectModal";
 import { projects } from "../data";
+import { SearchContext } from "../context/SearchContext";
 
 const ProjectsPage = () => {
-  const [selectedProject, setSelectedProject] = React.useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const { activeModal, setActiveModal } = useContext(SearchContext);
+
+  useEffect(() => {
+    if (
+      activeModal !== null &&
+      activeModal >= 0 &&
+      activeModal < projects.length
+    ) {
+      setSelectedProject(projects[activeModal].details);
+    } else {
+      setSelectedProject(null);
+    }
+  }, [activeModal]);
+
+  const handleOpenModal = (projectDetails, index) => {
+    setSelectedProject(projectDetails);
+    setActiveModal(index);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProject(null);
+    setActiveModal(null);
+  };
+
   return (
     <Section title="Projects">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -12,7 +37,7 @@ const ProjectsPage = () => {
           <div
             key={index}
             className="bevel-light dark:neumorphic-outset-dark cursor-pointer overflow-hidden rounded-lg bg-gray-200 transition-all duration-300 hover:-translate-y-2"
-            onClick={() => setSelectedProject(project.details)}
+            onClick={() => handleOpenModal(project.details, index)}
           >
             <img
               src={project.imageUrl}
@@ -35,10 +60,7 @@ const ProjectsPage = () => {
         ))}
       </div>
       {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
+        <ProjectModal project={selectedProject} onClose={handleCloseModal} />
       )}
     </Section>
   );

@@ -4,6 +4,7 @@ export const workData = [
     imageUrl:
       "https://plus.unsplash.com/premium_photo-1744345196324-94c618a49bc3?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     summary: [
+      "Lockheed Martin, Space",
       "Role: Lead SE & BA",
       "Focus: Agile, Kubernetes, DevOps",
       "Skill: Business Analysis",
@@ -25,6 +26,7 @@ export const workData = [
     imageUrl:
       "https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg",
     summary: [
+      "UCCS",
       "Stack: VueJS, PHP, SQL",
       "Projects: Education & Healthcare Apps",
       "Role: Full-Stack Development",
@@ -44,6 +46,7 @@ export const workData = [
     imageUrl:
       "https://www.berlinsbi.com/uploads/sites/2/2024/09/logics-ansupply.webp",
     summary: [
+      "US Air Force",
       "Leadership: Led a team of 10",
       "Focus: Logistics & Data Analysis",
       "Award: Airman of the Year",

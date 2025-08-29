@@ -175,13 +175,13 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
           </div>
         </button>
         <div
-          className="flex cursor-pointer items-center transition-transform duration-200 ease-in-out hover:text-red-600 active:scale-95"
+          className="group flex cursor-pointer items-center transition-transform duration-200 ease-in-out hover:text-red-600 active:scale-95"
           onClick={() => {
             setActivePage("Home");
             window.scrollTo(0, 0);
           }}
         >
-          <div className="mr-3 text-[2rem] text-red-600 md:text-[2.5rem]">
+          <div className="mr-3 text-[2rem] text-red-600 transition-transform duration-200 ease-in-out group-hover:scale-105 md:text-[2.5rem]">
             <FaPlayCircle />
           </div>
           <h1 className="text-[1.4rem] font-bold tracking-wider md:text-[1.6rem]">

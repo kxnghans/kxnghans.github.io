@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import Slideshow from "./Slideshow";
 import DetailModal from "../modals/DetailModal";
 import { certifications } from "../../data";
+import { SearchContext } from "../../context/SearchContext";
 
 const DefaultCard = ({ item }) => (
   <>
@@ -25,16 +26,20 @@ const DefaultCard = ({ item }) => (
   </>
 );
 
-const CertificationsSlideshow = () => (
-  <Slideshow
-    title="Certifications"
-    data={certifications}
-    renderCard={(item) => <DefaultCard item={item} />}
-    renderModal={({ item, onClose }) => (
-      <DetailModal item={item} onClose={onClose} />
-    )}
-    getModalItem={(item) => item.details}
-  />
-);
+const CertificationsSlideshow = () => {
+  const { activeSlides } = useContext(SearchContext);
+  return (
+    <Slideshow
+      title="Certifications"
+      data={certifications}
+      renderCard={(item) => <DefaultCard item={item} />}
+      renderModal={({ item, onClose }) => (
+        <DetailModal item={item} onClose={onClose} />
+      )}
+      getModalItem={(item) => item.details}
+      activeSlide={activeSlides["certifications-slideshow"]}
+    />
+  );
+};
 
 export default CertificationsSlideshow;

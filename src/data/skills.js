@@ -28,38 +28,6 @@ export const skillsData = [
     },
   },
   {
-    title: "Electronics",
-    details: ["LT Spice", "MATLAB", "AutoCAD", "ModelSim"],
-    modalDetails: {
-      title: "Electronics Skills",
-      subtitle: "Design, Simulation, and Analysis",
-      details: ["LT Spice, MATLAB, AutoCAD, ModelSim"],
-    },
-  },
-  {
-    title: "Cloud & DevOps",
-    details: [
-      "AWS",
-      "Azure",
-      "OpenShift",
-      "Kubernetes",
-      "Docker",
-      "Podman",
-      "Git",
-      "Jira",
-      "Azure DevOps (ADO)",
-      "Confluence",
-    ],
-    modalDetails: {
-      title: "Cloud & DevOps Skills",
-      subtitle: "Infrastructure, Deployment, and Collaboration",
-      details: [
-        "AWS, Azure, OpenShift, Kubernetes, Docker, Podman",
-        "Git, Jira, Azure DevOps (ADO), Confluence",
-      ],
-    },
-  },
-  {
     title: "BI & Data Analytics",
     details: [
       "MS Power Platform (Power BI, Power Apps, Power Automate, Dataverse)",
@@ -92,6 +60,29 @@ export const skillsData = [
     },
   },
   {
+    title: "Cloud & DevOps",
+    details: [
+      "AWS",
+      "Azure",
+      "OpenShift",
+      "Kubernetes",
+      "Docker",
+      "Podman",
+      "Git",
+      "Jira",
+      "Azure DevOps (ADO)",
+      "Confluence",
+    ],
+    modalDetails: {
+      title: "Cloud & DevOps Skills",
+      subtitle: "Infrastructure, Deployment, and Collaboration",
+      details: [
+        "AWS, Azure, OpenShift, Kubernetes, Docker, Podman",
+        "Git, Jira, Azure DevOps (ADO), Confluence",
+      ],
+    },
+  },
+  {
     title: "Project & Program Management",
     details: [
       "JIRA",
@@ -108,6 +99,22 @@ export const skillsData = [
       details: [
         "JIRA, Agile Methodologies (Scrum), Model Based Systems Engineering",
         "Stakeholder Management, Requirements Gathering, Business Analysis, UI/UX Design (Adobe XD)",
+      ],
+    },
+  },
+  {
+    title: "IT & Systems",
+    details: [
+      "Linux",
+      "Microsoft Office Suite (Word, Excel, PowerPoint, Teams, VBA)",
+      "Unreal Engine",
+    ],
+    modalDetails: {
+      title: "IT & Systems Skills",
+      subtitle: "Operating Systems, Productivity, and Development Environments",
+      details: [
+        "Linux, Microsoft Office Suite (Word, Excel, PowerPoint, Teams, VBA)",
+        "Unreal Engine",
       ],
     },
   },
@@ -131,19 +138,12 @@ export const skillsData = [
     },
   },
   {
-    title: "IT & Systems",
-    details: [
-      "Linux",
-      "Microsoft Office Suite (Word, Excel, PowerPoint, Teams, VBA)",
-      "Unreal Engine",
-    ],
+    title: "Electronics",
+    details: ["LT Spice", "MATLAB", "AutoCAD", "ModelSim"],
     modalDetails: {
-      title: "IT & Systems Skills",
-      subtitle: "Operating Systems, Productivity, and Development Environments",
-      details: [
-        "Linux, Microsoft Office Suite (Word, Excel, PowerPoint, Teams, VBA)",
-        "Unreal Engine",
-      ],
+      title: "Electronics Skills",
+      subtitle: "Design, Simulation, and Analysis",
+      details: ["LT Spice, MATLAB, AutoCAD, ModelSim"],
     },
   },
   {

@@ -41,11 +41,11 @@ export const projectData = [
     details: {
       title: "Facilities Management Automation",
       challenge:
-        "Targeted a 7.5% error rate and significant rework caused by tracking assets in Excel across 450 sites.",
+        "Our facilities management team was tracking key and vault combinations in Excel matrices across 450 sites, leading to a 7.5% error rate and significant rework.",
       action:
-        "Developed and implemented a fully automated system using the Microsoft Power Platform (Power Apps, Power Automate, Power BI) and conducted team training.",
+        "I developed and implemented a fully automated system using the Microsoft Power Platform (Power Apps, Power Automate, Power BI), created a comprehensive report to document the new process, and conducted an internal training session with the team.",
       outcome:
-        "Eliminated the error rate entirely (from 7.5% to 0%), creating a single source of truth and saving over 2,760 hours monthly, equivalent to $55,200 in operational savings.",
+        "The new system eliminated the error rate in audits from 7.5% to 0% by creating a single source of truth with real-time data flow from the app to Power BI reports. This saved over 2,760 hours of monthly research and reconciliation, equating to $55,200 in monthly operational savings and significant risk mitigation.",
       highlights: [
         {
           label: "Financial Impact",
@@ -75,11 +75,11 @@ export const projectData = [
     details: {
       title: "Innovation Gamification Dashboard",
       challenge:
-        "Address low team innovation and encourage proactive engagement.",
+        "Team innovation was low, and we needed a way to increase participation and improve personal record-keeping to foster a culture of innovation.",
       action:
-        "Developed a Power BI dashboard to track key innovation metrics and gamified the process with a leaderboard.",
+        "I created a Power BI dashboard to track key innovation metrics (submissions, benefits savings in time and money, implementations) and gamified our initiatives with a leaderboard to encourage engagement.",
       outcome:
-        "Drove a 13% increase in participation, resulting in $1.1M in savings and 705K customer hours saved in the first year.",
+        "This led to a 13% increase in participation compared to the old spreadsheet-based system. The leaderboard also highlighted top contributors to leadership, creating a new avenue for high-level visibility and better-quantified tracking. The initiative resulted in $1.1M saved in the first year and over 705K customer hours saved.",
       highlights: [
         {
           label: "Financial Impact",
@@ -108,11 +108,11 @@ export const projectData = [
     details: {
       title: "Cloud Migration & Infrastructure Optimization",
       challenge:
-        "Addressed significant downtime caused by unstable legacy hardware and bare-metal clusters.",
+        "Our team was struggling with unstable legacy hardware and bare-metal clusters that were causing significant downtime.",
       action:
-        "Developed a Cloud Concept of Operations on a dedicated testbed, integrating AWS, Azure, and OpenShift for effective troubleshooting.",
+        "I built a Cloud Concept of Operations (ConOps) for a dedicated testbed, integrating cloud providers like AWS, Microsoft Azure, and OpenShift for effective troubleshooting and recovery. I also utilized a single-node OpenShift cluster to streamline our testing process.",
       outcome:
-        "Achieved a 10x time savings by reducing nightly builds to one hour and saved over $10,000 by leveraging an existing enterprise license.",
+        "This resulted in a 10x time savings, with nightly builds completing in one hour, which allowed for debugging and development during business hours. We also achieved over $10,000 in estimated budget savings by leveraging our existing enterprise license.",
       highlights: [
         {
           label: "Time Savings",
@@ -144,11 +144,11 @@ export const projectData = [
     details: {
       title: "Product Adoption Strategy (MESHc Program)",
       challenge:
-        "A new program suffered from low adoption due to conflicting stakeholder requirements.",
+        "A new program, MESHc, had low usage due to conflicting requirements from different teams—the RF team wanted detailed specs, while the business team wanted a simplified roll-up of information.",
       action:
-        "Led bi-weekly wireframing sessions in Adobe XD to create a compromise solution—a simplified default view with hyperlinks to detailed data.",
+        "I initiated and led bi-weekly wireframing sessions in Adobe XD to visualize a compromise. This resulted in a simplified default view with hyperlinks to detailed data, satisfying both teams without wasting development time.",
       outcome:
-        "Increased program adoption by 800%, saved one month of development time, and helped secure an additional $1M in funding for a related program.",
+        "The project led to an 800% increase in adoption and usage. It also saved one month of wait time from the UI/UX team's backlog and helped secure an additional $1M in funding for a related program.",
       highlights: [
         {
           label: "User Adoption",
@@ -179,11 +179,11 @@ export const projectData = [
     details: {
       title: "Logistics & Data Pipeline for Qatar Deployment",
       challenge:
-        "Faced operational challenges during a large-scale deployment, requiring an improved tempo and better management of supply logistics.",
+        "During a large-scale deployment in Qatar to support Afghan refugees, our team faced challenges with morale, tempo, and shelf-life operations.",
       action:
-        "Created a Power Query data pipeline in Excel to automatically flag expiring items for proactive requisitioning.",
+        "I created a Power Query data pipeline in Excel to automatically flag items that were soon to expire, allowing for proactive requisitioning.",
       outcome:
-        "Increased installation productivity by 66%, reduced nightly reconciliation time from hours to minutes, and cut the error rate for re-issuing bad items from 20% to under 5%.",
+        "This improved our tempo and increased installation productivity by two-thirds, cutting nightly reconciliation time from hours to minutes. It also minimized mistakes and reduced the error rate for re-issuing critical items like food and medical supplies from 20% to less than 5%.",
       highlights: [
         {
           label: "Efficiency Gains",
@@ -212,11 +212,11 @@ export const projectData = [
     details: {
       title: "COVID-19 Contingency & Operations Plan",
       challenge:
-        "Plan essential operations and maintain team productivity in a remote environment during the COVID-19 pandemic.",
+        "During the COVID-19 pandemic, I was responsible for planning essential operations and managing team productivity and KPIs while working remotely.",
       action:
-        "Created a detailed contingency plan using regression analysis and data visualization to identify essential personnel and developed a new communication SOP.",
+        "I created a detailed contingency plan by using regression analysis and visualizing past transaction trends for team members. The final report included a map component identifying team members, locations, and stats. I also developed an effective communication SOP for our remote work demands.",
       outcome:
-        "Ensured zero team outbreaks and maintained a 91% mission capable rate (7% above average) through proactive planning.",
+        "This proactive planning identified essential personnel and resulted in zero team outbreaks. We maintained a 91% mission capable rate, which was 7% better than the average.",
       highlights: [
         {
           label: "Operational Excellence",
@@ -234,7 +234,7 @@ export const projectData = [
     },
   },
   {
-    title: "Youth Mentorship Bootcamp",
+    title: "Youth Mentorship & App Creation",
     imageUrl:
       "https://images.pexels.com/photos/5905615/pexels-photo-5905615.jpeg",
     summary: [
@@ -245,11 +245,11 @@ export const projectData = [
     details: {
       title: "Youth Mentorship & App Development Bootcamp",
       challenge:
-        "Address a lack of career guidance and experience for young adults in my church community.",
+        "I noticed a lack of mentorship and career guidance for the young adults in my church, who were often confused after graduation and had no experience.",
       action:
-        'Proposed, secured funding for, and led a "Summer Bootcamp" featuring mentoring, code reviews, and guest speakers from top tech companies.',
+        "I proposed and secured funding for a 'Summer Bootcamp' for remote development. This initiative included bi-weekly mentoring sessions, code reviews, and office hours. I also leveraged my network to bring in peers from top companies like Google, Deloitte, Booz Allen Hamilton, and JP Morgan, as well as startup founders and a PhD candidate from the University of Cincinnati, to share their experiences and help my mentees develop their professional networks.",
       outcome:
-        "Mentees developed a church app that increased community engagement and charitable giving, while gaining valuable skills and professional connections.",
+        "This initiative helped my mentees develop their own church app, which included a community tab for news and engagement, charity transparency on cash flow, and automated forms for taxes. The most significant result was an increase in giving and the confidence and connections the team members gained to succeed professionally.",
       highlights: [
         {
           label: "Leadership",
@@ -454,11 +454,11 @@ export const projectData = [
     details: {
       title: "Photography Business Launch & Management",
       challenge:
-        "Build a professional network and find a constructive outlet after moving to a new city post-deployment.",
+        "After a deployment and moving to a new city, I needed to build a professional network and find a healthy outlet to balance my new job and life away from family.",
       action:
-        "Established a photography LLC, managing all business operations from client relations and taxes to workflow streamlining.",
+        "I established a photography LLC, managing all business operations from client relations and taxes to workflow streamlining. I engaged with new clients and my existing network from church, real estate meetups, and sports to build my client base.",
       outcome:
-        "Successfully launched the business, hitting a $10,000 revenue target in the first year and building a network of notable clientele.",
+        "I successfully launched the business, hitting a $10,000 revenue target in the first year. I also gained $3,000 in tax savings through deductions and further improved my social presence and network by meeting prominent athletes, founders, and community advocates.",
       highlights: [
         {
           label: "Entrepreneurship",

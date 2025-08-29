@@ -12,13 +12,13 @@ import {
 } from "react-icons/fa";
 
 const ICONS = {
-  Project: <FaProjectDiagram />,
-  Skill: <FaCog />,
-  Work: <FaBriefcase />,
+  Projects: <FaProjectDiagram />,
+  Skills: <FaCog />,
+  "Work Experience": <FaBriefcase />,
   Education: <FaGraduationCap />,
-  Certification: <FaCertificate />,
+  Certifications: <FaCertificate />,
   Community: <FaUsers />,
-  Honor: <FaAward />,
+  Honors: <FaAward />,
 };
 
 const Highlight = ({ text, highlight }) => {
@@ -47,14 +47,25 @@ const smartTruncate = (str, n, query) => {
   const words = str.split(" ");
   if (words.length <= n) return str;
 
-  const queryIndex = words.findIndex((word) =>
-    word.toLowerCase().includes(query.toLowerCase()),
-  );
+  const lowerCaseStr = str.toLowerCase();
+  const lowerCaseQuery = query.toLowerCase();
+  const queryIndex = lowerCaseStr.indexOf(lowerCaseQuery);
 
   if (queryIndex !== -1) {
+    // Find the word index that contains the start of the query
+    let charCount = 0;
+    let wordIndex = 0;
+    for (let i = 0; i < words.length; i++) {
+      charCount += words[i].length + 1; // +1 for space
+      if (charCount > queryIndex) {
+        wordIndex = i;
+        break;
+      }
+    }
+
     const half = Math.floor(n / 2);
-    let start = Math.max(0, queryIndex - half);
-    let end = Math.min(words.length, queryIndex + half);
+    let start = Math.max(0, wordIndex - half);
+    let end = Math.min(words.length, wordIndex + half);
 
     if (end - start < n) {
       if (start === 0) {
@@ -74,7 +85,8 @@ const smartTruncate = (str, n, query) => {
 };
 
 const SearchResults = ({ setActivePage }) => {
-  const { searchQuery, searchResults, loading } = useContext(SearchContext);
+  const { searchQuery, searchResults, loading, navigateToResult } =
+    useContext(SearchContext);
   const [maxHeight, setMaxHeight] = useState("none");
   const [showArrow, setShowArrow] = useState(false);
   const itemRef = useRef(null);
@@ -115,8 +127,9 @@ const SearchResults = ({ setActivePage }) => {
     return null;
   }
 
-  const handleResultClick = (page) => {
-    setActivePage(page);
+  const handleResultClick = (result) => {
+    setActivePage(result.location.pageName);
+    navigateToResult(result.location);
   };
 
   return (
@@ -131,22 +144,22 @@ const SearchResults = ({ setActivePage }) => {
           <li
             ref={index === 0 ? itemRef : null}
             key={result.id}
-            onClick={() => handleResultClick(result.page)}
+            onClick={() => handleResultClick(result)}
             className={`flex cursor-pointer items-center border-b border-gray-200 bg-gray-50 p-4 last:border-b-0 hover:bg-gray-100 dark:border-gray-700 dark:bg-dark-card dark:hover:bg-dark-bg`}
           >
             <span className="mr-4 text-gray-800 dark:text-gray-200">
-              {ICONS[result.type]}
+              {ICONS[result.category]}
             </span>
             <div>
               <p className="font-bold text-gray-800 dark:text-gray-200">
                 <span className="text-gray-500 dark:text-gray-400">
-                  [{result.type}]
+                  [{result.category}]
                 </span>{" "}
                 <Highlight text={result.title} highlight={searchQuery} />
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 <Highlight
-                  text={smartTruncate(result.description, 8, searchQuery)}
+                  text={smartTruncate(result.content, 8, searchQuery)}
                   highlight={searchQuery}
                 />
               </p>
