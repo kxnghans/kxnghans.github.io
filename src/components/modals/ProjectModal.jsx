@@ -43,39 +43,55 @@ const ProjectModal = ({ project, onClose }) => {
             {project.title}
           </h2>
           <div className="mb-4 leading-relaxed text-gray-600 dark:text-gray-300">
-            <p>
-              <span className="font-semibold">Challenge:</span>{" "}
-              {project.challenge}
-            </p>
-            <p>
-              <span className="font-semibold">Action:</span> {project.action}
-            </p>
-            <p>
-              <span className="font-semibold">Outcome:</span> {project.outcome}
-            </p>
+            {project.challenge ? (
+              <>
+                <p>
+                  <span className="font-semibold">Challenge:</span>{" "}
+                  {project.challenge}
+                </p>
+                <p>
+                  <span className="font-semibold">Action:</span> {project.action}
+                </p>
+                <p>
+                  <span className="font-semibold">Outcome:</span> {project.outcome}
+                </p>
+              </>
+            ) : (
+              <ul className="list-inside list-disc space-y-3 text-gray-600 dark:text-gray-300">
+                {project.details.map((detail, index) => (
+                  <li key={index}>{detail}</li>
+                ))}
+              </ul>
+            )}
           </div>
-          <div className="border-t border-gray-300 pt-4 dark:border-gray-700">
-            <h3 className="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
-              Highlights
-            </h3>
-            <ul className="list-inside list-disc space-y-1 text-gray-600 dark:text-gray-300">
-              {project.highlights.map((highlight, i) => (
-                <li key={i}>
-                  <span className="font-semibold">{highlight.label}:</span>{" "}
-                  {highlight.value}
-                </li>
-              ))}
-            </ul>
-          </div>
+          {project.highlights && (
+            <div className="border-t border-gray-300 pt-4 dark:border-gray-700">
+              <h3 className="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
+                Highlights
+              </h3>
+              <ul className="list-inside list-disc space-y-1 text-gray-600 dark:text-gray-300">
+                {project.highlights.map((highlight, i) => (
+                  <li key={i}>
+                    <span className="font-semibold">{highlight.label}:</span>{" "}
+                    {highlight.value}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <div className="mt-6 flex space-x-4">
             <a
-              href="#"
+              href={project.liveLink || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bevel-button-dark transform rounded-lg bg-red-600 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-red-700"
             >
               Live Project
             </a>
             <a
-              href="#"
+              href={project.codeLink || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bevel-button-dark transform rounded-lg bg-gray-700 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-gray-800"
             >
               Code Repository
