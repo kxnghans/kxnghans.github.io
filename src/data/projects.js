@@ -1,36 +1,30 @@
 export const projectData = [
   {
-    title: "Cloud Migration",
-    imageUrl:
-      "https://plus.unsplash.com/premium_photo-1733306493254-52b143296396?q=80&w=1093&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    title: "Portfolio Showcase",
+    imageUrl: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg", // Placeholder
     summary: [
-      "Time: Overnight builds in 1 hour",
-      "Cost: Over $10k saved",
-      "Tech: AWS, Azure, OpenShift, Kubernetes",
+      "Tech: React, Vite, Tailwind CSS",
+      "Role: Sole Developer",
+      "Focus: Interactive UI/UX",
     ],
     details: {
-      title: "Cloud Migration & Infrastructure Optimization",
-      challenge:
-        "Addressed significant downtime caused by unstable legacy hardware and bare-metal clusters.",
-      action:
-        "Developed a Cloud Concept of Operations on a dedicated testbed, integrating AWS, Azure, and OpenShift for effective troubleshooting.",
-      outcome:
-        "Achieved a 10x time savings by reducing nightly builds to one hour and saved over $10,000 by leveraging an existing enterprise license.",
+      title: "Portfolio Showcase",
+      challenge: "To create a more engaging and interactive way to showcase my professional experience and projects than a traditional resume.",
+      action: "Designed and developed a responsive web application from scratch using React for the frontend, Vite for the build tool, and Tailwind CSS for styling. The application features a clean, modern UI with interactive elements like slideshows, modals, and a searchable interface.",
+      outcome: "The result is a dynamic and user-friendly portfolio that not only presents my professional history in a compelling way but also demonstrates my frontend development skills and my ability to create a polished web application.",
+      codeLink: "https://github.com/kxnghans/mywalkthrough",
       highlights: [
         {
-          label: "Time Savings",
-          value:
-            "Reduced nightly build times tenfold, enabling faster development cycles.",
+          label: "Tech Stack",
+          value: "React, Vite, Tailwind CSS, Git, GitHub.",
         },
         {
-          label: "Budget Savings",
-          value:
-            "Saved over $10,000 by utilizing existing enterprise licenses.",
+          label: "Key Decisions",
+          value: "Chose React for its component-based architecture, Vite for its fast development experience, and Tailwind CSS for its utility-first approach to styling.",
         },
         {
-          label: "Technical Stack",
-          value:
-            "Utilized AWS, Microsoft Azure, and OpenShift to stabilize legacy systems.",
+          label: "Benefits",
+          value: "Provides an interactive and engaging user experience, effectively showcases my projects and skills, and is easily maintainable and scalable.",
         },
       ],
     },
@@ -65,6 +59,75 @@ export const projectData = [
           label: "Tools Used",
           value:
             "Implemented a full solution using the Microsoft Power Platform.",
+        },
+      ],
+    },
+  },
+  {
+    title: "Innovation Dashboard",
+    imageUrl:
+      "https://plus.unsplash.com/premium_photo-1695185954894-e9382c6f4da8?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    summary: [
+      "Savings: $1.1M saved in first year",
+      "Tools: Power BI",
+      "Engagement: 13% increase in participation",
+    ],
+    details: {
+      title: "Innovation Gamification Dashboard",
+      challenge:
+        "Address low team innovation and encourage proactive engagement.",
+      action:
+        "Developed a Power BI dashboard to track key innovation metrics and gamified the process with a leaderboard.",
+      outcome:
+        "Drove a 13% increase in participation, resulting in $1.1M in savings and 705K customer hours saved in the first year.",
+      highlights: [
+        {
+          label: "Financial Impact",
+          value: "Saved the company $1.1 million in the first year.",
+        },
+        {
+          label: "Data Visualization",
+          value: "Created an engaging and effective dashboard with Power BI.",
+        },
+        {
+          label: "Team Engagement",
+          value: "Increased innovation participation by 13%.",
+        },
+      ],
+    },
+  },
+  {
+    title: "Cloud Migration",
+    imageUrl:
+      "https://plus.unsplash.com/premium_photo-1733306493254-52b143296396?q=80&w=1093&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    summary: [
+      "Time: Overnight builds in 1 hour",
+      "Cost: Over $10k saved",
+      "Tech: AWS, Azure, OpenShift, Kubernetes",
+    ],
+    details: {
+      title: "Cloud Migration & Infrastructure Optimization",
+      challenge:
+        "Addressed significant downtime caused by unstable legacy hardware and bare-metal clusters.",
+      action:
+        "Developed a Cloud Concept of Operations on a dedicated testbed, integrating AWS, Azure, and OpenShift for effective troubleshooting.",
+      outcome:
+        "Achieved a 10x time savings by reducing nightly builds to one hour and saved over $10,000 by leveraging an existing enterprise license.",
+      highlights: [
+        {
+          label: "Time Savings",
+          value:
+            "Reduced nightly build times tenfold, enabling faster development cycles.",
+        },
+        {
+          label: "Budget Savings",
+          value:
+            "Saved over $10,000 by utilizing existing enterprise licenses.",
+        },
+        {
+          label: "Technical Stack",
+          value:
+            "Utilized AWS, Microsoft Azure, and OpenShift to stabilize legacy systems.",
         },
       ],
     },
@@ -138,34 +201,34 @@ export const projectData = [
     },
   },
   {
-    title: "Innovation Dashboard",
+    title: "COVID-19 Contingency Plan",
     imageUrl:
-      "https://plus.unsplash.com/premium_photo-1695185954894-e9382c6f4da8?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1733328013343-e5ee77acaf05?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     summary: [
-      "Savings: $1.1M saved in first year",
-      "Tools: Power BI",
-      "Engagement: 13% increase in participation",
+      "Performance: 91% mission capable rate",
+      "Skills: Contingency Planning, Data Analysis",
+      "Safety: Zero team outbreaks",
     ],
     details: {
-      title: "Innovation Gamification Dashboard",
+      title: "COVID-19 Contingency & Operations Plan",
       challenge:
-        "Address low team innovation and encourage proactive engagement.",
+        "Plan essential operations and maintain team productivity in a remote environment during the COVID-19 pandemic.",
       action:
-        "Developed a Power BI dashboard to track key innovation metrics and gamified the process with a leaderboard.",
+        "Created a detailed contingency plan using regression analysis and data visualization to identify essential personnel and developed a new communication SOP.",
       outcome:
-        "Drove a 13% increase in participation, resulting in $1.1M in savings and 705K customer hours saved in the first year.",
+        "Ensured zero team outbreaks and maintained a 91% mission capable rate (7% above average) through proactive planning.",
       highlights: [
         {
-          label: "Financial Impact",
-          value: "Saved the company $1.1 million in the first year.",
+          label: "Operational Excellence",
+          value: "Maintained a 91% mission capable rate during a crisis.",
         },
         {
-          label: "Data Visualization",
-          value: "Created an engaging and effective dashboard with Power BI.",
+          label: "Analytical Skills",
+          value: "Used data analysis for strategic contingency planning.",
         },
         {
-          label: "Team Engagement",
-          value: "Increased innovation participation by 13%.",
+          label: "Health & Safety",
+          value: "Ensured zero team outbreaks through effective planning.",
         },
       ],
     },
@@ -205,102 +268,37 @@ export const projectData = [
     },
   },
   {
-    title: "COVID-19 Contingency Plan",
+    title: "Stock Prediction",
     imageUrl:
-      "https://plus.unsplash.com/premium_photo-1733328013343-e5ee77acaf05?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.pexels.com/photos/30381207/pexels-photo-30381207.jpeg",
     summary: [
-      "Performance: 91% mission capable rate",
-      "Skills: Contingency Planning, Data Analysis",
-      "Safety: Zero team outbreaks",
+      "Project: Stock Prediction Tool",
+      "Tech: RNN, LSTM, Stable Diffusion",
+      "Focus: Multivariate Forecasting",
     ],
     details: {
-      title: "COVID-19 Contingency & Operations Plan",
+      title: "Stock Prediction Tool & AI Image Generation",
       challenge:
-        "Plan essential operations and maintain team productivity in a remote environment during the COVID-19 pandemic.",
+        "Develop a tool to accurately forecast stock prices using multiple data inputs.",
       action:
-        "Created a detailed contingency plan using regression analysis and data visualization to identify essential personnel and developed a new communication SOP.",
+        "Built and trained a Long Short-Term Memory (LSTM) Recurrent Neural Network (RNN) using chronological data splitting, normalization, and Early Stopping to prevent overfitting.",
       outcome:
-        "Ensured zero team outbreaks and maintained a 91% mission capable rate (7% above average) through proactive planning.",
+        "Achieved a high R-squared score of 0.952 on the prediction model. Also set up a Stable Diffusion environment for AI-based image generation.",
       highlights: [
         {
-          label: "Operational Excellence",
-          value: "Maintained a 91% mission capable rate during a crisis.",
-        },
-        {
-          label: "Analytical Skills",
-          value: "Used data analysis for strategic contingency planning.",
-        },
-        {
-          label: "Health & Safety",
-          value: "Ensured zero team outbreaks through effective planning.",
-        },
-      ],
-    },
-  },
-  {
-    title: "Photography Business",
-    imageUrl:
-      "https://images.pexels.com/photos/1787220/pexels-photo-1787220.jpeg",
-    summary: [
-      "Venture: Photography LLC",
-      "Revenue: $10K in first year",
-      "Skills: Business Operations, Project Management",
-    ],
-    details: {
-      title: "Photography Business Launch & Management",
-      challenge:
-        "Build a professional network and find a constructive outlet after moving to a new city post-deployment.",
-      action:
-        "Established a photography LLC, managing all business operations from client relations and taxes to workflow streamlining.",
-      outcome:
-        "Successfully launched the business, hitting a $10,000 revenue target in the first year and building a network of notable clientele.",
-      highlights: [
-        {
-          label: "Entrepreneurship",
-          value: "Successfully launched and managed a profitable LLC.",
-        },
-        {
-          label: "Financial Acumen",
-          value: "Met a $10,000 first-year revenue target.",
-        },
-        {
-          label: "Networking",
-          value: "Built a strong network with notable clientele.",
-        },
-      ],
-    },
-  },
-  {
-    title: "Autonomous Robotics",
-    imageUrl:
-      "https://images.unsplash.com/photo-1655088651367-f9f4e1328f08?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    summary: [
-      "Project: Autonomous RC Car",
-      "Tech: Arduino, C, GPS, Sonar,",
-      "Role: Project Lead",
-    ],
-    details: {
-      title: "Robotics - Autonomous RC Car",
-      challenge:
-        "Implement an autonomous RC car that could react to its surroundings and navigate a course.",
-      action:
-        "Built the car using an Arduino toolkit, C programming, and a suite of sensors (GPS, compass, ultrasonic distance). As project lead, I directed team goals and organized resources.",
-      outcome:
-        "Successfully created a functional autonomous vehicle that navigates through predefined waypoints, actively avoids obstacles using an ultrasonic sensor, and executes a search pattern upon reaching its final destination.",
-      highlights: [
-        {
-          label: "Hardware Implementation",
+          label: "Predictive Modeling",
           value:
-            "Integrated GPS, compass, and ultrasonic sensors with an Arduino microcontroller.",
+            "Built and trained an LSTM model for multivariate time-series forecasting.",
         },
         {
-          label: "Software Development",
+          label: "Data Integrity",
           value:
-            "Programmed autonomous navigation and obstacle avoidance logic in C.",
+            "Employed proper time-series validation techniques to ensure model reliability.",
         },
         {
-          label: "Leadership",
-          value: "Directed team goals and managed project resources.",
+          label: "AI Applications",
+          value:
+            "Gained experience with generative AI by setting up a Stable Diffusion environment.",
         },
       ],
     },
@@ -341,37 +339,36 @@ export const projectData = [
     },
   },
   {
-    title: "Stock Prediction",
+    title: "Autonomous Robotics",
     imageUrl:
-      "https://images.pexels.com/photos/30381207/pexels-photo-30381207.jpeg",
+      "https://images.unsplash.com/photo-1655088651367-f9f4e1328f08?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     summary: [
-      "Project: Stock Prediction Tool",
-      "Tech: RNN, LSTM, Stable Diffusion",
-      "Focus: Multivariate Forecasting",
+      "Project: Autonomous RC Car",
+      "Tech: Arduino, C, GPS, Sonar,",
+      "Role: Project Lead",
     ],
     details: {
-      title: "Stock Prediction Tool & AI Image Generation",
+      title: "Robotics - Autonomous RC Car",
       challenge:
-        "Develop a tool to accurately forecast stock prices using multiple data inputs.",
+        "Implement an autonomous RC car that could react to its surroundings and navigate a course.",
       action:
-        "Built and trained a Long Short-Term Memory (LSTM) Recurrent Neural Network (RNN) using chronological data splitting, normalization, and Early Stopping to prevent overfitting.",
+        "Built the car using an Arduino toolkit, C programming, and a suite of sensors (GPS, compass, ultrasonic distance). As project lead, I directed team goals and organized resources.",
       outcome:
-        "Achieved a high R-squared score of 0.952 on the prediction model. Also set up a Stable Diffusion environment for AI-based image generation.",
+        "Successfully created a functional autonomous vehicle that navigates through predefined waypoints, actively avoids obstacles using an ultrasonic sensor, and executes a search pattern upon reaching its final destination.",
       highlights: [
         {
-          label: "Predictive Modeling",
+          label: "Hardware Implementation",
           value:
-            "Built and trained an LSTM model for multivariate time-series forecasting.",
+            "Integrated GPS, compass, and ultrasonic sensors with an Arduino microcontroller.",
         },
         {
-          label: "Data Integrity",
+          label: "Software Development",
           value:
-            "Employed proper time-series validation techniques to ensure model reliability.",
+            "Programmed autonomous navigation and obstacle avoidance logic in C.",
         },
         {
-          label: "AI Applications",
-          value:
-            "Gained experience with generative AI by setting up a Stable Diffusion environment.",
+          label: "Leadership",
+          value: "Directed team goals and managed project resources.",
         },
       ],
     },
@@ -441,6 +438,39 @@ export const projectData = [
           label: "Low-Level Programming",
           value:
             "Applied C, Assembly, and Verilog for circuit control and logic design.",
+        },
+      ],
+    },
+  },
+  {
+    title: "Photography Business",
+    imageUrl:
+      "https://images.pexels.com/photos/1787220/pexels-photo-1787220.jpeg",
+    summary: [
+      "Venture: Photography LLC",
+      "Revenue: $10K in first year",
+      "Skills: Business Operations, Project Management",
+    ],
+    details: {
+      title: "Photography Business Launch & Management",
+      challenge:
+        "Build a professional network and find a constructive outlet after moving to a new city post-deployment.",
+      action:
+        "Established a photography LLC, managing all business operations from client relations and taxes to workflow streamlining.",
+      outcome:
+        "Successfully launched the business, hitting a $10,000 revenue target in the first year and building a network of notable clientele.",
+      highlights: [
+        {
+          label: "Entrepreneurship",
+          value: "Successfully launched and managed a profitable LLC.",
+        },
+        {
+          label: "Financial Acumen",
+          value: "Met a $10,000 first-year revenue target.",
+        },
+        {
+          label: "Networking",
+          value: "Built a strong network with notable clientele.",
         },
       ],
     },

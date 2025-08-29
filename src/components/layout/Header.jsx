@@ -22,6 +22,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
   const silenceTimeoutRef = useRef(null);
   const lastSpeechTimeRef = useRef(null);
   const visualCuesTimeoutRef = useRef(null);
+  const micRef = useRef(null);
 
   useEffect(() => {
     const SpeechRecognition =
@@ -144,6 +145,22 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
     }
   };
 
+  useEffect(() => {
+    const handleScreenInteraction = (event) => {
+      if (isMicActive && micRef.current && !micRef.current.contains(event.target)) {
+        toggleMic();
+      }
+    };
+
+    window.addEventListener("click", handleScreenInteraction);
+    window.addEventListener("touchstart", handleScreenInteraction);
+
+    return () => {
+      window.removeEventListener("click", handleScreenInteraction);
+      window.removeEventListener("touchstart", handleScreenInteraction);
+    };
+  }, [isMicActive, toggleMic]);
+
   return (
     <header className="relative sticky top-0 z-40 flex items-center justify-between border-b border-gray-300 bg-gray-100/80 p-3 backdrop-blur-sm dark:border-gray-800 dark:bg-[#181818]/90">
       {/* Left Section: Menu Toggle and App Title */}
@@ -158,8 +175,11 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
           </div>
         </button>
         <div
-          className="flex cursor-pointer items-center"
-          onClick={() => setActivePage("Home")}
+          className="flex cursor-pointer items-center transition-transform duration-200 ease-in-out hover:text-red-600 active:scale-95"
+          onClick={() => {
+            setActivePage("Home");
+            window.scrollTo(0, 0);
+          }}
         >
           <div className="mr-3 text-[2rem] text-red-600 md:text-[2.5rem]">
             <FaPlayCircle />
@@ -180,6 +200,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
           toggleMic={toggleMic}
           inputRef={inputRef}
           theme={theme}
+          micRef={micRef}
         />
       </div>
 
@@ -191,26 +212,22 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
             activePage === "Home"
               ? "left-full -translate-x-full"
               : "left-1/2 -translate-x-1/2"
-          }`}
+          } z-10`}
+          onClick={() => setIsSearchVisible(!isSearchVisible)}
         >
           <button
-            onClick={() => setIsSearchVisible(!isSearchVisible)}
             aria-label="Toggle Search"
             className={`transform rounded-full p-1.5 transition-all duration-200 md:p-2 lg:hidden ${
               isSearchVisible
-                ? "bg-red-500 text-white"
+                ? "bg-red-500 text-white hover:shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1),_inset_-2px_-2px_4px_rgba(255,255,255,0.7)] dark:hover:border dark:hover:border-solid dark:hover:border-red-700"
                 : "bevel-light-inset bevel-dark-inset bg-gray-200 hover:bg-gray-300 dark:bg-black dark:hover:bg-gray-800"
             }`}
           >
             <div className="flex h-5 w-5 items-center justify-center text-[1rem] sm:h-6 sm:w-6 md:text-[1.2rem]">
               <FaSearch
-                className={
-                  isSearchVisible && theme === "dark"
-                    ? "text-gray-800"
-                    : isSearchVisible
-                      ? "text-white"
-                      : "text-gray-500 dark:text-gray-400"
-                }
+                className={isSearchVisible
+                    ? "text-white dark:text-gray-800"
+                    : "text-gray-500 dark:text-gray-400"}
               />
             </div>
           </button>
@@ -241,6 +258,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
             toggleMic={toggleMic}
             inputRef={inputRef}
             theme={theme}
+            micRef={micRef}
           />
         </div>
       )}
