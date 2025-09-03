@@ -2,7 +2,7 @@ export const certificationsData = [
   {
     title: "LinkedIn Learning Courses",
     imageUrl:
-      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1585288766827-c62e98d70191?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     summary: ["Training: 20+ specialized courses", "Provider: LinkedIn"],
     details: {
       title: "LinkedIn Learning Courses",
@@ -37,7 +37,7 @@ export const certificationsData = [
   {
     title: "Microsoft Power Platform",
     imageUrl:
-      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.pexels.com/photos/10142683/pexels-photo-10142683.jpeg",
     summary: [
       "Citizen Developer Certified",
       "Training: Microsoft Power Platform",
@@ -76,7 +76,7 @@ export const certificationsData = [
   {
     title: "Certified Scrum Master",
     imageUrl:
-      "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1746729798021-129315426424?q=80&w=2822&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     summary: ["Certification: Certified Scrum Master", "Provider: Scrum Inc."],
     details: {
       title: "Certified Scrum Master",
