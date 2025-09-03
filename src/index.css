@@ -116,3 +116,17 @@
   animation-name: onAutoFillStart;
   animation-fill-mode: both;
 }
+
+.linkedin-icon-link .linkedin-icon {
+  border-radius: 4px;
+}
+
+.linkedin-icon-link:hover .linkedin-icon {
+  background-color: white;
+  color: #0077b5; /* LinkedIn blue */
+}
+
+.linkedin-icon-link:active .linkedin-icon {
+  background-color: white;
+  color: black;
+}

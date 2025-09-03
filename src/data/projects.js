@@ -300,7 +300,7 @@ export const projectData = [
       outcome:
         "Achieved a high R-squared score of 0.952 on the prediction model. Also set up a Stable Diffusion environment for AI-based image generation.",
       liveLink: "",
-      codeLink: "",
+      codeLink: "https://storage.cloud.google.com/portfolio_showcase/Stock_prediction_multivariate.html",
       highlights: [
         {
           label: "Predictive Modeling",
@@ -337,7 +337,7 @@ export const projectData = [
         "Image Processing from Scratch: Implemented logistic regression with K-Fold cross-validation for animal classification and built image sharpening (Sobel operator) and noise removal (median filter) algorithms from the ground up to demonstrate a fundamental understanding of the processes.",
       ],
       liveLink: "https://storage.cloud.google.com/portfolio_showcase/Facial%20Recognition%20Showcase.pdf",
-      codeLink: "https://storage.cloud.google.com/portfolio_showcase/facial%20recognition.html",
+      codeLink: "https://storage.cloud.google.com/portfolio_showcase/Computer%20Vision.zip",
       highlights: [
         {
           label: "Deep Learning",
@@ -468,7 +468,7 @@ export const projectData = [
     },
   },
   {
-    title: "Photography Business",
+    title: "Creative Media Business",
     imageUrl:
       "https://images.pexels.com/photos/1787220/pexels-photo-1787220.jpeg",
     summary: [
@@ -484,7 +484,7 @@ export const projectData = [
         "I established a photography LLC, managing all business operations from client relations and taxes to workflow streamlining. I engaged with new clients and my existing network from church, real estate meetups, and sports to build my client base.",
       outcome:
         "I successfully launched the business, hitting a $10,000 revenue target in the. I also gained $3,000 in tax savings through deductions and further improved my social presence and network by meeting prominent athletes, founders, and community advocates.",
-      liveLink: "",
+      liveLink: "https://hansondeck.com/",
       codeLink: "",
       highlights: [
         {
@@ -806,7 +806,7 @@ export const otherProjectData = [
       outcome:
         "Achieved a high R-squared score of 0.952 on the prediction model. Also set up a Stable Diffusion environment for AI-based image generation.",
       liveLink: "",
-      codeLink: "",
+      codeLink: "https://storage.cloud.google.com/portfolio_showcase/Stock_prediction_multivariate.html",
       highlights: [
         {
           label: "Predictive Modeling",
@@ -843,7 +843,7 @@ export const otherProjectData = [
         "Image Processing from Scratch: Implemented logistic regression with K-Fold cross-validation for animal classification and built image sharpening (Sobel operator) and noise removal (median filter) algorithms from the ground up to demonstrate a fundamental understanding of the processes.",
       ],
       liveLink: "https://storage.cloud.google.com/portfolio_showcase/Facial%20Recognition%20Showcase.pdf",
-      codeLink: "https://storage.cloud.google.com/portfolio_showcase/facial%20recognition.html",
+      codeLink: "https://storage.cloud.google.com/portfolio_showcase/Computer%20Vision.zip",
       highlights: [
         {
           label: "Deep Learning",
@@ -974,7 +974,7 @@ export const otherProjectData = [
     },
   },
   {
-    title: "Photography Business",
+    title: "Creative Media Business",
     imageUrl:
       "https://images.pexels.com/photos/1787220/pexels-photo-1787220.jpeg",
     summary: [
@@ -990,7 +990,7 @@ export const otherProjectData = [
         "I established a photography LLC, managing all business operations from client relations and taxes to workflow streamlining. I engaged with new clients and my existing network from church, real estate meetups, and sports to build my client base.",
       outcome:
         "I successfully launched the business, hitting a $10,000 revenue target in the. I also gained $3,000 in tax savings through deductions and further improved my social presence and network by meeting prominent athletes, founders, and community advocates.",
-      liveLink: "",
+      liveLink: "https://hansondeck.com/",
       codeLink: "",
       highlights: [
         {

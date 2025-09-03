@@ -23,7 +23,7 @@ export const formFields = [
   {
     name: "message",
     type: "textarea",
-    placeholder: "Your Message",
+    placeholder: "Message",
     validation: { required: "Message is required." },
   },
 ];
