@@ -1,4 +1,5 @@
 import React from "react";
+import { FaLinkedin } from "react-icons/fa6";
 import profileImage from "../../../assets/Kobs DP.png";
 
 const ProfileSummaryCard = () => (
@@ -10,8 +11,16 @@ const ProfileSummaryCard = () => (
         className="mb-4 h-24 w-24 rounded-full border-4 border-red-600 object-cover shadow-lg sm:mb-0 sm:mr-6 sm:h-32 sm:w-32"
       />
       <div className="text-center sm:text-left">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-200 sm:text-4xl">
+        <h1 className="flex items-center justify-center text-2xl font-bold text-gray-900 dark:text-gray-200 sm:justify-start sm:text-4xl">
           Kobby Hanson
+          <a
+            href="https://www.linkedin.com/in/kobbyhanson"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-3 text-gray-400 hover:text-gray-500"
+          >
+            <FaLinkedin size={30} />
+          </a>
         </h1>
         <p className="text-md text-gray-500 dark:text-gray-400 sm:text-lg">
           Systems Engineer & Sr Business Analyst
