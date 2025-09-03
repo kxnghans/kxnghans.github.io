@@ -1,7 +1,7 @@
 export const projectData = [
   {
     title: "Portfolio Showcase",
-    imageUrl: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg", // Placeholder
+    imageUrl: "https://images.unsplash.com/photo-1607469256721-13472920da4e?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Placeholder
     summary: [
       "Tech: React, Vite, Tailwind CSS",
       "Role: Sole Developer",
@@ -458,7 +458,7 @@ export const projectData = [
       action:
         "I established a photography LLC, managing all business operations from client relations and taxes to workflow streamlining. I engaged with new clients and my existing network from church, real estate meetups, and sports to build my client base.",
       outcome:
-        "I successfully launched the business, hitting a $10,000 revenue target in the first year. I also gained $3,000 in tax savings through deductions and further improved my social presence and network by meeting prominent athletes, founders, and community advocates.",
+        "I successfully launched the business, hitting a $10,000 revenue target in the. I also gained $3,000 in tax savings through deductions and further improved my social presence and network by meeting prominent athletes, founders, and community advocates.",
       highlights: [
         {
           label: "Entrepreneurship",
