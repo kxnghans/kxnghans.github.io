@@ -83,7 +83,7 @@ export const projectData = [
         "I created a Power BI dashboard to track key innovation metrics (submissions, benefits savings in time and money, implementations) and gamified our initiatives with a leaderboard to encourage engagement.",
       outcome:
         "This led to a 13% increase in participation compared to the old spreadsheet-based system. The leaderboard also highlighted top contributors to leadership, creating a new avenue for high-level visibility and better-quantified tracking. The initiative resulted in $1.1M saved in the first year and over 705K customer hours saved.",
-      liveLink: "",
+      liveLink: "https://storage.cloud.google.com/portfolio_showcase/Idea%20Board%20Explained.pdf",
       codeLink: "",
       highlights: [
         {
@@ -336,8 +336,8 @@ export const projectData = [
         "Image Classification: Optimized deep learning models for Fashion MNIST and Dog Breed classification, designing efficient CNNs under strict parameter and epoch constraints to overcome challenges like small datasets.",
         "Image Processing from Scratch: Implemented logistic regression with K-Fold cross-validation for animal classification and built image sharpening (Sobel operator) and noise removal (median filter) algorithms from the ground up to demonstrate a fundamental understanding of the processes.",
       ],
-      liveLink: "",
-      codeLink: "",
+      liveLink: "https://storage.cloud.google.com/portfolio_showcase/Facial%20Recognition%20Showcase.pdf",
+      codeLink: "https://storage.cloud.google.com/portfolio_showcase/facial%20recognition.html",
       highlights: [
         {
           label: "Deep Learning",
@@ -374,8 +374,8 @@ export const projectData = [
         "Built the car using an Arduino toolkit, C programming, and a suite of sensors (GPS, compass, ultrasonic distance). As project lead, I directed team goals and organized resources.",
       outcome:
         "Successfully created a functional autonomous vehicle that navigates through predefined waypoints, actively avoids obstacles using an ultrasonic sensor, and executes a search pattern upon reaching its final destination.",
-      liveLink: "",
-      codeLink: "",
+      liveLink: "https://storage.cloud.google.com/portfolio_showcase/RC%20Car%20Demo.MOV",
+      codeLink: "https://storage.cloud.google.com/portfolio_showcase/RC%20Car%20-%20Robotics%20Showcase.zip",
       highlights: [
         {
           label: "Hardware Implementation",
@@ -411,8 +411,8 @@ export const projectData = [
         "Used Unreal Engine to model realistic physics and designed the system to integrate with a life-size gun replica via a Raspberry Pi and Arduino for haptic feedback.",
       outcome:
         "Successfully established communication between the hardware and software, creating a functional foundation for the final exhibit.",
-      liveLink: "",
-      codeLink: "",
+      liveLink: "https://storage.cloud.google.com/portfolio_showcase/UE4%20Demo.mp4",
+      codeLink: "https://storage.cloud.google.com/portfolio_showcase/50cal%20Simulator.zip",
       highlights: [
         {
           label: "Game Development",
@@ -447,8 +447,8 @@ export const projectData = [
         "Designed and simulated the op-amp using LTSpice, applying key theoretical principles for gain, transconductance, and output resistance. Debugged and optimized circuit performance using breadboarding and C programming.",
       outcome:
         "The simulated design achieved a gain of 2007 V/V. Analysis identified performance issues like low -3dB frequency and proposed resolutions, demonstrating a deep understanding of analog circuit design and trade-offs compared to commercial op-amps.",
-      liveLink: "",
-      codeLink: "",
+      liveLink: "https://storage.cloud.google.com/portfolio_showcase/PCB%20Design.pdf",
+      codeLink: "https://storage.cloud.google.com/portfolio_showcase/PCB%20Design.zip",
       highlights: [
         {
           label: "Hardware Design",
@@ -589,7 +589,7 @@ export const otherProjectData = [
         "I created a Power BI dashboard to track key innovation metrics (submissions, benefits savings in time and money, implementations) and gamified our initiatives with a leaderboard to encourage engagement.",
       outcome:
         "This led to a 13% increase in participation compared to the old spreadsheet-based system. The leaderboard also highlighted top contributors to leadership, creating a new avenue for high-level visibility and better-quantified tracking. The initiative resulted in $1.1M saved in the first year and over 705K customer hours saved.",
-      liveLink: "",
+      liveLink: "https://storage.cloud.google.com/portfolio_showcase/Idea%20Board%20Explained.pdf",
       codeLink: "",
       highlights: [
         {
@@ -842,8 +842,8 @@ export const otherProjectData = [
         "Image Classification: Optimized deep learning models for Fashion MNIST and Dog Breed classification, designing efficient CNNs under strict parameter and epoch constraints to overcome challenges like small datasets.",
         "Image Processing from Scratch: Implemented logistic regression with K-Fold cross-validation for animal classification and built image sharpening (Sobel operator) and noise removal (median filter) algorithms from the ground up to demonstrate a fundamental understanding of the processes.",
       ],
-      liveLink: "",
-      codeLink: "",
+      liveLink: "https://storage.cloud.google.com/portfolio_showcase/Facial%20Recognition%20Showcase.pdf",
+      codeLink: "https://storage.cloud.google.com/portfolio_showcase/facial%20recognition.html",
       highlights: [
         {
           label: "Deep Learning",
@@ -880,8 +880,8 @@ export const otherProjectData = [
         "Built the car using an Arduino toolkit, C programming, and a suite of sensors (GPS, compass, ultrasonic distance). As project lead, I directed team goals and organized resources.",
       outcome:
         "Successfully created a functional autonomous vehicle that navigates through predefined waypoints, actively avoids obstacles using an ultrasonic sensor, and executes a search pattern upon reaching its final destination.",
-      liveLink: "",
-      codeLink: "",
+      liveLink: "https://storage.cloud.google.com/portfolio_showcase/RC%20Car%20Demo.MOV",
+      codeLink: "https://storage.cloud.google.com/portfolio_showcase/RC%20Car%20-%20Robotics%20Showcase.zip",
       highlights: [
         {
           label: "Hardware Implementation",
@@ -917,8 +917,8 @@ export const otherProjectData = [
         "Used Unreal Engine to model realistic physics and designed the system to integrate with a life-size gun replica via a Raspberry Pi and Arduino for haptic feedback.",
       outcome:
         "Successfully established communication between the hardware and software, creating a functional foundation for the final exhibit.",
-      liveLink: "",
-      codeLink: "",
+      liveLink: "https://storage.cloud.google.com/portfolio_showcase/UE4%20Demo.mp4",
+      codeLink: "https://storage.cloud.google.com/portfolio_showcase/50cal%20Simulator.zip",
       highlights: [
         {
           label: "Game Development",
@@ -953,8 +953,8 @@ export const otherProjectData = [
         "Designed and simulated the op-amp using LTSpice, applying key theoretical principles for gain, transconductance, and output resistance. Debugged and optimized circuit performance using breadboarding and C programming.",
       outcome:
         "The simulated design achieved a gain of 2007 V/V. Analysis identified performance issues like low -3dB frequency and proposed resolutions, demonstrating a deep understanding of analog circuit design and trade-offs compared to commercial op-amps.",
-      liveLink: "",
-      codeLink: "",
+      liveLink: "https://storage.cloud.google.com/portfolio_showcase/PCB%20Design.pdf",
+      codeLink: "https://storage.cloud.google.com/portfolio_showcase/PCB%20Design.zip",
       highlights: [
         {
           label: "Hardware Design",
