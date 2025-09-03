@@ -12,6 +12,7 @@ export const projectData = [
       challenge: "To create a more engaging and interactive way to showcase my professional experience and projects than a traditional resume.",
       action: "Designed and developed a responsive web application from scratch using React for the frontend, Vite for the build tool, and Tailwind CSS for styling. The application features a clean, modern UI with interactive elements like slideshows, modals, and a searchable interface.",
       outcome: "The result is a dynamic and user-friendly portfolio that not only presents my professional history in a compelling way but also demonstrates my frontend development skills and my ability to create a polished web application.",
+      liveLink: "https://kxnghans.github.io/",
       codeLink: "https://github.com/kxnghans/mywalkthrough",
       highlights: [
         {
