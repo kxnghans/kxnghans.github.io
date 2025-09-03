@@ -1,33 +1,71 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Slideshow from "./Slideshow";
 import DetailModal from "../modals/DetailModal";
-import { skills } from "../../data";
+import skills from "../../data/skills";
 import { SearchContext } from "../../context/SearchContext";
 
 const SkillCardContent = ({ item }) => {
-  // This complex logic is now isolated here
-  const createSummary = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const createSummary = (maxWords = 8, minItems = 3) => {
     let allDetails = [];
     if (item.details) {
-      allDetails = allDetails.concat(item.details);
+      const sortedDetails = [...item.details].sort((a, b) => a.priority - b.priority);
+      allDetails = allDetails.concat(sortedDetails);
     }
-    if (item.exposure) {
-      allDetails.push("Exposure to: " + item.exposure.join(", "));
-    }
+
     if (item.subcategories) {
       item.subcategories.forEach((subcat) => {
-        allDetails.push(subcat.title + ": " + subcat.details.join(", "));
+        if (subcat.details) {
+          allDetails = allDetails.concat(subcat.details.map(d => ({ name: `${subcat.title}: ${d}` })))
+        }
       });
     }
-    return allDetails.join(", ");
+
+    let wordCount = 0;
+    let truncatedDetails = [];
+    for (const detail of allDetails) {
+      const detailWords = detail.name.split(' ').length;
+      if (truncatedDetails.length >= minItems && wordCount + detailWords > maxWords) {
+        if (truncatedDetails.length === 0) {
+          truncatedDetails.push(detail);
+        }
+        break;
+      }
+      truncatedDetails.push(detail);
+      wordCount += detailWords;
+    }
+
+    const summaryText = truncatedDetails.map(d => d.name).join(", ");
+
+    return (
+      <>
+        {summaryText}
+        <span className="text-red-500">...</span>
+      </>
+    );
   };
 
   const summaryText = createSummary();
 
   return (
-    <div className="h-16 overflow-hidden text-xs text-gray-600 dark:text-gray-400 sm:text-sm">
-      {summaryText}
-    </div>
+    <>
+      <div 
+        className="h-16 overflow-hidden text-xs text-gray-600 dark:text-gray-400 sm:text-sm cursor-pointer"
+        onClick={handleOpenModal}
+      >
+        {summaryText}
+      </div>
+      {showModal && <DetailModal item={item} onClose={handleCloseModal} />}
+    </>
   );
 };
 
