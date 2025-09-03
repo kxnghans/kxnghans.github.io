@@ -81,22 +81,26 @@ const ProjectModal = ({ project, onClose }) => {
             </div>
           )}
           <div className="mt-6 flex space-x-4">
-            <a
-              href={project.liveLink || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bevel-button-dark flex transform items-center rounded-lg bg-red-600 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-red-700"
-            >
-              <FaCirclePlay className="mr-2" /> Demo
-            </a>
-            <a
-              href={project.codeLink || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bevel-button-dark transform rounded-lg bg-gray-700 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-gray-800"
-            >
-              View Project
-            </a>
+            {project.liveLink && (
+              <a
+                href={project.liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bevel-button-dark flex transform items-center rounded-lg bg-red-600 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-red-700"
+              >
+                <FaCirclePlay className="mr-2" /> Demo
+              </a>
+            )}
+            {project.codeLink && (
+              <a
+                href={project.codeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bevel-button-dark transform rounded-lg bg-gray-700 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-gray-800"
+              >
+                View Project
+              </a>
+            )}
           </div>
         </div>
       </div>
