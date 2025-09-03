@@ -78,16 +78,22 @@ const FormField = ({
     onBlur: handleBlur,
     onAnimationStart: handleAutoFill,
     style: getInputStyle(),
-    className:
-      "w-full p-3 text-gray-800 dark:text-gray-300 rounded-lg transition-shadow outline-none detect-autofill",
   };
 
   return (
     <div>
       {type === "textarea" ? (
-        <textarea {...commonProps} rows="4"></textarea>
+        <textarea
+          {...commonProps}
+          rows="4"
+          className="w-full p-3 text-gray-800 dark:text-gray-300 rounded-lg transition-shadow outline-none detect-autofill placeholder:text-gray-500 dark:placeholder:text-gray-400"
+        ></textarea>
       ) : (
-        <input type={type} {...commonProps} />
+        <input
+          type={type}
+          {...commonProps}
+          className="w-full p-3 text-gray-800 dark:text-gray-300 rounded-lg transition-shadow outline-none detect-autofill"
+        />
       )}
       {errors[name] && (
         <p className="mt-1 text-xs text-red-500">{errors[name].message}</p>
