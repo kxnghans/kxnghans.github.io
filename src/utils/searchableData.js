@@ -13,19 +13,13 @@ const getProjectContent = (details) => {
   return `${details.challenge} ${details.action} ${details.outcome} ${highlights}`;
 };
 
-const getCertificationContent = (item) => {
+const getDetailedContent = (item) => {
   if (!item) return "";
   const summary = item.summary?.join(" ") || "";
+  const title = item.details?.title || "";
   const subtitle = item.details?.subtitle || "";
   const details = item.details?.details?.join(" ") || "";
-  return `${summary} ${subtitle} ${details}`;
-};
-
-const getCommunityContent = (item) => {
-  if (!item) return "";
-  const summary = item.summary?.join(" ") || "";
-  const details = item.details?.details?.join(" ") || "";
-  return `${summary} ${details}`;
+  return `${summary} ${title} ${subtitle} ${details}`;
 };
 
 export const searchableData = [
@@ -56,7 +50,7 @@ export const searchableData = [
     id: `work-${index}`,
     title: item.title,
     content: item.details.details.join(" "),
-    category: "Work Experience",
+    category: "Work",
     location: {
       pageName: "Work Experience",
       componentType: "none",
@@ -77,7 +71,7 @@ export const searchableData = [
   ...certificationsData.map((item, index) => ({
     id: `certification-${index}`,
     title: item.title,
-    content: getCertificationContent(item),
+    content: getDetailedContent(item),
     category: "Certifications",
     location: {
       pageName: "Honors",
@@ -89,7 +83,7 @@ export const searchableData = [
   ...communityData.map((item, index) => ({
     id: `community-${index}`,
     title: item.title,
-    content: getCommunityContent(item),
+    content: getDetailedContent(item),
     category: "Community",
     location: {
       pageName: "More",
@@ -101,12 +95,12 @@ export const searchableData = [
   ...honors.map((item, index) => ({
     id: `honor-${index}`,
     title: item.title,
-    content: item.details.subtitle,
+    content: getDetailedContent(item),
     category: "Honors",
     location: {
       pageName: "Honors",
-      componentType: "none",
-      itemId: `honor-${index}`,
+      componentType: "modal",
+      itemId: index,
     },
   })),
 ];

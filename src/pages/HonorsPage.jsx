@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Section from "../components/ui/Section";
 import DetailModal from "../components/modals/DetailModal";
 import CertificationsSlideshow from "../components/ui/CertificationsSlideshow";
 import { honors } from "../data";
+import { SearchContext } from "../context/SearchContext";
 
 const HonorsPage = () => {
-  const [selectedItem, setSelectedItem] = React.useState(null);
+  const { selectedItem, setSelectedItem } = useContext(SearchContext);
 
   return (
     <div className="flex flex-col">
