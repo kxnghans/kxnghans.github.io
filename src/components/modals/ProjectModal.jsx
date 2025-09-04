@@ -51,10 +51,12 @@ const ProjectModal = ({ project, onClose }) => {
                   {project.challenge}
                 </p>
                 <p>
-                  <span className="font-semibold">Action:</span> {project.action}
+                  <span className="font-semibold">Action:</span>{" "}
+                  {project.action}
                 </p>
                 <p>
-                  <span className="font-semibold">Outcome:</span> {project.outcome}
+                  <span className="font-semibold">Outcome:</span>{" "}
+                  {project.outcome}
                 </p>
               </>
             ) : (

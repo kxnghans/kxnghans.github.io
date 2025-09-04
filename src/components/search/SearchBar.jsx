@@ -43,7 +43,7 @@ const SearchBar = ({
         {searchQuery && (
           <button
             onClick={() => setSearchQuery("")}
-            className="absolute right-3 top-1/2 -translate-y-1/2 z-10"
+            className="absolute right-3 top-1/2 z-10 -translate-y-1/2"
           >
             <FaTimesCircle className="h-4 w-4 text-gray-400 hover:text-red-500" />
           </button>
