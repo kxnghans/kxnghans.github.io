@@ -14,7 +14,7 @@ import {
 const ICONS = {
   Projects: <FaProjectDiagram />,
   Skills: <FaCog />,
-  "Work Experience": <FaBriefcase />,
+  Work: <FaBriefcase />,
   Education: <FaGraduationCap />,
   Certifications: <FaCertificate />,
   Community: <FaUsers />,

@@ -1,5 +1,7 @@
 import React, { createContext, useState, useMemo } from "react";
 import { searchableData } from "../utils/searchableData";
+import { navOrder } from "../data/navigation";
+import { honors } from "../data";
 
 export const SearchContext = createContext();
 
@@ -7,16 +9,23 @@ export const SearchProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [activeSlides, setActiveSlides] = useState({});
 
   const searchResults = useMemo(() => {
     if (!searchQuery) return [];
     setLoading(true);
-    const results = searchableData.filter(
-      (item) =>
-        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.content.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const results = searchableData
+      .filter(
+        (item) =>
+          item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.content.toLowerCase().includes(searchQuery.toLowerCase()),
+      )
+      .sort((a, b) => {
+        const aIndex = navOrder.indexOf(a.category);
+        const bIndex = navOrder.indexOf(b.category);
+        return aIndex - bIndex;
+      });
     setLoading(false);
     return results;
   }, [searchQuery]);
@@ -26,8 +35,12 @@ export const SearchProvider = ({ children }) => {
 
     // Close any open modal first
     setActiveModal(null);
+    setSelectedItem(null);
 
     if (location.componentType === "modal") {
+      if (location.pageName === "Honors") {
+        setSelectedItem(honors[location.itemId].details);
+      }
       setActiveModal(location.itemId);
     }
 
@@ -58,6 +71,8 @@ export const SearchProvider = ({ children }) => {
         loading,
         activeModal,
         setActiveModal,
+        selectedItem,
+        setSelectedItem,
         activeSlides,
         navigateToResult,
       }}
