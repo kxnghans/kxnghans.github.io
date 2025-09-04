@@ -1,7 +1,8 @@
 export const projectData = [
   {
     title: "Portfolio Showcase",
-    imageUrl: "https://images.unsplash.com/photo-1607469256721-13472920da4e?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Placeholder
+    imageUrl:
+      "https://images.unsplash.com/photo-1607469256721-13472920da4e?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Placeholder
     summary: [
       "Tech: React, Vite, Tailwind CSS",
       "Role: Sole Developer",
@@ -9,9 +10,12 @@ export const projectData = [
     ],
     details: {
       title: "Portfolio Showcase",
-      challenge: "To create a more engaging and interactive way to showcase my professional experience and projects than a traditional resume.",
-      action: "Designed and developed a responsive web application from scratch using React for the frontend, Vite for the build tool, and Tailwind CSS for styling. The application features a clean, modern UI with interactive elements like slideshows, modals, and a searchable interface.",
-      outcome: "The result is a dynamic and user-friendly portfolio that not only presents my professional history in a compelling way but also demonstrates my frontend development skills and my ability to create a polished web application.",
+      challenge:
+        "To create a more engaging and interactive way to showcase my professional experience and projects than a traditional resume.",
+      action:
+        "Designed and developed a responsive web application from scratch using React for the frontend, Vite for the build tool, and Tailwind CSS for styling. The application features a clean, modern UI with interactive elements like slideshows, modals, and a searchable interface.",
+      outcome:
+        "The result is a dynamic and user-friendly portfolio that not only presents my professional history in a compelling way but also demonstrates my frontend development skills and my ability to create a polished web application. The project is deployed on GitHub Pages and is continuously updated with new projects and features.",
       liveLink: "https://kxnghans.github.io/",
       codeLink: "https://github.com/kxnghans/mywalkthrough",
       highlights: [
@@ -21,11 +25,13 @@ export const projectData = [
         },
         {
           label: "Key Decisions",
-          value: "Chose React for its component-based architecture, Vite for its fast development experience, and Tailwind CSS for its utility-first approach to styling.",
+          value:
+            "Chose React for its component-based architecture, Vite for its fast development experience, and Tailwind CSS for its utility-first approach to styling.",
         },
         {
           label: "Benefits",
-          value: "Provides an interactive and engaging user experience, effectively showcases my projects and skills, and is easily maintainable and scalable.",
+          value:
+            "Provides an interactive and engaging user experience, effectively showcases my projects and skills, and is easily maintainable and scalable.",
         },
       ],
     },
@@ -83,7 +89,8 @@ export const projectData = [
         "I created a Power BI dashboard to track key innovation metrics (submissions, benefits savings in time and money, implementations) and gamified our initiatives with a leaderboard to encourage engagement.",
       outcome:
         "This led to a 13% increase in participation compared to the old spreadsheet-based system. The leaderboard also highlighted top contributors to leadership, creating a new avenue for high-level visibility and better-quantified tracking. The initiative resulted in $1.1M saved in the first year and over 705K customer hours saved.",
-      liveLink: "https://storage.cloud.google.com/portfolio_showcase/Idea%20Board%20Explained.pdf",
+      liveLink:
+        "https://storage.cloud.google.com/portfolio_showcase/Idea%20Board%20Explained.pdf",
       codeLink: "",
       highlights: [
         {
@@ -300,7 +307,8 @@ export const projectData = [
       outcome:
         "Achieved a high R-squared score of 0.952 on the prediction model. Also set up a Stable Diffusion environment for AI-based image generation.",
       liveLink: "",
-      codeLink: "https://storage.cloud.google.com/portfolio_showcase/Stock_prediction_multivariate.html",
+      codeLink:
+        "https://storage.cloud.google.com/portfolio_showcase/Stock_prediction_multivariate.html",
       highlights: [
         {
           label: "Predictive Modeling",
@@ -336,8 +344,10 @@ export const projectData = [
         "Image Classification: Optimized deep learning models for Fashion MNIST and Dog Breed classification, designing efficient CNNs under strict parameter and epoch constraints to overcome challenges like small datasets.",
         "Image Processing from Scratch: Implemented logistic regression with K-Fold cross-validation for animal classification and built image sharpening (Sobel operator) and noise removal (median filter) algorithms from the ground up to demonstrate a fundamental understanding of the processes.",
       ],
-      liveLink: "https://storage.cloud.google.com/portfolio_showcase/Facial%20Recognition%20Showcase.pdf",
-      codeLink: "https://storage.cloud.google.com/portfolio_showcase/Computer%20Vision.zip",
+      liveLink:
+        "https://storage.cloud.google.com/portfolio_showcase/Facial%20Recognition%20Showcase.pdf",
+      codeLink:
+        "https://storage.cloud.google.com/portfolio_showcase/Computer%20Vision.zip",
       highlights: [
         {
           label: "Deep Learning",
@@ -374,8 +384,10 @@ export const projectData = [
         "Built the car using an Arduino toolkit, C programming, and a suite of sensors (GPS, compass, ultrasonic distance). As project lead, I directed team goals and organized resources.",
       outcome:
         "Successfully created a functional autonomous vehicle that navigates through predefined waypoints, actively avoids obstacles using an ultrasonic sensor, and executes a search pattern upon reaching its final destination.",
-      liveLink: "https://storage.cloud.google.com/portfolio_showcase/RC%20Car%20Demo.MOV",
-      codeLink: "https://storage.cloud.google.com/portfolio_showcase/RC%20Car%20-%20Robotics%20Showcase.zip",
+      liveLink:
+        "https://storage.cloud.google.com/portfolio_showcase/RC%20Car%20Demo.MOV",
+      codeLink:
+        "https://storage.cloud.google.com/portfolio_showcase/RC%20Car%20-%20Robotics%20Showcase.zip",
       highlights: [
         {
           label: "Hardware Implementation",
@@ -411,8 +423,10 @@ export const projectData = [
         "Used Unreal Engine to model realistic physics and designed the system to integrate with a life-size gun replica via a Raspberry Pi and Arduino for haptic feedback.",
       outcome:
         "Successfully established communication between the hardware and software, creating a functional foundation for the final exhibit.",
-      liveLink: "https://storage.cloud.google.com/portfolio_showcase/UE4%20Demo.mp4",
-      codeLink: "https://storage.cloud.google.com/portfolio_showcase/50cal%20Simulator.zip",
+      liveLink:
+        "https://storage.cloud.google.com/portfolio_showcase/UE4%20Demo.mp4",
+      codeLink:
+        "https://storage.cloud.google.com/portfolio_showcase/50cal%20Simulator.zip",
       highlights: [
         {
           label: "Game Development",
@@ -447,8 +461,10 @@ export const projectData = [
         "Designed and simulated the op-amp using LTSpice, applying key theoretical principles for gain, transconductance, and output resistance. Debugged and optimized circuit performance using breadboarding and C programming.",
       outcome:
         "The simulated design achieved a gain of 2007 V/V. Analysis identified performance issues like low -3dB frequency and proposed resolutions, demonstrating a deep understanding of analog circuit design and trade-offs compared to commercial op-amps.",
-      liveLink: "https://storage.cloud.google.com/portfolio_showcase/PCB%20Design.pdf",
-      codeLink: "https://storage.cloud.google.com/portfolio_showcase/PCB%20Design.zip",
+      liveLink:
+        "https://storage.cloud.google.com/portfolio_showcase/PCB%20Design.pdf",
+      codeLink:
+        "https://storage.cloud.google.com/portfolio_showcase/PCB%20Design.zip",
       highlights: [
         {
           label: "Hardware Design",
@@ -507,7 +523,8 @@ export const projectData = [
 export const otherProjectData = [
   {
     title: "Portfolio Showcase",
-    imageUrl: "https://images.unsplash.com/photo-1607469256721-13472920da4e?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Placeholder
+    imageUrl:
+      "https://images.unsplash.com/photo-1607469256721-13472920da4e?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Placeholder
     summary: [
       "Tech: React, Vite, Tailwind CSS",
       "Role: Sole Developer",
@@ -515,9 +532,12 @@ export const otherProjectData = [
     ],
     details: {
       title: "Portfolio Showcase",
-      challenge: "To create a more engaging and interactive way to showcase my professional experience and projects than a traditional resume.",
-      action: "Designed and developed a responsive web application from scratch using React for the frontend, Vite for the build tool, and Tailwind CSS for styling. The application features a clean, modern UI with interactive elements like slideshows, modals, and a searchable interface.",
-      outcome: "The result is a dynamic and user-friendly portfolio that not only presents my professional history in a compelling way but also demonstrates my frontend development skills and my ability to create a polished web application.",
+      challenge:
+        "To create a more engaging and interactive way to showcase my professional experience and projects than a traditional resume.",
+      action:
+        "Designed and developed a responsive web application from scratch using React for the frontend, Vite for the build tool, and Tailwind CSS for styling. The application features a clean, modern UI with interactive elements like slideshows, modals, and a searchable interface.",
+      outcome:
+        "The result is a dynamic and user-friendly portfolio that not only presents my professional history in a compelling way but also demonstrates my frontend development skills and my ability to create a polished web application.",
       liveLink: "https://kxnghans.github.io/",
       codeLink: "https://github.com/kxnghans/mywalkthrough",
       highlights: [
@@ -527,11 +547,13 @@ export const otherProjectData = [
         },
         {
           label: "Key Decisions",
-          value: "Chose React for its component-based architecture, Vite for its fast development experience, and Tailwind CSS for its utility-first approach to styling.",
+          value:
+            "Chose React for its component-based architecture, Vite for its fast development experience, and Tailwind CSS for its utility-first approach to styling.",
         },
         {
           label: "Benefits",
-          value: "Provides an interactive and engaging user experience, effectively showcases my projects and skills, and is easily maintainable and scalable.",
+          value:
+            "Provides an interactive and engaging user experience, effectively showcases my projects and skills, and is easily maintainable and scalable.",
         },
       ],
     },
@@ -589,7 +611,8 @@ export const otherProjectData = [
         "I created a Power BI dashboard to track key innovation metrics (submissions, benefits savings in time and money, implementations) and gamified our initiatives with a leaderboard to encourage engagement.",
       outcome:
         "This led to a 13% increase in participation compared to the old spreadsheet-based system. The leaderboard also highlighted top contributors to leadership, creating a new avenue for high-level visibility and better-quantified tracking. The initiative resulted in $1.1M saved in the first year and over 705K customer hours saved.",
-      liveLink: "https://storage.cloud.google.com/portfolio_showcase/Idea%20Board%20Explained.pdf",
+      liveLink:
+        "https://storage.cloud.google.com/portfolio_showcase/Idea%20Board%20Explained.pdf",
       codeLink: "",
       highlights: [
         {
@@ -806,7 +829,8 @@ export const otherProjectData = [
       outcome:
         "Achieved a high R-squared score of 0.952 on the prediction model. Also set up a Stable Diffusion environment for AI-based image generation.",
       liveLink: "",
-      codeLink: "https://storage.cloud.google.com/portfolio_showcase/Stock_prediction_multivariate.html",
+      codeLink:
+        "https://storage.cloud.google.com/portfolio_showcase/Stock_prediction_multivariate.html",
       highlights: [
         {
           label: "Predictive Modeling",
@@ -842,8 +866,10 @@ export const otherProjectData = [
         "Image Classification: Optimized deep learning models for Fashion MNIST and Dog Breed classification, designing efficient CNNs under strict parameter and epoch constraints to overcome challenges like small datasets.",
         "Image Processing from Scratch: Implemented logistic regression with K-Fold cross-validation for animal classification and built image sharpening (Sobel operator) and noise removal (median filter) algorithms from the ground up to demonstrate a fundamental understanding of the processes.",
       ],
-      liveLink: "https://storage.cloud.google.com/portfolio_showcase/Facial%20Recognition%20Showcase.pdf",
-      codeLink: "https://storage.cloud.google.com/portfolio_showcase/Computer%20Vision.zip",
+      liveLink:
+        "https://storage.cloud.google.com/portfolio_showcase/Facial%20Recognition%20Showcase.pdf",
+      codeLink:
+        "https://storage.cloud.google.com/portfolio_showcase/Computer%20Vision.zip",
       highlights: [
         {
           label: "Deep Learning",
@@ -880,8 +906,10 @@ export const otherProjectData = [
         "Built the car using an Arduino toolkit, C programming, and a suite of sensors (GPS, compass, ultrasonic distance). As project lead, I directed team goals and organized resources.",
       outcome:
         "Successfully created a functional autonomous vehicle that navigates through predefined waypoints, actively avoids obstacles using an ultrasonic sensor, and executes a search pattern upon reaching its final destination.",
-      liveLink: "https://storage.cloud.google.com/portfolio_showcase/RC%20Car%20Demo.MOV",
-      codeLink: "https://storage.cloud.google.com/portfolio_showcase/RC%20Car%20-%20Robotics%20Showcase.zip",
+      liveLink:
+        "https://storage.cloud.google.com/portfolio_showcase/RC%20Car%20Demo.MOV",
+      codeLink:
+        "https://storage.cloud.google.com/portfolio_showcase/RC%20Car%20-%20Robotics%20Showcase.zip",
       highlights: [
         {
           label: "Hardware Implementation",
@@ -917,8 +945,10 @@ export const otherProjectData = [
         "Used Unreal Engine to model realistic physics and designed the system to integrate with a life-size gun replica via a Raspberry Pi and Arduino for haptic feedback.",
       outcome:
         "Successfully established communication between the hardware and software, creating a functional foundation for the final exhibit.",
-      liveLink: "https://storage.cloud.google.com/portfolio_showcase/UE4%20Demo.mp4",
-      codeLink: "https://storage.cloud.google.com/portfolio_showcase/50cal%20Simulator.zip",
+      liveLink:
+        "https://storage.cloud.google.com/portfolio_showcase/UE4%20Demo.mp4",
+      codeLink:
+        "https://storage.cloud.google.com/portfolio_showcase/50cal%20Simulator.zip",
       highlights: [
         {
           label: "Game Development",
@@ -953,8 +983,10 @@ export const otherProjectData = [
         "Designed and simulated the op-amp using LTSpice, applying key theoretical principles for gain, transconductance, and output resistance. Debugged and optimized circuit performance using breadboarding and C programming.",
       outcome:
         "The simulated design achieved a gain of 2007 V/V. Analysis identified performance issues like low -3dB frequency and proposed resolutions, demonstrating a deep understanding of analog circuit design and trade-offs compared to commercial op-amps.",
-      liveLink: "https://storage.cloud.google.com/portfolio_showcase/PCB%20Design.pdf",
-      codeLink: "https://storage.cloud.google.com/portfolio_showcase/PCB%20Design.zip",
+      liveLink:
+        "https://storage.cloud.google.com/portfolio_showcase/PCB%20Design.pdf",
+      codeLink:
+        "https://storage.cloud.google.com/portfolio_showcase/PCB%20Design.zip",
       highlights: [
         {
           label: "Hardware Design",

@@ -18,14 +18,18 @@ const SkillCardContent = ({ item }) => {
   const createSummary = (maxWords = 8, minItems = 3) => {
     let allDetails = [];
     if (item.details) {
-      const sortedDetails = [...item.details].sort((a, b) => a.priority - b.priority);
+      const sortedDetails = [...item.details].sort(
+        (a, b) => a.priority - b.priority,
+      );
       allDetails = allDetails.concat(sortedDetails);
     }
 
     if (item.subcategories) {
       item.subcategories.forEach((subcat) => {
         if (subcat.details) {
-          allDetails = allDetails.concat(subcat.details.map(d => ({ name: `${subcat.title}: ${d}` })))
+          allDetails = allDetails.concat(
+            subcat.details.map((d) => ({ name: `${subcat.title}: ${d}` })),
+          );
         }
       });
     }
@@ -33,8 +37,11 @@ const SkillCardContent = ({ item }) => {
     let wordCount = 0;
     let truncatedDetails = [];
     for (const detail of allDetails) {
-      const detailWords = detail.name.split(' ').length;
-      if (truncatedDetails.length >= minItems && wordCount + detailWords > maxWords) {
+      const detailWords = detail.name.split(" ").length;
+      if (
+        truncatedDetails.length >= minItems &&
+        wordCount + detailWords > maxWords
+      ) {
         if (truncatedDetails.length === 0) {
           truncatedDetails.push(detail);
         }
@@ -44,7 +51,7 @@ const SkillCardContent = ({ item }) => {
       wordCount += detailWords;
     }
 
-    const summaryText = truncatedDetails.map(d => d.name).join(", ");
+    const summaryText = truncatedDetails.map((d) => d.name).join(", ");
 
     return (
       <>
@@ -58,8 +65,8 @@ const SkillCardContent = ({ item }) => {
 
   return (
     <>
-      <div 
-        className="h-16 overflow-hidden text-xs text-gray-600 dark:text-gray-400 sm:text-sm cursor-pointer"
+      <div
+        className="h-16 cursor-pointer overflow-hidden text-xs text-gray-600 dark:text-gray-400 sm:text-sm"
         onClick={handleOpenModal}
       >
         {summaryText}

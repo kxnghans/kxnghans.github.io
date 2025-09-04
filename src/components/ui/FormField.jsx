@@ -86,13 +86,13 @@ const FormField = ({
         <textarea
           {...commonProps}
           rows="4"
-          className="w-full p-3 text-gray-800 dark:text-gray-300 rounded-lg transition-shadow outline-none detect-autofill placeholder:text-gray-500 dark:placeholder:text-gray-400"
+          className="detect-autofill w-full rounded-lg p-3 text-gray-800 outline-none transition-shadow placeholder:text-gray-500 dark:text-gray-300 dark:placeholder:text-gray-400"
         ></textarea>
       ) : (
         <input
           type={type}
           {...commonProps}
-          className="w-full p-3 text-gray-800 dark:text-gray-300 rounded-lg transition-shadow outline-none detect-autofill"
+          className="detect-autofill w-full rounded-lg p-3 text-gray-800 outline-none transition-shadow placeholder:text-gray-500 dark:text-gray-300 dark:placeholder:text-gray-400"
         />
       )}
       {errors[name] && (

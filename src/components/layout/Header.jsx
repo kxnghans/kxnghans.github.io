@@ -147,7 +147,11 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
 
   useEffect(() => {
     const handleScreenInteraction = (event) => {
-      if (isMicActive && micRef.current && !micRef.current.contains(event.target)) {
+      if (
+        isMicActive &&
+        micRef.current &&
+        !micRef.current.contains(event.target)
+      ) {
         toggleMic();
       }
     };
@@ -225,9 +229,11 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
           >
             <div className="flex h-5 w-5 items-center justify-center text-[1rem] sm:h-6 sm:w-6 md:text-[1.2rem]">
               <FaSearch
-                className={isSearchVisible
+                className={
+                  isSearchVisible
                     ? "text-white dark:text-gray-800"
-                    : "text-gray-500 dark:text-gray-400"}
+                    : "text-gray-500 dark:text-gray-400"
+                }
               />
             </div>
           </button>

@@ -17,7 +17,7 @@ const ProfileSummaryCard = () => (
             href="https://www.linkedin.com/in/kobbyhanson"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-3 text-gray-400 hover:text-gray-500 linkedin-icon-link"
+            className="linkedin-icon-link ml-3 text-gray-400 hover:text-gray-500"
           >
             <FaLinkedin size={30} className="linkedin-icon" />
           </a>
