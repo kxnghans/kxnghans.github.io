@@ -9,10 +9,12 @@ import { FaBars, FaSearch, FaPlayCircle } from "react-icons/fa";
 const profileImage = "/assets/Kobs DP.png";
 import SearchBar from "../search/SearchBar";
 import { SearchContext } from "../../context/SearchContext";
+import { toast } from "sonner";
 
 const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [isMicActive, setIsMicActive] = useState(false);
+  const [isSpeechSupported, setIsSpeechSupported] = useState(true);
   const [showVisualCues, setShowVisualCues] = useState(false);
   const { searchQuery, setSearchQuery } = useContext(SearchContext);
   const [placeholderText, setPlaceholderText] = useState("Search");
@@ -29,6 +31,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
       window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (SpeechRecognition) {
+      setIsSpeechSupported(true);
       const recognition = new SpeechRecognition();
       recognition.continuous = true;
       recognition.interimResults = true;
@@ -108,6 +111,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
 
       recognitionRef.current = recognition;
     } else {
+      setIsSpeechSupported(false);
       console.warn("Speech Recognition API not supported in this browser.");
     }
 
@@ -120,6 +124,13 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
   }, [setSearchQuery]);
 
   const toggleMic = () => {
+    if (!isSpeechSupported) {
+      toast.error("Voice search is not supported in this browser.", {
+        description: "Please try using a modern browser like Chrome or Edge.",
+      });
+      return;
+    }
+
     if (recognitionRef.current) {
       if (!isMicActive) {
         setIsMicActive(true);
@@ -199,6 +210,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
         <SearchBar
           setActivePage={setActivePage}
           isMicActive={isMicActive}
+          isSpeechSupported={isSpeechSupported}
           showVisualCues={showVisualCues}
           placeholderText={placeholderText}
           toggleMic={toggleMic}
@@ -259,6 +271,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
           <SearchBar
             setActivePage={setActivePage}
             isMicActive={isMicActive}
+            isSpeechSupported={isSpeechSupported}
             showVisualCues={showVisualCues}
             placeholderText={placeholderText}
             toggleMic={toggleMic}

@@ -19,25 +19,39 @@ Hanson-Tube is a high-performance, responsive portfolio platform built with a mo
 
 ---
 
-## Project Structure
+## Project Structure & Logical Domains
 
 ```text
-kxnghans.github.io/
-├── public/                 # Static public assets (Favicon, etc.)
-├── src/                    # Main application source
-│   ├── assets/             # Global media assets (Images, Icons) [Infrastructure]
-│   ├── components/         # Reusable UI library [UI/UX]
-│   │   ├── icons/          # Custom SVG icon wrappers
-│   │   ├── layout/         # Orchestration (Header, Sidebar)
-│   │   ├── modals/         # Detail views and overlays
-│   │   └── ui/             # Primitive components (Buttons, Cards)
-│   ├── context/            # Global state orchestrators (Search) [State]
-│   ├── data/               # Static content definitions [Domain Data]
-│   ├── pages/              # View compositions [Routing]
-│   ├── utils/              # Pure logic helpers [Utilities]
-│   ├── App.jsx             # Root orchestrator and routing logic
-│   ├── main.jsx            # DOM entry point
-│   └── index.css           # Global design system and Neumorphic tokens
+kxnghans.github.io/ [Root]
+├── public/                 # [Static Assets Domain] Pre-compiled resources
+│   └── assets/             # Branding and social preview images
+│       ├── favicon.svg     # SVG optimized icon
+│       └── hanson-tube.png # OpenGraph social preview
+├── src/                    # [Application Core Domain] Main source code
+│   ├── assets/             # Global media assets (Images) [Infrastructure]
+│   │   └── Kobs DP.png     # Profile imagery
+│   ├── components/         # [UI/UX Domain] Reusable UI library
+│   │   ├── icons/          # Custom SVG icon wrappers (Icons.jsx)
+│   │   ├── layout/         # Orchestration (Header.jsx, Sidebar.jsx)
+│   │   ├── modals/         # Overlays (DetailModal.jsx, ProjectModal.jsx)
+│   │   ├── search/         # Interactive tools (SearchBar.jsx)
+│   │   └── ui/             # Primitive components (Slideshows, Cards, FormField)
+│   ├── context/            # [Global State Domain] State orchestrators
+│   │   └── SearchContext.jsx # Search and Voice logic hub
+│   ├── data/               # [Domain Data] Static content definitions (SSOT)
+│   │   ├── projects.js     # Project showcase items
+│   │   ├── skills.js       # Competency mappings
+│   │   └── index.js        # Data barrel exports
+│   ├── pages/              # [Routing Domain] View compositions
+│   │   ├── HomePage.jsx    # Entry point & summary
+│   │   └── ProjectsPage.jsx# Full project listing
+│   ├── test/               # [Verification Domain] Test setups
+│   │   └── setup.js        # Vitest & RTL configuration
+│   ├── utils/              # [Utilities Domain] Pure logic helpers
+│   │   └── searchableData.js # Search index generation
+│   ├── App.jsx             # [Orchestration Layer] Root routing and theme logic
+│   ├── main.jsx            # [Entry Point] DOM mounting
+│   └── index.css           # [Design System] Global neumorphic tokens
 ├── tailwind.config.js      # Custom theme and animation definitions
 ├── vite.config.js          # Build and development orchestration
 └── package.json            # Dependency manifest and lifecycle scripts
@@ -50,26 +64,26 @@ kxnghans.github.io/
 ### Prerequisites
 
 *   **Node.js**: Latest LTS version recommended.
-*   **npm**:
-    ```sh
-    npm install npm@latest -g
-    ```
+*   **npm**: `npm install npm@latest -g`
 
-### Installation & Development
+### Local Setup & Development
 
 1.  **Clone the repository**:
     ```sh
     git clone https://github.com/kxnghans/kxnghans.github.io.git
+    cd kxnghans.github.io
     ```
 2.  **Install dependencies**:
     ```sh
     npm install
     ```
-3.  **Start development server**:
+3.  **Configure Environment (if required)**:
+    Ensure `.env` matches `.env.example` to supply variables for EmailJS or other integrations.
+4.  **Start development server**:
     ```sh
     npm run dev
     ```
-4.  **Execute tests**:
+5.  **Execute tests**:
     ```sh
     npm run test
     ```

@@ -1,31 +1,21 @@
-# Execution & Context Tracker (checklist.md)
+# Hanson-Tube: Execution & Context Tracker
 
-## Completed Milestones
+## Summary of Completed Milestones
 
-*   **Foundation**: Initialized React 18 + Vite 7 SPA with Tailwind CSS 3.
-*   **Aesthetics**: Implemented a comprehensive Dark Neumorphic design system with custom shadow tokens.
-*   **Features**:
-    *   Developed a custom state-based router for seamless page transitions.
-    *   Integrated Web Speech API for voice-driven search capabilities.
-    *   Built a modular data layer to separate content from presentation.
-*   **Infrastructure**: Configured CI/CD for automated deployment to GitHub Pages.
-*   **Branding Refresh**: Successfully migrated branding from "Kobby Hanson" to "Hanson-Tube" across Header and Metadata.
-*   **Documentation Suite**: Generated PRD, System Blueprint, AI Operating Instructions, and Verification Plan.
+*   **Zero-Backend Architecture Validated:** React 18 / Vite 7 SPA fully leverages a static data layer (`src/data/`) and Context API without relying on an external DB or complex state containers like Redux.
+*   **EmailJS Integration Secured:** `ContactPage.jsx` successfully routes communication via `import.meta.env.VITE_EMAILJS_*`. Basic client-side rate-limiting and anti-spam measures are in place (submit button is disabled during `isLoading`, `isSuccess`, and `isError` states).
+*   **Neumorphic UI System Setup:** Global design tokens are active in `index.css` and the dark/light mode injection logic is persistent in `App.jsx`.
+*   **Routing Strategy Defined:** Custom state-driven router (`activePage` switch in `App.jsx`) is fully operational.
+*   **Documentation Suite Initialized:** Architectural guidelines (`backend.md`, `theme.md`, `review.md`, etc.) are synchronized with the current implementation reality.
 
 ---
 
-## Active To-Do
+## Active Roadmap: To-Do Items
 
-### Quality & Verification
-- [ ] **Test Coverage**: Implement Vitest suites for `ProfileSummaryCard`, `Header`, and `Sidebar`.
-- [ ] **Accessibility Audit**: Audit ARIA labels and keyboard navigation for Neumorphic buttons.
-- [ ] **Linting**: Resolve all moderate vulnerabilities and ESLint warnings in the CI pipeline.
+### Phase 1: Security & Reliability Hardening
+- [x] **Create `.env.example`**: Safely document the expected `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, and `VITE_EMAILJS_PUBLIC_KEY` structure for onboarding.
+- [x] **Web Speech API Fallback**: Implement a graceful fallback (e.g., Sonner toast alert or disabling the microphone icon) in `Header.jsx` if `window.SpeechRecognition` is not supported by the browser.
 
-### UX & Performance
-- [ ] **Image Optimization**: Convert large local assets (e.g., `hansontube.png`) to WebP/AVIF for faster LCP.
-- [ ] **Page Transitions**: Implement Framer Motion or custom CSS transitions for the `renderPage` switch.
-- [ ] **Offline Support**: Investigate PWA integration for offline portfolio viewing.
-
-### Content Expansion
-- [ ] **Detailed Case Studies**: Add technical deep-dives to `src/data/projects.js` for major projects.
-- [ ] **Blog/Insights Section**: Initialize a `More` or `Insights` page for professional technical articles.
+### Phase 2: Verification & Test Coverage
+- [x] **Orchestration Layer Tests**: Write unit tests for `App.jsx`, `Header.jsx`, and `Sidebar.jsx` to verify state transitions and responsive behavior.
+- [x] **State Logic Tests**: Write unit tests for `SearchContext.jsx` to verify global filtering logic and `searchableData` aggregation resilience.

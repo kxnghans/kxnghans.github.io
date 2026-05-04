@@ -4,30 +4,33 @@
 Hanson-Tube is an immersive, interactive portfolio platform designed to showcase the professional journey of a Systems Engineer & Business Analyst through a high-fidelity "YouTube-inspired" interface. It prioritizes engagement through interactive media and a unique neumorphic aesthetic.
 
 ## User Personas
-*   **Recruiters/Hiring Managers**: Seeking technical competence, project outcomes, and cultural fit.
-*   **Fellow Engineers/Collaborators**: Interested in tech stack details, code quality, and technical challenges.
-*   **Clients/Stakeholders**: Evaluating business analysis and project management capabilities.
+*   **Recruiters/Hiring Managers**: Seeking technical competence, project outcomes, and cultural fit in a highly reliable, frictionless manner.
+*   **Fellow Engineers/Collaborators**: Interested in tech stack details, code quality, technical challenges, and deep exploratory interaction.
+*   **Clients/Stakeholders**: Evaluating business analysis and project management capabilities via clear, transactional flows.
 
 ---
 
 ## Feature Classification by User Intent
 
-### 1. Transactional & Critical (High Reliability Required)
-*   **Project Detail Views**: Deep-dive modals explaining the "Challenge, Action, Outcome" of each project.
-*   **Work Experience & Education**: Structured timelines of professional and academic milestones.
-*   **Contact System**: Integrated form via EmailJS for direct communication.
-*   **Project Links**: Live demo and source code links for external verification.
+To guide UX complexity, error handling, and component architecture, all features are categorized by their primary User Intent:
 
-### 2. Exploratory & Social (High Engagement Required)
-*   **Branded Header**: The "Hanson-Tube" branding and play-icon navigation.
-*   **Interactive Slideshows**: Dynamic project and skill carousels on the homepage.
-*   **Voice-Integrated Search**: Natural language search capabilities for navigating the portfolio.
-*   **Theme Orchestration**: Seamless dark/light mode transition with persistent state.
-*   **Neumorphic UI Elements**: Tactile, shadow-based design language for enhanced visual depth.
+### 1. Transactional & Critical (High Reliability & Low Friction Required)
+*Intent: The user is trying to accomplish a specific, critical goal (e.g., hiring, contacting, verifying credentials). Failure here results in immediate drop-off.*
+*   **Contact System (EmailJS Integration)**: Must have robust validation, clear error states, and immediate Toast feedback upon success/failure.
+*   **Project Links & Verification**: External links to live demos and GitHub repositories. Must open in new tabs (`target="_blank"`) securely (`rel="noopener noreferrer"`).
+*   **Work Experience & Education Timelines**: Structured, chronological rendering of professional milestones. The data mapping must be flawless and highly legible.
+*   **Mobile Navigation**: The sidebar toggle must be 100% reliable on viewports < 1024px to prevent content blocking.
+
+### 2. Exploratory & Social (High Engagement & "Delight" Required)
+*Intent: The user is passively browsing, evaluating the aesthetic "feel" and technical depth of the portfolio.*
+*   **Voice-Integrated Search**: A "delight" feature allowing natural language navigation. Requires graceful degradation if microphone access is denied or the Speech API is unsupported.
+*   **Neumorphic UI Engine**: The dark/light mode toggle and the consistent application of inset/outset shadows that react to user hover/active states.
+*   **Interactive Slideshows & Modals**: Dynamic project and skill carousels on the homepage, expanding into deep-dive overlays. These require smooth entry/exit animations (300ms bezier curves).
+*   **"Hanson-Tube" Branding**: The YouTube-inspired header and play-icon interactions that establish the overarching theme.
 
 ---
 
 ## Success Metrics
-*   **Engagement Depth**: Number of projects viewed per session.
-*   **Conversion**: Frequency of contact form submissions and LinkedIn clicks.
-*   **Performance**: Sub-1s page transitions and initial load times.
+*   **Engagement Depth**: Average number of projects clicked/expanded per session.
+*   **Conversion**: Frequency of contact form submissions and LinkedIn profile clicks.
+*   **Performance**: Sub-1s page transitions and initial load times, maintaining 60fps during UI animations.

@@ -11,6 +11,7 @@ import { FaSearch, FaMicrophone, FaTimesCircle } from "react-icons/fa";
 const SearchBar = ({
   setActivePage,
   isMicActive,
+  isSpeechSupported,
   showVisualCues,
   placeholderText,
   toggleMic,
@@ -62,7 +63,9 @@ const SearchBar = ({
             ? "scale-105 animate-gentle-pulse bg-red-500 text-white shadow-lg shadow-red-500/40"
             : isMicActive
               ? "bevel-light-inset bevel-dark-inset bg-gray-200 dark:bg-black"
-              : "bevel-light-inset bevel-dark-inset bg-gray-200 hover:bg-gray-300 dark:bg-black dark:hover:bg-gray-800"
+              : !isSpeechSupported
+                ? "bevel-light-inset bevel-dark-inset bg-gray-200 opacity-50 dark:bg-black"
+                : "bevel-light-inset bevel-dark-inset bg-gray-200 hover:bg-gray-300 dark:bg-black dark:hover:bg-gray-800"
         }`}
       >
         <div className="flex h-5 w-5 items-center justify-center text-[1.2rem] sm:h-6 sm:w-6 md:text-[1.4rem]">
@@ -74,7 +77,9 @@ const SearchBar = ({
                   ? "text-white drop-shadow-md"
                   : isMicActive
                     ? "text-gray-600 dark:text-gray-300"
-                    : "text-gray-500 dark:text-gray-400"
+                    : !isSpeechSupported
+                      ? "text-gray-400 dark:text-gray-600"
+                      : "text-gray-500 dark:text-gray-400"
             }
           />
         </div>

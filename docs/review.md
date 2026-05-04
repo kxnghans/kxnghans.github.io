@@ -1,32 +1,33 @@
-# Security & Integrity Assessment (review.md)
+# Security, Integrity, & Safety Assessment (review.md)
 
-## Security Boundaries
+## Security Boundaries & PII Handling
 
-Hanson-Tube is a client-side static application. Security focus is primarily on data exposure and client-side integrity.
+Hanson-Tube operates entirely on the client side. Security is heavily focused on preventing accidental data exposure and maintaining the integrity of third-party integrations.
 
-### 1. PII (Personally Identifiable Information)
-*   **Handling**: The portfolio contains public professional data. Direct contact information (Phone, Email) is shielded behind the `ContactPage` form.
-*   **Protection**: No private server-side data is accessible. User input in the contact form is sent directly to `EmailJS` and is not stored locally.
+### 1. Personally Identifiable Information (PII)
+*   **Public Data**: All data displayed on the portfolio (Work history, Education, Names) is considered public professional information.
+*   **Private Data Protection**: Direct contact vectors (personal email address, phone numbers) are deliberately omitted from the source code.
+*   **Form Handling**: Communication is routed exclusively through the `ContactPage` form. User inputs (Visitor Name, Visitor Email, Message) are volatile, stored only in React state, and transmitted directly to the EmailJS API. No PII is logged, stored in local storage, or tracked by the application.
 
-### 2. External Integrations
-*   **EmailJS**: Used for form submissions. API Keys should be stored in `.env` and excluded from Git via `.gitignore`.
-*   **LinkedIn**: Standard social links use `rel="noopener noreferrer"` to prevent tab-nabbing vulnerabilities.
-
----
-
-## Integrity & Safety
-
-### 1. AI Safety
-*   **Generated Content**: All content is static and provided in `src/data/`. There is no runtime LLM generation, eliminating the risk of hallucinations or prompt injection.
-*   **Code Generation**: AI-assisted code must adhere to `GEMINI.md` to ensure architectural consistency and prevent library bloat.
-
-### 2. Dependency Integrity
-*   **Vulnerability Audit**: Periodic `npm audit` is required to mitigate risks in the React and Vite ecosystems.
-*   **Version Pinning**: Critical dependencies should be kept updated to their latest stable patches.
+### 2. External Integrations & Anti-Abuse
+*   **EmailJS Security**: To prevent abuse of the EmailJS quota, the public key is exposed (as required by client-side EmailJS), but the account must be configured on the EmailJS dashboard to only accept requests originating from the whitelisted domain (`https://kxnghans.github.io`).
+*   **Link Integrity (Anti-Tab-Nabbing)**: All external outbound links (LinkedIn, GitHub, Google Cloud Storage) must include `rel="noopener noreferrer"` to prevent the newly opened tab from hijacking the portfolio's window object.
 
 ---
 
-## Compliance
+## AI Safety & Generation Boundaries
 
-*   **Accessibility**: The Neumorphic design system must be continuously monitored for contrast ratios.
-*   **License**: The project is open-source under the MIT License.
+With the integration of AI agents (like the Gemini CLI) into the development workflow, specific safety parameters are enforced:
+
+*   **Static Content Mandate**: There is no runtime LLM generation for end-users. All portfolio text is statically defined in `src/data/`. This eliminates the risk of prompt injection or hallucination on the live site.
+*   **Code Generation Guardrails**: AI-assisted code generation is strictly bound by the rules in `GEMINI.md`. Agents are explicitly forbidden from:
+    1. Modifying `.env` files or committing secrets.
+    2. Introducing external tracking scripts or analytics without explicit user directive.
+    3. Bypassing the native Context API in favor of over-engineered state management libraries.
+
+---
+
+## Compliance & Maintenance
+
+*   **Accessibility (a11y)**: The Neumorphic design system poses inherent risks to visual contrast. Continuous audits via ESLint's `jsx-a11y` plugin and manual Lighthouse checks are required to ensure the `text-secondary` and shadow tokens meet WCAG AA contrast ratios.
+*   **Dependency Audits**: Routine `npm audit` checks are mandated to address vulnerabilities in the Vite and React compilation ecosystem, even though the deployed output is static HTML/JS.
