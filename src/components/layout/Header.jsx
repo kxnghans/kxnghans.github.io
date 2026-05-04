@@ -6,7 +6,7 @@
 
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { FaBars, FaSearch, FaPlayCircle } from "react-icons/fa";
-import profileImage from "../../../assets/Kobs DP.png";
+const profileImage = "/assets/Kobs DP.png";
 import SearchBar from "../search/SearchBar";
 import { SearchContext } from "../../context/SearchContext";
 
@@ -189,7 +189,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage, theme }) => {
             <FaPlayCircle />
           </div>
           <h1 className="text-[1.4rem] font-bold tracking-wider md:text-[1.6rem]">
-            Kobby Hanson
+            Hanson-Tube
           </h1>
         </div>
       </div>

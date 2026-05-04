@@ -1,6 +1,6 @@
 import React from "react";
 import { FaLinkedin } from "react-icons/fa6";
-import profileImage from "../../../assets/Kobs DP.png";
+const profileImage = "/assets/Kobs DP.png";
 
 const ProfileSummaryCard = () => (
   <div className="bevel-light dark:neumorphic-outset-dark mb-8 rounded-2xl bg-gray-100 p-4 sm:p-6">
