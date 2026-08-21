@@ -8,7 +8,7 @@ Hanson-Tube employs a Neumorphic design system. This aesthetic relies on precise
 
 ## Centralized Theme Management (`ThemeContext`)
 
-Theme state is managed globally through React Context via [`src/context/ThemeContext.jsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/context/ThemeContext.jsx) and mounted at the root in [`src/main.jsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/main.jsx).
+Theme state is managed globally through React Context via [`src/context/ThemeContext.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/context/ThemeContext.tsx) and mounted at the root in [`src/main.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/main.tsx).
 
 ### Lifecycle & Resolution Precedence
 
@@ -19,7 +19,7 @@ Theme state is managed globally through React Context via [`src/context/ThemeCon
 
 ### `useTheme()` Hook API
 
-```javascript
+```typescript
 const { theme, setTheme, toggleTheme, isDarkMode } = useTheme();
 ```
 
@@ -51,12 +51,12 @@ Design tokens are defined directly via Tailwind CSS 4's `@theme` directive and `
 ### 3. Modal Floating Surface
 
 - **Token / Class**: `modal-shadow` + `bg-gray-100 dark:bg-dark-card`
-- **Rule**: Applied to overlay modal popups ([`ProjectModal.jsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ProjectModal.jsx), [`DetailModal.jsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/DetailModal.jsx)). Top and left specular highlights are replaced with a lighter ambient shadow to prevent harsh top-edge glare on elevated backdrops.
+- **Rule**: Applied to overlay modal popups ([`ProjectModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ProjectModal.tsx), [`DetailModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/DetailModal.tsx)). Top and left specular highlights are replaced with a lighter ambient shadow to prevent harsh top-edge glare on elevated backdrops.
 - **Shadow Vector**:
   - **Light Mode**: `-4px -4px 14px rgba(0, 0, 0, 0.08)` (subtle top-left ambient shadow) / `6px 6px 20px rgba(0, 0, 0, 0.18)` (bottom-right primary shadow).
   - **Dark Mode**: `-4px -4px 16px rgba(0, 0, 0, 0.40)` (subtle top-left ambient shadow) / `8px 8px 24px rgba(0, 0, 0, 0.75)` (bottom-right primary occlusion shadow).
   - **Mobile Responsive (`<= 768px`)**: `-2px -2px 8px` / `4px 4px 14px` (Light) and `-2px -2px 10px` / `5px 5px 18px` (Dark).
-- **Usage**: [`ProjectModal.jsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ProjectModal.jsx), [`DetailModal.jsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/DetailModal.jsx).
+- **Usage**: [`ProjectModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ProjectModal.tsx), [`DetailModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/DetailModal.tsx).
 
 ### 4. Active / Interactive Highlight
 

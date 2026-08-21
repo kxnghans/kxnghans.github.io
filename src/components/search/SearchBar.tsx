@@ -36,15 +36,17 @@ const SearchBar = ({
 
   return (
     <div className="flex w-full flex-1 items-center">
-      <div className="relative w-full">
+      <div className="group relative w-full">
         <input
           type="text"
           ref={inputRef}
           placeholder={placeholderText}
           value={searchQuery}
           onChange={handleSearchChange}
-          className={`bevel-light-inset bevel-dark-inset w-full rounded-full bg-gray-200/90 py-2 pr-10 pl-10 text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500/90 md:text-base dark:bg-[#141416] ${
-            showVisualCues ? "ring-2 ring-red-500 border-red-500" : ""
+          className={`bevel-light-inset bevel-dark-inset w-full rounded-full border border-transparent bg-gray-200/90 py-2 pr-10 pl-10 text-sm transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-500 focus:outline-none md:text-base dark:border-[#4a4a4a] dark:bg-[#141416] dark:focus:border-red-500 ${
+            showVisualCues
+              ? "!border-red-500 shadow-md ring-2 shadow-red-500/30 ring-red-500"
+              : ""
           }`}
         />
         <div className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-[1rem] md:text-[1.2rem]">
@@ -52,12 +54,13 @@ const SearchBar = ({
             className={`transition-colors duration-200 ${
               showVisualCues
                 ? "text-red-500"
-                : "text-gray-500 dark:text-gray-400"
+                : "text-gray-500 group-focus-within:text-red-500 dark:text-gray-400 dark:group-focus-within:text-red-500"
             }`}
           />
         </div>
         {searchQuery ? (
           <button
+            type="button"
             onClick={() => setSearchQuery("")}
             aria-label="Clear search query"
             className="absolute top-1/2 right-3 z-10 -translate-y-1/2"
@@ -83,30 +86,31 @@ const SearchBar = ({
       <button
         id="mic-button"
         ref={micRef}
+        type="button"
         onClick={toggleMic}
         aria-label="Toggle microphone"
-        className={`ml-3 transform rounded-full p-2 transition-all duration-200 ${
+        className={`ml-3 transform rounded-full p-2 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:focus-visible:ring-offset-[#181818] ${
           showVisualCues
-            ? "animate-gentle-pulse scale-105 bg-red-500 text-white shadow-md shadow-red-500/40"
+            ? "animate-gentle-pulse scale-105 bg-red-500 text-white shadow-lg ring-2 shadow-red-500/40 ring-red-500"
             : isMicActive
-              ? "bevel-light-inset bevel-dark-inset bg-gray-200/90 dark:bg-[#141416]"
+              ? "bevel-light-inset bevel-dark-inset bg-gray-200/90 ring-2 ring-red-500/60 dark:bg-[#141416]"
               : !isSpeechSupported
                 ? "bevel-light-inset bevel-dark-inset bg-gray-200/90 opacity-50 dark:bg-[#141416]"
-                : "bevel-light-inset bevel-dark-inset bg-gray-200/90 hover:bg-gray-300/80 dark:bg-[#141416] dark:hover:bg-[#1e1e22]"
+                : "bevel-light-inset bevel-dark-inset bg-gray-200/90 hover:bg-gray-300/80 hover:ring-1 hover:ring-red-500/40 dark:bg-[#141416] dark:hover:bg-[#1e1e22]"
         }`}
       >
         <div className="flex h-5 w-5 items-center justify-center text-[1.2rem] sm:h-6 sm:w-6 md:text-[1.4rem]">
           <FaMicrophone
             className={
               showVisualCues && theme === "dark"
-                ? "text-gray-800 drop-shadow-sm"
+                ? "text-gray-900 drop-shadow-sm"
                 : showVisualCues
                   ? "text-white drop-shadow-sm"
                   : isMicActive
-                    ? "text-gray-600 dark:text-gray-300"
+                    ? "text-red-500 dark:text-red-400"
                     : !isSpeechSupported
                       ? "text-gray-400 dark:text-gray-600"
-                      : "text-gray-500 transition-colors dark:text-gray-400"
+                      : "text-gray-500 transition-colors hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400"
             }
           />
         </div>

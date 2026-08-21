@@ -2,29 +2,28 @@
 
 ## How It Works
 
-Hanson-Tube is a client-side React 18 single-page app. It runs on Vite 7 with React SWC and Tailwind CSS 4. There is no backend server or database. All data lives in static JavaScript files under `src/data/`, which gets bundled directly at build time and served through GitHub Pages.
+Hanson-Tube is a client-side React 19 single-page app written in TypeScript 5.8+. It runs on Vite 7 with React SWC and Tailwind CSS 4. There is no backend server or database. All data lives in static, strongly-typed TypeScript files under `src/data/`, which gets bundled directly at build time and served through GitHub Pages.
 
 ---
 
 ## App Boot & Lifecycle
 
-1. **Mounting**: `main.jsx` attaches the root React component to `<div id="root"></div>` and pulls in `src/index.css`.
+1. **Mounting**: `main.tsx` mounts the root React component wrapped in `ThemeProvider` and `SearchProvider` to `<div id="root"></div>` and imports `src/index.css`.
 2. **State Setup**:
-   - `App.jsx` tracks `activePage` (defaults to `"Home"`), `isSidebarOpen`, and `theme` (defaults to `"dark"`).
+   - `App.tsx` tracks `activePage` (defaults to `"Home"`) and responsive `isSidebarOpen`.
+   - `ThemeProvider` manages global theme state (`"dark"` | `"light"`), detects OS preference (`prefers-color-scheme`), persists to `localStorage`, and synchronizes `.dark`/`.light` on `document.documentElement`.
    - `SearchProvider` wraps the app tree so any component can read or update search queries, voice state, and open modals.
-3. **Theme Toggle**:
-   - A `useEffect` in `App.jsx` listens for changes to `theme` and adds `.dark` or `.light` to `document.documentElement`. Tailwind CSS 4 picks this up for dark mode styling.
-4. **State-Based Navigation**:
-   - We avoid `react-router` or URL hash routing. `App.jsx` holds `activePage` in state.
+3. **State-Based Navigation**:
+   - We avoid `react-router` or URL hash routing. `App.tsx` holds `activePage` in state.
    - When a user picks a page from the sidebar, `setActivePage` updates the state.
-   - `renderPage()` runs a `switch` statement on `activePage` and renders the selected view:
-     - `HomePage`
-     - `ProjectsPage`
-     - `WorkExperiencePage`
-     - `EducationPage`
-     - `HonorsPage`
-     - `ContactPage`
-   - This keeps page switches instant and avoids 404 routing headaches on GitHub Pages.
+   - `renderPage()` runs a `switch` statement on `activePage` and renders the selected view (code-split via `React.lazy` and `Suspense` with a neumorphic skeleton fallback):
+     - `HomePage` (eager)
+     - `ProjectsPage` (lazy)
+     - `WorkExperiencePage` (lazy)
+     - `EducationPage` (lazy)
+     - `HonorsPage` (lazy)
+     - `ContactPage` (lazy)
+   - This keeps page switches instant, minimizes initial bundle size, and avoids 404 routing headaches on GitHub Pages.
 
 ---
 
@@ -32,9 +31,9 @@ Hanson-Tube is a client-side React 18 single-page app. It runs on Vite 7 with Re
 
 ### 1. Search & Voice Input
 
-- **Search Bar**: Typing in `SearchBar.jsx` updates `searchQuery` in `SearchContext`. A `useMemo` filter checks `searchableData` and returns matching titles, categories, and content.
-- **Voice Search**: Clicking the microphone calls `window.SpeechRecognition` (or `webkitSpeechRecognition`). As the user speaks, interim text updates `searchQuery`. If the browser lacks speech support, the app catches the error and triggers a Sonner toast instead of crashing.
-- **Selecting Results**: Clicking any search result changes `activePage` to that item's category and opens its detail modal via `setActiveModal(id)`.
+- **Search Bar**: Typing in `SearchBar.tsx` updates `searchQuery` in `SearchContext`. A `useMemo` filter checks `searchableData` and returns matching titles, categories, and content. The search input features crisp YouTube red focus rings (`focus:ring-2 focus:ring-red-500`) and group focus-within icon activation.
+- **Voice Search**: Clicking the microphone calls `window.SpeechRecognition` (or `webkitSpeechRecognition`). As the user speaks, interim text updates `searchQuery`. Active listening provides pulsating red visual cues (`bg-red-500 ring-2 ring-red-500 shadow-red-500/40 animate-gentle-pulse`). If the browser lacks speech support, the app catches the error and triggers a Sonner toast instead of crashing.
+- **Search Result Highlighting & Selection**: `SearchResults.tsx` highlights matched query terms with YouTube-themed red tinting (`bg-red-500/15 text-red-600 dark:bg-red-500/25 dark:text-red-400 font-semibold px-0.5 rounded-xs`). Clicking any search result changes `activePage` to that item's category and opens its detail modal via `setActiveModal(id)`.
 
 ### 2. Modals & Portals
 
@@ -53,9 +52,9 @@ Hanson-Tube is a client-side React 18 single-page app. It runs on Vite 7 with Re
 
 ## Data Flow & SSOT
 
-1. **Source Files**: All portfolio content is defined in plain JavaScript arrays under `src/data/*.js`.
-2. **Index Utility**: `src/utils/searchableData.js` imports these arrays from `src/data/index.js` and flattens them into a clean search index with `{ id, title, content, category, componentType }`.
+1. **Source Files**: All portfolio content is defined in typed TypeScript modules under `src/data/*.ts`.
+2. **Index Utility**: `src/utils/searchableData.ts` imports these datasets from `src/data/index.ts` and flattens them into a clean search index with `{ id, title, content, category, componentType }`.
 3. **Consumption**:
    - Pages import their respective data files directly to render cards and lists.
-   - `SearchContext` uses `searchableData.js` for instant filtering.
+   - `SearchContext` uses `searchableData.ts` for instant filtering.
 4. **Local Images**: Media assets live in `public/assets/generated/` and `src/assets/`, referenced directly by path.

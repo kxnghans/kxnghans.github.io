@@ -4,9 +4,9 @@ This document codifies the core architecture, constraints, and interaction guide
 
 ## 🛠 Preferred Tech Stack
 
-- **Frontend**: React 18 (Hooks, Context API). NO Redux or Zustand; stick to the native Context API for global state.
+- **Frontend**: React 19 (Hooks, Context API) and TypeScript 5.8+. NO Redux or Zustand; stick to the native Context API for global state.
 - **Styling**: Tailwind CSS 4 (`@tailwindcss/vite`), integrated with custom `@theme` and Neumorphic tokens in `src/index.css`.
-- **Build/Routing**: Vite 7 with `@vitejs/plugin-react-swc`. The app is an SPA using custom state-based routing (`activePage` in `App.jsx`), NOT `react-router-dom`.
+- **Build/Routing**: Vite 7 with `@vitejs/plugin-react-swc`. The app is an SPA using custom state-based routing (`activePage` in `App.tsx`) with `React.lazy` code splitting, NOT `react-router-dom`.
 - **Package Manager**: pnpm (`packageManager: pnpm@11.9.0`).
 - **Testing**: Vitest with React Testing Library (RTL) and JSDOM.
 - **Form/Validation**: React Hook Form, Sonner for Toast notifications, EmailJS for contact dispatch.

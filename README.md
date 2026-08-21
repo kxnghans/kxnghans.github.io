@@ -8,12 +8,14 @@ Hanson-Tube is a high-performance, responsive portfolio platform built with a mo
 
 | Layer                  | Technology                                                   |
 | :--------------------- | :----------------------------------------------------------- |
-| **Frontend Framework** | React 18 (Functional Components, Hooks)                      |
+| **Frontend Framework** | React 19 (Functional Components, Hooks, Context API)         |
+| **Language**           | TypeScript 5.8+ (Strict Type-Checking)                       |
 | **Build Tooling**      | Vite 7, `@vitejs/plugin-react-swc` (SWC Fast Refresh)        |
 | **Styling**            | Tailwind CSS 4 (`@tailwindcss/vite`, `@theme` Design Tokens) |
+| **Offline & PWA**      | Workbox Window & `vite-plugin-pwa` (Service Worker Caching)  |
 | **Package Manager**    | pnpm (`pnpm@11.9.0`)                                         |
-| **State Management**   | React Context API (Search/UI State), Local State             |
-| **Testing**            | Vitest, React Testing Library, JSDOM                         |
+| **State Management**   | React Context API (`ThemeContext`, `SearchContext`)          |
+| **Testing**            | Vitest 3, React Testing Library, JSDOM (13 Passing Suites)   |
 | **Deployment**         | GitHub Pages (via `gh-pages`)                                |
 | **Icons**              | React Icons (`react-icons/fa`, `react-icons/fa6`)            |
 | **Forms & Toasts**     | React Hook Form, Sonner, EmailJS Browser                     |
@@ -37,45 +39,54 @@ kxnghans.github.io/ [Root]
 │   ├── assets/               # Branding and preview media
 │   │   ├── favicon.svg       # SVG optimized icon
 │   │   ├── hanson-tube.png   # OpenGraph social preview
-│   │   └── generated/        # High-fidelity portfolio visual assets
+│   │   └── generated/        # High-fidelity portfolio visual assets (WebP)
 ├── src/                      # [Application Core Domain] Main source code
 │   ├── assets/               # Global media assets
 │   ├── components/           # [UI/UX Domain] Reusable UI component library
-│   │   ├── icons/            # Custom SVG icon wrappers (Icons.jsx)
-│   │   ├── layout/           # Orchestration (Header.jsx, Sidebar.jsx)
-│   │   ├── modals/           # Overlays (DetailModal.jsx, ProjectModal.jsx)
-│   │   ├── search/           # Interactive tools (SearchBar.jsx, SearchResults.jsx)
-│   │   └── ui/               # Primitive components (Slideshows, Cards, FormField, Section)
+│   │   ├── icons/            # Custom SVG icon wrappers (Icons.tsx)
+│   │   ├── layout/           # Orchestration (Header.tsx, Sidebar.tsx)
+│   │   ├── modals/           # Overlays & Portals (DetailModal.tsx, ProjectModal.tsx)
+│   │   ├── search/           # Interactive tools (SearchBar.tsx, SearchResults.tsx)
+│   │   └── ui/               # Primitive components (Slideshows, Cards, FormField, Section, LazyImage)
 │   ├── context/              # [Global State Domain] State orchestrators
-│   │   └── SearchContext.jsx # Search, Voice, and Modal logic hub
+│   │   ├── SearchContext.tsx # Search, Voice, and Modal logic hub
+│   │   └── ThemeContext.tsx  # Global dark/light theme state & persistence
 │   ├── data/                 # [Domain Data] Static content definitions (SSOT)
-│   │   ├── certifications.js # Certifications & credentials
-│   │   ├── community.js      # Community involvement & leadership
-│   │   ├── contactData.js    # Contact channels & metadata
-│   │   ├── education.js      # Academic degrees & coursework
-│   │   ├── formData.js       # Form fields definition
-│   │   ├── honors.js         # Awards and honors
-│   │   ├── navigation.js     # Sidebar routes & navigation icons
-│   │   ├── projects.js       # Project showcase items & architecture notes
-│   │   ├── skills.js         # Competency mappings & tech categories
-│   │   ├── work.js           # Work experience timeline
-│   │   └── index.js          # Barrel export & data aggregation
-│   ├── pages/                # [Routing Domain] View compositions
-│   │   ├── ContactPage.jsx   # Contact form & communication channels
-│   │   ├── EducationPage.jsx # Academic milestones & achievements
-│   │   ├── HomePage.jsx      # Entry point, summary card, and carousels
-│   │   ├── HonorsPage.jsx    # Awards & distinctions
-│   │   ├── ProjectsPage.jsx  # Full project listing & categorization
-│   │   └── WorkExperiencePage.jsx # Professional work timeline
+│   │   ├── certifications.ts # Certifications & credentials
+│   │   ├── community.ts      # Community involvement & leadership
+│   │   ├── contactData.ts    # Contact channels & metadata
+│   │   ├── education.ts      # Academic degrees & coursework
+│   │   ├── formData.ts       # Form fields definition
+│   │   ├── honors.ts         # Awards and honors
+│   │   ├── navigation.ts     # Sidebar routes & navigation icons
+│   │   ├── projects.ts       # Project showcase items & architecture notes
+│   │   ├── skills.ts         # Competency mappings & tech categories
+│   │   ├── work.ts           # Work experience timeline
+│   │   └── index.ts          # Barrel export & data aggregation
+│   ├── hooks/                # [Custom React Hooks]
+│   │   ├── useFocusTrap.ts   # WCAG modal focus containment
+│   │   └── usePWA.ts         # Service worker & offline state management
+│   ├── pages/                # [Routing Domain] View compositions (React.lazy)
+│   │   ├── ContactPage.tsx   # Contact form & communication channels
+│   │   ├── EducationPage.tsx # Academic milestones & achievements
+│   │   ├── HomePage.tsx      # Entry point, summary card, and carousels
+│   │   ├── HonorsPage.tsx    # Awards & distinctions
+│   │   ├── ProjectsPage.tsx  # Full project listing & categorization
+│   │   └── WorkExperiencePage.tsx # Professional work timeline
 │   ├── test/                 # [Verification Domain] Test setups
-│   │   └── setup.js          # Vitest & RTL configuration
+│   │   └── setup.ts          # Vitest & RTL configuration
+│   ├── types/                # [TypeScript Domain] Shared interface definitions
+│   │   ├── data.ts           # Entity models & static content types
+│   │   └── search.ts         # Search result & context types
 │   ├── utils/                # [Utilities Domain] Pure logic helpers
-│   │   └── searchableData.js # Search index generation
-│   ├── App.jsx               # [Orchestration Layer] Root routing and theme logic
+│   │   └── searchableData.ts # Search index generation
+│   ├── App.tsx               # [Orchestration Layer] Root routing and dynamic views
 │   ├── index.css             # [Design System] Tailwind v4 tokens & neumorphic shadows
-│   └── main.jsx              # [Entry Point] DOM mounting
+│   └── main.tsx              # [Entry Point] DOM mounting
 ├── eslint.config.js          # ESLint 9 flat configuration
-├── vite.config.js            # Vite build, React SWC, and test configuration
+├── tsconfig.json             # Strict TypeScript compiler options
+├── tsconfig.node.json        # TypeScript Node config for Vite
+├── vite.config.ts            # Vite build, React SWC, PWA, and test configuration
 └── package.json              # Dependency manifest and lifecycle scripts
 ```
 

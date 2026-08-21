@@ -65,8 +65,6 @@
 ### Phase 6: 🧪 Continuous Verification & E2E Validation
 
 - [ ] **[TST-2] Playwright End-to-End Test Suite**: Implement Playwright tests verifying end-to-end user journeys (searching, filtering, responsive navigation, and modal flows).
-- [ ] **[TST-3] GitHub Actions CI Pipeline**: Configure automated workflow executing `pnpm lint`, `pnpm test:run`, and `pnpm build` on pull requests.
-- [ ] **[VER-1] Production Build & Lighthouse Audit**: Validate sub-1s load times, 60fps animations, and 100% accessibility compliance.
 
 ### Phase 7: 🪟 Viewport Modal Portaling & Search Focus Modernization
 
@@ -75,4 +73,8 @@
 - [x] **[SRCH-2] Search Bar Focus Ring & Theme Token Optimization**: Refactor `SearchBar.tsx` and `src/index.css` to restore high-visibility red focus rings, eliminate bevel shadow clipping on focus, and enhance microphone voice search pulsating visual cues.
 - [x] **[TST-4] Test Suite & Stability Verification**: Update and execute all Vitest unit test suites, TypeScript typechecks, and production Vite builds.
 
+### Phase 8: 🔍 Search Bar Red Focus & YouTube Red Highlight Tint
 
+- [x] **[SRCH-3] Search Bar & Microphone YouTube Red Focus Refinement**: Restore red focus rings and active states across `SearchBar.tsx` input, microphone button, and mobile search toggle in `Header.tsx` compatible with Tailwind 4.
+- [x] **[SRCH-4] Search Results Red Highlight Tint**: Replace generic yellow highlight (`bg-yellow-200 text-black`) in `SearchResults.tsx` with YouTube theme red tint (`bg-red-500/15 text-red-600 dark:bg-red-500/25 dark:text-red-400 font-semibold px-0.5 rounded-xs`).
+- [x] **[VER-2] Verification & Stability Check**: Run Vitest tests, ESLint, TypeScript check, and Vite production build.

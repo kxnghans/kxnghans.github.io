@@ -14,16 +14,16 @@ Hanson-Tube is intentionally designed as a **Static Single Page Application (SPA
 
 Instead of a relational or document database, the application utilizes a modular JavaScript data architecture:
 
-- **Source of Truth (`src/data/`)**: All domain records are maintained as modular, typed JavaScript modules (`projects.js`, `skills.js`, `work.js`, `education.js`, `honors.js`, `community.js`, `certifications.js`, `contactData.js`, `formData.js`, `navigation.js`).
-- **Barrel Export (`src/data/index.js`)**: Provides a centralized entry point exporting all data entities.
-- **Materialized Search Index (`src/utils/searchableData.js`)**: Aggregates all dataset arrays into an in-memory searchable collection structured as `{ id, title, content, category, componentType }` for the Global Search Context.
-- **Media Asset Strategy**: Heavy media assets are batch-processed via Sharp (`scripts/convert-assets.mjs`, `pnpm run assets:convert`) to compressed WebP format (achieving 83.4% payload reduction from 37.5MB down to 6.2MB) and organized locally under `public/assets/generated/`. UI consumers load assets asynchronously via `LazyImage.jsx` with skeleton shimmer states, native `loading="lazy"`, and `decoding="async"`.
+- **Source of Truth (`src/data/`)**: All domain records are maintained as modular, typed TypeScript modules (`projects.ts`, `skills.ts`, `work.ts`, `education.ts`, `honors.ts`, `community.ts`, `certifications.ts`, `contactData.ts`, `formData.ts`, `navigation.ts`).
+- **Barrel Export (`src/data/index.ts`)**: Provides a centralized entry point exporting all data entities.
+- **Materialized Search Index (`src/utils/searchableData.ts`)**: Aggregates all dataset arrays into an in-memory searchable collection structured as `{ id, title, content, category, componentType }` for the Global Search Context.
+- **Media Asset Strategy**: Heavy media assets are batch-processed via Sharp (`scripts/convert-assets.mjs`, `pnpm run assets:convert`) to compressed WebP format (achieving 83.4% payload reduction from 37.5MB down to 6.2MB) and organized locally under `public/assets/generated/`. UI consumers load assets asynchronously via `LazyImage.tsx` with skeleton shimmer states, native `loading="lazy"`, and `decoding="async"`.
 
 ---
 
 ## Transactional Infrastructure: EmailJS
 
-To handle form submissions on `ContactPage.jsx` without hosting a custom server or API gateway, Hanson-Tube integrates **EmailJS**:
+To handle form submissions on `ContactPage.tsx` without hosting a custom server or API gateway, Hanson-Tube integrates **EmailJS**:
 
 - **Workflow**:
   1. User fills out contact form validated by React Hook Form.
