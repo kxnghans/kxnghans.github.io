@@ -1,37 +1,75 @@
-# Testing & Verification (testing.md)
+# Testing & Verification Strategy (testing.md)
 
 ## Resilience and Verification Plan
 
-Hanson-Tube uses a dual-verification strategy focusing on logical unit resilience and UI integrity, ensuring the portfolio renders flawlessly across devices and network conditions.
-
-### Core Tooling
-*   **Test Runner**: Vitest (Vite-native test runner for rapid execution).
-*   **DOM Verification**: React Testing Library (RTL) for user-centric interaction testing.
-*   **Environment**: JSDOM.
-*   **Linting**: ESLint with `react-hooks` and `jsx-a11y` plugins to enforce React safety and accessibility.
+Hanson-Tube enforces a dual-verification strategy focusing on logical unit resilience, accessibility compliance, and UI integrity across desktop and mobile viewports.
 
 ---
 
-## Environmental Constraints & Behavior
+## Core Tooling & Test Pipeline
 
-As a client-side SPA, the application must handle varying client environments gracefully:
+- **Test Runner**: Vitest 3.x with native Vite integration for rapid ESM-native execution.
+- **DOM Verification**: React Testing Library (RTL) paired with `@testing-library/jest-dom`.
+- **Environment**: JSDOM.
+- **Linting & Code Standards**: ESLint 9 Flat Config (`eslint.config.js`) enforcing `react-hooks` and `jsx-a11y` accessibility rules.
+- **Formatting**: Prettier with `prettier-plugin-tailwindcss`.
 
-1.  **Offline/Low-Bandwidth Resilience**:
-    *   Since all core data is bundled into the JS payload, the site remains fully navigable once the initial load is complete, even if the connection drops.
-    *   *Constraint Test*: External assets (e.g., images hosted on `storage.googleapis.com`) must have `alt` tags and fallback background colors so the UI does not break if the media fails to load over a slow network.
-2.  **Hardware/API Constraints**:
-    *   **Voice Search**: The `Web Speech API` is not universally supported (e.g., older browsers or strict privacy settings). 
-    *   *Constraint Test*: The application must degrade gracefully. If `window.SpeechRecognition` is unavailable, the microphone icon must silently hide or alert the user gracefully via a Toast, without throwing a fatal JS error.
-3.  **High-Concurrency / Spam**:
-    *   *Constraint Test*: The EmailJS contact form must disable the submit button immediately upon the first click to prevent multi-submission spam from impatient users on slow connections.
+### Execution Commands
+
+| Workflow                   | Command         | Context                              |
+| :------------------------- | :-------------- | :----------------------------------- |
+| **Interactive Watch Mode** | `pnpm test`     | Local test development               |
+| **Deterministic Run**      | `pnpm test:run` | CI/CD and pre-push validation        |
+| **Code Linting**           | `pnpm lint`     | Zero-tolerance ESLint enforcement    |
+| **Lint & Autofix**         | `pnpm lint:fix` | Automated code formatting/linting    |
+| **Production Build Check** | `pnpm build`    | Static bundle compilation validation |
 
 ---
 
-## Verification Mandates (Active Test Coverage)
+## Environmental Constraints & Resilience
 
-1.  **Component Rendering**: Verify that critical components (`Header`, `Sidebar`, `ProfileSummaryCard`) mount without crashing when provided with mock context data.
-2.  **User Interaction Loops**:
-    *   Sidebar toggle functionality (verifying state flips).
-    *   Theme toggle (verifying the `.dark`/`.light` class is attached to the DOM root).
-3.  **Data Integrity Check**: Ensure the `searchableData.js` aggregation utility successfully compiles all disparate data arrays without throwing undefined errors.
-4.  **Responsive Breakpoints**: While Vitest uses JSDOM, specific hook logic (like the `window.innerWidth` listener in `App.jsx`) must be tested by mocking the window resize event.
+1. **Offline/Low-Bandwidth Resilience**:
+   - All domain data is bundled statically into the application chunk. Once the bundle loads, navigation and global search function without active internet connectivity.
+   - Images in `public/assets/generated/` and `src/assets/` feature descriptive `alt` tags and fallback card backgrounds.
+
+2. **Web Speech API Graceful Fallback**:
+   - The `Header.jsx` component checks `window.SpeechRecognition || window.webkitSpeechRecognition`.
+   - When unsupported (or denied), clicking the mic triggers a Sonner toast notifying the user and gracefully returns without throwing unhandled exceptions.
+
+3. **EmailJS Contact Form Throttling**:
+   - Form submission in `ContactPage.jsx` disables the submit button during submission (`isLoading`) and upon resolution to prevent duplicate dispatches.
+
+---
+
+## Active Test Suite Inventory
+
+As of current milestone, the Vitest test suite verifies:
+
+1. **`App.test.jsx`**:
+   - Root mounting and default view rendering.
+   - Dark/Light mode theme class toggle on `document.documentElement`.
+   - Sidebar responsive auto-close behavior on viewport resize.
+   - Custom state routing view switching.
+
+2. **`components/layout/Header.test.jsx`**:
+   - Search query input binding and submission.
+   - Web Speech API fallback toast notification.
+   - Mobile sidebar toggle button trigger.
+
+3. **`components/layout/Sidebar.test.jsx`**:
+   - Navigation links rendering and active route highlighting.
+   - `onClose` callback invocation on route selection.
+
+4. **`context/SearchContext.test.jsx`**:
+   - Context provider initialization.
+   - In-memory data filtering across `searchableData`.
+   - Modal state management (`openModal`, `closeModal`).
+
+5. **`components/ui/FormField.test.jsx`**:
+   - Input and textarea rendering with error messaging states.
+
+6. **`components/ui/Section.test.jsx`**:
+   - Dynamic timeline section header, period, and children rendering.
+
+7. **`components/ui/Slideshow.test.jsx`**:
+   - Carousel navigation, automatic interval stepping, and responsive card rendering.

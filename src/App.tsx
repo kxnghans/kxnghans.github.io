@@ -1,0 +1,171 @@
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
+import Toast from "./components/ui/Toast";
+import { usePWA } from "./hooks/usePWA";
+
+// Layout Components
+import Header from "./components/layout/Header";
+import Sidebar from "./components/layout/Sidebar";
+
+// Eager Main Landing View
+import HomePage from "./pages/HomePage";
+
+// Code-Split Dynamic Route Views
+const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
+const EducationPage = lazy(() => import("./pages/EducationPage"));
+const WorkExperiencePage = lazy(() => import("./pages/WorkExperiencePage"));
+const HonorsPage = lazy(() => import("./pages/HonorsPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+
+const PageSkeleton = () => (
+  <div
+    data-testid="page-skeleton"
+    className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card mb-8 rounded-2xl bg-gray-100 transition-opacity duration-300"
+  >
+    <div className="border-b-2 border-gray-300 p-6 dark:border-gray-700/60">
+      <div className="animate-gentle-pulse h-8 w-48 rounded-lg bg-gray-200/90 dark:bg-white/[0.05]" />
+    </div>
+    <div className="p-6">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {[1, 2, 3].map((key) => (
+          <div
+            key={key}
+            className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card overflow-hidden rounded-lg bg-gray-200/60 transition-all duration-300"
+          >
+            <div className="animate-gentle-pulse h-48 w-full bg-gray-300/60 dark:bg-white/[0.04]" />
+            <div className="space-y-3 p-4">
+              <div className="animate-gentle-pulse h-5 w-3/4 rounded bg-gray-300/70 dark:bg-white/[0.06]" />
+              <div className="space-y-2 pt-1">
+                <div className="animate-gentle-pulse h-3 w-full rounded bg-gray-300/50 dark:bg-white/[0.03]" />
+                <div className="animate-gentle-pulse h-3 w-5/6 rounded bg-gray-300/50 dark:bg-white/[0.03]" />
+                <div className="animate-gentle-pulse h-3 w-2/3 rounded bg-gray-300/50 dark:bg-white/[0.03]" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+export default function App() {
+  usePWA();
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(() =>
+    typeof window !== "undefined" ? window.innerWidth >= 1024 : true,
+  );
+  const [activePage, setActivePage] = useState<string>("Home");
+  const [isMediumScreen, setIsMediumScreen] = useState<boolean>(() =>
+    typeof window !== "undefined" ? window.innerWidth < 1024 : false,
+  );
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const medium = window.innerWidth < 1024;
+      setIsMediumScreen(medium);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    if (isMediumScreen && isSidebarOpen) {
+      timer = setTimeout(() => {
+        setIsSidebarOpen(false);
+      }, 5000);
+    }
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [isMediumScreen, isSidebarOpen]);
+
+  useEffect(() => {
+    const handleInteraction = (e: Event) => {
+      if (
+        isMediumScreen &&
+        isSidebarOpen &&
+        sidebarRef.current &&
+        !sidebarRef.current.contains(e.target as Node)
+      ) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleInteraction);
+    document.addEventListener("touchstart", handleInteraction);
+    document.addEventListener("scroll", handleInteraction, true);
+
+    return () => {
+      document.removeEventListener("mousedown", handleInteraction);
+      document.removeEventListener("touchstart", handleInteraction);
+      document.removeEventListener("scroll", handleInteraction, true);
+    };
+  }, [isMediumScreen, isSidebarOpen]);
+
+  const renderPage = () => {
+    switch (activePage) {
+      case "Home":
+        return <HomePage />;
+      case "Projects":
+        return (
+          <Suspense fallback={<PageSkeleton />}>
+            <ProjectsPage />
+          </Suspense>
+        );
+      case "Education":
+        return (
+          <Suspense fallback={<PageSkeleton />}>
+            <EducationPage />
+          </Suspense>
+        );
+      case "Work Experience":
+        return (
+          <Suspense fallback={<PageSkeleton />}>
+            <WorkExperiencePage />
+          </Suspense>
+        );
+      case "Honors":
+        return (
+          <Suspense fallback={<PageSkeleton />}>
+            <HonorsPage />
+          </Suspense>
+        );
+      case "More":
+        return (
+          <Suspense fallback={<PageSkeleton />}>
+            <ContactPage />
+          </Suspense>
+        );
+      default:
+        return <HomePage />;
+    }
+  };
+
+  return (
+    <div className="dark:bg-dark-bg flex min-h-screen bg-gray-200 font-sans text-gray-800 dark:text-gray-400">
+      <Toast />
+      <div ref={sidebarRef}>
+        <Sidebar
+          isOpen={isSidebarOpen}
+          setActivePage={setActivePage}
+          activePage={activePage}
+        />
+      </div>
+      <div className="flex h-screen flex-1 flex-col overflow-hidden">
+        <Header
+          toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+          setActivePage={setActivePage}
+          activePage={activePage}
+        />
+        <main className="dark:bg-dark-bg flex-1 overflow-y-auto bg-gray-100">
+          <div
+            key={activePage}
+            className="animate-page-enter p-4 sm:p-6 md:p-8"
+          >
+            {renderPage()}
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}

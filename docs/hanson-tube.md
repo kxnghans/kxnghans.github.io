@@ -1,61 +1,60 @@
-# Hanson-Tube System Blueprint
+# Hanson-Tube Architecture Guide
 
-## System Architecture
+## How It Works
 
-Hanson-Tube is a Single Page Application (SPA) built with React 18 and Vite 7. It utilizes a custom state-driven routing mechanism and a modular UI library supported by a centralized static data layer, bypassing the need for a traditional backend.
-
----
-
-## Application Lifecycle & Bootstrapping
-
-1.  **Initialization**: `main.jsx` injects the React tree into the `#root` DOM node.
-2.  **Global Hydration**:
-    *   `App.jsx` mounts and initializes core states: `activePage` (defaulting to "Home"), `isSidebarOpen`, and `theme` (defaulting to "dark").
-    *   The `SearchProvider` wraps the application, initializing the global search query, voice recognition states, and modal orchestration logic.
-3.  **Theme Injection & Persistence**: 
-    *   A `useEffect` hook in `App.jsx` monitors the `theme` state. It strips the opposing class and applies `.dark` or `.light` to `document.documentElement`, enabling Tailwind's global dark-mode utilities.
-4.  **Routing Paradigm (Custom State Router)**:
-    *   Instead of a traditional history-based router (like `react-router`), navigation is purely state-driven.
-    *   Clicking a navigation item triggers `setActivePage(pageName)`.
-    *   The `renderPage()` function in `App.jsx` uses a `switch` statement on `activePage` to dynamically unmount and mount the main content components (`HomePage`, `ProjectsPage`, etc.).
-    *   *Advantage*: Instantaneous transitions and persistent global state (e.g., search context remains active across page changes).
+Hanson-Tube is a client-side React 18 single-page app. It runs on Vite 7 with React SWC and Tailwind CSS 4. There is no backend server or database. All data lives in static JavaScript files under `src/data/`, which gets bundled directly at build time and served through GitHub Pages.
 
 ---
 
-## Core Feature Loops & State Transitions
+## App Boot & Lifecycle
 
-### 1. Global Search & Voice Integration
-*   **Core Loop**: User clicks the search bar OR clicks the microphone icon -> Inputs text/voice -> Search Context filters the global dataset -> Results are displayed in a dropdown -> User clicks a result -> System navigates to the item and opens its detail modal.
-*   **State Machine Transitions**:
-    *   `Idle`: `searchQuery` is `""`, `isListening` is `false`.
-    *   `Listening`: Mic activated, Web Speech API captures interim results.
-    *   `Processing`: Transcript updates `searchQuery`. The `useMemo` hook in `SearchContext` recalculates `searchResults` by filtering the `searchableData` array.
-    *   `Navigation`: User selects a result -> `setActivePage()` is called if needed -> `setActiveModal()` triggers the detail overlay.
-
-### 2. Deep-Dive Modal Ecosystem
-*   **Core Loop**: User views a project card -> Clicks "View Details" -> A standardized modal overlay appears with full project context (Challenge, Action, Outcome) -> User closes modal to return exactly to previous scroll position.
-*   **State Machine Transitions**:
-    *   `Hidden`: `activeModal` in `SearchContext` is `null`.
-    *   `Active`: `activeModal` is set to the item's `id`. The `DetailModal` or `ProjectModal` component renders via a portal or absolute overlay, blocking background scrolling.
-    *   `Dismissed`: User clicks the backdrop or 'X' -> `activeModal` returns to `null`.
-
-### 3. Responsive Navigation (Sidebar Orchestration)
-*   **Core Loop**: On mobile viewports, the user clicks the hamburger menu -> Sidebar slides in -> User selects a page -> Sidebar automatically dismisses.
-*   **State Machine Transitions**:
-    *   `Desktop (>= 1024px)`: `isSidebarOpen` locked to `true`.
-    *   `Mobile (< 1024px)`: `isSidebarOpen` defaults to `false`.
-    *   `Toggle`: Header button flips `isSidebarOpen` to `true`.
-    *   `Auto-Dismiss`: An event listener detects clicks outside the `sidebarRef` OR detects a page transition, resetting `isSidebarOpen` to `false`.
+1. **Mounting**: `main.jsx` attaches the root React component to `<div id="root"></div>` and pulls in `src/index.css`.
+2. **State Setup**:
+   - `App.jsx` tracks `activePage` (defaults to `"Home"`), `isSidebarOpen`, and `theme` (defaults to `"dark"`).
+   - `SearchProvider` wraps the app tree so any component can read or update search queries, voice state, and open modals.
+3. **Theme Toggle**:
+   - A `useEffect` in `App.jsx` listens for changes to `theme` and adds `.dark` or `.light` to `document.documentElement`. Tailwind CSS 4 picks this up for dark mode styling.
+4. **State-Based Navigation**:
+   - We avoid `react-router` or URL hash routing. `App.jsx` holds `activePage` in state.
+   - When a user picks a page from the sidebar, `setActivePage` updates the state.
+   - `renderPage()` runs a `switch` statement on `activePage` and renders the selected view:
+     - `HomePage`
+     - `ProjectsPage`
+     - `WorkExperiencePage`
+     - `EducationPage`
+     - `HonorsPage`
+     - `ContactPage`
+   - This keeps page switches instant and avoids 404 routing headaches on GitHub Pages.
 
 ---
 
-## Internal Data Flow
+## Key Workflows
 
-Hanson-Tube relies on a **Decoupled Static Data Layer**. 
+### 1. Search & Voice Input
 
-1.  **Data Definition (SSOT)**: Domain data (Projects, Skills, Honors) lives in plain JavaScript arrays exported from `src/data/*.js`.
-2.  **Aggregation**: `src/utils/searchableData.js` aggregates these disparate arrays into a single, uniform index containing `{ id, title, content, category, componentType }`.
-3.  **Consumption**: 
-    *   UI components (e.g., `ProjectsPage.jsx`) import the static arrays directly to map and render list views.
-    *   The `SearchContext` imports `searchableData.js` to perform global filtering. 
-4.  **Immutability**: Because there is no backend, all state mutations (like search inputs or active modals) are strictly ephemeral (client-side only).
+- **Search Bar**: Typing in `SearchBar.jsx` updates `searchQuery` in `SearchContext`. A `useMemo` filter checks `searchableData` and returns matching titles, categories, and content.
+- **Voice Search**: Clicking the microphone calls `window.SpeechRecognition` (or `webkitSpeechRecognition`). As the user speaks, interim text updates `searchQuery`. If the browser lacks speech support, the app catches the error and triggers a Sonner toast instead of crashing.
+- **Selecting Results**: Clicking any search result changes `activePage` to that item's category and opens its detail modal via `setActiveModal(id)`.
+
+### 2. Modals
+
+- Project cards and search results open overlays for deeper reading (`ProjectModal.jsx` and `DetailModal.jsx`).
+- Setting `activeModal` to an item ID displays the overlay and locks background scroll.
+- Clicking the backdrop, the close button, or pressing `Escape` resets `activeModal` to `null`.
+
+### 3. Responsive Sidebar
+
+- On desktop screens (1024px and wider), the sidebar stays open on the left.
+- On mobile screens (under 1024px), the sidebar stays closed by default. Tapping the header hamburger icon opens it as a slide-out drawer.
+- Selecting any link or clicking outside the drawer closes it automatically.
+
+---
+
+## Data Flow & SSOT
+
+1. **Source Files**: All portfolio content is defined in plain JavaScript arrays under `src/data/*.js`.
+2. **Index Utility**: `src/utils/searchableData.js` imports these arrays from `src/data/index.js` and flattens them into a clean search index with `{ id, title, content, category, componentType }`.
+3. **Consumption**:
+   - Pages import their respective data files directly to render cards and lists.
+   - `SearchContext` uses `searchableData.js` for instant filtering.
+4. **Local Images**: Media assets live in `public/assets/generated/` and `src/assets/`, referenced directly by path.

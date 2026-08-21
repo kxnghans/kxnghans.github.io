@@ -3,36 +3,40 @@
 ## Architectural Rationale
 
 Hanson-Tube is intentionally designed as a **Static Single Page Application (SPA)** with a **zero-backend architecture**. By relying entirely on client-side logic and static asset delivery, the platform guarantees:
-1.  **Maximum Uptime**: Dependent only on the CDN edge nodes of GitHub Pages.
-2.  **Zero Latency Data**: All domain data is bundled at build time, eliminating API round-trips for content loading.
-3.  **Cost Efficiency**: $0 hosting and database costs.
+
+1. **Maximum Uptime**: Dependent only on CDN edge distribution (e.g., GitHub Pages).
+2. **Zero Latency Data**: All domain data is compiled directly into static JavaScript modules, eliminating API round-trips for content loading.
+3. **Zero Maintenance Overhead**: Eliminates runtime database maintenance, server provisioning, and backend hosting costs.
 
 ---
 
 ## Data Layer Management (Static SSOT)
 
-Instead of a Relational (SQL) or Document (NoSQL) database, the application utilizes a **Modular JavaScript Data Layer**:
-*   **Implementation**: All content is structured as typed JavaScript objects/arrays in `src/data/` (e.g., `projects.js`, `skills.js`).
-*   **Optimization Mandate**: To keep bundle sizes minimal, images and heavy media are *not* base64 encoded into the data layer. Instead, the data layer stores string URLs pointing to external buckets (e.g., `storage.googleapis.com`) or the `public/assets/` directory.
-*   **Global Indexing**: A utility script (`searchableData.js`) acts as an in-memory materialized view, aggregating all static files into a single optimized array for the Global Search engine.
+Instead of a relational or document database, the application utilizes a modular JavaScript data architecture:
+
+- **Source of Truth (`src/data/`)**: All domain records are maintained as modular, typed JavaScript modules (`projects.js`, `skills.js`, `work.js`, `education.js`, `honors.js`, `community.js`, `certifications.js`, `contactData.js`, `formData.js`, `navigation.js`).
+- **Barrel Export (`src/data/index.js`)**: Provides a centralized entry point exporting all data entities.
+- **Materialized Search Index (`src/utils/searchableData.js`)**: Aggregates all dataset arrays into an in-memory searchable collection structured as `{ id, title, content, category, componentType }` for the Global Search Context.
+- **Media Asset Strategy**: Heavy media assets are batch-processed via Sharp (`scripts/convert-assets.mjs`, `pnpm run assets:convert`) to compressed WebP format (achieving 83.4% payload reduction from 37.5MB down to 6.2MB) and organized locally under `public/assets/generated/`. UI consumers load assets asynchronously via `LazyImage.jsx` with skeleton shimmer states, native `loading="lazy"`, and `decoding="async"`.
 
 ---
 
 ## Transactional Infrastructure: EmailJS
 
-To handle the only mutable data flow in the application—the Contact Form—Hanson-Tube integrates **EmailJS**.
+To handle form submissions on `ContactPage.jsx` without hosting a custom server or API gateway, Hanson-Tube integrates **EmailJS**:
 
-*   **Workflow**: 
-    1. User submits form in `ContactPage.jsx`.
-    2. React Hook Form validates the payload.
-    3. Payload is routed directly to the EmailJS REST API from the client.
-    4. EmailJS securely proxies the message to the configured email inbox.
-*   **Optimization & Throttling**: The UI prevents spam by disabling the submit button during the network request and triggering a Sonner toast immediately upon resolution.
-*   **Security (Keys)**: EmailJS Service IDs, Template IDs, and Public Keys must be injected via Vite Environment Variables (`VITE_EMAILJS_SERVICE_ID`, etc.) defined in `.env` and consumed via `import.meta.env`.
+- **Workflow**:
+  1. User fills out contact form validated by React Hook Form.
+  2. Submission triggers `@emailjs/browser` SDK directly from the client.
+  3. Payload is routed to EmailJS REST endpoints and delivered to the recipient inbox.
+  4. Instant visual feedback is delivered via Sonner toasts.
+- **Configuration & Security**:
+  - Environment variables (`VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, `VITE_EMAILJS_PUBLIC_KEY`) are documented in `.env.example` and consumed via `import.meta.env`.
+  - The EmailJS dashboard domain whitelist restricts API usage to `https://kxnghans.github.io` and local development origins.
 
 ---
 
 ## Role-Based Access Control (RBAC)
 
 **Status: Not Applicable.**
-As a public-facing portfolio, there is no authentication mechanism, user sessions, or privileged routes. All content is inherently public, and the system relies on GitHub Repository permissions to restrict content modification.
+All portfolio content is public. Access control is maintained at the repository and deployment level via GitHub branch protection and commit signing.

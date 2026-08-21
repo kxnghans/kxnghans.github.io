@@ -2,32 +2,45 @@
 
 ## Security Boundaries & PII Handling
 
-Hanson-Tube operates entirely on the client side. Security is heavily focused on preventing accidental data exposure and maintaining the integrity of third-party integrations.
+Hanson-Tube operates entirely on the client side. Security is focused on preventing accidental data exposure, mitigating anti-abuse vectors, and maintaining integration integrity.
 
 ### 1. Personally Identifiable Information (PII)
-*   **Public Data**: All data displayed on the portfolio (Work history, Education, Names) is considered public professional information.
-*   **Private Data Protection**: Direct contact vectors (personal email address, phone numbers) are deliberately omitted from the source code.
-*   **Form Handling**: Communication is routed exclusively through the `ContactPage` form. User inputs (Visitor Name, Visitor Email, Message) are volatile, stored only in React state, and transmitted directly to the EmailJS API. No PII is logged, stored in local storage, or tracked by the application.
+
+- **Public Data**: All data displayed on the portfolio (Work history, Education, Names) is considered public professional information.
+- **Private Data Protection**: Direct personal email addresses and phone numbers are deliberately omitted from source code.
+- **Form Handling**: Communication is routed exclusively through the `ContactPage` form. Inputs (Visitor Name, Visitor Email, Message) exist ephemerally in React state and are transmitted directly to the EmailJS REST API. No PII is logged, stored in local storage, or tracked by the client.
 
 ### 2. External Integrations & Anti-Abuse
-*   **EmailJS Security**: To prevent abuse of the EmailJS quota, the public key is exposed (as required by client-side EmailJS), but the account must be configured on the EmailJS dashboard to only accept requests originating from the whitelisted domain (`https://kxnghans.github.io`).
-*   **Link Integrity (Anti-Tab-Nabbing)**: All external outbound links (LinkedIn, GitHub, Google Cloud Storage) must include `rel="noopener noreferrer"` to prevent the newly opened tab from hijacking the portfolio's window object.
+
+- **EmailJS Security**: The public key is injected via `import.meta.env.VITE_EMAILJS_PUBLIC_KEY`. The EmailJS dashboard domain whitelist restricts API usage to `https://kxnghans.github.io` and local origins.
+- **Link Integrity**: All external outbound links include `target="_blank"` and `rel="noopener noreferrer"` to eliminate reverse tab-nabbing vulnerabilities.
 
 ---
 
 ## AI Safety & Generation Boundaries
 
-With the integration of AI agents (like the Gemini CLI) into the development workflow, specific safety parameters are enforced:
+With AI-assisted tooling integrated into the workflow, strict boundaries are enforced:
 
-*   **Static Content Mandate**: There is no runtime LLM generation for end-users. All portfolio text is statically defined in `src/data/`. This eliminates the risk of prompt injection or hallucination on the live site.
-*   **Code Generation Guardrails**: AI-assisted code generation is strictly bound by the rules in `GEMINI.md`. Agents are explicitly forbidden from:
-    1. Modifying `.env` files or committing secrets.
-    2. Introducing external tracking scripts or analytics without explicit user directive.
-    3. Bypassing the native Context API in favor of over-engineered state management libraries.
+- **Static Content Mandate**: There is no runtime LLM generation for end-users. All portfolio text is statically defined in `src/data/`, eliminating prompt injection and hallucination risks.
+- **Code Generation Guardrails**:
+  1. No committing secrets or hardcoded credentials.
+  2. No adding unapproved tracking scripts or analytics.
+  3. No bypassing the native Context API for third-party state managers.
+  4. Zero-tolerance for ESLint errors (`pnpm run lint`).
 
 ---
 
 ## Compliance & Maintenance
 
-*   **Accessibility (a11y)**: The Neumorphic design system poses inherent risks to visual contrast. Continuous audits via ESLint's `jsx-a11y` plugin and manual Lighthouse checks are required to ensure the `text-secondary` and shadow tokens meet WCAG AA contrast ratios.
-*   **Dependency Audits**: Routine `npm audit` checks are mandated to address vulnerabilities in the Vite and React compilation ecosystem, even though the deployed output is static HTML/JS.
+- **Accessibility (a11y)**: The Neumorphic design system is audited via ESLint `jsx-a11y` and manual contrast checks to ensure text and interactive controls meet WCAG AA contrast standards.
+- **Dependency Audits**: Regular `pnpm audit` executions ensure tooling and dependencies remain secure.
+
+---
+
+## Architectural Gaps & Recommendations
+
+| Severity | Gap / Area                    | Description                                                                                                     | Current State                         | Recommendation                                                                                                                   |
+| :------- | :---------------------------- | :-------------------------------------------------------------------------------------------------------------- | :------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------- |
+| **Low**  | Asset Compression Pipeline    | Generated images in `public/assets/generated/` are stored as PNGs.                                              | PNG format (~100-300KB each).         | Add automated WebP conversion script to reduce bundle payload by ~60%.                                                           |
+| **Low**  | Ecosystem Projects Linkage    | External live ecosystem projects (Fretwork, Gospel Games, MilCalc, Unpack, CaroHans) pending dataset ingestion. | Defined in roadmap Phase 2.           | Ingest structured project metadata and live links into `src/data/projects.js` during Phase 2 sprint.                             |
+| **Low**  | Cloud Bucket Fallback Staging | High-resolution media hosted locally vs GCP Cloud Storage.                                                      | Stored in `public/assets/generated/`. | Maintain local assets as default SSOT; stage GCP Cloud Storage bucket for optional CDN asset streaming if repository size grows. |

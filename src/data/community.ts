@@ -1,0 +1,77 @@
+import type { CommunityItem } from "../types/data";
+
+export const communityData: CommunityItem[] = [
+  {
+    title: "Photography & Media",
+    imageUrl: "/assets/generated/community/photography-media.webp",
+    summary: ["Venture: Photography Business", "Role: Church Media Team Lead"],
+    details: {
+      title: "Photography Business & Media Lead",
+      details: [
+        "In addition to running my photography business, I serve as the complimentary Media Team Lead for my church.",
+        "I cover major events like Easter, Christmas, pastor appreciations, young adult outreaches, and annual revivals.",
+        "I also contribute to the church's social media management.",
+      ],
+    },
+  },
+  {
+    title: "Vice President of NSBE Chapter",
+    imageUrl: "/assets/generated/community/nsbe-chapter.webp",
+    summary: [
+      "Role: Vice President",
+      "Achievement: All members secured offers",
+    ],
+    details: {
+      title:
+        "Vice President of NSBE (National Society of Black Engineers) Chapter",
+      details: [
+        "Hosted and facilitated events to foster inclusiveness and professional development, including resume reviews, mock interviews, and career workshops.",
+        "Educated members on internship and career opportunities by hosting storytelling events with working professionals and organizing recruitment events.",
+        "Led our chapter's attendance at the national conference in San Francisco, where all 6 members who attended secured job offers.",
+      ],
+    },
+  },
+  {
+    title: "President of the Reader's and Writer’s Club",
+    imageUrl: "/assets/generated/community/readers-writers.webp",
+    summary: ["Role: President", "Achievement: Tripled Club Membership"],
+    details: {
+      title: "President of the Reader's and Writer’s Club",
+      details: [
+        "Coordinated weekly club meetings and organized highlight events including campus spelling bee competitions and the annual student debate.",
+        "Increased club membership threefold by implementing an innovative outreach strategy through school social media.",
+      ],
+    },
+  },
+  {
+    title: "Code Quest",
+    imageUrl: "/assets/generated/community/code-quest.webp",
+    summary: [
+      "Event: Lockheed Martin Code Quest",
+      "Role: Technical Proctor",
+      "Locations: 20 locations, 4 continents",
+    ],
+    details: {
+      title: "Code Quest",
+      details: [
+        "Served as a Technical Proctor for the annual Code Quest computer programming competition across 20 locations, 4 continents.",
+        "Guided and supported high school students in teams of two to three students solve 20 to 30 problems using Java, Python, C#, and/or C++.",
+        "Coordinated event logistics and provided technical support at the Denver, CO center, ensuring a seamless competition experience and adherence to all guidelines.",
+      ],
+    },
+  },
+  {
+    title: "Vegas Strong Thunderbird Airshow",
+    imageUrl: "/assets/generated/community/thunderbird-airshow.webp",
+    summary: ["Event: Vegas Strong Airshow", "Role: Community Engagement"],
+    details: {
+      title: "Vegas Strong Thunderbird Airshow",
+      details: [
+        "Supported the home event of the U.S. Air Force Thunderbirds' flying season, a high-visibility event attended by tens of thousands.",
+        "Contributed to event operations during the “Vegas Strong” tribute year, honoring victims and first responders of the October 1 tragedy.",
+        "Assisted with crowd engagement and logistics, gave families tours of our equipment, and educated them on our mission.",
+        "Helped ensure a safe and impactful community experience that promoted a theme of unity, strength, and recovery.",
+      ],
+    },
+  },
+];

@@ -4,43 +4,66 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "pnpm@11.9.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
+    "test:run": "vitest run",
     "format": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky",
+    "assets:convert": "node scripts/convert-assets.mjs",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md,html,yaml,yml}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-hook-form": "^7.62.0",
     "react-icons": "^5.5.0",
-    "sonner": "^2.0.7"
+    "sonner": "^2.0.7",
+    "workbox-window": "^7.4.1"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/vite": "^4.3.3",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^4.0.3",
-    "autoprefixer": "^10.4.21",
-    "eslint": "^8.57.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react-swc": "^4.3.3",
+    "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^4.6.2",
     "gh-pages": "^6.3.0",
+    "globals": "^17.11.0",
+    "husky": "^9.1.7",
     "jsdom": "^26.1.0",
-    "postcss": "^8.5.6",
+    "lint-staged": "^17.3.0",
     "prettier": "^3.6.2",
-    "tailwindcss": "^3.4.17",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "sharp": "^0.35.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.67.0",
     "vite": "^7.1.2",
+    "vite-plugin-pwa": "^1.3.0",
     "vitest": "^3.2.4"
   }
 }
