@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, type ReactElement } from "react";
+import { createPortal } from "react-dom";
 import { FaCirclePlay } from "react-icons/fa6";
 import { CloseIcon } from "../icons/Icons";
 import { useFocusTrap } from "../../hooks/useFocusTrap";
@@ -24,6 +25,15 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   const modalRef = useFocusTrap<HTMLDivElement>(Boolean(project), onClose);
 
   useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
+
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         modalRef.current &&
@@ -40,7 +50,11 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
     };
   }, [modalRef, onClose]);
 
-  return (
+  if (typeof document === "undefined") {
+    return null;
+  }
+
+  const modalContent = (
     <div
       role="dialog"
       aria-modal="true"
@@ -50,7 +64,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
       <div
         ref={modalRef}
         tabIndex={-1}
-        className="modal-shadow dark:bg-dark-card relative w-11/12 transform rounded-lg bg-gray-100 transition-all duration-300 focus:outline-none md:w-4/5 lg:w-3/5"
+        className="modal-shadow dark:bg-dark-card relative max-h-[90vh] w-11/12 transform overflow-y-auto rounded-lg bg-gray-100 transition-all duration-300 focus:outline-none md:w-4/5 lg:w-3/5"
       >
         <button
           onClick={onClose}
@@ -133,6 +147,8 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body) as unknown as ReactElement;
 };
 
 export default ProjectModal;

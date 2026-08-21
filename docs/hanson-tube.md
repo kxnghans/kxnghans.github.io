@@ -36,11 +36,12 @@ Hanson-Tube is a client-side React 18 single-page app. It runs on Vite 7 with Re
 - **Voice Search**: Clicking the microphone calls `window.SpeechRecognition` (or `webkitSpeechRecognition`). As the user speaks, interim text updates `searchQuery`. If the browser lacks speech support, the app catches the error and triggers a Sonner toast instead of crashing.
 - **Selecting Results**: Clicking any search result changes `activePage` to that item's category and opens its detail modal via `setActiveModal(id)`.
 
-### 2. Modals
+### 2. Modals & Portals
 
-- Project cards and search results open overlays for deeper reading (`ProjectModal.jsx` and `DetailModal.jsx`).
-- Setting `activeModal` to an item ID displays the overlay and locks background scroll.
-- Clicking the backdrop, the close button, or pressing `Escape` resets `activeModal` to `null`.
+- Project cards and search results open full-screen overlays for deeper reading ([`ProjectModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ProjectModal.tsx) and [`DetailModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/DetailModal.tsx)).
+- Modals render using `createPortal(modalContent, document.body)` to escape any parent CSS transforms, overflow constraints, or slide bounds, ensuring true `fixed inset-0` full-viewport presentation.
+- Mounting automatically locks background scrolling (`document.body.style.overflow = "hidden"`), and unmounting restores it.
+- Clicking the backdrop, the close button, or pressing `Escape` closes the modal. Focus is trapped within the dialog using `useFocusTrap.ts`.
 
 ### 3. Responsive Sidebar
 

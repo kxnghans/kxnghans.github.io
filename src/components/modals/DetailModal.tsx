@@ -1,4 +1,5 @@
-import { useEffect, type ReactNode } from "react";
+import { useEffect, type ReactNode, type ReactElement } from "react";
+import { createPortal } from "react-dom";
 import { CloseIcon } from "../icons/Icons";
 import { useFocusTrap } from "../../hooks/useFocusTrap";
 import type { Highlight, SkillModalDetails } from "../../types/data";
@@ -23,6 +24,15 @@ const DetailModal = ({ item, onClose }: DetailModalProps) => {
   const modalRef = useFocusTrap<HTMLDivElement>(Boolean(item), onClose);
 
   useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
+
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         modalRef.current &&
@@ -39,7 +49,11 @@ const DetailModal = ({ item, onClose }: DetailModalProps) => {
     };
   }, [modalRef, onClose]);
 
-  return (
+  if (typeof document === "undefined") {
+    return null;
+  }
+
+  const modalContent = (
     <div
       role="dialog"
       aria-modal="true"
@@ -156,7 +170,7 @@ const DetailModal = ({ item, onClose }: DetailModalProps) => {
                       currentGroup.push(detail);
                     }
                   });
-                  renderGroup(currentGroup);
+                  renderGroup(currentGroup); // Render any remaining items
                   return elements;
                 })()
               ) : (
@@ -198,6 +212,8 @@ const DetailModal = ({ item, onClose }: DetailModalProps) => {
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body) as unknown as ReactElement;
 };
 
 export default DetailModal;

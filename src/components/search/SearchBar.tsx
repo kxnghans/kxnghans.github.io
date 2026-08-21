@@ -43,12 +43,18 @@ const SearchBar = ({
           placeholder={placeholderText}
           value={searchQuery}
           onChange={handleSearchChange}
-          className={`bevel-light-inset bevel-dark-inset w-full rounded-full bg-gray-200 py-2 pr-10 pl-10 text-sm transition-all duration-200 focus:ring-2 focus:ring-red-500 focus:outline-none md:text-base dark:bg-black ${
-            showVisualCues ? "ring-2 ring-red-500" : ""
+          className={`bevel-light-inset bevel-dark-inset w-full rounded-full bg-gray-200/90 py-2 pr-10 pl-10 text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500/90 md:text-base dark:bg-[#141416] ${
+            showVisualCues ? "ring-2 ring-red-500 border-red-500" : ""
           }`}
         />
-        <div className="absolute top-1/2 left-3 -translate-y-1/2 text-[1rem] md:text-[1.2rem]">
-          <FaSearch className="text-gray-500 dark:text-gray-400" />
+        <div className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-[1rem] md:text-[1.2rem]">
+          <FaSearch
+            className={`transition-colors duration-200 ${
+              showVisualCues
+                ? "text-red-500"
+                : "text-gray-500 dark:text-gray-400"
+            }`}
+          />
         </div>
         {searchQuery ? (
           <button
@@ -56,7 +62,7 @@ const SearchBar = ({
             aria-label="Clear search query"
             className="absolute top-1/2 right-3 z-10 -translate-y-1/2"
           >
-            <FaTimesCircle className="h-4 w-4 text-gray-400 hover:text-red-500" />
+            <FaTimesCircle className="h-4 w-4 text-gray-400 transition-colors hover:text-red-500" />
           </button>
         ) : (
           <div className="pointer-events-none absolute top-1/2 right-3 hidden -translate-y-1/2 items-center gap-1 sm:flex">
@@ -81,26 +87,26 @@ const SearchBar = ({
         aria-label="Toggle microphone"
         className={`ml-3 transform rounded-full p-2 transition-all duration-200 ${
           showVisualCues
-            ? "animate-gentle-pulse scale-105 bg-red-500 text-white shadow-lg shadow-red-500/40"
+            ? "animate-gentle-pulse scale-105 bg-red-500 text-white shadow-md shadow-red-500/40"
             : isMicActive
-              ? "bevel-light-inset bevel-dark-inset bg-gray-200 dark:bg-black"
+              ? "bevel-light-inset bevel-dark-inset bg-gray-200/90 dark:bg-[#141416]"
               : !isSpeechSupported
-                ? "bevel-light-inset bevel-dark-inset bg-gray-200 opacity-50 dark:bg-black"
-                : "bevel-light-inset bevel-dark-inset bg-gray-200 hover:bg-gray-300 dark:bg-black dark:hover:bg-gray-800"
+                ? "bevel-light-inset bevel-dark-inset bg-gray-200/90 opacity-50 dark:bg-[#141416]"
+                : "bevel-light-inset bevel-dark-inset bg-gray-200/90 hover:bg-gray-300/80 dark:bg-[#141416] dark:hover:bg-[#1e1e22]"
         }`}
       >
         <div className="flex h-5 w-5 items-center justify-center text-[1.2rem] sm:h-6 sm:w-6 md:text-[1.4rem]">
           <FaMicrophone
             className={
               showVisualCues && theme === "dark"
-                ? "text-gray-800 drop-shadow-md"
+                ? "text-gray-800 drop-shadow-sm"
                 : showVisualCues
-                  ? "text-white drop-shadow-md"
+                  ? "text-white drop-shadow-sm"
                   : isMicActive
                     ? "text-gray-600 dark:text-gray-300"
                     : !isSpeechSupported
                       ? "text-gray-400 dark:text-gray-600"
-                      : "text-gray-500 dark:text-gray-400"
+                      : "text-gray-500 transition-colors dark:text-gray-400"
             }
           />
         </div>

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Slideshow from "./Slideshow";
 import DetailModal from "../modals/DetailModal";
 import LazyImage from "./LazyImage";
@@ -11,16 +10,6 @@ interface SkillCardContentProps {
 }
 
 const SkillCardContent = ({ item }: SkillCardContentProps) => {
-  const [showModal, setShowModal] = useState(false);
-
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
   const createSummary = (maxWords = 8, minItems = 3) => {
     let allDetails: { name: string }[] = [];
     if (item.details) {
@@ -73,23 +62,9 @@ const SkillCardContent = ({ item }: SkillCardContentProps) => {
   const summaryText = createSummary();
 
   return (
-    <>
-      <div
-        role="button"
-        tabIndex={0}
-        className="h-16 cursor-pointer overflow-hidden text-left text-xs text-gray-600 sm:text-sm dark:text-gray-400"
-        onClick={handleOpenModal}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleOpenModal();
-          }
-        }}
-      >
-        {summaryText}
-      </div>
-      {showModal && <DetailModal item={item} onClose={handleCloseModal} />}
-    </>
+    <div className="h-16 overflow-hidden text-left text-xs text-gray-600 sm:text-sm dark:text-gray-400">
+      {summaryText}
+    </div>
   );
 };
 

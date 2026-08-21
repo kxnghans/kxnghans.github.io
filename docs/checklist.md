@@ -67,3 +67,12 @@
 - [ ] **[TST-2] Playwright End-to-End Test Suite**: Implement Playwright tests verifying end-to-end user journeys (searching, filtering, responsive navigation, and modal flows).
 - [ ] **[TST-3] GitHub Actions CI Pipeline**: Configure automated workflow executing `pnpm lint`, `pnpm test:run`, and `pnpm build` on pull requests.
 - [ ] **[VER-1] Production Build & Lighthouse Audit**: Validate sub-1s load times, 60fps animations, and 100% accessibility compliance.
+
+### Phase 7: 🪟 Viewport Modal Portaling & Search Focus Modernization
+
+- [x] **[MODAL-1] Portal-Driven Full-Screen Modals**: Refactor `DetailModal.tsx` and `ProjectModal.tsx` to render through `createPortal(..., document.body)` with background scroll locking (`document.body.style.overflow = "hidden"`) and cleanup.
+- [x] **[MODAL-2] Slideshow Modal Unification**: Clean up duplicate modal state in `SkillsSlideshow.tsx`, routing all modal triggers cleanly through `Slideshow.tsx` and portal architecture.
+- [x] **[SRCH-2] Search Bar Focus Ring & Theme Token Optimization**: Refactor `SearchBar.tsx` and `src/index.css` to restore high-visibility red focus rings, eliminate bevel shadow clipping on focus, and enhance microphone voice search pulsating visual cues.
+- [x] **[TST-4] Test Suite & Stability Verification**: Update and execute all Vitest unit test suites, TypeScript typechecks, and production Vite builds.
+
+
