@@ -31,9 +31,9 @@ Hanson-Tube is a client-side React 19 single-page app written in TypeScript 5.8+
 
 ### 1. Search & Voice Input
 
-- **Search Bar**: Typing in `SearchBar.tsx` updates `searchQuery` in `SearchContext`. A `useDeferredValue` + `useMemo` filter checks `searchableData` and returns matching titles, categories, and content without blocking typing responsiveness. The search input features crisp YouTube red focus rings (`focus:ring-2 focus:ring-red-500`) and group focus-within icon activation.
+- **Search Bar**: Typing in `SearchBar.tsx` updates `searchQuery` in `SearchContext`. Queries pass through `useDeferredValue` into our in-memory `SearchEngine` ([`searchEngine.ts`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/utils/searchEngine.ts)), which applies multi-token matching, field-weighted scoring (Exact > Title > Tags > Subtitle > Summary > Content), tech term alias expansion, and Levenshtein typo tolerance without blocking typing responsiveness. The search input features crisp YouTube red focus rings (`focus:ring-2 focus:ring-red-500`) and group focus-within icon activation.
 - **Voice Search**: Clicking the microphone calls `window.SpeechRecognition` (or `webkitSpeechRecognition`). As the user speaks, interim text updates `searchQuery`. Active listening provides pulsating red visual cues (`bg-red-500 ring-2 ring-red-500 shadow-red-500/40 animate-gentle-pulse`). If the browser lacks speech support, the app catches the error and triggers a Sonner toast instead of crashing.
-- **Search Result Highlighting & Selection**: `SearchResults.tsx` highlights matched query terms with YouTube-themed red tinting (`bg-red-500/15 text-red-600 dark:bg-red-500/25 dark:text-red-400 font-semibold px-0.5 rounded-xs`). Clicking any search result changes `activePage` to that item's category and opens its detail modal via `setActiveModal(id)`.
+- **Search Result Highlighting & Selection**: `SearchResults.tsx` and `searchUtils.tsx` highlight matched query terms with safe regex escaping and YouTube-themed red tinting (`bg-red-500/15 text-red-600 dark:bg-red-500/25 dark:text-red-400 font-semibold px-0.5 rounded-xs`). It also provides smart contextual snippet truncation centered around matching tokens. Clicking any search result changes `activePage` to that item's category and opens its detail modal via `setActiveModal(id)`.
 
 ### 2. Modals & Portals
 
@@ -53,8 +53,8 @@ Hanson-Tube is a client-side React 19 single-page app written in TypeScript 5.8+
 ## Data Flow & SSOT
 
 1. **Source Files**: All portfolio content is defined in typed TypeScript modules under `src/data/*.ts`.
-2. **Index Utility**: `src/utils/searchableData.ts` imports these datasets from `src/data/index.ts` and flattens them into a clean search index with `{ id, title, content, category, componentType }`.
+2. **Index Utility**: `src/utils/searchableData.ts` imports these datasets from `src/data/index.ts` and transforms them into a structured search index with `{ id, title, subtitle?, tags?, summary?, content, category, location }`.
 3. **Consumption**:
    - Pages import their respective data files directly to render cards and lists.
-   - `SearchContext` uses `searchableData.ts` for instant filtering.
+   - `SearchContext` uses `SearchEngine` ([`searchEngine.ts`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/utils/searchEngine.ts)) and `searchableData.ts` for instant scoring and filtering.
 4. **Local Images**: Media assets live in `public/assets/generated/` and `src/assets/`, referenced directly by path.

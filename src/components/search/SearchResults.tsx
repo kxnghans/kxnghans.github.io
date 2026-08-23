@@ -17,6 +17,7 @@ import {
   FaChevronDown,
 } from "react-icons/fa";
 import type { SearchCategory, SearchableItem } from "../../types/search";
+import { Highlight, smartTruncate } from "./searchUtils";
 
 const ICONS: Record<SearchCategory, ReactNode> = {
   Projects: <FaProjectDiagram />,
@@ -26,76 +27,6 @@ const ICONS: Record<SearchCategory, ReactNode> = {
   Certifications: <FaCertificate />,
   Community: <FaUsers />,
   Honors: <FaAward />,
-};
-
-interface HighlightProps {
-  text: string;
-  highlight: string;
-}
-
-const Highlight = ({ text, highlight }: HighlightProps) => {
-  if (!highlight.trim()) {
-    return <span>{text}</span>;
-  }
-  const regex = new RegExp(`(${highlight})`, "gi");
-  const parts = text.split(regex);
-  return (
-    <span>
-      {parts.map((part, i) =>
-        regex.test(part) ? (
-          <span
-            key={i}
-            className="rounded-xs bg-red-500/15 px-0.5 font-semibold text-red-600 dark:bg-red-500/25 dark:text-red-400"
-          >
-            {part}
-          </span>
-        ) : (
-          <span key={i}>{part}</span>
-        ),
-      )}
-    </span>
-  );
-};
-
-const smartTruncate = (str: string, n: number, query: string): string => {
-  if (!str) return "";
-  const words = str.split(" ");
-  if (words.length <= n) return str;
-
-  const lowerCaseStr = str.toLowerCase();
-  const lowerCaseQuery = query.toLowerCase();
-  const queryIndex = lowerCaseStr.indexOf(lowerCaseQuery);
-
-  if (queryIndex !== -1) {
-    let charCount = 0;
-    let wordIndex = 0;
-    for (let i = 0; i < words.length; i++) {
-      charCount += words[i].length + 1;
-      if (charCount > queryIndex) {
-        wordIndex = i;
-        break;
-      }
-    }
-
-    const half = Math.floor(n / 2);
-    const start = Math.max(0, wordIndex - half);
-    let end = Math.min(words.length, wordIndex + half);
-
-    if (end - start < n) {
-      if (start === 0) {
-        end = Math.min(words.length, n);
-      } else if (end === words.length) {
-        // adjust if needed
-      }
-    }
-
-    let snippet = words.slice(start, end).join(" ");
-    if (start > 0) snippet = "..." + snippet;
-    if (end < words.length) snippet = snippet + "...";
-    return snippet;
-  } else {
-    return words.slice(0, n).join(" ") + "...";
-  }
 };
 
 export interface SearchResultsProps {

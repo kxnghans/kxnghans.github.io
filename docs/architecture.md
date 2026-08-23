@@ -33,15 +33,16 @@ flowchart LR
 
 ### Layer Summary
 
-| Layer              | Responsibility                                                 | Key Files                                                                                                                                                                                                          |
-| :----------------- | :------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **DOM Entry**      | Injects React 19 tree into `#root` and loads global styles.    | [`main.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/main.tsx), [`index.css`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/index.css)                           |
-| **Theme Context**  | Manages light/dark mode, localStorage sync, and system theme.  | [`ThemeContext.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/context/ThemeContext.tsx)                                                                                                 |
-| **Search Context** | Orchestrates search queries, voice state, and open modals.     | [`SearchContext.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/context/SearchContext.tsx)                                                                                               |
-| **App Shell**      | Manages `activePage`, PWA lifecycle, hotkeys, and layout.      | [`App.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/App.tsx), [`Header.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/layout/Header.tsx)         |
-| **Static Data**    | Single Source of Truth for projects, skills, and work history. | [`src/data/*.ts`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/data), [`searchableData.ts`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/utils/searchableData.ts)    |
-| **Hooks & a11y**   | Focus containment, PWA registration, and speech recognition.   | [`useFocusTrap.ts`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/hooks/useFocusTrap.ts), [`usePWA.ts`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/hooks/usePWA.ts) |
-| **External APIs**  | Contact email dispatch and browser speech recognition.         | EmailJS REST, Browser Web Speech API                                                                                                                                                                               |
+| Layer                   | Responsibility                                                 | Key Files                                                                                                                                                                                                                                                                                                                              |
+| :---------------------- | :------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **DOM Entry**           | Injects React 19 tree into `#root` and loads global styles.    | [`main.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/main.tsx), [`index.css`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/index.css)                                                                                                                                             |
+| **Theme Context**       | Manages light/dark mode, localStorage sync, and system theme.  | [`ThemeContext.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/context/ThemeContext.tsx)                                                                                                                                                                                                                     |
+| **Search Context**      | Orchestrates search queries, voice state, and open modals.     | [`SearchContext.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/context/SearchContext.tsx)                                                                                                                                                                                                                   |
+| **App Shell**           | Manages `activePage`, PWA lifecycle, hotkeys, and layout.      | [`App.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/App.tsx), [`Header.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/layout/Header.tsx)                                                                                                                             |
+| **Static Data**         | Single Source of Truth for projects, skills, and work history. | [`src/data/*.ts`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/data)                                                                                                                                                                                                                                           |
+| **Search & Indexing**   | In-memory token scoring, weighted ranking, and regex snippets. | [`searchEngine.ts`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/utils/searchEngine.ts), [`searchableData.ts`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/utils/searchableData.ts), [`searchUtils.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/search/searchUtils.tsx) |
+| **Hooks & a11y**        | Focus containment, PWA registration, and speech recognition.   | [`useFocusTrap.ts`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/hooks/useFocusTrap.ts), [`usePWA.ts`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/hooks/usePWA.ts)                                                                                                                 |
+| **External APIs**       | Contact email dispatch and browser speech recognition.         | EmailJS REST, Browser Web Speech API                                                                                                                                                                                                                                                                                                   |
 
 ---
 
@@ -55,8 +56,12 @@ flowchart LR
         App["App.tsx"]
         Header["Header.tsx"]
         Sidebar["Sidebar.tsx"]
+        SearchBarComp["SearchBar.tsx"]
+        SearchResultsComp["SearchResults.tsx"]
         App --> Header
         App --> Sidebar
+        Header --> SearchBarComp
+        Header --> SearchResultsComp
     end
 
     subgraph PageRouter["Page Switch Router (React.lazy + Suspense)"]
@@ -101,7 +106,7 @@ flowchart LR
 
 ## 3. Search & Voice Data Flow
 
-The global search engine compiles all typed static dataset files into an in-memory index on startup. Typing in the search bar or speaking through the microphone performs instant filtering.
+The global search engine compiles all typed static dataset files into an in-memory weighted index on startup using [`SearchEngine.ts`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/utils/searchEngine.ts). Typing in the search bar or speaking through the microphone performs instant, sub-millisecond multi-token matching, field-weighted scoring, alias resolution, and typo-tolerant retrieval.
 
 ```mermaid
 flowchart LR
@@ -110,6 +115,7 @@ flowchart LR
         direction LR
         DataFiles[("src/data/*.ts Datasets")] --> BarrelExport[("data/index.ts")]
         BarrelExport --> SearchableUtil["utils/searchableData.ts"]
+        SearchableUtil --> EngineInst["utils/searchEngine.ts (SearchEngine)"]
     end
 
     %% User Input Pipeline
@@ -125,13 +131,14 @@ flowchart LR
     subgraph FilterPipeline["3. Search Context & Result Dispatch"]
         direction LR
         UpdateQuery --> ContextState[["SearchContext.tsx"]]
-        SearchableUtil --> ContextState
-        ContextState --> FilterAction["useDeferredValue + useMemo Matcher"]
-        FilterAction --> OutputResults["searchResults Dropdown"]
+        EngineInst --> ContextState
+        ContextState --> FilterAction["useDeferredValue + SearchEngine Scorer"]
+        FilterAction --> OutputResults["SearchResults.tsx + searchUtils.tsx"]
     end
 
     %% Action
-    subgraph ActionPipeline["4. Modal Resolution"]
+    subgraph ActionPipeline["4. Modal & Slideshow Resolution"]
+        direction LR
         OutputResults -- "Select Item" --> OpenModal["setActiveModal(id) & setActivePage(category)"]
         OpenModal --> RenderModal["Render ProjectModal / DetailModal"]
     end

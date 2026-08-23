@@ -17,6 +17,9 @@ export interface SearchLocation {
 export interface SearchableItem {
   id: string;
   title: string;
+  subtitle?: string;
+  tags?: string[];
+  summary?: string;
   content: string;
   category: SearchCategory;
   location: SearchLocation;

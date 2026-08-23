@@ -113,6 +113,54 @@ describe("SearchContext", () => {
     });
   });
 
+  it("handles multi-token search queries and tech aliases", async () => {
+    render(
+      <SearchProvider>
+        <TestConsumer />
+      </SearchProvider>,
+    );
+
+    const input = screen.getByTestId("search-input");
+
+    // Multi-token: CaroHans with platform term
+    fireEvent.change(input, { target: { value: "CaroHans Supabase" } });
+    await waitFor(() => {
+      expect(
+        screen.getByText("CaroHans Event Rentals (ERMS)"),
+      ).toBeInTheDocument();
+    });
+
+    // Alias query: "nextjs"
+    fireEvent.change(input, { target: { value: "nextjs" } });
+    await waitFor(() => {
+      expect(
+        screen.getByText("CaroHans Event Rentals (ERMS)"),
+      ).toBeInTheDocument();
+    });
+  });
+
+  it("safely handles special regex characters without errors", async () => {
+    render(
+      <SearchProvider>
+        <TestConsumer />
+      </SearchProvider>,
+    );
+
+    const input = screen.getByTestId("search-input");
+
+    fireEvent.change(input, { target: { value: "C++" } });
+    await waitFor(() => {
+      expect(screen.getByTestId("results-count")).not.toHaveTextContent("0");
+    });
+
+    fireEvent.change(input, { target: { value: "React (Hooks) [v19] + Vite" } });
+    await waitFor(() => {
+      expect(screen.getByTestId("search-query")).toHaveTextContent(
+        "React (Hooks) [v19] + Vite",
+      );
+    });
+  });
+
   it("handles navigation with scrolling", async () => {
     vi.useFakeTimers();
 
@@ -143,4 +191,5 @@ describe("SearchContext", () => {
 
     vi.useRealTimers();
   });
+
 });

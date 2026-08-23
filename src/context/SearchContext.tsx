@@ -8,10 +8,12 @@ import {
   type ReactNode,
 } from "react";
 import { searchableData } from "../utils/searchableData";
-import { navOrder } from "../data/navigation";
+import { SearchEngine } from "../utils/searchEngine";
 import { honors } from "../data";
 import type { SearchableItem, SearchLocation } from "../types/search";
 import type { HonorDetails, ProjectDetails } from "../types/data";
+
+const engine = new SearchEngine(searchableData);
 
 export type ModalDetailItem =
   HonorDetails | ProjectDetails | Record<string, unknown> | null;
@@ -47,20 +49,10 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
   const deferredQuery = useDeferredValue(searchQuery);
 
   const searchResults = useMemo(() => {
-    if (!deferredQuery) return [];
-    const query = deferredQuery.toLowerCase();
-    return searchableData
-      .filter(
-        (item) =>
-          item.title.toLowerCase().includes(query) ||
-          item.content.toLowerCase().includes(query),
-      )
-      .sort((a, b) => {
-        const aIndex = navOrder.indexOf(a.category);
-        const bIndex = navOrder.indexOf(b.category);
-        return aIndex - bIndex;
-      });
+    if (!deferredQuery.trim()) return [];
+    return engine.search(deferredQuery);
   }, [deferredQuery]);
+
 
   const setSearchQuerySafe = useCallback((query: string) => {
     setSearchQuery(query);

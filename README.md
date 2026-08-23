@@ -15,7 +15,7 @@ Hanson-Tube is an interactive web portfolio built with React 19, TypeScript, and
 | **Offline & PWA**      | Workbox Window & `vite-plugin-pwa` (Service Worker Caching)  |
 | **Package Manager**    | pnpm (`pnpm@11.9.0`)                                         |
 | **State Management**   | React Context API (`ThemeContext`, `SearchContext`)          |
-| **Testing**            | Vitest 3, React Testing Library, JSDOM (13 Passing Suites)   |
+| **Testing**            | Vitest 3, React Testing Library, JSDOM (15 Passing Suites, 69 Tests) |
 | **Deployment**         | GitHub Pages (via `gh-pages`)                                |
 | **Icons**              | React Icons (`react-icons/fa`, `react-icons/fa6`)            |
 | **Forms & Toasts**     | React Hook Form, Sonner, EmailJS Browser                     |
@@ -32,6 +32,7 @@ kxnghans.github.io/ [Root]
 │   ├── backend.md            # Data strategy, SSOT rules, and EmailJS infrastructure
 │   ├── checklist.md          # Execution milestones and context tracker
 │   ├── hanson-tube.md        # System blueprint & lifecycle transitions
+│   ├── images.md             # Visual imagery spec & generation roadmap
 │   ├── review.md             # Security, a11y, and technical gaps tracker
 │   ├── testing.md            # Testing strategy and resilience verification
 │   └── theme.md              # Neumorphic tokens & interactive physics
@@ -79,7 +80,8 @@ kxnghans.github.io/ [Root]
 │   │   ├── data.ts           # Entity models & static content types
 │   │   └── search.ts         # Search result & context types
 │   ├── utils/                # [Utilities Domain] Pure logic helpers
-│   │   └── searchableData.ts # Search index generation
+│   │   ├── searchEngine.ts   # In-memory search scoring engine & alias resolution
+│   │   └── searchableData.ts # Search index generation & structured mapping
 │   ├── App.tsx               # [Orchestration Layer] Root routing and dynamic views
 │   ├── index.css             # [Design System] Tailwind v4 tokens & neumorphic shadows
 │   └── main.tsx              # [Entry Point] DOM mounting
@@ -135,7 +137,7 @@ kxnghans.github.io/ [Root]
 - **Logic**: Prefer functional components and hooks over class components.
 - **Styling**: Tailwind CSS 4 utility classes; reserve `src/index.css` for custom `@theme` variables and neumorphic shadow definitions.
 - **Data**: Keep data decoupled from UI; all content resides in `src/data/` as the Single Source of Truth (SSOT).
-- **Testing**: UI components and state orchestrators must maintain unit test coverage in `*.test.jsx`.
+- **Testing**: UI components, custom hooks, and pure utilities must maintain unit test coverage in `*.test.tsx` and `*.test.ts`.
 
 ---
 
