@@ -1,15 +1,16 @@
-import { useEffect, type ReactElement } from "react";
-import { createPortal } from "react-dom";
+import type { ReactElement } from "react";
 import { FaCirclePlay } from "react-icons/fa6";
-import { CloseIcon } from "../icons/Icons";
-import { useFocusTrap } from "../../hooks/useFocusTrap";
+import ModalShell from "./ModalShell";
+import ModalCARSection from "./ModalCARSection";
+import ModalHighlightsGrid from "./ModalHighlightsGrid";
+import CategorizedList from "./CategorizedList";
 import type { ProjectDetails } from "../../types/data";
 
 export interface ProjectModalProps {
   project:
     | ProjectDetails
     | {
-        title: string;
+        title?: string;
         details?: string[];
         challenge?: string;
         action?: string;
@@ -17,138 +18,78 @@ export interface ProjectModalProps {
         highlights?: { label: string; value: string }[];
         liveLink?: string;
         codeLink?: string;
+        video?: string;
       };
   onClose: () => void;
 }
 
-const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
-  const modalRef = useFocusTrap<HTMLDivElement>(Boolean(project), onClose);
-
-  useEffect(() => {
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = originalOverflow;
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
-        onClose();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [modalRef, onClose]);
-
-  if (typeof document === "undefined") {
-    return null;
-  }
-
-  const modalContent = (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="project-modal-title"
-      className="animate-fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
-    >
-      <div
-        ref={modalRef}
-        tabIndex={-1}
-        className="modal-shadow dark:bg-dark-card relative max-h-[90vh] w-11/12 transform overflow-y-auto rounded-lg bg-gray-100 transition-all duration-300 focus:outline-none md:w-4/5 lg:w-3/5"
-      >
-        <button
-          onClick={onClose}
-          aria-label="Close project modal"
-          className="absolute top-3 right-3 z-10 text-3xl text-gray-400 transition-colors hover:text-gray-900 dark:hover:text-white"
+const ProjectModal = ({ project, onClose }: ProjectModalProps): ReactElement => {
+  const actions = (project.liveLink || project.codeLink) ? (
+    <div className="mt-6 flex space-x-4">
+      {project.liveLink && (
+        <a
+          href={project.liveLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bevel-button-light dark:bevel-button-dark flex transform items-center rounded-lg bg-red-600 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-red-700 active:scale-95"
         >
-          <CloseIcon />
-        </button>
-        <div className="p-6">
-          <h2
-            id="project-modal-title"
-            className="mb-4 text-3xl font-bold text-red-500"
-          >
-            {project.title}
-          </h2>
-          <div className="mb-4 leading-relaxed text-gray-600 dark:text-gray-300">
-            {project.challenge ? (
-              <>
-                <p>
-                  <span className="font-semibold">Challenge:</span>{" "}
-                  {project.challenge}
-                </p>
-                <p>
-                  <span className="font-semibold">Action:</span>{" "}
-                  {project.action}
-                </p>
-                <p>
-                  <span className="font-semibold">Outcome:</span>{" "}
-                  {project.outcome}
-                </p>
-              </>
-            ) : (
-              project.details && (
-                <ul className="list-inside list-disc space-y-3 text-gray-600 dark:text-gray-300">
-                  {project.details.map((detail, index) => (
-                    <li key={index}>{detail}</li>
-                  ))}
-                </ul>
-              )
-            )}
-          </div>
-          {project.highlights && (
-            <div className="border-t border-gray-300 pt-4 dark:border-gray-700">
-              <h3 className="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
-                Highlights
-              </h3>
-              <ul className="list-inside list-disc space-y-1 text-gray-600 dark:text-gray-300">
-                {project.highlights.map((highlight, i) => (
-                  <li key={i}>
-                    <span className="font-semibold">{highlight.label}:</span>{" "}
-                    {highlight.value}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          <div className="mt-6 flex space-x-4">
-            {project.liveLink && (
-              <a
-                href={project.liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bevel-button-dark flex transform items-center rounded-lg bg-red-600 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-red-700"
-              >
-                <FaCirclePlay className="mr-2" /> Demo
-              </a>
-            )}
-            {project.codeLink && (
-              <a
-                href={project.codeLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bevel-button-dark transform rounded-lg bg-gray-700 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-gray-800"
-              >
-                View Project
-              </a>
-            )}
+          <FaCirclePlay className="mr-2" /> Demo
+        </a>
+      )}
+      {project.codeLink && (
+        <a
+          href={project.codeLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bevel-button-light dark:bevel-button-dark transform rounded-lg bg-gray-700 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-gray-800 active:scale-95 dark:bg-gray-700 dark:hover:bg-gray-600"
+        >
+          View Project
+        </a>
+      )}
+    </div>
+  ) : null;
+
+  return (
+    <ModalShell
+      title={project.title || "Project Details"}
+      titleId="project-modal-title"
+      closeAriaLabel="Close project modal"
+      onClose={onClose}
+    >
+      {/* Video preview if provided */}
+      {project.video && (
+        <div className="overflow-hidden rounded-lg border border-gray-300 dark:border-white/10">
+          <div className="relative aspect-video w-full bg-black">
+            <iframe
+              src={project.video}
+              title={`${project.title || "Project"} demonstration video`}
+              className="h-full w-full border-0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
           </div>
         </div>
-      </div>
-    </div>
-  );
+      )}
 
-  return createPortal(modalContent, document.body) as unknown as ReactElement;
+      {/* Challenge, Action, Outcome callouts */}
+      <ModalCARSection
+        challenge={project.challenge}
+        action={project.action}
+        outcome={project.outcome}
+      />
+
+      {/* Supplementary details if present */}
+      {project.details && project.details.length > 0 && (
+        <CategorizedList items={project.details} />
+      )}
+
+      {/* Listed Highlights */}
+      <ModalHighlightsGrid highlights={project.highlights} />
+
+      {/* Action Buttons */}
+      {actions}
+    </ModalShell>
+  );
 };
 
 export default ProjectModal;

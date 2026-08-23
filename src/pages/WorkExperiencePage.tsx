@@ -13,7 +13,7 @@ const WorkExperiencePage = () => {
       <title>Work Experience | Hanson-Tube</title>
       <meta
         name="description"
-        content="Professional career record: Systems Engineering at Lockheed Martin Space, Automation Specialist at Zions Bancorp, and US Air Force."
+        content="Work history across Lockheed Martin Space, UCCS, and the US Air Force."
       />
       <Section title="Work Experience">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

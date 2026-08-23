@@ -9,8 +9,10 @@ describe("ProjectModal", () => {
     challenge: "Test challenge description",
     action: "Test action description",
     outcome: "Test outcome description",
+    details: ["Integrated with Cloudflare edge routing", "Sub-millisecond cold start latency"],
     liveLink: "https://example.com/demo",
     codeLink: "https://example.com/code",
+    video: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ",
     highlights: [
       { label: "Architecture", value: "Modern Stack" },
       { label: "Scale", value: "Enterprise Scale" },
@@ -31,8 +33,19 @@ describe("ProjectModal", () => {
 
     expect(screen.getByText("Test Ecosystem Platform")).toBeInTheDocument();
     expect(screen.getByText("Test challenge description")).toBeInTheDocument();
+    expect(screen.getByText("Test action description")).toBeInTheDocument();
+    expect(screen.getByText("Test outcome description")).toBeInTheDocument();
+    expect(screen.getByText("Integrated with Cloudflare edge routing")).toBeInTheDocument();
     expect(screen.getByText("Architecture:")).toBeInTheDocument();
     expect(screen.getByText("Modern Stack")).toBeInTheDocument();
+  });
+
+  it("renders embedded demonstration video iframe when video property is provided", () => {
+    render(<ProjectModal project={mockProject} onClose={mockOnClose} />);
+
+    const iframe = screen.getByTitle(/demonstration video/i);
+    expect(iframe).toBeInTheDocument();
+    expect(iframe).toHaveAttribute("src", "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ");
   });
 
   it("renders live demo and source code action buttons", () => {

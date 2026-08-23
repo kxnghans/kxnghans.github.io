@@ -59,12 +59,19 @@ export default function App() {
   const sidebarRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    let rafId: number | undefined;
     const handleResize = () => {
-      const medium = window.innerWidth < 1024;
-      setIsMediumScreen(medium);
+      if (rafId !== undefined) return;
+      rafId = requestAnimationFrame(() => {
+        setIsMediumScreen(window.innerWidth < 1024);
+        rafId = undefined;
+      });
     };
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      if (rafId !== undefined) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   useEffect(() => {

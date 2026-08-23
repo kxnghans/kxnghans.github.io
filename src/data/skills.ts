@@ -7,36 +7,36 @@ export const skillsData: SkillCategory[] = [
     details: [
       { name: "Python (PyTorch, Pandas, NumPy)", priority: 1 },
       { name: "TypeScript / JavaScript", priority: 1 },
-      { name: "React & React Native (Expo)", priority: 1 },
+      { name: "React 19 & React Native (Expo)", priority: 1 },
       { name: "SQL (PostgreSQL, SQLite)", priority: 1 },
-      { name: "Next.js & Supabase", priority: 2 },
-      { name: "HTML5 & Tailwind CSS", priority: 2 },
+      { name: "Next.js 16 & Supabase", priority: 2 },
+      { name: "Tailwind CSS 4 & HTML5", priority: 2 },
       { name: "C / C++", priority: 2 },
-      { name: "PHP & VueJS", priority: 3 },
+      { name: "PHP & Vue.js", priority: 3 },
       { name: "Ansible & YAML", priority: 3 },
       { name: "Keras & TensorFlow", priority: 2 },
       { name: "Markdown", priority: 4 },
     ],
     exposure: [
+      "Turborepo",
+      "MMKV",
+      "Firebase Realtime Database",
+      "Cloudflare (Workers, Pages)",
       "Verilog",
-      "Assembly Language",
-      "JQuery",
       "C#",
       "Java",
-      "MMKV",
-      "Firebase RTDB",
     ],
     modalDetails: {
       title: "Programming & Frameworks",
       subtitle: "Languages, Libraries, and Mobile/Web Ecosystems",
       details: [
         "Python (PyTorch, Pandas, NumPy, Scikit-Learn), TypeScript, JavaScript, SQL",
-        "React, React Native (Expo 54), Next.js, VueJS, Tailwind CSS, HTML5/CSS3",
+        "React 19, React Native (Expo), Next.js 16, Vue.js, Tailwind CSS 4, HTML5/CSS3",
         "C, C++, PHP, Ansible, YAML, Markdown, Keras, TensorFlow",
       ],
       exposure: [
-        "Verilog, Assembly Language, JQuery, C#, Java",
-        "MMKV, SQLite, Firebase Realtime Database, Cloudflare Workers",
+        "Turborepo, MMKV, SQLite, Firebase Realtime Database, Cloudflare Workers & Pages",
+        "Verilog, Assembly Language, C#, Java",
       ],
     },
   },
@@ -70,8 +70,8 @@ export const skillsData: SkillCategory[] = [
       },
     ],
     modalDetails: {
-      title: "BI & Data Analytics Skills",
-      subtitle: "Data-driven Insights, Forecasting, and Solutions",
+      title: "BI & Data Analytics",
+      subtitle: "Business Intelligence, Forecasting, and Pipelines",
       details: [
         "MS Power Platform (Power BI, Power Apps, Power Automate, Dataverse), MS Fabric, Tableau, Power Query, Salesforce, R, Business Objects, Cognos",
         "Regression Analysis, Statistical Modeling, Data Visualization, Data Pipeline Automation, Time-Series Forecasting, Proximate Viterbi Pathfinding",
@@ -114,8 +114,8 @@ export const skillsData: SkillCategory[] = [
       { name: "UI/UX Design (Figma, Adobe XD)", priority: 2 },
     ],
     modalDetails: {
-      title: "Project, Product & Systems Management",
-      subtitle: "Leading and Delivering Scalable Initiatives",
+      title: "Project & Systems Management",
+      subtitle: "Agile Delivery, CONOPS, and Requirements Analysis",
       details: [
         "JIRA, Agile Methodologies (Scrum, Kanban), Model Based Systems Engineering (MBSE)",
         "CONOPS Authoring, Stakeholder Management, Requirements Gathering, Business Analysis, Process ROI Modeling",
@@ -133,7 +133,7 @@ export const skillsData: SkillCategory[] = [
         priority: 1,
       },
       { name: "Unreal Engine", priority: 2 },
-      { name: "Raspberry Pi & Microcontrollers", priority: 3 },
+      { name: "Raspberry Pi & Arduino Microcontrollers", priority: 3 },
     ],
     modalDetails: {
       title: "IT & Systems Architecture",
@@ -156,8 +156,8 @@ export const skillsData: SkillCategory[] = [
       { name: "Acrobat", priority: 3 },
     ],
     modalDetails: {
-      title: "Adobe Suite Proficiency",
-      subtitle: "Creative Tools for Design and Multimedia",
+      title: "Adobe Creative Suite",
+      subtitle: "UI Design, Video Production, and Digital Media",
       details: [
         "Photoshop, Premiere Pro, After Effects",
         "Illustrator, Adobe XD, Acrobat",
@@ -168,7 +168,7 @@ export const skillsData: SkillCategory[] = [
     title: "Electronics",
     imageUrl: "/assets/generated/skills/electronics.webp",
     details: [
-      { name: "LT Spice", priority: 1 },
+      { name: "LTspice", priority: 1 },
       { name: "MATLAB", priority: 1 },
       { name: "AutoCAD", priority: 2 },
       { name: "ModelSim", priority: 2 },
@@ -176,7 +176,7 @@ export const skillsData: SkillCategory[] = [
     modalDetails: {
       title: "Electronics & Hardware Design",
       subtitle: "Circuit Simulation, Modeling, and Analysis",
-      details: ["LT Spice, MATLAB, AutoCAD, ModelSim"],
+      details: ["LTspice, MATLAB, AutoCAD, ModelSim"],
     },
   },
   {
@@ -187,8 +187,8 @@ export const skillsData: SkillCategory[] = [
       { name: "French (Intermediate)", priority: 2 },
     ],
     modalDetails: {
-      title: "Language Proficiency",
-      subtitle: "Communication Skills",
+      title: "Languages",
+      subtitle: "Spoken & Written Communication",
       details: [
         "English (Fluent)",
         "French (Intermediate)",

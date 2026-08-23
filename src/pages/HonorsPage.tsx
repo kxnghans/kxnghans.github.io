@@ -13,7 +13,7 @@ const HonorsPage = () => {
       <title>Honors & Awards | Hanson-Tube</title>
       <meta
         name="description"
-        content="Honors, military awards, and professional achievements earned by Kobby Hanson including Airman of the Year and President's List."
+        content="Awards and distinctions earned by Kobby Hanson, including Airman of the Year and 7x Dean's List honors."
       />
       <div className="flex flex-col">
         <Section title="Honors & Awards">

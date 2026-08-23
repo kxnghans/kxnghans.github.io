@@ -7,7 +7,7 @@ const HomePage = () => (
     <title>Hanson-Tube | Systems Engineer & Portfolio</title>
     <meta
       name="description"
-      content="Immersive interactive portfolio showcasing systems engineering, data science, and venture platforms by Kobby Hanson."
+      content="Interactive portfolio showcasing systems engineering, data science, and software projects by Kobby Hanson."
     />
     <div className="flex flex-col">
       <div className="mb-2">

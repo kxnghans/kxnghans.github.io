@@ -77,7 +77,7 @@ const ContactPage = () => {
       <title>Contact | Hanson-Tube</title>
       <meta
         name="description"
-        content="Get in touch with Kobby Hanson for systems engineering, business analysis, software development, or consulting opportunities."
+        content="Contact Kobby Hanson for systems engineering, data science, or software projects."
       />
       <div className="flex h-full flex-col">
         <CommunitySlideshow />

@@ -103,7 +103,7 @@ export interface SearchResultsProps {
 }
 
 const SearchResults = ({ setActivePage }: SearchResultsProps) => {
-  const { searchQuery, searchResults, loading, navigateToResult } = useSearch();
+  const { searchQuery, searchResults, navigateToResult } = useSearch();
   const [maxHeight, setMaxHeight] = useState<string>("none");
   const [showArrow, setShowArrow] = useState<boolean>(false);
   const itemRef = useRef<HTMLLIElement | null>(null);
@@ -131,14 +131,6 @@ const SearchResults = ({ setActivePage }: SearchResultsProps) => {
       setShowArrow(true);
     }
   };
-
-  if (loading) {
-    return (
-      <div className="dark:bg-dark-card absolute top-full mt-1 w-full rounded-lg bg-white p-4 shadow-lg">
-        <p>Loading...</p>
-      </div>
-    );
-  }
 
   if (searchResults.length === 0) {
     return null;

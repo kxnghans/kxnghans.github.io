@@ -190,3 +190,66 @@ flowchart LR
         P_Online --> P_Update
     end
 ```
+
+---
+
+## 5. Modal Component Architecture & Data Flow
+
+All modal dialogs consume a centralized, modular component system centered on [`ModalShell.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ModalShell.tsx).
+
+```mermaid
+flowchart LR
+    %% Data Layer
+    subgraph DataSources["Data Layer (src/data/)"]
+        direction LR
+        WorkData[("work.ts")]
+        SkillsData[("skills.ts")]
+        EduData[("education.ts")]
+        HonorsData[("honors.ts")]
+        CertsData[("certifications.ts")]
+        ProjData[("projects.ts")]
+    end
+
+    %% Modal Composers
+    subgraph ModalComposers["Modal Entry Points (src/components/modals/)"]
+        direction LR
+        DetailModal["DetailModal.tsx"]
+        ProjectModal["ProjectModal.tsx"]
+    end
+
+    %% Primitive Subcomponents
+    subgraph ModalPrimitives["Modular Primitives"]
+        direction LR
+        Shell["ModalShell.tsx (Portal, FocusTrap, Lock)"]
+        CARSection["ModalCARSection.tsx (STAR/CAR Callouts)"]
+        HighlightsGrid["ModalHighlightsGrid.tsx (Key Metrics)"]
+        CatList["CategorizedList.tsx (2-Col & Bullets)"]
+    end
+
+    %% DOM Rendering
+    subgraph TargetDOM["DOM Layer"]
+        direction LR
+        PortalTarget["document.body (Full-Screen Overlay)"]
+    end
+
+    %% Linkages
+    WorkData --> DetailModal
+    SkillsData --> DetailModal
+    EduData --> DetailModal
+    HonorsData --> DetailModal
+    CertsData --> DetailModal
+    ProjData --> ProjectModal
+
+    DetailModal --> Shell
+    DetailModal --> CARSection
+    DetailModal --> CatList
+    DetailModal --> HighlightsGrid
+
+    ProjectModal --> Shell
+    ProjectModal --> CARSection
+    ProjectModal --> CatList
+    ProjectModal --> HighlightsGrid
+
+    Shell --> PortalTarget
+```
+

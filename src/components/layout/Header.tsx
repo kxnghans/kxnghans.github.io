@@ -318,7 +318,8 @@ const Header = ({ toggleSidebar, setActivePage, activePage }: HeaderProps) => {
             <img
               src={profileImage}
               alt="Profile"
-              loading="lazy"
+              loading="eager"
+              fetchPriority="high"
               decoding="async"
               className={`h-10 w-10 transform cursor-pointer rounded-full border-2 border-transparent object-cover hover:border-red-500 ${
                 activePage === "Home"

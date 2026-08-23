@@ -2,7 +2,7 @@
 
 ## Vision
 
-Hanson-Tube is an immersive, interactive portfolio platform designed to showcase the professional journey of a Systems Engineer & Business Analyst through a high-fidelity "YouTube-inspired" interface. It prioritizes engagement through interactive media and a unique neumorphic aesthetic.
+Hanson-Tube is an interactive web portfolio that presents the work of a Systems Engineer and Business Analyst through a YouTube-inspired interface with a dark-mode neumorphic design.
 
 ## User Personas
 

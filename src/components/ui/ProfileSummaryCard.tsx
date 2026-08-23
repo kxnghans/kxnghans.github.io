@@ -11,6 +11,8 @@ const ProfileSummaryCard = () => (
         src={profileImage}
         fallbackSrc={profileImageFallback}
         alt="Kobby Hanson"
+        loading="eager"
+        fetchPriority="high"
         className="h-24 w-24 rounded-full border-4 border-red-600 object-cover shadow-lg sm:h-32 sm:w-32"
         containerClassName="mb-4 h-24 w-24 rounded-full sm:mr-6 sm:mb-0 sm:h-32 sm:w-32 flex-shrink-0"
       />
@@ -28,7 +30,7 @@ const ProfileSummaryCard = () => (
           </a>
         </h1>
         <p className="text-md text-gray-500 sm:text-lg dark:text-gray-400">
-          Systems Engineer & Sr Business Analyst
+          Systems Engineer & Business Analyst
         </p>
         <p className="text-md text-red-500 sm:text-lg dark:text-red-400">
           <a

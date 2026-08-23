@@ -8,9 +8,9 @@ export const communityData: CommunityItem[] = [
     details: {
       title: "Photography Business & Media Lead",
       details: [
-        "In addition to running my photography business, I serve as the complimentary Media Team Lead for my church.",
-        "I cover major events like Easter, Christmas, pastor appreciations, young adult outreaches, and annual revivals.",
-        "I also contribute to the church's social media management.",
+        "Serve as volunteer Media Team Lead for my church alongside running my photography business.",
+        "Direct photo and video coverage for major events, including holiday services, conferences, and youth outreaches.",
+        "Manage weekly church media production and social channels.",
       ],
     },
   },
@@ -25,21 +25,21 @@ export const communityData: CommunityItem[] = [
       title:
         "Vice President of NSBE (National Society of Black Engineers) Chapter",
       details: [
-        "Hosted and facilitated events to foster inclusiveness and professional development, including resume reviews, mock interviews, and career workshops.",
-        "Educated members on internship and career opportunities by hosting storytelling events with working professionals and organizing recruitment events.",
-        "Led our chapter's attendance at the national conference in San Francisco, where all 6 members who attended secured job offers.",
+        "Organized professional workshops, resume reviews, and mock technical interviews for engineering students.",
+        "Connected members with industry professionals through speaker panels and company recruiting visits.",
+        "Led our chapter delegation to the national conference in San Francisco, where all 6 attending members secured job offers.",
       ],
     },
   },
   {
-    title: "President of the Reader's and Writer’s Club",
+    title: "President of the Readers and Writers Club",
     imageUrl: "/assets/generated/community/readers-writers.webp",
     summary: ["Role: President", "Achievement: Tripled Club Membership"],
     details: {
-      title: "President of the Reader's and Writer’s Club",
+      title: "President of the Readers and Writers Club",
       details: [
-        "Coordinated weekly club meetings and organized highlight events including campus spelling bee competitions and the annual student debate.",
-        "Increased club membership threefold by implementing an innovative outreach strategy through school social media.",
+        "Coordinated weekly meetings and organized campus spelling bees and annual student debates.",
+        "Tripled club membership through targeted student outreach and active social channels.",
       ],
     },
   },
@@ -54,9 +54,9 @@ export const communityData: CommunityItem[] = [
     details: {
       title: "Code Quest",
       details: [
-        "Served as a Technical Proctor for the annual Code Quest computer programming competition across 20 locations, 4 continents.",
-        "Guided and supported high school students in teams of two to three students solve 20 to 30 problems using Java, Python, C#, and/or C++.",
-        "Coordinated event logistics and provided technical support at the Denver, CO center, ensuring a seamless competition experience and adherence to all guidelines.",
+        "Served as a technical proctor for the Lockheed Martin Code Quest programming competition across 20 global sites.",
+        "Judged and assisted high school teams solving algorithmic problems in Java, Python, C#, and C++.",
+        "Managed lab setup and technical support at the Denver site to keep the competition running smoothly.",
       ],
     },
   },
@@ -67,10 +67,10 @@ export const communityData: CommunityItem[] = [
     details: {
       title: "Vegas Strong Thunderbird Airshow",
       details: [
-        "Supported the home event of the U.S. Air Force Thunderbirds' flying season, a high-visibility event attended by tens of thousands.",
-        "Contributed to event operations during the “Vegas Strong” tribute year, honoring victims and first responders of the October 1 tragedy.",
-        "Assisted with crowd engagement and logistics, gave families tours of our equipment, and educated them on our mission.",
-        "Helped ensure a safe and impactful community experience that promoted a theme of unity, strength, and recovery.",
+        "Supported ground operations for the Air Force Thunderbirds home airshow with tens of thousands of attendees.",
+        'Assisted operations during the "Vegas Strong" tribute year, honoring first responders and community members.',
+        "Guided visitor tours around aircraft equipment and answered questions about flight line operations.",
+        "Supported safety coordination and flight line logistics throughout the weekend.",
       ],
     },
   },

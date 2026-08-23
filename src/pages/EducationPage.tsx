@@ -15,7 +15,7 @@ const EducationPage = () => {
       <title>Education | Hanson-Tube</title>
       <meta
         name="description"
-        content="Academic degrees and credentials: M.S. Data Science from UC Berkeley, B.S. Electrical Engineering from UCCS."
+        content="Academic background: M.S. in Data Science from UC Berkeley and B.S. in Electrical Engineering from UCCS."
       />
       <Section title="Education">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">

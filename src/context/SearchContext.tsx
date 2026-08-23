@@ -3,6 +3,8 @@ import {
   useContext,
   useState,
   useMemo,
+  useCallback,
+  useDeferredValue,
   type ReactNode,
 } from "react";
 import { searchableData } from "../utils/searchableData";
@@ -18,7 +20,6 @@ export interface SearchContextType {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   searchResults: SearchableItem[];
-  loading: boolean;
   activeModal: string | number | null;
   setActiveModal: (modal: string | number | null) => void;
   selectedItem: ModalDetailItem;
@@ -37,32 +38,35 @@ interface SearchProviderProps {
 
 export const SearchProvider = ({ children }: SearchProviderProps) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
   const [activeModal, setActiveModal] = useState<string | number | null>(null);
   const [selectedItem, setSelectedItem] = useState<ModalDetailItem>(null);
   const [activeSlides, setActiveSlides] = useState<
     Record<string, number | string>
   >({});
 
+  const deferredQuery = useDeferredValue(searchQuery);
+
   const searchResults = useMemo(() => {
-    if (!searchQuery) return [];
-    setLoading(true);
-    const results = searchableData
+    if (!deferredQuery) return [];
+    const query = deferredQuery.toLowerCase();
+    return searchableData
       .filter(
         (item) =>
-          item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          item.content.toLowerCase().includes(searchQuery.toLowerCase()),
+          item.title.toLowerCase().includes(query) ||
+          item.content.toLowerCase().includes(query),
       )
       .sort((a, b) => {
         const aIndex = navOrder.indexOf(a.category);
         const bIndex = navOrder.indexOf(b.category);
         return aIndex - bIndex;
       });
-    setLoading(false);
-    return results;
-  }, [searchQuery]);
+  }, [deferredQuery]);
 
-  const navigateToResult = (location?: SearchLocation) => {
+  const setSearchQuerySafe = useCallback((query: string) => {
+    setSearchQuery(query);
+  }, []);
+
+  const navigateToResult = useCallback((location?: SearchLocation) => {
     if (!location) return;
 
     // Close any open modal first
@@ -96,23 +100,33 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
         }
       }, 100);
     }
-  };
+  }, []);
+
+  const value = useMemo(
+    () => ({
+      searchQuery,
+      setSearchQuery: setSearchQuerySafe,
+      searchResults,
+      activeModal,
+      setActiveModal,
+      selectedItem,
+      setSelectedItem,
+      activeSlides,
+      navigateToResult,
+    }),
+    [
+      searchQuery,
+      setSearchQuerySafe,
+      searchResults,
+      activeModal,
+      selectedItem,
+      activeSlides,
+      navigateToResult,
+    ],
+  );
 
   return (
-    <SearchContext.Provider
-      value={{
-        searchQuery,
-        setSearchQuery,
-        searchResults,
-        loading,
-        activeModal,
-        setActiveModal,
-        selectedItem,
-        setSelectedItem,
-        activeSlides,
-        navigateToResult,
-      }}
-    >
+    <SearchContext.Provider value={value}>
       {children}
     </SearchContext.Provider>
   );

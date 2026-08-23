@@ -8,12 +8,12 @@ export const educationData: EducationItem[] = [
       "University of California, Berkeley",
       "Degree: Masters",
       "GPA: 4.0",
-      "Ends: Spring 2026",
+      "Status: Graduated",
     ],
     details: {
       title: "Masters in Data Science",
       subtitle: "University of California, Berkeley",
-      details: ["Estimated Graduation: Spring 2026", "Current GPA: 4.0"],
+      details: ["Graduated with 4.0 GPA"],
     },
   },
   {

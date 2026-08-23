@@ -1,6 +1,6 @@
 # Hanson-Tube | Professional Portfolio
 
-Hanson-Tube is a high-performance, responsive portfolio platform built with a modern React stack. It features a neumorphic dark-mode aesthetic, voice-integrated search, and a modular data-driven architecture to showcase professional milestones, projects, and technical competencies.
+Hanson-Tube is an interactive web portfolio built with React 19, TypeScript, and Tailwind CSS. It includes voice search, neumorphic dark mode, and a modular data layer for work history, projects, and engineering skills.
 
 ---
 

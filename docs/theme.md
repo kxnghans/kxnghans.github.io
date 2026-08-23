@@ -51,12 +51,18 @@ Design tokens are defined directly via Tailwind CSS 4's `@theme` directive and `
 ### 3. Modal Floating Surface
 
 - **Token / Class**: `modal-shadow` + `bg-gray-100 dark:bg-dark-card`
-- **Rule**: Applied to overlay modal popups ([`ProjectModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ProjectModal.tsx), [`DetailModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/DetailModal.tsx)). Top and left specular highlights are replaced with a lighter ambient shadow to prevent harsh top-edge glare on elevated backdrops.
+- **Rule**: Applied to overlay modal popups ([`ProjectModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ProjectModal.tsx), [`DetailModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/DetailModal.tsx)) composed via [`ModalShell.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ModalShell.tsx). Top and left specular highlights are replaced with a lighter ambient shadow to prevent harsh top-edge glare on elevated backdrops.
 - **Shadow Vector**:
   - **Light Mode**: `-4px -4px 14px rgba(0, 0, 0, 0.08)` (subtle top-left ambient shadow) / `6px 6px 20px rgba(0, 0, 0, 0.18)` (bottom-right primary shadow).
   - **Dark Mode**: `-4px -4px 16px rgba(0, 0, 0, 0.40)` (subtle top-left ambient shadow) / `8px 8px 24px rgba(0, 0, 0, 0.75)` (bottom-right primary occlusion shadow).
   - **Mobile Responsive (`<= 768px`)**: `-2px -2px 8px` / `4px 4px 14px` (Light) and `-2px -2px 10px` / `5px 5px 18px` (Dark).
-- **Usage**: [`ProjectModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ProjectModal.tsx), [`DetailModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/DetailModal.tsx).
+- **Subcomponent Tokens**:
+  - **CAR Callouts** ([`ModalCARSection.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ModalCARSection.tsx)): `border-l-4` accents (Amber for Challenge, Blue for Action, Emerald for Outcome) with `bg-gray-200/60 dark:bg-white/[0.03]`.
+  - **Exposure & Tag Badges**: `rounded-md border border-gray-300/80 bg-gray-200/80 dark:border-white/10 dark:bg-white/[0.06] text-xs font-medium`.
+  - **Highlights Grid** ([`ModalHighlightsGrid.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ModalHighlightsGrid.tsx)): `grid-cols-1 sm:grid-cols-2` metadata cards with `border-gray-300/70 bg-gray-200/50 dark:border-white/5 dark:bg-white/[0.03]`.
+  - **Action CTAs**: `bevel-button-light dark:bevel-button-dark active:scale-95` tactile feedback buttons.
+- **Usage**: [`ModalShell.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ModalShell.tsx), [`ProjectModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ProjectModal.tsx), [`DetailModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/DetailModal.tsx).
+
 
 ### 4. Active / Interactive Highlight
 

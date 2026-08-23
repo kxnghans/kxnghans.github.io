@@ -47,7 +47,7 @@ const ProjectsPage = () => {
       <title>Projects | Hanson-Tube</title>
       <meta
         name="description"
-        content="Technical projects, enterprise systems, and machine learning architectures engineered by Kobby Hanson."
+        content="Engineering projects, enterprise tools, and machine learning models built by Kobby Hanson."
       />
       <Section title="Projects">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

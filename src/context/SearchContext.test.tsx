@@ -14,13 +14,12 @@ const TestConsumer = () => {
     searchQuery,
     setSearchQuery,
     searchResults,
-    loading,
     navigateToResult,
   } = useSearch();
   return (
     <div>
       <div data-testid="search-query">{searchQuery}</div>
-      <div data-testid="loading">{loading.toString()}</div>
+      <div data-testid="results-count">{searchResults.length}</div>
       <input
         data-testid="search-input"
         value={searchQuery}
@@ -60,7 +59,7 @@ describe("SearchContext", () => {
     );
 
     expect(screen.getByTestId("search-query")).toHaveTextContent("");
-    expect(screen.getByTestId("loading")).toHaveTextContent("false");
+    expect(screen.getByTestId("results-count")).toHaveTextContent("0");
   });
 
   it("updates search query and filters results", async () => {
@@ -109,7 +108,7 @@ describe("SearchContext", () => {
     fireEvent.change(input, { target: { value: "CONOPS" } });
     await waitFor(() => {
       expect(
-        screen.getByText("Systems Engineer & Sr Business Analyst"),
+        screen.getByText("Systems Engineer & Business Analyst"),
       ).toBeInTheDocument();
     });
   });
