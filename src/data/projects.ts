@@ -260,33 +260,34 @@ export const projectData: ProjectItem[] = [
     title: "Facilities Automation",
     imageUrl: "/assets/generated/projects/facilities-automation.webp",
     summary: [
-      "Savings: $55k+ saved monthly",
-      "Tools: Microsoft Power Platform",
-      "Accuracy: Error rate reduced to 0%",
+      "ROI: $55.2k/mo ($662k/yr)",
+      "Scale: 450 Commercial Sites",
+      "Quality: Audit Errors Cut to 0%",
     ],
     details: {
       title: "Facilities Management Automation",
       challenge:
-        "The facilities team tracked key and vault combinations in spreadsheets across 450 locations, resulting in a 7.5% audit error rate.",
+        "Tracking keys and vault combinations across 450 branch locations on spreadsheets led to a 7.5% audit error rate and high compliance risks.",
       action:
-        "Built an automated workflow using Power Apps, Power Automate, and Power BI. Documented standard operating procedures and trained team members on the new tools.",
+        "Built an automated Power Platform system with Power Apps, Power Automate, and SQL. Documented SOPs and trained regional branch staff on the new workflow.",
       outcome:
-        "Reduced the audit error rate from 7.5% to 0% with direct validation. Saved 2,760 hours of monthly manual reconciliation, producing $55,200 in monthly cost savings.",
+        "Cut audit errors from 7.5% to 0%, dropped data refresh times from 3 hours to under 10 minutes, and generated $55,200 a month ($662,400 annualized) in verified savings.",
       liveLink: "",
       codeLink: "",
       highlights: [
         {
-          label: "Financial Impact",
-          value: "Generated $55,200 in monthly operational savings.",
-        },
-        {
-          label: "Process Improvement",
-          value: "Cut audit errors from 7.5% to 0%.",
-        },
-        {
-          label: "Tools Used",
+          label: "Annualized Savings",
           value:
-            "Built end-to-end automation with Microsoft Power Platform.",
+            "Delivered $55,200/month ($662k annualized) in recurring operational savings.",
+        },
+        {
+          label: "Scale",
+          value: "Rolled out across 450 commercial branch facilities.",
+        },
+        {
+          label: "Audit Quality",
+          value:
+            "Cut audit defect rate from 7.5% to 0% with automated input validation.",
         },
       ],
     },
@@ -295,33 +296,33 @@ export const projectData: ProjectItem[] = [
     title: "Innovation Dashboard",
     imageUrl: "/assets/generated/projects/innovation-dashboard.webp",
     summary: [
-      "Savings: $1.1M saved in first year",
-      "Tools: Power BI",
-      "Engagement: 13% increase in participation",
+      "ROI: $1.1M First-Year Savings",
+      "Engagement: 19,000+ Employee Ideas",
+      "Impact: 705k+ Customer Hours Saved",
     ],
     details: {
       title: "Innovation Gamification Dashboard",
       challenge:
-        "Idea submission rates were low, and tracking individual process improvements across spreadsheets was inefficient.",
+        "Idea submissions were scattered across spreadsheets, making it hard for leadership to spot good suggestions or calculate savings.",
       action:
-        "Created a Power BI dashboard to track submitted ideas, cost savings, and implementations. Added an employee leaderboard to boost team participation.",
+        "Built an interactive Power BI gamification dashboard with team leaderboards and automated categorization to track 19,000+ employee submissions.",
       outcome:
-        "Increased participation by 13% over legacy spreadsheets. The dashboard gave leadership direct visibility into team contributions, helping save $1.1 million and over 705,000 customer hours in year one.",
+        "Boosted participation by 13% and gave leadership clear ROI metrics, validating $1.1M in first-year savings and 705,000+ customer hours saved.",
       liveLink:
         "https://storage.googleapis.com/portfolio_showcase/Idea%20Board%20Explained.pdf",
       codeLink: "",
       highlights: [
         {
-          label: "Financial Impact",
-          value: "Saved $1.1 million in the first year.",
+          label: "First-Year Savings",
+          value: "Validated $1.1 million in first-year cost reductions.",
         },
         {
-          label: "Data Visualization",
+          label: "Reporting",
           value: "Tracked savings and KPIs in Power BI.",
         },
         {
-          label: "Team Engagement",
-          value: "Increased team participation by 13%.",
+          label: "Participation",
+          value: "Increased team engagement by 13% across 19,000+ ideas.",
         },
       ],
     },
@@ -330,35 +331,35 @@ export const projectData: ProjectItem[] = [
     title: "Cloud Migration",
     imageUrl: "/assets/generated/projects/cloud-migration.webp",
     summary: [
-      "Time: Overnight builds in 1 hour",
-      "Cost: Over $10k saved",
-      "Tech: AWS, Azure, OpenShift, Kubernetes",
+      "Velocity: 10x Test Cycle Reduction",
+      "Governance: ARB / CARB / SIA Approved",
+      "Overhead: $10k+ Saved via SNO",
     ],
     details: {
       title: "Cloud Migration & Infrastructure Optimization",
       challenge:
-        "Unstable legacy hardware and bare-metal test clusters caused frequent outages and slow build cycles.",
+        "Unstable bare-metal test clusters caused frequent outages, 10-hour nightly build bottlenecks, and compliance headaches for disconnected teams.",
       action:
-        "Wrote a Cloud Concept of Operations (CONOPS) for a dedicated testbed across AWS, Azure, and OpenShift. Set up single-node OpenShift clusters for faster local testing and recovery.",
+        "Wrote the Cloud Concept of Operations (CONOPS) and set up Single Node OpenShift (SNO) clusters in the Galaxy Test Bed (GTB), getting approvals through ARB, SIA, and Classified Review (CARB).",
       outcome:
-        "Cut nightly build times from 10 hours down to 1 hour, freeing up business hours for active debugging. Saved over $10,000 by applying existing enterprise licenses.",
+        "Cut nightly automated test cycles from 10 hours down to 1 hour (a 10x speedup) and saved over $10,000 in infrastructure costs.",
       liveLink: "",
       codeLink: "",
       highlights: [
         {
           label: "Time Savings",
           value:
-            "Reduced build times by 90% (from 10 hours to 1 hour).",
+            "Reduced build times by 90% (from 10 hours down to 1 hour).",
         },
         {
-          label: "Budget Savings",
+          label: "Governance",
           value:
-            "Saved over $10,000 using existing enterprise licenses.",
+            "Secured formal ARB, SIA, and Classified Review (CARB) approvals.",
         },
         {
-          label: "Technical Stack",
+          label: "Tech Stack",
           value:
-            "Stabilized infrastructure using AWS, Azure, and OpenShift.",
+            "Stabilized infrastructure using AWS, Azure, and OpenShift SNO.",
         },
       ],
     },
@@ -367,34 +368,34 @@ export const projectData: ProjectItem[] = [
     title: "Product Adoption Strategy",
     imageUrl: "/assets/generated/projects/product-adoption.webp",
     summary: [
-      "Adoption: 800% usage increase",
-      "Funding: Secured additional $1M",
-      "Skills: UI/UX, Stakeholder Management",
+      "Adoption: 800% Usage Expansion",
+      "Funding: $1.0M Follow-On Secured",
+      "Leadership: Stakeholder UX Mediation",
     ],
     details: {
       title: "Product Adoption Strategy (MESHc Program)",
       challenge:
-        "The MESHc tool had low adoption because engineering and business teams had conflicting needs: engineers wanted raw technical specs, while business teams needed summary roll-ups.",
+        "The MESHc parts catalog had low adoption because RF engineers and business teams were stuck in a standoff: engineers needed deep hardware specs, while business leads wanted clean standard summaries.",
       action:
-        "Ran bi-weekly Adobe XD wireframing sessions with both teams. Designed a clean summary view with drill-down links to raw technical specs.",
+        "Ran bi-weekly Adobe XD prototyping sessions with both teams, building a clean summary view with drill-down links to raw technical specs.",
       outcome:
-        "Increased active usage by 800%, cut a month from the UI backlog, and helped secure an additional $1 million in follow-on program funding.",
+        "Active adoption grew by 800% (from 2 to 10 defense programs), cut a month of UI backlog, and helped secure $1.0M in follow-on funding.",
       liveLink: "",
       codeLink: "",
       highlights: [
         {
-          label: "User Adoption",
-          value: "Increased tool adoption by 800%.",
+          label: "Adoption Growth",
+          value: "Increased tool adoption by 800% across 10 defense programs.",
         },
         {
-          label: "Financial Success",
+          label: "Program Funding",
           value:
-            "Helped secure $1 million in follow-on funding.",
+            "Helped secure $1.0 million in follow-on program funding.",
         },
         {
-          label: "Core Competencies",
+          label: "Mediation",
           value:
-            "Resolved cross-team requirements using Adobe XD prototypes.",
+            "Resolved requirements standoff using Adobe XD prototypes.",
         },
       ],
     },
@@ -403,32 +404,32 @@ export const projectData: ProjectItem[] = [
     title: "Logistics Data Pipeline",
     imageUrl: "/assets/generated/projects/logistics-pipeline.webp",
     summary: [
-      "Productivity: 66% increase in efficiency",
-      "Tools: Power Query, Excel",
-      "Accuracy: Error rate below 5%",
+      "Throughput: 66% Efficiency Boost",
+      "Crisis: Operation Allies Refuge",
+      "Quality: Errors Cut from 20% to <5%",
     ],
     details: {
       title: "Logistics & Data Pipeline for Qatar Deployment",
       challenge:
-        "During a deployment in Qatar supporting Afghan evacuation operations, our team faced high operational tempo and manual inventory tracking for perishable items.",
+        "During Afghan evacuation operations in Qatar (Operation Allies Refuge), manual tracking of perishable medical supplies and rations created stockout risks and a 20% re-issue error rate.",
       action:
-        "Built a Power Query pipeline in Excel that automatically flagged expiring items and alerted supply teams for reordering.",
+        "Built an automated Power Query pipeline in Excel to model shelf-life, forecast burn rates, and trigger automatic reorders.",
       outcome:
-        "Cut nightly supply reconciliation from hours to minutes, boosting team efficiency by 66%. Dropped the re-issuing error rate for medical supplies and rations from 20% down to under 5%.",
+        "Cut nightly inventory reconciliation from 3 hours down to 5 minutes, boosted productivity by 66%, and reduced supply errors from 20% to under 5%.",
       liveLink: "",
       codeLink: "",
       highlights: [
         {
-          label: "Efficiency Gains",
-          value: "Boosted supply throughput by 66%.",
+          label: "Throughput",
+          value: "Boosted supply throughput by 66% during crisis operations.",
         },
         {
-          label: "Data Automation",
-          value: "Automated inventory pipelines in Power Query.",
+          label: "Automation",
+          value: "Automated inventory tracking in Power Query.",
         },
         {
-          label: "Quality Control",
-          value: "Reduced supply error rate from 20% to under 5%.",
+          label: "Error Reduction",
+          value: "Reduced supply errors from 20% to under 5%.",
         },
       ],
     },

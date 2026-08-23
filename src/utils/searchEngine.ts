@@ -33,6 +33,13 @@ const ALIASES: Record<string, string[]> = {
   gcp: ["google cloud"],
   "ci/cd": ["cicd", "devops"],
   cicd: ["ci/cd", "devops"],
+  tpm: ["technical program manager", "project management", "scrum", "agile", "leadership", "program management"],
+  scrum: ["scrum master", "agile", "sprint", "kanban"],
+  agile: ["scrum", "kanban", "safe", "sprint"],
+  conops: ["concept of operations", "governance", "architecture"],
+  governance: ["arb", "carb", "sia", "conops", "compliance"],
+  roi: ["cost savings", "operational savings", "business analysis"],
+  ba: ["business analyst", "business analysis"],
 };
 
 /**

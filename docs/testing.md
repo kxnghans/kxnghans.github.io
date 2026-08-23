@@ -45,13 +45,13 @@ Hanson-Tube enforces a dual-verification strategy focusing on logical unit resil
 
 ## Active Test Suite Inventory
 
-The Vitest test suite verifies 16 test suites (73 unit and integration tests):
+The Vitest test suite verifies 16 test suites (74 unit and integration tests):
 
-1. **`utils/searchEngine.test.ts`** (12 tests):
+1. **`utils/searchEngine.test.ts`** (13 tests):
    - In-memory indexing and query caching.
    - Exact query, prefix, and substring matching.
    - Field-weighted score hierarchy (Title > Tags > Subtitle > Summary > Content).
-   - Tech term alias expansion (`c++`/`cpp`, `next.js`/`nextjs`, `ai`/`machine learning`).
+   - Tech and management alias expansion (`c++`/`cpp`, `next.js`/`nextjs`, `tpm`/`scrum`/`conops`, `ai`/`machine learning`).
    - Multi-token scoring and full-match bonus calculation.
    - Typo-tolerant fuzzy matching via Levenshtein distance.
    - Navigation category ordering and relevance tie-breaking.

@@ -44,6 +44,7 @@ const ProfileSummaryCard = () => (
         <div className="mt-2 text-xs text-gray-500 sm:text-sm dark:text-gray-400">
           <p>Masters in Data Science - UC Berkeley</p>
           <p>Bachelors in Electrical Engineering - UCCS</p>
+          <p>Active Secret Security Clearance</p>
         </div>
       </div>
     </div>

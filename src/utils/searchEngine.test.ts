@@ -109,6 +109,19 @@ describe("SearchEngine class", () => {
     expect(results.some((r) => r.id === "skill-0")).toBe(true);
   });
 
+  it("resolves management & governance aliases (e.g. 'ts' finds TypeScript, 'tpm' tokenizes correctly)", () => {
+    const tpmTokens = tokenize("TPM");
+    expect(tpmTokens).toContain("tpm");
+    expect(tpmTokens).toContain("technical program manager");
+    expect(tpmTokens).toContain("scrum");
+    expect(tpmTokens).toContain("agile");
+
+    const conopsTokens = tokenize("CONOPS");
+    expect(conopsTokens).toContain("conops");
+    expect(conopsTokens).toContain("concept of operations");
+    expect(conopsTokens).toContain("governance");
+  });
+
   it("tolerates typos in search queries (e.g. 'Typecript' finds TypeScript)", () => {
     const results = engine.search("Typecript");
     expect(results.length).toBeGreaterThan(0);
