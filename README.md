@@ -1,6 +1,6 @@
 # Hanson-Tube | Professional Portfolio
 
-Hanson-Tube is an interactive web portfolio built with React 19, TypeScript, and Tailwind CSS. It includes voice search, neumorphic dark mode, and a modular data layer for work history, projects, and engineering skills.
+Hanson-Tube is an interactive web portfolio built with React, TypeScript, and Tailwind CSS. It includes voice search, neumorphic dark mode, and a modular data layer for work history, projects, and engineering skills.
 
 ---
 
@@ -8,14 +8,14 @@ Hanson-Tube is an interactive web portfolio built with React 19, TypeScript, and
 
 | Layer                  | Technology                                                   |
 | :--------------------- | :----------------------------------------------------------- |
-| **Frontend Framework** | React 19 (Functional Components, Hooks, Context API)         |
-| **Language**           | TypeScript 5.8+ (Strict Type-Checking)                       |
-| **Build Tooling**      | Vite 7, `@vitejs/plugin-react-swc` (SWC Fast Refresh)        |
-| **Styling**            | Tailwind CSS 4 (`@tailwindcss/vite`, `@theme` Design Tokens) |
+| **Frontend Framework** | React (Functional Components, Hooks, Context API)            |
+| **Language**           | TypeScript (Strict Type-Checking)                            |
+| **Build Tooling**      | Vite, `@vitejs/plugin-react-swc` (SWC Fast Refresh)          |
+| **Styling**            | Tailwind CSS (`@tailwindcss/vite`, `@theme` Design Tokens)   |
 | **Offline & PWA**      | Workbox Window & `vite-plugin-pwa` (Service Worker Caching)  |
-| **Package Manager**    | pnpm (`pnpm@11.9.0`)                                         |
+| **Package Manager**    | pnpm                                                         |
 | **State Management**   | React Context API (`ThemeContext`, `SearchContext`)          |
-| **Testing**            | Vitest 3, React Testing Library, JSDOM (15 Passing Suites, 69 Tests) |
+| **Testing**            | Vitest, React Testing Library, JSDOM (16 Passing Suites, 73 Tests) |
 | **Deployment**         | GitHub Pages (via `gh-pages`)                                |
 | **Icons**              | React Icons (`react-icons/fa`, `react-icons/fa6`)            |
 | **Forms & Toasts**     | React Hook Form, Sonner, EmailJS Browser                     |
@@ -85,7 +85,7 @@ kxnghans.github.io/ [Root]
 │   ├── App.tsx               # [Orchestration Layer] Root routing and dynamic views
 │   ├── index.css             # [Design System] Tailwind v4 tokens & neumorphic shadows
 │   └── main.tsx              # [Entry Point] DOM mounting
-├── eslint.config.js          # ESLint 9 flat configuration
+├── eslint.config.js          # ESLint flat configuration
 ├── tsconfig.json             # Strict TypeScript compiler options
 ├── tsconfig.node.json        # TypeScript Node config for Vite
 ├── vite.config.ts            # Vite build, React SWC, PWA, and test configuration
@@ -135,7 +135,7 @@ kxnghans.github.io/ [Root]
 ## Coding Standards
 
 - **Logic**: Prefer functional components and hooks over class components.
-- **Styling**: Tailwind CSS 4 utility classes; reserve `src/index.css` for custom `@theme` variables and neumorphic shadow definitions.
+- **Styling**: Tailwind CSS utility classes; reserve `src/index.css` for custom `@theme` variables and neumorphic shadow definitions.
 - **Data**: Keep data decoupled from UI; all content resides in `src/data/` as the Single Source of Truth (SSOT).
 - **Testing**: UI components, custom hooks, and pure utilities must maintain unit test coverage in `*.test.tsx` and `*.test.ts`.
 

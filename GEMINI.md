@@ -4,10 +4,10 @@ This document codifies the core architecture, constraints, and interaction guide
 
 ## 🛠 Preferred Tech Stack
 
-- **Frontend**: React 19 (Hooks, Context API) and TypeScript 5.8+. NO Redux or Zustand; stick to the native Context API for global state.
-- **Styling**: Tailwind CSS 4 (`@tailwindcss/vite`), integrated with custom `@theme` and Neumorphic tokens in `src/index.css`.
-- **Build/Routing**: Vite 7 with `@vitejs/plugin-react-swc`. The app is an SPA using custom state-based routing (`activePage` in `App.tsx`) with `React.lazy` code splitting, NOT `react-router-dom`.
-- **Package Manager**: pnpm (`packageManager: pnpm@11.9.0`).
+- **Frontend**: React (Hooks, Context API) and TypeScript. NO Redux or Zustand; stick to the native Context API for global state.
+- **Styling**: Tailwind CSS (`@tailwindcss/vite`), integrated with custom `@theme` and Neumorphic tokens in `src/index.css`.
+- **Build/Routing**: Vite with `@vitejs/plugin-react-swc`. The app is an SPA using custom state-based routing (`activePage` in `App.tsx`) with `React.lazy` code splitting, NOT `react-router-dom`.
+- **Package Manager**: pnpm.
 - **Testing**: Vitest with React Testing Library (RTL) and JSDOM.
 - **Form/Validation**: React Hook Form, Sonner for Toast notifications, EmailJS for contact dispatch.
 
@@ -27,5 +27,5 @@ This document codifies the core architecture, constraints, and interaction guide
 
 - **Surgical Precision**: Only modify the files directly relevant to the current objective. Avoid unrelated refactoring.
 - **Communication**: Be direct and concise. State your technical intent clearly. Provide progress updates during multi-step tasks.
-- **Documentation Maintenance**: When adding a new feature, you must also update the relevant markdown files in `/docs` to reflect the new architecture or state transition.
+- **Documentation Maintenance**: When adding a new feature, you must also update the relevant markdown files in `/docs` to reflect the new architecture or state transition. All file references in `/docs` must use relative paths.
 - **Component Architecture**: Always split logic from UI. If a component exceeds 150 lines, refactor it by extracting smaller primitive components or custom hooks.

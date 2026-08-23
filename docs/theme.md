@@ -8,7 +8,7 @@ Hanson-Tube employs a Neumorphic design system. This aesthetic relies on precise
 
 ## Centralized Theme Management (`ThemeContext`)
 
-Theme state is managed globally through React Context via [`src/context/ThemeContext.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/context/ThemeContext.tsx) and mounted at the root in [`src/main.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/main.tsx).
+Theme state is managed globally through React Context via [`src/context/ThemeContext.tsx`](../src/context/ThemeContext.tsx) and mounted at the root in [`src/main.tsx`](../src/main.tsx).
 
 ### Lifecycle & Resolution Precedence
 
@@ -30,9 +30,9 @@ const { theme, setTheme, toggleTheme, isDarkMode } = useTheme();
 
 ---
 
-## Token Architecture (Tailwind CSS 4)
+## Token Architecture (Tailwind CSS)
 
-Design tokens are defined directly via Tailwind CSS 4's `@theme` directive and `@layer components` inside [`src/index.css`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/index.css), replacing legacy configuration files.
+Design tokens are defined directly via Tailwind CSS's `@theme` directive and `@layer components` inside [`src/index.css`](../src/index.css), replacing legacy configuration files.
 
 ### 1. Elevated Surface (Outset)
 
@@ -53,17 +53,17 @@ Design tokens are defined directly via Tailwind CSS 4's `@theme` directive and `
 ### 3. Modal Floating Surface
 
 - **Token / Class**: `modal-shadow` + `bg-gray-100 dark:bg-dark-card`
-- **Rule**: Applied to overlay modal popups ([`ProjectModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ProjectModal.tsx), [`DetailModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/DetailModal.tsx)) composed via [`ModalShell.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ModalShell.tsx). Top and left specular highlights are replaced with a lighter ambient shadow to prevent harsh top-edge glare on elevated backdrops.
+- **Rule**: Applied to overlay modal popups ([`ProjectModal.tsx`](../src/components/modals/ProjectModal.tsx), [`DetailModal.tsx`](../src/components/modals/DetailModal.tsx)) composed via [`ModalShell.tsx`](../src/components/modals/ModalShell.tsx). Top and left specular highlights are replaced with a lighter ambient shadow to prevent harsh top-edge glare on elevated backdrops.
 - **Shadow Vector**:
   - **Light Mode**: `-4px -4px 14px rgba(0, 0, 0, 0.08)` (subtle top-left ambient shadow) / `6px 6px 20px rgba(0, 0, 0, 0.18)` (bottom-right primary shadow).
   - **Dark Mode**: `-4px -4px 16px rgba(0, 0, 0, 0.40)` (subtle top-left ambient shadow) / `8px 8px 24px rgba(0, 0, 0, 0.75)` (bottom-right primary occlusion shadow).
   - **Mobile Responsive (`<= 768px`)**: `-2px -2px 8px` / `4px 4px 14px` (Light) and `-2px -2px 10px` / `5px 5px 18px` (Dark).
 - **Subcomponent Tokens**:
-  - **CAR Callouts** ([`ModalCARSection.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ModalCARSection.tsx)): `border-l-4` accents (Amber for Challenge, Blue for Action, Emerald for Outcome) with `bg-gray-200/60 dark:bg-white/[0.03]`.
+  - **CAR Callouts** ([`ModalCARSection.tsx`](../src/components/modals/ModalCARSection.tsx)): `border-l-4` accents (Amber for Challenge, Blue for Action, Emerald for Outcome) with `bg-gray-200/60 dark:bg-white/[0.03]`.
   - **Exposure & Tag Badges**: `rounded-md border border-gray-300/80 bg-gray-200/80 dark:border-white/10 dark:bg-white/[0.06] text-xs font-medium`.
-  - **Highlights Grid** ([`ModalHighlightsGrid.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ModalHighlightsGrid.tsx)): `grid-cols-1 sm:grid-cols-2` metadata cards with `border-gray-300/70 bg-gray-200/50 dark:border-white/5 dark:bg-white/[0.03]`.
+  - **Highlights Grid** ([`ModalHighlightsGrid.tsx`](../src/components/modals/ModalHighlightsGrid.tsx)): `grid-cols-1 sm:grid-cols-2` metadata cards with `border-gray-300/70 bg-gray-200/50 dark:border-white/5 dark:bg-white/[0.03]`.
   - **Action CTAs**: `bevel-button-light dark:bevel-button-dark active:scale-95` tactile feedback buttons.
-- **Usage**: [`ModalShell.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ModalShell.tsx), [`ProjectModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ProjectModal.tsx), [`DetailModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/DetailModal.tsx).
+- **Usage**: [`ModalShell.tsx`](../src/components/modals/ModalShell.tsx), [`ProjectModal.tsx`](../src/components/modals/ProjectModal.tsx), [`DetailModal.tsx`](../src/components/modals/DetailModal.tsx).
 
 
 ### 4. Active / Interactive Highlight

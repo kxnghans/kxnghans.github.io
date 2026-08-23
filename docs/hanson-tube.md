@@ -2,7 +2,7 @@
 
 ## How It Works
 
-Hanson-Tube is a client-side React 19 single-page app written in TypeScript 5.8+. It runs on Vite 7 with React SWC and Tailwind CSS 4. There is no backend server or database. All data lives in static, strongly-typed TypeScript files under `src/data/`, which gets bundled directly at build time and served through GitHub Pages.
+Hanson-Tube is a client-side React single-page app written in TypeScript. It runs on Vite with React SWC and Tailwind CSS. There is no backend server or database. All data lives in static, strongly-typed TypeScript files under `src/data/`, which gets bundled directly at build time and served through GitHub Pages.
 
 ---
 
@@ -31,13 +31,13 @@ Hanson-Tube is a client-side React 19 single-page app written in TypeScript 5.8+
 
 ### 1. Search & Voice Input
 
-- **Search Bar**: Typing in `SearchBar.tsx` updates `searchQuery` in `SearchContext`. Queries pass through `useDeferredValue` into our in-memory `SearchEngine` ([`searchEngine.ts`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/utils/searchEngine.ts)), which applies multi-token matching, field-weighted scoring (Exact > Title > Tags > Subtitle > Summary > Content), tech term alias expansion, and Levenshtein typo tolerance without blocking typing responsiveness. The search input features crisp YouTube red focus rings (`focus:ring-2 focus:ring-red-500`) and group focus-within icon activation.
+- **Search Bar**: Typing in `SearchBar.tsx` updates `searchQuery` in `SearchContext`. Queries pass through `useDeferredValue` into our in-memory `SearchEngine` ([`searchEngine.ts`](../src/utils/searchEngine.ts)), which applies multi-token matching, field-weighted scoring (Exact > Title > Tags > Subtitle > Summary > Content), tech term alias expansion, and Levenshtein typo tolerance without blocking typing responsiveness. The search input features crisp YouTube red focus rings (`focus:ring-2 focus:ring-red-500`) and group focus-within icon activation.
 - **Voice Search**: Clicking the microphone calls `window.SpeechRecognition` (or `webkitSpeechRecognition`). As the user speaks, interim text updates `searchQuery`. Active listening provides pulsating red visual cues (`bg-red-500 ring-2 ring-red-500 shadow-red-500/40 animate-gentle-pulse`). If the browser lacks speech support, the app catches the error and triggers a Sonner toast instead of crashing.
 - **Search Result Highlighting & Selection**: `SearchResults.tsx` and `searchUtils.tsx` highlight matched query terms with safe regex escaping and YouTube-themed red tinting (`bg-red-500/15 text-red-600 dark:bg-red-500/25 dark:text-red-400 font-semibold px-0.5 rounded-xs`). It also provides smart contextual snippet truncation centered around matching tokens. Clicking any search result changes `activePage` to that item's category and opens its detail modal via `setActiveModal(id)`.
 
 ### 2. Modals & Portals
 
-- Project cards and search results open full-screen overlays for deeper reading ([`ProjectModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/ProjectModal.tsx) and [`DetailModal.tsx`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/components/modals/DetailModal.tsx)).
+- Project cards and search results open full-screen overlays for deeper reading ([`ProjectModal.tsx`](../src/components/modals/ProjectModal.tsx) and [`DetailModal.tsx`](../src/components/modals/DetailModal.tsx)).
 - Modals render using `createPortal(modalContent, document.body)` to escape any parent CSS transforms, overflow constraints, or slide bounds, ensuring true `fixed inset-0` full-viewport presentation.
 - Mounting automatically locks background scrolling (`document.body.style.overflow = "hidden"`), and unmounting restores it.
 - Clicking the backdrop, the close button, or pressing `Escape` closes the modal. Focus is trapped within the dialog using `useFocusTrap.ts`.
@@ -56,5 +56,5 @@ Hanson-Tube is a client-side React 19 single-page app written in TypeScript 5.8+
 2. **Index Utility**: `src/utils/searchableData.ts` imports these datasets from `src/data/index.ts` and transforms them into a structured search index with `{ id, title, subtitle?, tags?, summary?, content, category, location }`.
 3. **Consumption**:
    - Pages import their respective data files directly to render cards and lists.
-   - `SearchContext` uses `SearchEngine` ([`searchEngine.ts`](file:///C:/Users/kobby/Downloads/gitProjects/kxnghans.github.io/src/utils/searchEngine.ts)) and `searchableData.ts` for instant scoring and filtering.
+   - `SearchContext` uses `SearchEngine` ([`searchEngine.ts`](../src/utils/searchEngine.ts)) and `searchableData.ts` for instant scoring and filtering.
 4. **Local Images**: Media assets live in `public/assets/generated/` and `src/assets/`, referenced directly by path.

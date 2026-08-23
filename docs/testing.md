@@ -8,10 +8,10 @@ Hanson-Tube enforces a dual-verification strategy focusing on logical unit resil
 
 ## Core Tooling & Test Pipeline
 
-- **Test Runner**: Vitest 3.x with native Vite integration for rapid ESM-native execution.
+- **Test Runner**: Vitest with native Vite integration for rapid ESM-native execution.
 - **DOM Verification**: React Testing Library (RTL) paired with `@testing-library/jest-dom`.
 - **Environment**: JSDOM.
-- **Linting & Code Standards**: ESLint 9 Flat Config (`eslint.config.js`) enforcing `react-hooks` and `jsx-a11y` accessibility rules.
+- **Linting & Code Standards**: ESLint Flat Config (`eslint.config.js`) enforcing `react-hooks` and `jsx-a11y` accessibility rules.
 - **Formatting**: Prettier with `prettier-plugin-tailwindcss`.
 
 ### Execution Commands
@@ -38,14 +38,14 @@ Hanson-Tube enforces a dual-verification strategy focusing on logical unit resil
    - The `Header.tsx` component checks `window.SpeechRecognition || window.webkitSpeechRecognition`.
    - When unsupported (or denied), clicking the mic triggers a Sonner toast notifying the user and gracefully returns without throwing unhandled exceptions.
 
-3. **EmailJS Contact Form Throttling**:
-   - Form submission in `ContactPage.tsx` disables the submit button during submission (`isLoading`) and upon resolution to prevent duplicate dispatches.
+3. **EmailJS Contact Form Throttling & Cooldown**:
+   - Form submission in `ContactPage.tsx` enforces a 60-second cooldown timer via `localStorage` (`SUBMIT_COOLDOWN_MS = 60000`) and disables the submit button during flight (`isLoading`) and on resolution to prevent duplicate dispatches and abuse.
 
 ---
 
 ## Active Test Suite Inventory
 
-The Vitest test suite verifies 15 test suites (69 unit and integration tests):
+The Vitest test suite verifies 16 test suites (73 unit and integration tests):
 
 1. **`utils/searchEngine.test.ts`** (12 tests):
    - In-memory indexing and query caching.
@@ -125,3 +125,9 @@ The Vitest test suite verifies 15 test suites (69 unit and integration tests):
 
 15. **`hooks/usePWA.test.tsx`** (1 test):
     - Service worker registration lifecycle and online/offline event listener tracking.
+
+16. **`pages/ContactPage.test.tsx`** (4 tests):
+    - Contact links and input fields rendering.
+    - Form submission via EmailJS and `localStorage` cooldown timestamp storage.
+    - Cooldown rate limiting enforcement and countdown error toast notification.
+    - Graceful error handling on EmailJS failure.

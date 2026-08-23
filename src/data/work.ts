@@ -6,7 +6,7 @@ export const workData: WorkExperience[] = [
     imageUrl: "/assets/generated/work/lockheed-martin.webp",
     summary: [
       "Lockheed Martin Space",
-      "Role: Systems Engineer & Business Analyst",
+      "Role: Enterprise Cloud Architecture",
       "Focus: OpenShift SNO, CONOPS, SBOM, Kubernetes",
       "Impact: 10x Test Cycle Reduction & $1M+ Program ROI",
     ],

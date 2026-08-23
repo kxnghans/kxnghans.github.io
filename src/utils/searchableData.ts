@@ -27,7 +27,7 @@ const getProjectTags = (item?: ProjectItem): string[] => {
   if (!item) return [];
   const tags: string[] = [];
 
-  // Extract from summary lines (e.g., "Stack: React Native, Expo, SQLite", "Platform: Next.js 16")
+  // Extract from summary lines (e.g., "Stack: React Native, Expo, SQLite", "Platform: Next.js")
   item.summary?.forEach((line) => {
     const parts = line.split(":");
     if (parts.length > 1) {

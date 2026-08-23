@@ -10,8 +10,8 @@ import type { SearchableItem } from "../types/search";
 
 describe("searchEngine utilities", () => {
   it("escapes regex special characters safely", () => {
-    expect(escapeRegExp("React (v19) [Hooks] + Vite?")).toBe(
-      "React \\(v19\\) \\[Hooks\\] \\+ Vite\\?",
+    expect(escapeRegExp("React (Hooks) [UI] + Vite?")).toBe(
+      "React \\(Hooks\\) \\[UI\\] \\+ Vite\\?",
     );
   });
 
@@ -47,7 +47,7 @@ describe("SearchEngine class", () => {
       title: "CaroHans Event Rentals (ERMS)",
       subtitle: "CaroHans – Event Rental Management System",
       tags: ["Next.js", "Supabase", "Cloudflare Pages", "PostgreSQL"],
-      summary: "Venture: HansonCreations Studio. Platform: Next.js 16.",
+      summary: "Venture: HansonCreations Studio. Platform: Next.js.",
       content: "Managing event rental equipment in Accra, Ghana with live stock checks and automated return tracking.",
       category: "Projects",
       location: { pageName: "Projects", componentType: "modal", itemId: 0 },
@@ -128,7 +128,7 @@ describe("SearchEngine class", () => {
     const results = engine.search("C++");
     expect(results.some((r) => r.id === "skill-0")).toBe(true);
 
-    expect(() => engine.search("React (Hooks) [v19] + Vite?")).not.toThrow();
+    expect(() => engine.search("React (Hooks) [UI] + Vite?")).not.toThrow();
   });
 
   it("uses LRU cache for repeated queries", () => {

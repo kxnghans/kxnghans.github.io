@@ -2,11 +2,47 @@ import type { ProjectItem } from "../types/data";
 
 export const projectData: ProjectItem[] = [
   {
+    title: "Portfolio Showcase",
+    imageUrl: "/assets/generated/projects/portfolio-showcase.webp",
+    summary: [
+      "Tech: React, Vite, Tailwind CSS",
+      "Role: Sole Developer",
+      "Focus: Interactive UI/UX & Neumorphic Design",
+    ],
+    details: {
+      title: "Portfolio Showcase",
+      challenge:
+        "A static resume did not effectively show interactive apps, real metrics, and full-stack projects.",
+      action:
+        "Built a responsive single-page web app with React, TypeScript, Vite, and Tailwind CSS. Added interactive modals, carousels, voice search, offline PWA caching, and dark mode.",
+      outcome:
+        "Shipped a fast, accessible portfolio hosted on GitHub Pages that displays work history, ventures, and code demos in one place.",
+      liveLink: "https://kxnghans.github.io/",
+      codeLink: "https://github.com/kxnghans/kxnghans.github.io",
+      highlights: [
+        {
+          label: "Tech Stack",
+          value: "React, TypeScript, Tailwind CSS, Vite.",
+        },
+        {
+          label: "Key Decisions",
+          value:
+            "Used React and Vite for fast builds and Tailwind CSS for custom dark mode styling.",
+        },
+        {
+          label: "PWA & Offline",
+          value:
+            "Configured Workbox precaching and Service Worker for full offline availability.",
+        },
+      ],
+    },
+  },
+  {
     title: "CaroHans Event Rentals (ERMS)",
     imageUrl: "/assets/generated/projects/carohans-hub.webp",
     summary: [
       "Venture: HansonCreations Studio",
-      "Platform: Next.js 16, Supabase, Cloudflare Pages",
+      "Platform: Next.js, Supabase, Cloudflare Pages",
       "Domain: Event Rental Operations (Accra, Ghana)",
     ],
     details: {
@@ -14,7 +50,7 @@ export const projectData: ProjectItem[] = [
       challenge:
         "Managing event rental equipment in Accra, Ghana, relied on manual order logs, missing return dates, and disconnected inventory counts.",
       action:
-        "Built a full rental management system with a client booking portal and an admin warehouse dashboard using Next.js 16, Supabase, and Cloudflare Pages. Implemented live stock checks, order dispatch lifecycles, and automated return tracking.",
+        "Built a full rental management system with a client booking portal and an admin warehouse dashboard using Next.js, Supabase, and Cloudflare Pages. Implemented live stock checks, order dispatch lifecycles, and automated return tracking.",
       outcome:
         "Cut booking turnaround time, prevented double bookings across warehouse inventory, and automated pickup and return schedules.",
       liveLink: "https://hansoncreations.com/apps/carohans",
@@ -49,7 +85,7 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "MilCalc – Military Pension & Fitness Mobile Suite",
       challenge:
-        "Military personnel and veterans lacked a reliable offline calculator for Air Force fitness tests (DAFMAN 36-2905) and comparisons between High-3 and Blended Retirement System (BRS) pensions.",
+        "Military personnel and veterans lacked a single centralized, offline solution for calculating Air Force fitness scores (DAFMAN 36-2905), drill pay, and High-3 vs. Blended Retirement System (BRS) pension comparisons, having to navigate fragmented websites and disconnected spreadsheets.",
       action:
         "Built MilCalc using React Native, Expo, MMKV, and SQLite for instant offline calculations. Programmed official Air Force physical fitness scoring tables (including altitude adjustments and waist-to-height ratio) alongside BRS, High-3, and military pay calculators.",
       outcome:
@@ -88,7 +124,7 @@ export const projectData: ProjectItem[] = [
       challenge:
         "Youth groups and campus ministries lacked modern, fast-paced party games designed for in-person and remote group gatherings.",
       action:
-        "Built a cross-platform mobile game using React Native, Expo, a custom Claymorphism 3D design system, and an isolated state engine (@repo/engine). Connected game rooms in real time using Firebase Realtime Database.",
+        "Built a cross-platform mobile game using React Native, Expo, a custom Claymorphism 3D design system, and an isolated deterministic state engine. Connected game rooms in real time using Firebase Realtime Database.",
       outcome:
         "Delivered interactive party games with live room codes, quick player matchmaking, and responsive multiplayer state sync.",
       liveLink: "https://hansoncreations.com/apps/gospelgames",
@@ -97,7 +133,7 @@ export const projectData: ProjectItem[] = [
         {
           label: "Monorepo Setup",
           value:
-            "Separated pure game rules (@repo/engine) from UI components and mobile client.",
+            "Separated pure game rules and state transitions from UI components and mobile client.",
         },
         {
           label: "Design System",
@@ -162,7 +198,7 @@ export const projectData: ProjectItem[] = [
       challenge:
         "Transcribing audio and chords into playable guitar tabs is difficult because guitar fretboards offer multiple ways to play the same note, and simple rule sets ignore hand stretch limits and fretboard ergonomics.",
       action:
-        "Trained a PyTorch TabTransformer neural network paired with a proximate Viterbi dynamic programming pathfinder (prox_viterbi_transformer) for my UC Berkeley capstone. Deployed the inference pipeline to Cloudflare Workers for edge execution.",
+        "Trained a PyTorch TabTransformer neural network paired with a proximate Viterbi dynamic programming pathfinder for my UC Berkeley capstone. Deployed the inference pipeline to Cloudflare Workers for edge execution.",
       outcome:
         "Generated natural, playable tablature fingerings in real time with sub-100ms inference on the edge.",
       liveLink: "https://guitar-capstone.kobbyhanson.workers.dev/",
@@ -216,42 +252,6 @@ export const projectData: ProjectItem[] = [
         {
           label: "Networking",
           value: "Expanded client base across real estate, athletics, and weddings.",
-        },
-      ],
-    },
-  },
-  {
-    title: "Portfolio Showcase",
-    imageUrl: "/assets/generated/projects/portfolio-showcase.webp",
-    summary: [
-      "Tech: React 19, Vite, Tailwind CSS 4",
-      "Role: Sole Developer",
-      "Focus: Interactive UI/UX & Neumorphic Design",
-    ],
-    details: {
-      title: "Portfolio Showcase",
-      challenge:
-        "A static resume did not effectively show interactive apps, real metrics, and full-stack projects.",
-      action:
-        "Built a responsive single-page web app with React 19, TypeScript, Vite, and Tailwind CSS 4. Added interactive modals, carousels, voice search, offline PWA caching, and dark mode.",
-      outcome:
-        "Shipped a fast, accessible portfolio hosted on GitHub Pages that displays work history, ventures, and code demos in one place.",
-      liveLink: "https://kxnghans.github.io/",
-      codeLink: "https://github.com/kxnghans/kxnghans.github.io",
-      highlights: [
-        {
-          label: "Tech Stack",
-          value: "React 19, TypeScript 5.8, Tailwind CSS 4, Vite 7.",
-        },
-        {
-          label: "Key Decisions",
-          value:
-            "Used React and Vite for fast builds and Tailwind CSS for custom dark mode styling.",
-        },
-        {
-          label: "PWA & Offline",
-          value:
-            "Configured Workbox precaching and Service Worker for full offline availability.",
         },
       ],
     },

@@ -29,12 +29,32 @@ To handle form submissions on `ContactPage.tsx` without hosting a custom server 
 
 - **Workflow**:
   1. User fills out contact form validated by React Hook Form.
-  2. Submission triggers `@emailjs/browser` SDK directly from the client.
-  3. Payload is routed to EmailJS REST endpoints and delivered to the recipient inbox.
-  4. Instant visual feedback is delivered via Sonner toasts.
-- **Configuration & Security**:
+  2. Submission checks client-side `localStorage` cooldown timestamp (`hanson_last_contact_sent`). If within the 60-second cooldown window (`SUBMIT_COOLDOWN_MS = 60000`), submission is halted and an informational cooldown toast is displayed.
+  3. Validated submissions trigger `@emailjs/browser` SDK directly from the client.
+  4. On successful dispatch, `localStorage` records the timestamp, the form resets, and a success toast is presented via Sonner.
+  5. Payload is routed to EmailJS REST endpoints and delivered to the recipient inbox.
+- **Configuration & Abuse Prevention (`VIBE-001`)**:
   - Environment variables (`VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, `VITE_EMAILJS_PUBLIC_KEY`) are documented in `.env.example` and consumed via `import.meta.env`.
-  - The EmailJS dashboard domain whitelist restricts API usage to `https://kxnghans.github.io` and local development origins.
+  - The EmailJS dashboard domain whitelist restricts API usage strictly to `https://kxnghans.github.io` and authorized local development origins.
+  - EmailJS dashboard template settings support Google reCAPTCHA v3 or Cloudflare Turnstile integration to reject headless bot dispatches at the provider edge.
+
+---
+
+## Cloud Storage & CDN Media Staging (`VIBE-004`)
+
+When utilizing Google Cloud Storage (`gs://portfolio_showcase`) as a fallback or origin for external media assets and downloads:
+
+- **Uniform Bucket-Level Access**: Bucket ACLs enforce uniform access policies to prevent individual object permission drift:
+  ```sh
+  gcloud storage buckets update gs://portfolio_showcase --uniform-bucket-level-access
+  ```
+- **Read-Only Public IAM Policy**: Public access is restricted strictly to read-only retrieval without write, delete, or IAM administration grants:
+  ```sh
+  gcloud storage buckets add-iam-policy-binding gs://portfolio_showcase \
+    --member=allUsers \
+    --role=roles/storage.objectViewer
+  ```
+- **Asset Integrity**: PDF documents, demo videos, and project archives hosted in bucket storage are served over HTTPS TLS with public read-only headers.
 
 ---
 

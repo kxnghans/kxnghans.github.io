@@ -7,10 +7,10 @@ export const skillsData: SkillCategory[] = [
     details: [
       { name: "Python (PyTorch, Pandas, NumPy)", priority: 1 },
       { name: "TypeScript / JavaScript", priority: 1 },
-      { name: "React 19 & React Native (Expo)", priority: 1 },
+      { name: "React & React Native (Expo)", priority: 1 },
       { name: "SQL (PostgreSQL, SQLite)", priority: 1 },
-      { name: "Next.js 16 & Supabase", priority: 2 },
-      { name: "Tailwind CSS 4 & HTML5", priority: 2 },
+      { name: "Next.js & Supabase", priority: 2 },
+      { name: "Tailwind CSS & HTML5", priority: 2 },
       { name: "C / C++", priority: 2 },
       { name: "PHP & Vue.js", priority: 3 },
       { name: "Ansible & YAML", priority: 3 },
@@ -31,7 +31,7 @@ export const skillsData: SkillCategory[] = [
       subtitle: "Languages, Libraries, and Mobile/Web Ecosystems",
       details: [
         "Python (PyTorch, Pandas, NumPy, Scikit-Learn), TypeScript, JavaScript, SQL",
-        "React 19, React Native (Expo), Next.js 16, Vue.js, Tailwind CSS 4, HTML5/CSS3",
+        "React, React Native (Expo), Next.js, Vue.js, Tailwind CSS, HTML5/CSS3",
         "C, C++, PHP, Ansible, YAML, Markdown, Keras, TensorFlow",
       ],
       exposure: [

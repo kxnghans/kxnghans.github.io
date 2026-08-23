@@ -15,6 +15,9 @@ export interface ContactFormValues {
   message: string;
 }
 
+const SUBMIT_COOLDOWN_MS = 60 * 1000;
+const STORAGE_KEY_LAST_SENT = "hanson_last_contact_sent";
+
 const ContactPage = () => {
   const {
     register,
@@ -28,6 +31,20 @@ const ContactPage = () => {
   const [isError, setIsError] = useState(false);
 
   const sendEmail: SubmitHandler<ContactFormValues> = (data) => {
+    const lastSent = localStorage.getItem(STORAGE_KEY_LAST_SENT);
+    if (lastSent) {
+      const elapsed = Date.now() - Number(lastSent);
+      if (elapsed < SUBMIT_COOLDOWN_MS) {
+        const remainingSeconds = Math.ceil(
+          (SUBMIT_COOLDOWN_MS - elapsed) / 1000,
+        );
+        toast.error(
+          `Please wait ${remainingSeconds}s before sending another message.`,
+        );
+        return;
+      }
+    }
+
     setIsLoading(true);
     emailjs
       .send(
@@ -37,6 +54,7 @@ const ContactPage = () => {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
       )
       .then(() => {
+        localStorage.setItem(STORAGE_KEY_LAST_SENT, String(Date.now()));
         toast.success("Message sent successfully!");
         reset();
         setIsSuccess(true);
