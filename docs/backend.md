@@ -16,8 +16,9 @@ Instead of a relational or document database, the application utilizes a modular
 
 - **Source of Truth (`src/data/`)**: All domain records are maintained as modular, typed TypeScript modules (`projects.ts`, `skills.ts`, `work.ts`, `education.ts`, `honors.ts`, `community.ts`, `certifications.ts`, `contactData.ts`, `formData.ts`, `navigation.ts`).
 - **Barrel Export (`src/data/index.ts`)**: Provides a centralized entry point exporting all data entities.
-- **Materialized Search Index (`src/utils/searchableData.ts`)**: Aggregates all dataset arrays into an in-memory searchable collection structured as `{ id, title, content, category, componentType }` for the Global Search Context.
-- **Media Asset Strategy**: Heavy media assets are batch-processed via Sharp (`scripts/convert-assets.mjs`, `pnpm run assets:convert`) to compressed WebP format (achieving 83.4% payload reduction from 37.5MB down to 6.2MB) and organized locally under `public/assets/generated/`. UI consumers load assets asynchronously via `LazyImage.tsx` with skeleton shimmer states, native `loading="lazy"`, and `decoding="async"`.
+- **Materialized Search Index (`src/utils/searchableData.ts`)**: Aggregates all dataset arrays into an in-memory searchable collection structured as `{ id, title, content, category, componentType }` for the Global Search Context. Filtering uses React's `useDeferredValue` to batch matching and eliminate UI hitching.
+- **Media Asset Strategy**: Source imagery is maintained in a local `media/` directory and batch-processed via Sharp (`scripts/convert-assets.mjs`, `pnpm run assets:convert`) to high-compression WebP format under `public/assets/generated/` (cutting deploy payload from 40.6MB down to 6.0MB). UI consumers load assets asynchronously via `LazyImage.tsx` with skeleton shimmer states, native `loading="lazy"`, and `decoding="async"`.
+- **Workbox Precaching**: Production service worker precaches application shell assets (~413 KiB) while runtime image requests are served via `CacheFirst` browser caching.
 
 ---
 

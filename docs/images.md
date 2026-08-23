@@ -117,6 +117,6 @@ This document governs the design system and visual generation pipeline for all c
 
 ## 4. Execution Workflow
 
-1. Generate each 16:9 asset using high-fidelity photorealistic and 3D clay prompts.
-2. Convert and save all assets directly to `.webp` and `.jpg` in `public/assets/generated/<category>/<filename>`.
+1. Ingest/generate each 16:9 source asset into `media/<category>/<filename>.jpg` (non-deployed local raw source repository).
+2. Execute `pnpm run assets:convert` (`scripts/convert-assets.mjs`) to batch-convert and optimize all assets to high-compression WebP in `public/assets/generated/<category>/<filename>.webp`.
 3. Verify visual quality, aspect ratio, and theme compatibility across light and dark modes.

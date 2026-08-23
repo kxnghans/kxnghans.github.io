@@ -31,7 +31,7 @@ Hanson-Tube enforces a dual-verification strategy focusing on logical unit resil
 
 1. **Offline/Low-Bandwidth Resilience**:
    - All domain data is bundled statically into the application chunk. Once the bundle loads, navigation and global search function without active internet connectivity.
-   - PWA Workbox service worker precaches application assets and caches WebP media at runtime.
+   - PWA Workbox service worker precaches application shell assets (~413 KiB) and caches WebP media at runtime using a `CacheFirst` strategy.
    - Images in `public/assets/generated/` and `src/assets/` feature descriptive `alt` tags and fallback card backgrounds.
 
 2. **Web Speech API Graceful Fallback**:
@@ -45,7 +45,7 @@ Hanson-Tube enforces a dual-verification strategy focusing on logical unit resil
 
 ## Active Test Suite Inventory
 
-As of current milestone, the Vitest test suite verifies 13 test suites (46 unit/integration tests):
+The Vitest test suite verifies 13 test suites (49 unit and integration tests):
 
 1. **`App.test.tsx`** (4 tests):
    - Root mounting and default view rendering.
@@ -63,7 +63,7 @@ As of current milestone, the Vitest test suite verifies 13 test suites (46 unit/
    - `onClose` callback invocation on route selection.
 
 4. **`context/SearchContext.test.tsx`** (4 tests):
-   - Context provider initialization.
+   - Context provider initialization and deferred query updates (`useDeferredValue`).
    - In-memory data filtering across `searchableData`.
    - Modal state management (`openModal`, `closeModal`).
 
@@ -72,13 +72,16 @@ As of current milestone, the Vitest test suite verifies 13 test suites (46 unit/
    - LocalStorage persistence and `document.documentElement` class synchronization.
    - `toggleTheme` and `setTheme` state transitions.
 
-6. **`components/modals/ProjectModal.test.tsx`** (4 tests):
-   - Portal mounting to `document.body` and detail rendering.
+6. **`components/modals/ProjectModal.test.tsx`** (5 tests):
+   - Portal mounting to `document.body` and detail rendering via `ModalShell`.
+   - CAR (Challenge/Action/Outcome) callouts and key highlights grid rendering.
+   - Video preview and action link buttons rendering.
    - Dismissal via backdrop click, close button, and Escape key.
-   - Body scroll locking during presentation.
+   - Body scroll locking and restoration during presentation.
 
-7. **`components/modals/DetailModal.test.tsx`** (3 tests):
-   - Portal mounting and structured content rendering.
+7. **`components/modals/DetailModal.test.tsx`** (5 tests):
+   - Portal mounting and structured modular content rendering.
+   - Categorized list and skill exposure badging rendering.
    - Dismissal triggers and scroll restoration.
 
 8. **`components/ui/LazyImage.test.tsx`** (4 tests):
@@ -97,9 +100,7 @@ As of current milestone, the Vitest test suite verifies 13 test suites (46 unit/
     - Dynamic timeline section header, period, and children rendering.
 
 12. **`hooks/useFocusTrap.test.tsx`** (3 tests):
-    - Focus trapping within modal dialogs.
-    - Forward and backward Tab cycling.
-    - Focus restoration to original trigger on unmount.
+    - Focus trapping within modal dialogs and tab order cycling.
 
 13. **`hooks/usePWA.test.tsx`** (1 test):
-    - Service worker registration and offline/online network status tracking.
+    - Service worker registration lifecycle and online/offline event listener tracking.

@@ -126,7 +126,7 @@ flowchart LR
         direction LR
         UpdateQuery --> ContextState[["SearchContext.tsx"]]
         SearchableUtil --> ContextState
-        ContextState --> FilterAction["useMemo Keyword Matcher"]
+        ContextState --> FilterAction["useDeferredValue + useMemo Matcher"]
         FilterAction --> OutputResults["searchResults Dropdown"]
     end
 

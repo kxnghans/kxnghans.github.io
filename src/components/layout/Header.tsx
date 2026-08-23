@@ -292,15 +292,15 @@ const Header = ({ toggleSidebar, setActivePage, activePage }: HeaderProps) => {
             aria-label="Toggle Search"
             className={`transform rounded-full p-1.5 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none md:p-2 lg:hidden ${
               isSearchVisible
-                ? "bg-red-500 text-white shadow-md ring-2 shadow-red-500/40 ring-red-500 hover:shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1),_inset_-2px_-2px_4px_rgba(255,255,255,0.7)] dark:hover:border dark:hover:border-solid dark:hover:border-red-700"
-                : "bevel-light-inset bevel-dark-inset bg-gray-200/90 hover:bg-gray-300/80 hover:ring-1 hover:ring-red-500/40 dark:bg-[#141416] dark:hover:bg-[#1e1e22]"
+                ? "bg-red-500 text-white shadow-md shadow-red-500/40 hover:shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1),_inset_-2px_-2px_4px_rgba(255,255,255,0.7)] dark:ring-2 dark:ring-red-500 dark:hover:border dark:hover:border-solid dark:hover:border-red-700"
+                : "bevel-light-inset bevel-dark-inset bg-gray-200 hover:bg-gray-300 dark:bg-[#141416] dark:hover:bg-[#1e1e22]"
             }`}
           >
             <div className="flex h-5 w-5 items-center justify-center text-[1rem] sm:h-6 sm:w-6 md:text-[1.2rem]">
               <FaSearch
                 className={
                   isSearchVisible
-                    ? "text-white dark:text-gray-800"
+                    ? "text-white dark:text-gray-900"
                     : "text-gray-500 dark:text-gray-400"
                 }
               />

@@ -43,9 +43,9 @@ const SearchBar = ({
           placeholder={placeholderText}
           value={searchQuery}
           onChange={handleSearchChange}
-          className={`bevel-light-inset bevel-dark-inset w-full rounded-full border border-transparent bg-gray-200/90 py-2 pr-10 pl-10 text-sm transition-all duration-200 focus:border-red-500 focus:ring-2 focus:ring-red-500 focus:outline-none md:text-base dark:border-[#4a4a4a] dark:bg-[#141416] dark:focus:border-red-500 ${
+          className={`bevel-light-inset bevel-dark-inset w-full rounded-full bg-gray-200 py-2 pr-10 pl-10 text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 md:text-base dark:bg-[#141416] dark:focus:border-red-500 ${
             showVisualCues
-              ? "!border-red-500 shadow-md ring-2 shadow-red-500/30 ring-red-500"
+              ? "ring-2 ring-red-500 dark:!border-red-500 dark:shadow-md dark:shadow-red-500/30"
               : ""
           }`}
         />
@@ -54,7 +54,7 @@ const SearchBar = ({
             className={`transition-colors duration-200 ${
               showVisualCues
                 ? "text-red-500"
-                : "text-gray-500 group-focus-within:text-red-500 dark:text-gray-400 dark:group-focus-within:text-red-500"
+                : "text-gray-500 dark:text-gray-400 dark:group-focus-within:text-red-500"
             }`}
           />
         </div>
@@ -89,14 +89,14 @@ const SearchBar = ({
         type="button"
         onClick={toggleMic}
         aria-label="Toggle microphone"
-        className={`ml-3 transform rounded-full p-2 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:focus-visible:ring-offset-[#181818] ${
+        className={`ml-3 transform rounded-full p-2 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none dark:focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#181818] ${
           showVisualCues
-            ? "animate-gentle-pulse scale-105 bg-red-500 text-white shadow-lg ring-2 shadow-red-500/40 ring-red-500"
+            ? "animate-gentle-pulse scale-105 bg-red-500 text-white shadow-lg shadow-red-500/40 ring-2 ring-red-500"
             : isMicActive
-              ? "bevel-light-inset bevel-dark-inset bg-gray-200/90 ring-2 ring-red-500/60 dark:bg-[#141416]"
+              ? "bevel-light-inset bevel-dark-inset bg-gray-200 dark:bg-[#141416] dark:ring-2 dark:ring-red-500/60"
               : !isSpeechSupported
-                ? "bevel-light-inset bevel-dark-inset bg-gray-200/90 opacity-50 dark:bg-[#141416]"
-                : "bevel-light-inset bevel-dark-inset bg-gray-200/90 hover:bg-gray-300/80 hover:ring-1 hover:ring-red-500/40 dark:bg-[#141416] dark:hover:bg-[#1e1e22]"
+                ? "bevel-light-inset bevel-dark-inset bg-gray-200 opacity-50 dark:bg-[#141416]"
+                : "bevel-light-inset bevel-dark-inset bg-gray-200 hover:bg-gray-300 dark:bg-[#141416] dark:hover:bg-[#1e1e22]"
         }`}
       >
         <div className="flex h-5 w-5 items-center justify-center text-[1.2rem] sm:h-6 sm:w-6 md:text-[1.4rem]">
@@ -105,12 +105,12 @@ const SearchBar = ({
               showVisualCues && theme === "dark"
                 ? "text-gray-900 drop-shadow-sm"
                 : showVisualCues
-                  ? "text-white drop-shadow-sm"
+                  ? "text-white drop-shadow-md"
                   : isMicActive
-                    ? "text-red-500 dark:text-red-400"
+                    ? "text-gray-600 dark:text-red-400"
                     : !isSpeechSupported
                       ? "text-gray-400 dark:text-gray-600"
-                      : "text-gray-500 transition-colors hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400"
+                      : "text-gray-500 dark:text-gray-400 dark:hover:text-red-400"
             }
           />
         </div>

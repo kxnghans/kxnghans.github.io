@@ -31,7 +31,7 @@ Hanson-Tube is a client-side React 19 single-page app written in TypeScript 5.8+
 
 ### 1. Search & Voice Input
 
-- **Search Bar**: Typing in `SearchBar.tsx` updates `searchQuery` in `SearchContext`. A `useMemo` filter checks `searchableData` and returns matching titles, categories, and content. The search input features crisp YouTube red focus rings (`focus:ring-2 focus:ring-red-500`) and group focus-within icon activation.
+- **Search Bar**: Typing in `SearchBar.tsx` updates `searchQuery` in `SearchContext`. A `useDeferredValue` + `useMemo` filter checks `searchableData` and returns matching titles, categories, and content without blocking typing responsiveness. The search input features crisp YouTube red focus rings (`focus:ring-2 focus:ring-red-500`) and group focus-within icon activation.
 - **Voice Search**: Clicking the microphone calls `window.SpeechRecognition` (or `webkitSpeechRecognition`). As the user speaks, interim text updates `searchQuery`. Active listening provides pulsating red visual cues (`bg-red-500 ring-2 ring-red-500 shadow-red-500/40 animate-gentle-pulse`). If the browser lacks speech support, the app catches the error and triggers a Sonner toast instead of crashing.
 - **Search Result Highlighting & Selection**: `SearchResults.tsx` highlights matched query terms with YouTube-themed red tinting (`bg-red-500/15 text-red-600 dark:bg-red-500/25 dark:text-red-400 font-semibold px-0.5 rounded-xs`). Clicking any search result changes `activePage` to that item's category and opens its detail modal via `setActiveModal(id)`.
 

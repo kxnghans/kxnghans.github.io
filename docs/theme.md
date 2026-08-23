@@ -43,9 +43,11 @@ Design tokens are defined directly via Tailwind CSS 4's `@theme` directive and `
 
 ### 2. Recessed Surface (Inset)
 
-- **Token / Class**: `bevel-light-inset dark:neumorphic-inset-dark bg-gray-200 dark:bg-black`
+- **Token / Class**: `bevel-light-inset bevel-dark-inset bg-gray-200 dark:bg-[#141416]`
 - **Rule**: Applied to interactive inputs or well surfaces accepting user focus/input.
-- **Shadow Vector**: `inset 6px 6px 12px #1a1b1e` / `inset -6px -6px 12px #2e2f34`. Responsive adjustment to `inset 4px 4px 8px` on mobile (`<= 768px`).
+- **Shadow Vector**:
+  - **Light Mode (`bevel-light-inset`)**: `inset 2px 2px 4px rgba(0, 0, 0, 0.1)` / `inset -2px -2px 4px rgba(255, 255, 255, 0.7)` (responsive adjustment to `inset 1px 1px 3px` on mobile `<= 768px`).
+  - **Dark Mode (`bevel-dark-inset`)**: `border: 1px solid rgba(255, 255, 255, 0.08)` with `inset 2.5px 2.5px 5px rgba(0, 0, 0, 0.8)` / `inset -1.5px -1.5px 3px rgba(255, 255, 255, 0.06)` (responsive adjustment to `inset 1.5px 1.5px 3px` / `inset -1px -1px 2px` on mobile `<= 768px`).
 - **Usage**: Search Bar, Voice Input Buttons, Form Fields (`input`, `textarea`).
 
 ### 3. Modal Floating Surface
