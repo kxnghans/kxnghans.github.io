@@ -135,3 +135,131 @@ export interface FormFieldItem {
   placeholder: string;
   validation: FormFieldValidation;
 }
+
+export type ValueCategory =
+  | "financial"
+  | "efficiency"
+  | "scale"
+  | "governance";
+
+export type ValueDomain =
+  | "Defense & Space"
+  | "Enterprise & Fintech"
+  | "Military Operations"
+  | "Proprietary Ecosystem"
+  | "Academic & Community";
+
+export type ValueType = "quantitative" | "qualitative";
+
+export interface BeforeAfterMetric {
+  before: string;
+  after: string;
+  metricName: string;
+}
+
+export interface LifetimeMetric {
+  id: string;
+  title: string;
+  value: string;
+  label: string;
+  category: ValueCategory;
+  domain: ValueDomain;
+  type: ValueType;
+  description: string;
+  impactHighlight: string;
+  timeframe: string;
+  organization: string;
+  badge?: string;
+  beforeAfter?: BeforeAfterMetric;
+}
+
+export interface QualitativePillar {
+  id: string;
+  title: string;
+  domain: ValueDomain;
+  role: string;
+  organization: string;
+  timeframe: string;
+  summary: string;
+  competencies: string[];
+  car: {
+    context: string;
+    action: string;
+    result: string;
+  };
+  keyArtifacts: string[];
+}
+
+export interface RadarAxisPoint {
+  axis: string;
+  score: number;
+  years?: number;
+  tenureDisplay?: string;
+  benchmark: string;
+  description: string;
+  domain: ValueDomain;
+  category?: string;
+  era?: string;
+}
+
+export interface MultiplierPoint {
+  id: string;
+  label: string;
+  metric: string;
+  value: number;
+  displayValue: string;
+  baseline: string;
+  optimized: string;
+  domain: ValueDomain;
+  category?: string;
+  era?: string;
+  color: string;
+}
+
+export interface TimelinePoint {
+  period: string;
+  year: number;
+  era?: string;
+  cumulativeROI: number;
+  displayROI: string;
+  cumulativeHours: number;
+  displayHours: string;
+  milestone: string;
+}
+
+export interface LedgerEntry {
+  id: string;
+  label: string;
+  domain: ValueDomain;
+  amountM: number;
+}
+
+export interface DistributionPoint {
+  name: string;
+  value: number;
+  percentage: number;
+  color: string;
+  domain: ValueDomain;
+}
+
+export interface LifetimeValueData {
+  executiveSummary: {
+    totalFinancialROI: string;
+    totalHoursSaved: string;
+    maxAcceleration: string;
+    enterpriseScale: string;
+    auditAccuracy: string;
+    engineCoverage: string;
+    gpa: string;
+  };
+  metrics: LifetimeMetric[];
+  qualitativePillars: QualitativePillar[];
+  charts: {
+    radar: RadarAxisPoint[];
+    multipliers: MultiplierPoint[];
+    timeline: TimelinePoint[];
+    distribution: DistributionPoint[];
+  };
+}
+
+

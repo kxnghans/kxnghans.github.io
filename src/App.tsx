@@ -2,6 +2,8 @@ import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import Toast from "./components/ui/Toast";
 import { usePWA } from "./hooks/usePWA";
 
+import { FEATURE_FLAGS } from "./config/features";
+
 // Layout Components
 import Header from "./components/layout/Header";
 import Sidebar from "./components/layout/Sidebar";
@@ -10,11 +12,13 @@ import Sidebar from "./components/layout/Sidebar";
 import HomePage from "./pages/HomePage";
 
 // Code-Split Dynamic Route Views
+const ValuePage = lazy(() => import("./pages/ValuePage"));
 const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
 const EducationPage = lazy(() => import("./pages/EducationPage"));
 const WorkExperiencePage = lazy(() => import("./pages/WorkExperiencePage"));
 const HonorsPage = lazy(() => import("./pages/HonorsPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+
 
 const PageSkeleton = () => (
   <div
@@ -98,13 +102,13 @@ export default function App() {
       }
     };
 
-    document.addEventListener("mousedown", handleInteraction);
-    document.addEventListener("touchstart", handleInteraction);
-    document.addEventListener("scroll", handleInteraction, true);
+    window.addEventListener("click", handleInteraction, true);
+    window.addEventListener("touchstart", handleInteraction, true);
+    window.addEventListener("scroll", handleInteraction, true);
 
     return () => {
-      document.removeEventListener("mousedown", handleInteraction);
-      document.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("click", handleInteraction, true);
+      window.removeEventListener("touchstart", handleInteraction, true);
       document.removeEventListener("scroll", handleInteraction, true);
     };
   }, [isMediumScreen, isSidebarOpen]);
@@ -113,12 +117,22 @@ export default function App() {
     switch (activePage) {
       case "Home":
         return <HomePage />;
+      case "Value":
+        if (!FEATURE_FLAGS.showValuePage) {
+          return <HomePage />;
+        }
+        return (
+          <Suspense fallback={<PageSkeleton />}>
+            <ValuePage />
+          </Suspense>
+        );
       case "Projects":
         return (
           <Suspense fallback={<PageSkeleton />}>
             <ProjectsPage />
           </Suspense>
         );
+
       case "Education":
         return (
           <Suspense fallback={<PageSkeleton />}>

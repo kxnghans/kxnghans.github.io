@@ -1,5 +1,6 @@
 import {
   FaHome,
+  FaChartLine,
   FaCode,
   FaGraduationCap,
   FaBriefcase,
@@ -9,6 +10,7 @@ import {
   FaMoon,
 } from "react-icons/fa";
 import { useTheme } from "../../context/ThemeContext";
+import { FEATURE_FLAGS } from "../../config/features";
 
 export interface SidebarProps {
   isOpen: boolean;
@@ -24,8 +26,12 @@ const Sidebar = ({ isOpen, setActivePage, activePage }: SidebarProps) => {
     { name: "Work Experience", icon: <FaBriefcase /> },
     { name: "Projects", icon: <FaCode /> },
     { name: "Honors", icon: <FaMedal /> },
+    ...(FEATURE_FLAGS.showValuePage
+      ? [{ name: "Value", icon: <FaChartLine /> }]
+      : []),
     { name: "More", icon: <FaBars /> },
   ];
+
 
   return (
     <aside

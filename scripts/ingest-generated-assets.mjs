@@ -58,9 +58,10 @@ const ASSET_MAPPINGS = [
   { prefix: "edu_uc_berkeley_ms", dest: "education/uc-berkeley-ms.jpg" },
   { prefix: "edu_uccs_ee_bs", dest: "education/uccs-ee-bs.jpg" },
 
-  // Honors (3)
+  // Honors (4)
   { prefix: "honors_presidents_deans_list", dest: "honors/presidents-deans-list.jpg" },
   { prefix: "honors_airman_of_the_year", dest: "honors/airman-of-the-year.jpg" },
+  { prefix: "honors_decorations_medals", dest: "honors/decorations-medals.jpg" },
   { prefix: "honors_honor_graduate", dest: "honors/honor-graduate.jpg" },
 
   // Work (3)

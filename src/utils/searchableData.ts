@@ -5,6 +5,7 @@ import { educationData } from "../data/education";
 import { certificationsData } from "../data/certifications";
 import { communityData } from "../data/community";
 import { honors } from "../data/honors";
+import { lifetimeValueData } from "../data/lifetimeValue";
 import type {
   ProjectItem,
   SkillCategory,
@@ -14,6 +15,7 @@ import type {
   CommunityItem,
   HonorItem,
 } from "../types/data";
+
 import type { SearchableItem } from "../types/search";
 
 type DetailedGenericItem =
@@ -22,6 +24,7 @@ type DetailedGenericItem =
   | CertificationItem
   | CommunityItem
   | HonorItem;
+
 
 const getProjectTags = (item?: ProjectItem): string[] => {
   if (!item) return [];
@@ -244,5 +247,47 @@ export const searchableData: SearchableItem[] = [
       itemId: index,
     },
   })),
+  ...lifetimeValueData.metrics.map((metric) => ({
+    id: `value-metric-${metric.id}`,
+    title: `${metric.value} - ${metric.title}`,
+    subtitle: `${metric.organization} (${metric.timeframe})`,
+    tags: [
+      metric.category,
+      metric.domain,
+      metric.organization,
+      metric.badge || "",
+      metric.value,
+    ].filter(Boolean),
+    summary: metric.description,
+    content:
+      `${metric.title} ${metric.value} ${metric.label} ${metric.description} ${metric.impactHighlight} ${metric.organization} ${metric.timeframe} ${metric.beforeAfter ? `${metric.beforeAfter.metricName} ${metric.beforeAfter.before} ${metric.beforeAfter.after}` : ""}`.trim(),
+    category: "Value" as const,
+    location: {
+      pageName: "Value",
+      componentType: "none" as const,
+      itemId: metric.id,
+    },
+  })),
+  ...lifetimeValueData.qualitativePillars.map((pillar) => ({
+    id: `value-pillar-${pillar.id}`,
+    title: pillar.title,
+    subtitle: `${pillar.role} • ${pillar.organization}`,
+    tags: [
+      ...pillar.competencies,
+      pillar.domain,
+      pillar.organization,
+      pillar.role,
+    ].filter(Boolean),
+    summary: pillar.summary,
+    content:
+      `${pillar.title} ${pillar.role} ${pillar.organization} ${pillar.summary} ${pillar.car.context} ${pillar.car.action} ${pillar.car.result} ${pillar.keyArtifacts.join(" ")}`.trim(),
+    category: "Value" as const,
+    location: {
+      pageName: "Value",
+      componentType: "none" as const,
+      itemId: pillar.id,
+    },
+  })),
 ];
+
 

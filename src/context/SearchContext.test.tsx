@@ -108,7 +108,7 @@ describe("SearchContext", () => {
     fireEvent.change(input, { target: { value: "CONOPS" } });
     await waitFor(() => {
       expect(
-        screen.getByText("Systems Engineer & Business Analyst"),
+        screen.getByText("Systems Engineer & Sr Business Analyst"),
       ).toBeInTheDocument();
     });
   });

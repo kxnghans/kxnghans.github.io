@@ -1,3 +1,5 @@
+import { FEATURE_FLAGS } from "../config/features";
+
 export const navOrder: string[] = [
   "Projects",
   "Skills",
@@ -6,4 +8,6 @@ export const navOrder: string[] = [
   "Honors",
   "Certifications",
   "Community",
+  ...(FEATURE_FLAGS.showValuePage ? ["Value"] : []),
 ];
+

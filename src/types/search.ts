@@ -5,7 +5,9 @@ export type SearchCategory =
   | "Education"
   | "Honors"
   | "Certifications"
-  | "Community";
+  | "Community"
+  | "Value";
+
 
 export interface SearchLocation {
   pageName: string;

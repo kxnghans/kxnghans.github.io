@@ -66,11 +66,18 @@ flowchart LR
 
     subgraph PageRouter["Page Switch Router (React.lazy + Suspense)"]
         HomeView["HomePage.tsx (Eager)"]
+        ValueView["ValuePage.tsx (Lazy)"]
         ProjView["ProjectsPage.tsx (Lazy)"]
         WorkView["WorkExperiencePage.tsx (Lazy)"]
         EduView["EducationPage.tsx (Lazy)"]
         HonorsView["HonorsPage.tsx (Lazy)"]
         ContactView["ContactPage.tsx (Lazy)"]
+    end
+
+    subgraph ValueComponents["Value Dashboard Layer (src/components/value/)"]
+        ValueKpis["ValueKpiGrid.tsx"]
+        ValueCharts["Visual Charts (*Chart.tsx in charts/)"]
+        ValueFilters["ValueFilterBar.tsx"]
     end
 
     subgraph SharedUI["Primitive UI Library (src/components/ui/)"]
@@ -79,6 +86,7 @@ flowchart LR
         SectionComp["Section.tsx"]
         FormComp["FormField.tsx"]
         LazyImg["LazyImage.tsx"]
+        FilterDrop["FilterDropdown.tsx"]
     end
 
     subgraph ModalLayer["Overlays (src/components/modals/)"]
@@ -92,14 +100,23 @@ flowchart LR
     %% Component usage
     HomeView --> ProfileCard
     HomeView --> Slideshows
+    ValueView --> SectionComp
+    ValueView --> ValueFilters
+    ValueView --> ValueKpis
+    ValueView --> ValueCharts
+    ValueFilters --> FilterDrop
     ProjView --> SectionComp
     WorkView --> SectionComp
     EduView --> SectionComp
     HonorsView --> SectionComp
+
+
     ContactView --> FormComp
+
 
     %% Modal triggers
     App --> ModalLayer
+
 ```
 
 ---

@@ -38,4 +38,5 @@ vite.config.ts.timestamp-*
 # Generated asset raw sources (WebP is the production format)
 public/assets/generated/**/*.jpg
 public/assets/generated/**/*.jpeg
+media/
 

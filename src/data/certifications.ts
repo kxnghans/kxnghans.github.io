@@ -86,4 +86,41 @@ export const certificationsData: CertificationItem[] = [
       ],
     },
   },
+  {
+    title: "Health Services Administration (HSA)",
+    imageUrl: "/assets/generated/work/air-force-supply.webp",
+    summary: [
+      "Medical Service Corps Officer",
+      "Course: Health Services Admin",
+      "Focus: Aeromedical Evac Logistics",
+    ],
+    details: {
+      title: "Health Services Administration (HSA)",
+      subtitle: "USAF Medical Service Corps | DAFSC 41A3",
+      details: [
+        "Accreditation: Medical Service Corps (MSC) Officer Training.",
+        "Core Competencies: Healthcare administration, aeromedical evacuation readiness, medical resource management, and defense medical logistics systems.",
+        "Operational Impact: Directs aeromedical equipment readiness for the 34th Aeromedical Evacuation Squadron (AFRC), digitizing medical records archives and sustaining 100% asset accountability across $672K inventory.",
+      ],
+    },
+  },
+  {
+    title: "Airman Leadership School (ALS)",
+    imageUrl: "/assets/generated/honors/honor-graduate.webp",
+    summary: [
+      "USAF Noncommissioned Officer PME",
+      "Focus: Supervisory Leadership",
+      "Status: Graduate",
+    ],
+    details: {
+      title: "Airman Leadership School (ALS)",
+      subtitle: "USAF Professional Military Education (PME)",
+      details: [
+        "Accreditation: USAF Noncommissioned Officer Professional Military Education.",
+        "Core Competencies: Supervisory leadership, team performance dynamics, interpersonal communications, and military evaluation management (ACA/EPR/EPB).",
+        "Operational Application: Led teams across CONUS and deployed Centralized Repair Facility environments, mentoring junior airmen and directing multi-million dollar supply operations.",
+      ],
+    },
+  },
 ];
+

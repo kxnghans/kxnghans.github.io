@@ -120,6 +120,35 @@ describe("SearchEngine class", () => {
     expect(conopsTokens).toContain("conops");
     expect(conopsTokens).toContain("concept of operations");
     expect(conopsTokens).toContain("governance");
+
+    const usafTokens = tokenize("USAF");
+    expect(usafTokens).toContain("usaf");
+    expect(usafTokens).toContain("air force");
+    expect(usafTokens).toContain("officer");
+
+    const mscTokens = tokenize("MSC");
+    expect(mscTokens).toContain("msc");
+    expect(mscTokens).toContain("medical service corps");
+    expect(mscTokens).toContain("health services administrator");
+    expect(mscTokens).toContain("41a3");
+
+    const hsaTokens = tokenize("HSA");
+    expect(hsaTokens).toContain("hsa");
+    expect(hsaTokens).toContain("health services administration");
+
+    const alsTokens = tokenize("ALS");
+    expect(alsTokens).toContain("als");
+    expect(alsTokens).toContain("airman leadership school");
+
+    const decorationTokens = tokenize("Decorations");
+    expect(decorationTokens).toContain("decorations");
+    expect(decorationTokens).toContain("medal");
+    expect(decorationTokens).toContain("commendation");
+
+    const hansondeckTokens = tokenize("HansOnDeck");
+    expect(hansondeckTokens).toContain("hansondeck");
+    expect(hansondeckTokens).toContain("creative media");
+    expect(hansondeckTokens).toContain("photography");
   });
 
   it("tolerates typos in search queries (e.g. 'Typecript' finds TypeScript)", () => {

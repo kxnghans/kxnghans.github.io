@@ -39,7 +39,22 @@ const ALIASES: Record<string, string[]> = {
   conops: ["concept of operations", "governance", "architecture"],
   governance: ["arb", "carb", "sia", "conops", "compliance"],
   roi: ["cost savings", "operational savings", "business analysis"],
-  ba: ["business analyst", "business analysis"],
+  usaf: ["air force", "military", "officer", "veteran", "aeromedical", "als", "hsa"],
+  "air force": ["usaf", "military", "officer", "aeromedical", "als", "hsa"],
+  msc: ["medical service corps", "health services administrator", "officer", "41a3"],
+  "41a3": ["msc", "medical service corps", "health services administrator", "officer"],
+  hsa: ["health services administration", "medical service corps", "41a3", "officer"],
+  als: ["airman leadership school", "pme", "leadership"],
+  officer: ["msc", "health services administrator", "aeromedical", "usaf", "2d lt", "41a3"],
+  aeromedical: ["34th aes", "medical logistics", "evacuation", "usaf", "hsa"],
+  ncoic: ["centralized repair facility", "crf", "materiel management", "usaf", "als"],
+  crf: ["centralized repair facility", "ncoic", "wheel & tire", "boeing"],
+  commendation: ["air and space commendation medal", "medal", "decoration", "honors"],
+  medal: ["commendation", "achievement", "decoration", "decorations", "honors"],
+  decoration: ["medal", "decorations", "commendation", "achievement", "honors"],
+  decorations: ["medal", "decoration", "commendation", "achievement", "honors"],
+  hansondeck: ["creative media", "photography", "media production", "cinematography", "llc"],
+  photography: ["hansondeck", "creative media", "cinematography", "media"],
 };
 
 /**

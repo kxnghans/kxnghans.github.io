@@ -15,11 +15,13 @@ import {
   FaUsers,
   FaAward,
   FaChevronDown,
+  FaChartLine,
 } from "react-icons/fa";
 import type { SearchCategory, SearchableItem } from "../../types/search";
 import { Highlight, smartTruncate } from "./searchUtils";
 
 const ICONS: Record<SearchCategory, ReactNode> = {
+  Value: <FaChartLine />,
   Projects: <FaProjectDiagram />,
   Skills: <FaCog />,
   Work: <FaBriefcase />,
@@ -28,6 +30,7 @@ const ICONS: Record<SearchCategory, ReactNode> = {
   Community: <FaUsers />,
   Honors: <FaAward />,
 };
+
 
 export interface SearchResultsProps {
   setActivePage: (page: string) => void;

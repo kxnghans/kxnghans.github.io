@@ -41,6 +41,20 @@ describe("App", () => {
     ).toBeInTheDocument();
   });
 
+  it("navigates to the Value page when Value sidebar item is clicked", async () => {
+    renderApp();
+    const valueBtn = screen.getByRole("button", { name: /value/i });
+    fireEvent.click(valueBtn);
+
+    expect(
+      await screen.findByRole("heading", {
+        name: /executive value & impact intelligence/i,
+      }),
+    ).toBeInTheDocument();
+  });
+
+
+
   it("toggles theme correctly", () => {
     renderApp();
     const themeBtn = screen.getByText("Light Mode");

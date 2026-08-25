@@ -25,19 +25,24 @@ describe("Sidebar", () => {
     );
   };
 
-  it("renders navigation items", () => {
+  it("renders navigation items including Value when feature flag is enabled", () => {
     renderSidebar();
 
     expect(screen.getByText("Home")).toBeInTheDocument();
+    expect(screen.getByText("Value")).toBeInTheDocument();
     expect(screen.getByText("Projects")).toBeInTheDocument();
   });
 
   it("calls setActivePage when a nav item is clicked", () => {
     renderSidebar();
 
+    fireEvent.click(screen.getByText("Value"));
+    expect(mockSetActivePage).toHaveBeenCalledWith("Value");
+
     fireEvent.click(screen.getByText("Projects"));
     expect(mockSetActivePage).toHaveBeenCalledWith("Projects");
   });
+
 
   it("toggles theme when theme toggle is clicked", () => {
     renderSidebar();

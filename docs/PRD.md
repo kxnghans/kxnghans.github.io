@@ -23,13 +23,16 @@ _Intent: The user is trying to accomplish a specific, critical goal (e.g., hirin
 - **Contact System (EmailJS Integration)**: Must have robust validation, clear error states, and immediate Toast feedback upon success/failure.
 - **Project Links & Verification**: External links to live demos and GitHub repositories. Must open in new tabs (`target="_blank"`) securely (`rel="noopener noreferrer"`).
 - **Work Experience & Education Timelines**: Structured, chronological rendering of professional milestones. The data mapping must be flawless and highly legible.
+- **Lifetime Value & ROI Intelligence**: Verifiable quantitative ROI metrics ($1.7M+ savings, 10x SNO cycle reduction, 18x ETL speedup, 0.0% audit error rates, 100% engine test coverage) and accredited qualitative governance pillars.
 - **Mobile Navigation**: The sidebar toggle must be 100% reliable on viewports < 1024px to prevent content blocking.
 
 ### 2. Exploratory & Social (High Engagement & "Delight" Required)
 
 _Intent: The user is passively browsing, evaluating the aesthetic "feel" and technical depth of the portfolio._
 
+- **Lifetime Value Slicers & Neumorphic Dropdowns**: Multi-dimensional slicers (Domain, Category, Dimension toggles) allowing hiring managers and technical leads to filter ROI metrics and CAR case studies.
 - **Voice-Integrated Search**: A "delight" feature allowing natural language navigation. Requires graceful degradation if microphone access is denied or the Speech API is unsupported.
+
 - **Neumorphic UI Engine**: The dark/light mode toggle and the consistent application of inset/outset shadows that react to user hover/active states.
 - **Interactive Slideshows & Modals**: Dynamic project and skill carousels on the homepage, expanding into deep-dive overlays. These require smooth entry/exit animations (300ms bezier curves).
 - **"Hanson-Tube" Branding**: The YouTube-inspired header and play-icon interactions that establish the overarching theme.

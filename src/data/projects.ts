@@ -226,16 +226,16 @@ export const projectData: ProjectItem[] = [
     title: "Creative Media Business",
     imageUrl: "/assets/generated/projects/creative-media.webp",
     summary: [
-      "Venture: Photography LLC",
+      "Venture: HansOnDeck LLC",
       "Revenue: $10K in first year",
       "Skills: Business Operations, Project Management",
     ],
     details: {
-      title: "Photography Business Launch & Management",
+      title: "HansOnDeck LLC Launch & Management",
       challenge:
         "After returning from deployment and relocating to a new city, I needed to establish a local network and build a creative outlet outside of work.",
       action:
-        "Founded a photography LLC, handling client bookings, shoots, equipment, and accounting. Sourced clients through church groups, real estate networks, and community athletics.",
+        "Founded HansOnDeck LLC, handling client bookings, shoots, equipment, and accounting. Sourced clients through church groups, real estate networks, and community athletics.",
       outcome:
         "Hit $10,000 in first-year revenue, saved $3,000 through business deductions, and built connections with local founders, athletes, and community leaders.",
       liveLink: "https://hansondeck.com/",
@@ -498,7 +498,7 @@ export const projectData: ProjectItem[] = [
         {
           label: "Networking",
           value:
-            "Connected students with mentors across tech and consulting.",
+            "Connected students with industry mentors across enterprise engineering and tech.",
         },
       ],
     },

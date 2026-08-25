@@ -114,6 +114,13 @@ export const skillsData: SkillCategory[] = [
       { name: "Business Analysis & Process ROI ($1.7M+)", priority: 1 },
       { name: "UI/UX Prototyping (Adobe XD, Figma)", priority: 2 },
     ],
+    exposure: [
+      "Medical Service Corps (41A3)",
+      "Centralized Repair Facility (CRF)",
+      "Airman Leadership School (ALS)",
+      "Defense Logistics (ILS-S, ESS)",
+      "War Reserve Materiel (WRM)",
+    ],
     modalDetails: {
       title: "Project & Systems Management",
       subtitle: "Agile Leadership, CONOPS Governance, and Stakeholder Mediation",
@@ -121,6 +128,10 @@ export const skillsData: SkillCategory[] = [
         "Agile Methodologies (Scrum Master, SAFe, Kanban), JIRA, Confluence, Model Based Systems Engineering (MBSE - Cameo, IBM DOORS)",
         "CONOPS Authoring, Governance Accreditations (ARB, SIA, CARB), Stakeholder Conflict Resolution, Multi-Program Defense Onboarding",
         "Business Analysis, Process ROI Modeling ($1.7M+ Verified Enterprise ROI), UI/UX Prototyping (Adobe XD, Figma)",
+      ],
+      exposure: [
+        "Medical Service Corps (41A3), Aeromedical Logistics, Centralized Repair Facility (CRF)",
+        "Airman Leadership School (ALS), Defense Logistics (ILS-S, ESS), War Reserve Materiel (WRM)",
       ],
     },
   },
@@ -136,12 +147,22 @@ export const skillsData: SkillCategory[] = [
       { name: "Unreal Engine", priority: 2 },
       { name: "Raspberry Pi & Arduino Microcontrollers", priority: 3 },
     ],
+    exposure: [
+      "ILS-S & ESS Supply Systems",
+      "DLADS Property Disposition",
+      "GPC Financial Systems",
+      "Digital Records Archiving",
+    ],
     modalDetails: {
       title: "IT & Systems Architecture",
       subtitle: "Operating Systems, Productivity, and Hardware Integration",
       details: [
         "Linux (RHEL, Ubuntu), Microsoft Office Suite (Word, Excel, PowerPoint, Teams, VBA)",
         "Unreal Engine, Raspberry Pi, Arduino Hardware Interfaces",
+      ],
+      exposure: [
+        "ILS-S & ESS Defense Supply Systems, DLADS Property Disposition, GPC Procurement",
+        "Digital Records Archiving & Lifecycle Management",
       ],
     },
   },

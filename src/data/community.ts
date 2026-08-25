@@ -4,11 +4,11 @@ export const communityData: CommunityItem[] = [
   {
     title: "Photography & Media",
     imageUrl: "/assets/generated/community/photography-media.webp",
-    summary: ["Venture: Photography Business", "Role: Church Media Team Lead"],
+    summary: ["Venture: HansOnDeck LLC", "Role: Church Media Team Lead"],
     details: {
-      title: "Photography Business & Media Lead",
+      title: "HansOnDeck LLC & Media Lead",
       details: [
-        "Serve as volunteer Media Team Lead for my church alongside running my photography business.",
+        "Serve as volunteer Media Team Lead for my church alongside running HansOnDeck LLC.",
         "Direct photo and video coverage for major events, including holiday services, conferences, and youth outreaches.",
         "Manage weekly church media production and social channels.",
       ],
