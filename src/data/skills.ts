@@ -140,7 +140,7 @@ export const skillsData: SkillCategory[] = [
       { name: "Next.js & Node.js", priority: 2 },
       { name: "Tailwind CSS", priority: 2 },
       { name: "C / C++", priority: 2 },
-      { name: "PHP & Vue.js", priority: 3 },
+      { name: "PHP & VueJS", priority: 3 },
       { name: "Ansible & YAML", priority: 3 },
       { name: "TensorFlow & Keras", priority: 3 },
       { name: "Markdown", priority: 4 },
@@ -150,7 +150,7 @@ export const skillsData: SkillCategory[] = [
       subtitle: "Languages, Modern Web/Mobile Frameworks, and Systems Code",
       details: [
         "Core Languages: Python (FastAPI, PyTorch, Pandas), TypeScript, JavaScript (ES6+), and SQL (PostgreSQL, SQLite, MySQL).",
-        "Web & Mobile Ecosystem: React, React Native (Expo), Next.js, Vue.js, and Tailwind CSS.",
+        "Web & Mobile Ecosystem: React, React Native (Expo), Next.js, VueJS, and Tailwind CSS.",
         "Systems & Automation: C, C++, PHP, Ansible, YAML, Turborepo monorepos, and local embedded databases (SQLite, MMKV).",
       ],
       exposure: [
@@ -160,7 +160,7 @@ export const skillsData: SkillCategory[] = [
         "Next.js & Node.js",
         "SQL",
         "C & C++",
-        "Vue.js & PHP",
+        "VueJS & PHP",
         "Ansible & YAML",
         "Verilog & Assembly",
       ],

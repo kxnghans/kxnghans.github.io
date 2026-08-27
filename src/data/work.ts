@@ -9,9 +9,9 @@ export const workData: WorkExperience[] = [
     imageUrl: "/assets/generated/work/lockheed-martin.webp",
     summary: [
       "Lockheed Martin, Space",
-      "Role: Lead Systems Engineer & BA",
-      "Focus: OpenShift SNO, DevSecOps & CONOPS",
-      "Impact: 10x Test Velocity & $1.0M Capture",
+      "Projects: MESHc (Space EBOM), Testbed Infra & SBOM",
+      "Focus: CONOPs & Roadmap, Agile Leadership, Infrastructure",
+      "Tools: JIRA, Confluence, MS Suite, GitLab",
     ],
     details: {
       title: "Systems Engineer & Sr Business Analyst",
@@ -19,14 +19,15 @@ export const workData: WorkExperience[] = [
       details: [
         "Architected Single Node OpenShift (SNO) clusters in the Galaxy Test Bed (GTB), cutting nightly automated test runs from 10 hours down to 1 hour and saving $10,000+ in infrastructure costs.",
         "Authored the formal Concept of Operations (CONOPS) for GTB and secured accreditations across the Architecture Review Board (ARB), Security & Information Assurance (SIA), and Classified Review (CARB).",
-        "Mediated technical requirements between RF engineers and business leads on the MESHc catalog using interactive Adobe XD prototypes, growing adoption from 2 to 10 programs (800% increase), saving 1 month of UI rework, and securing $1.0M in follow-on funding.",
+        "Directed requirements analysis and stakeholder UX mediation for MESHc (Master Software & Hardware Catalog)—an enterprise space logistics platform managing Engineering Bills of Materials (EBOM), Work Breakdown Structures (WBS), and technical requirements—using interactive Adobe XD prototypes to grow program adoption from 2 to 10 programs (800% increase), save 1 month of UI rework, and secure $1.0M in follow-on funding.",
         "Led customer technical onboarding on the Galaxy Assist team, standardizing blueprints and network port matrices to onboard 10+ defense programs (NGI, MK21A, MONET, STARWAN) with zero firewall blockers.",
         "Stepped in as Scrum Master during an unexpected 50% team reduction, restructuring sprint backlogs around shared internal libraries to deliver VP live demonstrations on schedule.",
         "Hardened air-gapped software supply chains by routing all package registries and container images strictly through internal Harbor and Nexus proxy-caches.",
-        "Built automated GitLab CI/CD pipelines with Trivy security scanning, checksum verification, and CycloneDX SBOM generation across 40+ producer repositories.",
+        "Built automated GitLab CI/CD pipelines with Trivy security scanning, checksum verification, and CycloneDX Software Bill of Materials (SBOM) generation across 40+ producer repositories.",
         "Engineered dimensional data models and automated telemetry dashboards in Jira and Power BI, giving executive leadership weekly visibility into developer velocity and tool adoption.",
       ],
       exposure: [
+        "MESHc (Space EBOM)",
         "OpenShift SNO",
         "Kubernetes",
         "AWS / Azure",
@@ -45,21 +46,21 @@ export const workData: WorkExperience[] = [
     imageUrl: "/assets/generated/work/uccs-software.webp",
     summary: [
       "UCCS",
-      "Stack: TypeScript, Vue.js, PHP, SQL",
-      "Projects: Regional Education & UCHealth Portals",
-      "Role: Full-Stack Web Dev & DB Migration",
+      "Stack: TypeScript, VueJS, PHP, SQL",
+      "Projects: Education & Healthcare",
+      "Role: Full-Stack Development",
     ],
     details: {
       title: "Software Developer",
       subtitle: "UCCS | November 2019 to December 2021",
       details: [
         "Built and maintained full-stack web applications for University of Colorado partners, including the Pikes Peak regional education portal and the UCHealth patient management system.",
-        "Developed responsive web interfaces with TypeScript, Vue.js, PHP, and SQL, leading user training sessions for university staff and regional partner teams.",
+        "Developed responsive web interfaces with TypeScript, VueJS, PHP, and SQL, leading user training sessions for university staff and regional partner teams.",
         "Migrated legacy flat JSON data stores to relational SQL databases using Linux command-line scripts for automated schema validation, data backups, and indexing.",
       ],
       exposure: [
         "TypeScript",
-        "Vue.js",
+        "VueJS",
         "PHP",
         "SQL / MySQL",
         "Database Migrations",
@@ -75,9 +76,9 @@ export const workData: WorkExperience[] = [
     imageUrl: "/assets/generated/work/air-force-supply.webp",
     summary: [
       "US Air Force",
-      "Leadership: 2d Lt (MSC Officer) & Prior TSgt (NCOIC)",
-      "Operations: $92M CRF Hub & 34th AES Aeromedical",
-      "Impact: $5.0M Boeing Savings & Airman of the Year",
+      "Role: Aircraft Repair Cycle & Aeromedical Evac Ops",
+      "Focus: Logistics & Data Analysis",
+      "Award: Airman of the Year",
     ],
     details: {
       title: "Supply Chain Manager",

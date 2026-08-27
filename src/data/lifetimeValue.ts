@@ -28,14 +28,54 @@ export const CAREER_ERAS = [
 
 // Verified Financial Savings Ledger (SSOT for Dollar Metrics)
 export const FINANCIAL_LEDGER: LedgerEntry[] = [
-  { id: "led-1", label: "Boeing Retread Repair Savings", domain: "Military Logistics & Readiness", amountM: 5.0 },
-  { id: "led-2", label: "ETDC Shelf-Life Recertification", domain: "Military Logistics & Readiness", amountM: 0.96 },
-  { id: "led-3", label: "FOB/PQDR Asset Recoupment", domain: "Military Logistics & Readiness", amountM: 0.75 },
-  { id: "led-4", label: "DLADS Inventory Recovery", domain: "Military Logistics & Readiness", amountM: 0.13 },
-  { id: "led-5", label: "Innovation Platform First-Year Savings", domain: "Enterprise Automation", amountM: 1.1 },
-  { id: "led-6", label: "Branch Facilities Annualized Savings", domain: "Enterprise Automation", amountM: 0.6624 },
-  { id: "led-7", label: "MESHc Follow-on Program Funding", domain: "Defense & Space", amountM: 1.0 },
-  { id: "led-8", label: "SNO Infrastructure Overhead Avoided", domain: "Defense & Space", amountM: 0.01 },
+  {
+    id: "led-1",
+    label: "Boeing Retread Repair Savings",
+    domain: "Military Logistics & Readiness",
+    amountM: 5.0,
+  },
+  {
+    id: "led-2",
+    label: "ETDC Shelf-Life Recertification",
+    domain: "Military Logistics & Readiness",
+    amountM: 0.96,
+  },
+  {
+    id: "led-3",
+    label: "FOB/PQDR Asset Recoupment",
+    domain: "Military Logistics & Readiness",
+    amountM: 0.75,
+  },
+  {
+    id: "led-4",
+    label: "DLADS Inventory Recovery",
+    domain: "Military Logistics & Readiness",
+    amountM: 0.13,
+  },
+  {
+    id: "led-5",
+    label: "Innovation Platform First-Year Savings",
+    domain: "Enterprise Automation",
+    amountM: 1.1,
+  },
+  {
+    id: "led-6",
+    label: "Branch Facilities Annualized Savings",
+    domain: "Enterprise Automation",
+    amountM: 0.6624,
+  },
+  {
+    id: "led-7",
+    label: "MESHc Follow-on Program Funding",
+    domain: "Defense & Space",
+    amountM: 1.0,
+  },
+  {
+    id: "led-8",
+    label: "SNO Infrastructure Overhead Avoided",
+    domain: "Defense & Space",
+    amountM: 0.01,
+  },
 ];
 
 // Lifetime Value Dataset: Executive KPIs, Quantitative Metrics, and Qualitative Pillars
@@ -61,9 +101,11 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Direct bottom-line savings validated across commercial operations, automated facility tracking, and employee ideation programs.",
-      impactHighlight: "Measured financial impact across a multi-state 450-location commercial network.",
+      impactHighlight:
+        "Measured financial impact across a multi-state 450-location commercial network.",
       timeframe: "2024 – Present",
-      organization: "Lockheed Martin Space & Enterprise Operations Cross-Assignment",
+      organization:
+        "Lockheed Martin Space & Enterprise Operations Cross-Assignment",
       badge: "Flagship ROI",
     },
     // Enterprise Innovation Platform
@@ -77,9 +119,11 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Built a Power BI analytics platform tracking 19,000+ employee ideas, validating $1.1M in first-year operational savings.",
-      impactHighlight: "13% increase in employee participation across the organization.",
+      impactHighlight:
+        "13% increase in employee participation across the organization.",
       timeframe: "2024 – Present",
-      organization: "Enterprise Innovation Program (Internal Stretch Assignment)",
+      organization:
+        "Enterprise Innovation Program (Internal Stretch Assignment)",
       badge: "Enterprise Gamification",
     },
     // Multi-Branch Facilities Automation
@@ -93,7 +137,8 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Replaced manual spreadsheets across 450 branch locations with a unified Power Platform and SQL system, saving $55,200 each month.",
-      impactHighlight: "2,760 annual hours saved with zero recurring maintenance overhead.",
+      impactHighlight:
+        "2,760 annual hours saved with zero recurring maintenance overhead.",
       timeframe: "2024 – Present",
       organization: "Enterprise Internal Operations Automation",
       badge: "Operational Automation",
@@ -114,7 +159,8 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Built an SNO cluster inside the Galaxy Test Bed (GTB), cutting nightly automated test runs from 10 hours to 1 hour.",
-      impactHighlight: "Saved $10,000+ in infrastructure costs while giving developers immediate nightly feedback.",
+      impactHighlight:
+        "Saved $10,000+ in infrastructure costs while giving developers immediate nightly feedback.",
       timeframe: "2020 – Present",
       organization: "Lockheed Martin Space",
       badge: "Platform Engineering",
@@ -135,7 +181,8 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Upgraded legacy data extraction to REST API 2.0, cutting report refresh times from 3 hours to under 10 minutes.",
-      impactHighlight: "Near real-time data access for executive portfolio reviews.",
+      impactHighlight:
+        "Near real-time data access for executive portfolio reviews.",
       timeframe: "2024 – Present",
       organization: "Enterprise Data Engineering (Internal Stretch Assignment)",
       badge: "Data Engineering",
@@ -156,7 +203,8 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Used interactive prototypes to bridge conflicting requirements between RF engineers and business leads, helping secure $1.0M in follow-on funding.",
-      impactHighlight: "Cut a month of UI rework and increased active program usage from 2 to 10 teams.",
+      impactHighlight:
+        "Cut a month of UI rework and increased active program usage from 2 to 10 teams.",
       timeframe: "2020 – Present",
       organization: "Lockheed Martin Space",
       badge: "Systems & UX Leadership",
@@ -172,7 +220,8 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Removed processing bottlenecks and manual paperwork using automated digital workflows across customer service points.",
-      impactHighlight: "Faster transaction turnaround across branch operations.",
+      impactHighlight:
+        "Faster transaction turnaround across branch operations.",
       timeframe: "2024 – Present",
       organization: "Enterprise Customer Operations Automation",
       badge: "Customer Impact",
@@ -188,7 +237,8 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Rolled out Power Platform systems across 450 enterprise facility locations without a single service outage.",
-      impactHighlight: "Zero unplanned downtime during nationwide multi-facility deployment.",
+      impactHighlight:
+        "Zero unplanned downtime during nationwide multi-facility deployment.",
       timeframe: "2024 – Present",
       organization: "Enterprise Internal Operations Automation",
       badge: "Scale & Rollout",
@@ -204,7 +254,8 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Removed compliance discrepancies across 450 facility logs using automated validation rules and daily escalation tracking.",
-      impactHighlight: "Passed corporate audits with zero findings across two consecutive evaluation cycles.",
+      impactHighlight:
+        "Passed corporate audits with zero findings across two consecutive evaluation cycles.",
       timeframe: "2024 – Present",
       organization: "Enterprise Compliance Automation",
       badge: "Zero-Defect Quality",
@@ -225,7 +276,8 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Built automated Power Query ETL pipelines in Qatar during Operation Allies Refuge to track shelf-life and forecast inventory burn rates.",
-      impactHighlight: "Cut nightly inventory reconciliation from 3 hours to 5 minutes during crisis response.",
+      impactHighlight:
+        "Cut nightly inventory reconciliation from 3 hours to 5 minutes during crisis response.",
       timeframe: "2019 – Present",
       organization: "US Air Force (Active Duty / AFRC)",
       badge: "Mission Critical",
@@ -246,7 +298,8 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Built reusable GitLab CI/CD pipelines with Trivy security scans, package checksum validation, and automated SBOM generation.",
-      impactHighlight: "Blocked public internet vulnerabilities across 40+ classified software repositories.",
+      impactHighlight:
+        "Blocked public internet vulnerabilities across 40+ classified software repositories.",
       timeframe: "2020 – Present",
       organization: "Lockheed Martin Space",
       badge: "DevSecOps & Supply Chain",
@@ -262,7 +315,8 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Standardized onboarding blueprints and pre-configured firewall port matrices for major programs like NGI, MK21A, MONET, and STARWAN.",
-      impactHighlight: "Zero deployment delays caused by missing network ports across all 10 programs.",
+      impactHighlight:
+        "Zero deployment delays caused by missing network ports across all 10 programs.",
       timeframe: "2020 – Present",
       organization: "Lockheed Martin Space",
       badge: "Program Interface",
@@ -278,9 +332,11 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Built executive tracking portals for $280M+ in active capital allocation queues and delivered compliance analytics across a $15B+ asset portfolio.",
-      impactHighlight: "Isolated processing bottlenecks with granular Row-Level Security (RLS) controls.",
+      impactHighlight:
+        "Isolated processing bottlenecks with granular Row-Level Security (RLS) controls.",
       timeframe: "2024 – Present",
-      organization: "Enterprise Executive Analytics (Internal Stretch Assignment)",
+      organization:
+        "Enterprise Executive Analytics (Internal Stretch Assignment)",
       badge: "Portfolio Analytics",
     },
     // Monorepo Pure Calculation Engine Test Coverage
@@ -294,7 +350,8 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Enforced 100% unit test coverage across pure calculation packages (@repo/utils, @repo/engine) in MilCalc and Gospel Games.",
-      impactHighlight: "Zero calculation errors and exact mathematical compliance with statutory military pay tables.",
+      impactHighlight:
+        "Zero calculation errors and exact mathematical compliance with statutory military pay tables.",
       timeframe: "2024 – Present",
       organization: "HansOnCreations Monorepo",
       badge: "Code Integrity",
@@ -315,7 +372,8 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Designed and led hands-on AI agent workshops, building live agentic workflows in Google Gemini Enterprise.",
-      impactHighlight: "Trained 50+ analysts and helped establish internal AI agent governance standards.",
+      impactHighlight:
+        "Trained 50+ analysts and helped establish internal AI agent governance standards.",
       timeframe: "2024 – Present",
       organization: "Enterprise AI Enablement Program",
       badge: "AI Enablement",
@@ -331,7 +389,8 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Master of Science in Data Science from UC Berkeley with a 4.0/4.0 GPA, focusing on deep learning, applied ML, and audio transcription.",
-      impactHighlight: "Achieved R² = 0.952 on financial time-series forecasting benchmarks.",
+      impactHighlight:
+        "Achieved R² = 0.952 on financial time-series forecasting benchmarks.",
       timeframe: "2024 – 2026",
       organization: "University of California, Berkeley",
       badge: "Academic Excellence",
@@ -347,7 +406,8 @@ export const lifetimeValueData: LifetimeValueData = {
       type: "quantitative",
       description:
         "Engineered university web portals and automated SQL schema migrations for UCCS, replacing legacy flat JSON stores with 100% data integrity.",
-      impactHighlight: "Supported thousands of regional students and healthcare users across UCCS and UCHealth portals.",
+      impactHighlight:
+        "Supported thousands of regional students and healthcare users across UCCS and UCHealth portals.",
       timeframe: "2019 – 2021",
       organization: "University of Colorado Colorado Springs",
       badge: "Institutional Systems",
@@ -509,7 +569,7 @@ export const lifetimeValueData: LifetimeValueData = {
     // Youth Tech Mentorship Pillar
     {
       id: "pillar-6",
-      title: "Youth Tech Mentorship & Community Empowerment",
+      title: "Youth Tech Mentorship & Community Programs",
       domain: "Academic & Research",
       role: "Founder & Lead Mentor",
       organization: "Youth Tech Mentorship Bootcamp",
@@ -547,7 +607,8 @@ export const lifetimeValueData: LifetimeValueData = {
         score: 95,
         years: 10,
         tenureDisplay: "Top Tier",
-        benchmark: "Executive Briefings | Multi-Board Defense Governance (ARB/CARB) & Enterprise AI Workshops",
+        benchmark:
+          "Executive Briefings | Multi-Board Defense Governance (ARB/CARB) & Enterprise AI Workshops",
         description:
           "Mediated RF engineering and business requirements for an 800% adoption boost, presented executive portfolio analytics, and trained 50+ analysts in AI workflows.",
         domain: "Academic & Research",
@@ -559,7 +620,8 @@ export const lifetimeValueData: LifetimeValueData = {
         score: 90,
         years: 9,
         tenureDisplay: "Lead Level",
-        benchmark: "B.S. Electrical Engineering | SNO Cluster Architecture, CARB CONOPS & 10+ Program Blueprints",
+        benchmark:
+          "B.S. Electrical Engineering | SNO Cluster Architecture, CARB CONOPS & 10+ Program Blueprints",
         description:
           "Single Node OpenShift deployment (10x test speedup), hardware-software integration, and zero-trust container supply chain security across 40+ repos.",
         domain: "Defense & Space",
@@ -571,7 +633,8 @@ export const lifetimeValueData: LifetimeValueData = {
         score: 88,
         years: 9,
         tenureDisplay: "Director Level",
-        benchmark: "USAF Officer (41A3) & Prior NCOIC | $92M AFCENT Hub, $5M Boeing Retread & 34th AES Readiness",
+        benchmark:
+          "USAF Officer (41A3) & Prior NCOIC | $92M AFCENT Hub, $5M Boeing Retread & 34th AES Readiness",
         description:
           "Expeditionary supply chain leadership, aeromedical equipment readiness across 2,216 assets ($672k), and international contractor negotiations.",
         domain: "Military Logistics & Readiness",
@@ -583,7 +646,8 @@ export const lifetimeValueData: LifetimeValueData = {
         score: 85,
         years: 7,
         tenureDisplay: "Full-Stack Lead",
-        benchmark: "Monorepo Architect | Turborepo, React Native Expo, TypeScript & 100% Core Test Coverage",
+        benchmark:
+          "Monorepo Architect | Turborepo, React Native Expo, TypeScript & 100% Core Test Coverage",
         description:
           "Decoupled calculation engines (@repo/utils, @repo/engine), offline-first SQLite/MMKV architecture, and cross-platform mobile apps.",
         domain: "Software Solutions",
@@ -595,7 +659,8 @@ export const lifetimeValueData: LifetimeValueData = {
         score: 92,
         years: 6,
         tenureDisplay: "Architect Level",
-        benchmark: "450-Site Architecture | Power Platform, REST API 2.0, DAX Models & 0.0% Audit Defect Rate",
+        benchmark:
+          "450-Site Architecture | Power Platform, REST API 2.0, DAX Models & 0.0% Audit Defect Rate",
         description:
           "Re-engineered facility operations data pipelines, automated $280M+ capital queues with Row-Level Security, and generated $662k/yr hard savings.",
         domain: "Enterprise Automation",
@@ -607,7 +672,8 @@ export const lifetimeValueData: LifetimeValueData = {
         score: 88,
         years: 4,
         tenureDisplay: "Graduate Level",
-        benchmark: "UC Berkeley M.S. (4.0 GPA) | TabTransformer AMT, Multivariate LSTM (R²=0.952) & Grounded AI Agents",
+        benchmark:
+          "UC Berkeley M.S. (4.0 GPA) | TabTransformer AMT, Multivariate LSTM (R²=0.952) & Grounded AI Agents",
         description:
           "Applied machine learning systems, statistical time-series forecasting, and enterprise cognitive agent workflows.",
         domain: "Academic & Research",
@@ -625,7 +691,8 @@ export const lifetimeValueData: LifetimeValueData = {
         value: 96,
         displayValue: "$9.6M+",
         baseline: "Unoptimized procurement & manual overhead",
-        optimized: "Boeing retread ($5M), enterprise ROI ($1.7M+), asset recoupment ($1.7M+)",
+        optimized:
+          "Boeing retread ($5M), enterprise ROI ($1.7M+), asset recoupment ($1.7M+)",
         domain: "Military Logistics & Readiness",
         category: "Financial ROI",
         era: "2020 – 2024: Systems Engineering & Program Management",
@@ -638,7 +705,8 @@ export const lifetimeValueData: LifetimeValueData = {
         value: 88,
         displayValue: "705k+ hrs",
         baseline: "Manual paper logs & 2,760 annual BA hours",
-        optimized: "Power Platform across 450 sites & automated ideation tracking",
+        optimized:
+          "Power Platform across 450 sites & automated ideation tracking",
         domain: "Enterprise Automation",
         category: "Efficiency & Speed",
         era: "2024 – Present: Infrastructure & Enterprise Automation",
@@ -651,7 +719,8 @@ export const lifetimeValueData: LifetimeValueData = {
         value: 92,
         displayValue: "36x faster",
         baseline: "3-hour crisis reconciliation & 10-hour test runs",
-        optimized: "5-min Power Query ETL & 1-hour OpenShift SNO cluster builds",
+        optimized:
+          "5-min Power Query ETL & 1-hour OpenShift SNO cluster builds",
         domain: "Military Logistics & Readiness",
         category: "Efficiency & Speed",
         era: "2015 – 2019: Logistics & Supply Chain",
@@ -664,7 +733,8 @@ export const lifetimeValueData: LifetimeValueData = {
         value: 98,
         displayValue: "0.0% error",
         baseline: "7.5% facility audit errors & 20% stockout errors",
-        optimized: "0.0% audit defect rate & 100% aeromedical property accountability",
+        optimized:
+          "0.0% audit defect rate & 100% aeromedical property accountability",
         domain: "Enterprise Automation",
         category: "Governance & Quality",
         era: "2024 – Present: Infrastructure & Enterprise Automation",
@@ -677,7 +747,8 @@ export const lifetimeValueData: LifetimeValueData = {
         value: 84,
         displayValue: "40+ repos",
         baseline: "Direct public registry access in air-gapped environments",
-        optimized: "Internal Harbor/Nexus proxy-caches & automated CycloneDX SBOM",
+        optimized:
+          "Internal Harbor/Nexus proxy-caches & automated CycloneDX SBOM",
         domain: "Defense & Space",
         category: "Governance & Quality",
         era: "2020 – 2024: Systems Engineering & Program Management",
@@ -796,4 +867,3 @@ export const lifetimeValueData: LifetimeValueData = {
     ],
   },
 };
-

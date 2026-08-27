@@ -31,20 +31,20 @@ const ProfileSummaryCard = () => (
           </a>
         </h1>
         <p className="text-md text-gray-500 sm:text-lg dark:text-gray-400">
-          Technical Program Manager & Systems Leader
+          Systems Engineer & Sr Business Analyst
         </p>
-        <p className="text-md text-red-600 sm:text-lg dark:text-red-400">
+        <p className="text-md text-red-500 sm:text-lg dark:text-red-400">
           <a
             href="https://hansondeck.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Founder & Software Studio Lead
+            Entrepreneur
           </a>
         </p>
         <div className="mt-2 text-xs text-gray-500 sm:text-sm dark:text-gray-400">
-          <p>M.S. in Data Science - UC Berkeley (4.0 GPA)</p>
-          <p>B.S. in Electrical Engineering - UCCS</p>
+          <p>Masters in Data Science - UC Berkeley</p>
+          <p>Bachelors in Electrical Engineering - UCCS</p>
           <p>Active Secret Security Clearance</p>
         </div>
       </div>

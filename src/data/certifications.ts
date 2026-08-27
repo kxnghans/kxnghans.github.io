@@ -112,7 +112,7 @@ export const certificationsData: CertificationItem[] = [
         "Programming & Web Development:",
         "TypeScript Essential Training: Intermediate TypeScript for typing React and Node.js applications.",
         "JavaScript Essential Training: Modern ES6+ syntax, asynchronous programming, and DOM manipulation.",
-        "Learning Vue.js: Built dynamic web applications using Vue.js components, HTML, and CSS.",
+        "Learning VueJS: Built dynamic web applications using VueJS components, HTML, and CSS.",
         "PHP Essential Training: Core language fundamentals, data structures, and backend routing.",
         "PHP with MySQL Essential Training: Connected PHP backend scripts with MySQL databases.",
         "SQL Essential Training: Relational database design, table queries, and triggers.",

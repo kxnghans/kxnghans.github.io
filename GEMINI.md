@@ -29,3 +29,16 @@ This document codifies the core architecture, constraints, and interaction guide
 - **Communication**: Be direct and concise. State your technical intent clearly. Provide progress updates during multi-step tasks.
 - **Documentation Maintenance**: When adding a new feature, you must also update the relevant markdown files in `/docs` to reflect the new architecture or state transition. All file references in `/docs` must use relative paths.
 - **Component Architecture**: Always split logic from UI. If a component exceeds 150 lines, refactor it by extracting smaller primitive components or custom hooks.
+
+## 📋 Operational & Content Guidelines
+
+- **Grounding & Sibling Alignment**: Content must align with `../personal/GEMINI.md` as the authoritative starting point in the sibling directory. All career achievements, metrics, and project details must remain grounded in this truth.
+- **Title Alignment**: Strict alignment with the titles established on the Work Experience page:
+  - Lockheed Martin Space: `Systems Engineer & Sr Business Analyst`
+  - UCCS: `Software Developer`
+  - US Air Force: `Supply Chain Manager`
+  - Home Profile Card: `Systems Engineer & Sr Business Analyst` and `Entrepreneur` (only change upon explicit user request).
+- **Format Standards**: Standardize technology names (e.g., `VueJS`, never `Vue.js`).
+- **Acronyms**: When an acronym is spelled out, do not duplicate the abbreviation in parentheses (e.g., write "Asynchronous JavaScript and XML", not "Asynchronous JavaScript and XML (AJAX)").
+- **GPA Visibility**: GPA values must strictly appear only inside the Education detail modals (`DetailModal.tsx`). Do not write or display GPA on summary face cards, profile cards, or list previews. Honors distinctions (such as _cum laude_, _summa cum laude_, and Dean's List) are permitted on summary cards.
+- **Card Summary Constraints**: Keep summary card lines concise (< 45–50 characters) to prevent unwanted line wrapping within fixed-height card containers.

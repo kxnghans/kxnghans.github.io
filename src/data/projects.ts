@@ -15,7 +15,7 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Portfolio Showcase",
       challenge:
-        "Standard static resumes cannot showcase interactive web applications, real-time calculation engines, or live data models.",
+        "Static resumes cannot demonstrate interactive web applications, real-time calculation engines, or live data models.",
       action:
         "Built a responsive single-page web app with React, TypeScript, Vite, and Tailwind CSS. Added interactive telemetry dashboards, dynamic modal drilldowns, offline PWA caching, and theme tokens.",
       outcome:
@@ -57,7 +57,7 @@ export const projectData: ProjectItem[] = [
       action:
         "Engineered an end-to-end rental management platform and warehouse operations dashboard using Next.js, Supabase, and Cloudflare Pages. Added real-time inventory locking, order state machines, and automated dispatch tracking.",
       outcome:
-        "Eliminated double bookings across warehouse inventory, streamlined booking requests, and automated equipment pickup and return inspections.",
+        "Eliminated double bookings across warehouse inventory, simplified booking intake, and automated equipment pickup and return inspections.",
       liveLink: "https://hansoncreations.com/apps/carohans",
       codeLink: "https://hansoncreations.com",
       highlights: [
@@ -370,8 +370,7 @@ export const projectData: ProjectItem[] = [
       highlights: [
         {
           label: "Time Savings",
-          value:
-            "Reduced build times by 90% (from 10 hours down to 1 hour).",
+          value: "Reduced build times by 90% (from 10 hours down to 1 hour).",
         },
         {
           label: "Governance",
@@ -397,11 +396,11 @@ export const projectData: ProjectItem[] = [
       "Leadership: Stakeholder UX Mediation",
     ],
     details: {
-      title: "Product Adoption Strategy (MESHc Program)",
+      title: "Product Adoption Strategy (MESHc Space EBOM)",
       challenge:
-        "The MESHc component catalog struggled with low user adoption because RF engineers needed deep parametric specs while business leads wanted simple, high-level summaries.",
+        "The MESHc (Master Software & Hardware Catalog) space logistics platform—designed to manage Engineering Bills of Materials (EBOM), Work Breakdown Structures (WBS), and technical requirements—struggled with low user adoption because RF engineers needed deep parametric specs while business leads wanted high-level summaries.",
       action:
-        "Ran bi-weekly Adobe XD prototyping sessions to mediate conflicting technical requirements between engineering and business leads, designing a summary interface with instant drill-downs into low-level RF specs.",
+        "Ran bi-weekly Adobe XD prototyping sessions to mediate conflicting technical requirements between engineering and business leads, designing a tiered catalog interface with instant drill-downs into low-level RF specs and WBS structures.",
       outcome:
         "Grew active program adoption from 2 to 10 defense programs (800% increase), cut 1 month of UI backlog rework, and helped secure $1.0M in follow-on program funding.",
       liveLink: "",
@@ -413,13 +412,11 @@ export const projectData: ProjectItem[] = [
         },
         {
           label: "Program Funding",
-          value:
-            "Helped secure $1.0 million in follow-on program funding.",
+          value: "Helped secure $1.0 million in follow-on program funding.",
         },
         {
           label: "Mediation",
-          value:
-            "Resolved requirements standoff using Adobe XD prototypes.",
+          value: "Resolved requirements standoff using Adobe XD prototypes.",
         },
       ],
     },
@@ -598,8 +595,7 @@ export const projectData: ProjectItem[] = [
       highlights: [
         {
           label: "Deep Learning",
-          value:
-            "Trained custom CNN and AlexNet architectures.",
+          value: "Trained custom CNN and AlexNet architectures.",
         },
         {
           label: "Model Optimization",
@@ -639,13 +635,11 @@ export const projectData: ProjectItem[] = [
       highlights: [
         {
           label: "Hardware Implementation",
-          value:
-            "Integrated GPS, compass, and sonar sensors on Arduino.",
+          value: "Integrated GPS, compass, and sonar sensors on Arduino.",
         },
         {
           label: "Software Development",
-          value:
-            "Wrote waypoint navigation and obstacle avoidance in C.",
+          value: "Wrote waypoint navigation and obstacle avoidance in C.",
         },
         {
           label: "Leadership",
@@ -688,7 +682,8 @@ export const projectData: ProjectItem[] = [
         },
         {
           label: "Exhibit Engineering",
-          value: "Built custom interactive software for a national aviation museum exhibit.",
+          value:
+            "Built custom interactive software for a national aviation museum exhibit.",
         },
       ],
     },
@@ -718,12 +713,12 @@ export const projectData: ProjectItem[] = [
       highlights: [
         {
           label: "Hardware Design",
-          value: "Designed and simulated a two-stage CMOS operational amplifier.",
+          value:
+            "Designed and simulated a two-stage CMOS operational amplifier.",
         },
         {
           label: "Simulation & Analysis",
-          value:
-            "Modeled gain, power consumption, PSRR, and CMRR in LTspice.",
+          value: "Modeled gain, power consumption, PSRR, and CMRR in LTspice.",
         },
         {
           label: "Low-Level Programming",
@@ -734,4 +729,3 @@ export const projectData: ProjectItem[] = [
     },
   },
 ];
-
