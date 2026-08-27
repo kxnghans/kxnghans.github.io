@@ -1,217 +1,285 @@
 import type { SkillCategory } from "../types/data";
 
 // Skills & Technical Competencies Dataset (SSOT)
-// Categorized proficiencies across software, systems, cloud, data, and defense.
+// Categorized proficiencies structured around TPM Core Competencies:
+// 1. Program Orchestration, 2. Technical Architecture & Cloud, 3. BI & Data Analytics, 4. Software Architecture.
 export const skillsData: SkillCategory[] = [
-  // Programming Languages & Frameworks
+  // 1. Project & Program Management Leadership (TPM / Systems Leadership / Governance)
   {
-    title: "Programming",
-    imageUrl: "/assets/generated/skills/programming.webp",
+    title: "Project & Program Management",
+    imageUrl: "/assets/generated/skills/project-management.webp",
     details: [
-      { name: "Python (PyTorch, Pandas, NumPy)", priority: 1 },
-      { name: "TypeScript / JavaScript", priority: 1 },
-      { name: "React & React Native (Expo)", priority: 1 },
-      { name: "SQL (PostgreSQL, SQLite)", priority: 1 },
-      { name: "Next.js & Supabase", priority: 2 },
-      { name: "Tailwind CSS & HTML5", priority: 2 },
-      { name: "C / C++", priority: 2 },
-      { name: "PHP & Vue.js", priority: 3 },
-      { name: "Ansible & YAML", priority: 3 },
-      { name: "Keras & TensorFlow", priority: 2 },
-      { name: "Markdown", priority: 4 },
+      { name: "Agile & Scrum Leadership", priority: 1 },
+      { name: "Technical Program Management", priority: 1 },
+      { name: "Stakeholder Management", priority: 1 },
+      { name: "Requirements & CONOPS", priority: 1 },
+      { name: "JIRA & Confluence", priority: 1 },
+      { name: "Process Optimization", priority: 1 },
+      { name: "Model-Based Systems (MBSE)", priority: 2 },
+      { name: "UI/UX Prototyping (Figma / XD)", priority: 2 },
     ],
     modalDetails: {
-      title: "Programming & Frameworks",
-      subtitle: "Languages, Libraries, and Mobile/Web Ecosystems",
+      title: "Project & Program Management",
+      subtitle:
+        "Technical Program Management (TPM), Agile Delivery, and Systems Governance",
       details: [
-        "Python (PyTorch, Pandas, NumPy, Scikit-Learn), TypeScript, JavaScript, SQL",
-        "React, React Native (Expo), Next.js, Vue.js, Tailwind CSS, HTML5/CSS3",
-        "C, C++, PHP, Ansible, YAML, Markdown, Keras, TensorFlow",
-        "Turborepo, MMKV, SQLite, Firebase Realtime Database, Cloudflare Workers & Pages",
-        "Verilog, Assembly Language, C#, Java",
+        "Agile & Scrum Delivery: Sprint planning, sprint ceremonies, backlog refinement, developer velocity tracking, and JIRA/Confluence administration.",
+        "Technical Architecture & Governance: Concept of Operations (CONOPS), requirements gathering, architectural review boards, and Model-Based Systems Engineering (MBSE).",
+        "Program Orchestration: Cross-functional alignment, dependency mapping, technical onboarding, and stakeholder conflict mediation.",
+        "Business Analysis & Operations: Quantitative workflow analysis, process optimization, resource allocation, and UI/UX prototyping (Figma, Adobe XD).",
+      ],
+      exposure: [
+        "Agile / Scrum Master",
+        "JIRA & Confluence",
+        "Concept of Operations (CONOPS)",
+        "Requirements Gathering",
+        "Model-Based Systems Engineering",
+        "Stakeholder Management",
+        "Figma & Adobe XD",
       ],
     },
   },
 
-  // Business Intelligence & Data Analytics
-  {
-    title: "BI & Data Analytics",
-    imageUrl: "/assets/generated/skills/bi-analytics.webp",
-    details: [
-      {
-        name: "MS Power Platform (Power BI, Power Apps, Power Automate, Dataverse)",
-        priority: 1,
-      },
-      { name: "Power Query ETL & REST API 2.0 Pipelines", priority: 1 },
-      { name: "DAX Measures & Dimensional Modeling (Star Schema)", priority: 1 },
-      { name: "Row-Level Security (RLS) & Data Governance", priority: 1 },
-      { name: "SQL (PostgreSQL, SQLite, MySQL)", priority: 1 },
-      { name: "MS Fabric & Data Lakehouse Architecture", priority: 2 },
-      { name: "Tableau & Salesforce Data Feeds", priority: 2 },
-      { name: "Time-Series Forecasting & Multivariate Modeling", priority: 2 },
-      { name: "Python (Pandas, NumPy, Scikit-Learn)", priority: 2 },
-      { name: "R & Statistical Process Control", priority: 3 },
-    ],
-    subcategories: [
-      {
-        title: "Quantitative Systems Analysis",
-        details: [
-          "Dimensional Data Modeling",
-          "Row-Level Security (RLS)",
-          "REST API 2.0 Ingestion",
-          "DAX Financial Calculations",
-          "Automated ETL Pipelines",
-          "Time-Series Forecasting (LSTM / ARIMA)",
-          "Statistical Hypothesis Testing",
-        ],
-      },
-    ],
-    modalDetails: {
-      title: "BI & Data Analytics",
-      subtitle: "Enterprise BI, Dimensional Modeling, and Automated ETL",
-      details: [
-        "MS Power Platform (Power BI, Power Apps, Power Automate, Dataverse), MS Fabric, Power Query ETL, REST API 2.0",
-        "DAX Measures, Dimensional Modeling, Row-Level Security (RLS), SQL (PostgreSQL, SQLite, MySQL), Tableau",
-        "Statistical Modeling, Multivariate Time-Series Forecasting (LSTM, ARIMA), Python (Pandas, NumPy, Scikit-Learn)",
-      ],
-    },
-  },
-
-  // Cloud Infrastructure & DevSecOps
+  // 2. Cloud Infrastructure & DevSecOps (Technical Architecture / Containerization / CI/CD)
   {
     title: "Cloud & DevOps",
     imageUrl: "/assets/generated/skills/cloud-devops.webp",
     details: [
-      { name: "AWS & Microsoft Azure", priority: 1 },
-      { name: "Kubernetes & OpenShift (SNO)", priority: 1 },
-      { name: "Docker & Podman Containers", priority: 1 },
-      { name: "DevSecOps & Automated SBOM Generation", priority: 1 },
-      { name: "GitLab CI/CD Pipelines & Trivy Scanning", priority: 1 },
-      { name: "Cloudflare (Workers, Pages, OpenNext)", priority: 2 },
-      { name: "Git & GitHub Actions", priority: 1 },
-      { name: "Jira & Azure DevOps (ADO)", priority: 2 },
-      { name: "Confluence Documentation Systems", priority: 2 },
+      { name: "Kubernetes & OpenShift", priority: 1 },
+      { name: "Docker & Containers", priority: 1 },
+      { name: "CI/CD Pipelines", priority: 1 },
+      { name: "Cloud Platforms (AWS / Azure)", priority: 1 },
+      { name: "DevSecOps & SBOM", priority: 1 },
+      { name: "Git & Version Control", priority: 1 },
+      { name: "Harbor & Nexus Proxies", priority: 2 },
+      { name: "Cloudflare Workers", priority: 2 },
     ],
     modalDetails: {
       title: "Cloud, Infrastructure & DevOps",
       subtitle: "Cloud Architecture, Containerization, and DevSecOps",
       details: [
-        "AWS, Microsoft Azure, OpenShift (Single Node OpenShift - SNO), Kubernetes, Docker, Podman",
-        "DevSecOps, Automated SBOM (CycloneDX), Trivy Security Scans, Harbor & Nexus Proxy-Caches",
-        "Cloudflare Edge Runtime (Workers, Pages, OpenNext), Git, GitHub Actions, Jira, Azure DevOps (ADO)",
+        "Container Orchestration: Deploying and managing Kubernetes clusters, OpenShift Single Node (SNO) environments, Docker containers, and Podman runtime.",
+        "CI/CD & DevSecOps: Automated GitLab and GitHub Actions build pipelines, Trivy container security scanning, and automated CycloneDX SBOM generation.",
+        "Cloud & Edge Infrastructure: Multi-cloud deployments across AWS and Microsoft Azure, Cloudflare Workers edge runtimes, and air-gapped proxy caches (Harbor, Nexus).",
+      ],
+      exposure: [
+        "Kubernetes",
+        "OpenShift (SNO)",
+        "Docker & Podman",
+        "GitLab CI/CD",
+        "GitHub Actions",
+        "AWS & Azure",
+        "Trivy & CycloneDX SBOM",
+        "Harbor & Nexus",
+        "Cloudflare Workers",
       ],
     },
   },
 
-  // Project & Program Management Leadership
+  // 3. Business Intelligence & Data Analytics (Data Telemetry, Lakehouse & Automated ETL)
   {
-    title: "Project & Program Management",
-    imageUrl: "/assets/generated/skills/project-management.webp",
+    title: "BI & Data Analytics",
+    imageUrl: "/assets/generated/skills/bi-analytics.webp",
     details: [
-      { name: "Technical Program Management (TPM) & Roadmapping", priority: 1 },
-      { name: "High-Reliability Operations & Command Stewardship", priority: 1 },
-      { name: "Agile & Scrum Master (SAFe, Sprint Governance)", priority: 1 },
-      { name: "JIRA & Confluence Administration", priority: 1 },
-      { name: "Concept of Operations (CONOPS) Authoring", priority: 1 },
-      { name: "Governance & Review Boards (ARB, SIA, CARB)", priority: 1 },
-      { name: "Stakeholder Conflict Resolution & UX Mediation", priority: 1 },
-      { name: "Quantitative Business Analysis & Process ROI ($1.7M+)", priority: 1 },
-      { name: "Model-Based Systems Engineering (Cameo, DOORS)", priority: 2 },
-      { name: "Rapid Prototyping (Adobe XD, Figma)", priority: 2 },
+      { name: "Microsoft Power BI", priority: 1 },
+      { name: "Power Query & ETL", priority: 1 },
+      { name: "DAX Measures & Modeling", priority: 1 },
+      { name: "SQL (PostgreSQL, MySQL)", priority: 1 },
+      { name: "Row-Level Security (RLS)", priority: 1 },
+      { name: "Power Apps & Automation", priority: 2 },
+      { name: "Microsoft Fabric", priority: 2 },
+      { name: "Python (Pandas, NumPy)", priority: 2 },
+      { name: "Tableau Visualizations", priority: 2 },
+      { name: "Statistical Process Control", priority: 3 },
+    ],
+    subcategories: [
+      {
+        title: "Data Architecture & Analysis",
+        details: [
+          "Dimensional Data Modeling (Star Schema)",
+          "Row-Level Security (RLS) Governance",
+          "Automated Power Query ETL Pipelines",
+          "DAX Financial & Operational Measures",
+          "REST API Ingestion & JSON Parsing",
+          "Time-Series Forecasting & Regression",
+          "Statistical Process & Quality Control",
+        ],
+      },
     ],
     modalDetails: {
-      title: "Project & Systems Management",
-      subtitle: "Technical Program Management, High-Reliability Operations, and Governance",
+      title: "BI & Data Analytics",
+      subtitle:
+        "Business Intelligence, Automated ETL, and Quantitative Modeling",
       details: [
-        "Technical Program Management (TPM), Agile / Scrum Master (SAFe, Sprint Governance), JIRA, Confluence",
-        "High-Reliability Operations, Command Stewardship, Aeromedical Logistics (41A3), Centralized Repair Facility ($92M CRF Hub)",
-        "CONOPS Authoring, Multi-Board Governance (ARB, SIA, CARB), Stakeholder Conflict Resolution, Multi-Program Onboarding",
-        "Quantitative Business Analysis, Process ROI Modeling ($1.7M+ Enterprise ROI), UI/UX Prototyping (Adobe XD, Figma)",
-        "Model Based Systems Engineering (MBSE - Cameo Systems Modeler, IBM DOORS, TIBCO)",
+        "Microsoft Power Platform: Enterprise dashboards in Power BI, custom business applications in Power Apps, automated workflows in Power Automate, and Dataverse data modeling.",
+        "Data Pipelines & ETL: Automated Power Query ingestion, REST API data feeds, relational database querying, and Microsoft Fabric lakehouse structures.",
+        "Dimensional Modeling & Analytics: Star schema design, advanced DAX measures, Row-Level Security (RLS), and statistical time-series forecasting in Python (Pandas, NumPy).",
+      ],
+      exposure: [
+        "Power BI & DAX",
+        "Power Query ETL",
+        "Power Apps & Automate",
+        "Microsoft Fabric",
+        "SQL (PostgreSQL / MySQL)",
+        "Row-Level Security (RLS)",
+        "Tableau",
+        "Python (Pandas / NumPy)",
       ],
     },
   },
 
-  // Operating Systems, Hardware & Defense Systems
+  // 4. Programming Languages & Frameworks (Software & Full-Stack Development)
+  {
+    title: "Programming",
+    imageUrl: "/assets/generated/skills/programming.webp",
+    details: [
+      { name: "Python", priority: 1 },
+      { name: "TypeScript / JavaScript", priority: 1 },
+      { name: "React & React Native", priority: 1 },
+      { name: "SQL", priority: 1 },
+      { name: "Next.js & Node.js", priority: 2 },
+      { name: "Tailwind CSS", priority: 2 },
+      { name: "C / C++", priority: 2 },
+      { name: "PHP & Vue.js", priority: 3 },
+      { name: "Ansible & YAML", priority: 3 },
+      { name: "TensorFlow & Keras", priority: 3 },
+      { name: "Markdown", priority: 4 },
+    ],
+    modalDetails: {
+      title: "Programming & Frameworks",
+      subtitle: "Languages, Modern Web/Mobile Frameworks, and Systems Code",
+      details: [
+        "Core Languages: Python (FastAPI, PyTorch, Pandas), TypeScript, JavaScript (ES6+), and SQL (PostgreSQL, SQLite, MySQL).",
+        "Web & Mobile Ecosystem: React, React Native (Expo), Next.js, Vue.js, and Tailwind CSS.",
+        "Systems & Automation: C, C++, PHP, Ansible, YAML, Turborepo monorepos, and local embedded databases (SQLite, MMKV).",
+      ],
+      exposure: [
+        "Python (FastAPI / PyTorch)",
+        "TypeScript & JavaScript",
+        "React & React Native (Expo)",
+        "Next.js & Node.js",
+        "SQL",
+        "C & C++",
+        "Vue.js & PHP",
+        "Ansible & YAML",
+        "Verilog & Assembly",
+      ],
+    },
+  },
+
+  // 5. Operating Systems, Hardware & Defense Systems
   {
     title: "IT & Systems",
     imageUrl: "/assets/generated/skills/it-systems.webp",
     details: [
       { name: "Linux (RHEL, Ubuntu)", priority: 1 },
-      {
-        name: "Microsoft Office Suite (Word, Excel, PowerPoint, Teams, VBA)",
-        priority: 1,
-      },
+      { name: "Microsoft 365 / VBA", priority: 1 },
+      { name: "Defense Supply Systems", priority: 2 },
       { name: "Unreal Engine", priority: 2 },
-      { name: "Raspberry Pi & Arduino Microcontrollers", priority: 3 },
+      { name: "Raspberry Pi & Microcontrollers", priority: 3 },
     ],
     modalDetails: {
       title: "IT & Systems Architecture",
       subtitle: "Operating Systems, Productivity, and Hardware Integration",
       details: [
-        "Linux (RHEL, Ubuntu), Microsoft Office Suite (Word, Excel, PowerPoint, Teams, VBA)",
-        "Unreal Engine, Raspberry Pi, Arduino Hardware Interfaces",
-        "ILS-S & ESS Defense Supply Systems, DLADS Property Disposition, GPC Procurement",
-        "Digital Records Archiving & Lifecycle Management",
+        "Operating Systems: Linux administration (RHEL, Ubuntu CLI), bash shell scripting, user permissions, and remote SSH administration.",
+        "Productivity & Office Automation: Microsoft 365 Enterprise Suite, advanced Excel data modeling, VBA macro automation, and team collaboration workflows.",
+        "Specialized & Embedded Systems: Defense inventory management systems (ILS-S, ESS), digital records archiving, and hardware prototyping with Raspberry Pi and Arduino microcontrollers.",
+      ],
+      exposure: [
+        "Linux (RHEL / Ubuntu)",
+        "Microsoft 365 & VBA",
+        "Defense Supply Systems (ILS-S / ESS)",
+        "Unreal Engine 3D",
+        "Raspberry Pi & Arduino",
+        "Shell Scripting",
       ],
     },
   },
 
-  // Adobe Creative Suite & Digital Media
+  // 6. Adobe Creative Suite & UI/UX Design
   {
     title: "Adobe Suite",
     imageUrl: "/assets/generated/skills/adobe-suite.webp",
     details: [
+      { name: "Adobe XD", priority: 1 },
       { name: "Photoshop", priority: 1 },
       { name: "Premiere Pro", priority: 1 },
       { name: "After Effects", priority: 2 },
       { name: "Illustrator", priority: 2 },
-      { name: "Adobe XD", priority: 2 },
-      { name: "Acrobat", priority: 3 },
+      { name: "Acrobat Pro", priority: 3 },
     ],
     modalDetails: {
       title: "Adobe Creative Suite",
-      subtitle: "UI Design, Video Production, and Digital Media",
+      subtitle: "UI/UX Prototyping, Video Production, and Digital Media",
       details: [
-        "Photoshop, Premiere Pro, After Effects",
-        "Illustrator, Adobe XD, Acrobat",
+        "UI/UX & Prototyping: Interactive wireframing, component design, responsive screen flows, and user journey design in Adobe XD.",
+        "Video Editing & Motion Graphics: Non-linear video timeline editing, multi-track audio mixing, and color grading in Premiere Pro; motion graphics and title animation in After Effects.",
+        "Graphic Design & Publishing: Raster image manipulation, compositing, and photo enhancement in Photoshop; vector asset and iconography creation in Illustrator; interactive PDF document workflows in Acrobat Pro.",
+      ],
+      exposure: [
+        "Adobe XD Prototyping",
+        "Photoshop",
+        "Premiere Pro",
+        "After Effects",
+        "Illustrator",
+        "Acrobat Pro",
       ],
     },
   },
 
-  // Electronics, SPICE Simulation & Hardware Design
+  // 7. Electronics, SPICE Simulation & Hardware Design
   {
     title: "Electronics",
     imageUrl: "/assets/generated/skills/electronics.webp",
     details: [
       { name: "LTspice", priority: 1 },
-      { name: "MATLAB", priority: 1 },
+      { name: "MATLAB & Simulink", priority: 1 },
       { name: "AutoCAD", priority: 2 },
       { name: "ModelSim", priority: 2 },
     ],
     modalDetails: {
       title: "Electronics & Hardware Design",
-      subtitle: "Circuit Simulation, Modeling, and Analysis",
-      details: ["LTspice, MATLAB, AutoCAD, ModelSim"],
+      subtitle:
+        "Circuit Simulation, Mathematical Modeling, and Hardware Analysis",
+      details: [
+        "Circuit Simulation & Analysis: Analog and mixed-signal circuit simulation in LTspice, RF microstrip simulations in Keysight ADS, and frequency-domain Bode plot analysis.",
+        "Mathematical Modeling: Mathematical modeling, matrix computations, and signal analysis in MATLAB & Simulink.",
+        "Digital Logic & Schematics: VHDL and Verilog digital logic design and timing verification in ModelSim; 2D/3D electrical schematics and layouts in AutoCAD.",
+      ],
+      exposure: [
+        "LTspice Analog Simulation",
+        "MATLAB & Simulink",
+        "Keysight ADS",
+        "ModelSim (VHDL / Verilog)",
+        "AutoCAD Schematics",
+        "Vector Network Analyzers (VNA)",
+      ],
     },
   },
 
-  // Spoken & Written Natural Languages
+  // 8. Spoken & Written Natural Languages
   {
     title: "Languages",
     imageUrl: "/assets/generated/skills/languages.webp",
     details: [
       { name: "English (Fluent)", priority: 1 },
       { name: "French (Intermediate)", priority: 2 },
+      { name: "Ga & Twi (Native Dialects)", priority: 3 },
     ],
     modalDetails: {
-      title: "Languages",
+      title: "Language Proficiency",
       subtitle: "Spoken & Written Communication",
       details: [
-        "English (Fluent)",
+        "English: Native / Fluent proficiency in professional engineering, technical writing, and executive presentations.",
+        "French: Intermediate proficiency in professional reading, conversational communication, and written correspondence.",
+        "Ga & Twi: Native conversational proficiency in Ghanaian regional dialects.",
+      ],
+      exposure: [
+        "English (Native / Fluent)",
         "French (Intermediate)",
-        "Ga (Native Local Dialect)",
-        "Twi (Native Local Dialect)",
+        "Ga (Native)",
+        "Twi (Native)",
       ],
     },
   },

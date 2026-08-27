@@ -22,11 +22,26 @@ const DefaultCard = ({ item }: DefaultCardProps) => (
         {item.title}
       </h3>
       <div className="h-12 space-y-1 overflow-hidden text-xs text-gray-600 sm:h-16 sm:text-sm dark:text-gray-400">
-        {item.summary.map((line, i) => (
-          <p key={i} className="truncate">
-            {line}
-          </p>
-        ))}
+        {item.summary.map((line, i) => {
+          const colonIndex = line.indexOf(":");
+          if (colonIndex !== -1) {
+            const label = line.slice(0, colonIndex + 1);
+            const val = line.slice(colonIndex + 1);
+            return (
+              <p key={i} className="truncate">
+                <strong className="text-gray-800 dark:text-gray-200">
+                  {label}
+                </strong>
+                {val}
+              </p>
+            );
+          }
+          return (
+            <p key={i} className="truncate">
+              {line}
+            </p>
+          );
+        })}
       </div>
     </div>
   </>

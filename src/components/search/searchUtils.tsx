@@ -7,11 +7,38 @@ export interface HighlightProps {
 }
 
 /**
+ * Helper to render any ellipsis (...) with standard brand red styling matching origin/main.
+ */
+const renderWithRedEllipsis = (
+  str: string,
+  keyPrefix: string | number,
+): ReactNode => {
+  if (!str.includes("...")) {
+    return str;
+  }
+  const chunks = str.split("...");
+  return (
+    <span key={keyPrefix}>
+      {chunks.map((chunk, idx) => (
+        <span key={idx}>
+          {chunk}
+          {idx < chunks.length - 1 && (
+            <span className="font-bold text-red-600 dark:text-red-500">
+              ...
+            </span>
+          )}
+        </span>
+      ))}
+    </span>
+  );
+};
+
+/**
  * Renders text with all matching query tokens highlighted safely with regex escaping.
  */
 export const Highlight = ({ text, highlight }: HighlightProps): ReactNode => {
   if (!highlight.trim() || !text) {
-    return <span>{text}</span>;
+    return renderWithRedEllipsis(text, "plain");
   }
 
   // Extract individual query tokens, stripping punctuation
@@ -21,7 +48,7 @@ export const Highlight = ({ text, highlight }: HighlightProps): ReactNode => {
     .filter((t) => t.length > 0);
 
   if (tokens.length === 0) {
-    return <span>{text}</span>;
+    return renderWithRedEllipsis(text, "plain-no-tokens");
   }
 
   // Match longer tokens first to avoid partial truncation
@@ -45,13 +72,13 @@ export const Highlight = ({ text, highlight }: HighlightProps): ReactNode => {
               {part}
             </span>
           ) : (
-            <span key={i}>{part}</span>
+            renderWithRedEllipsis(part, i)
           ),
         )}
       </span>
     );
   } catch {
-    return <span>{text}</span>;
+    return renderWithRedEllipsis(text, "fallback");
   }
 };
 

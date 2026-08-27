@@ -44,12 +44,29 @@ const HonorsPage = () => {
                   <h3 className={`mb-1 ${UI_TYPOGRAPHY.cardTitleSm}`}>
                     {honor.title}
                   </h3>
-                  <div className={`h-10 overflow-hidden ${UI_TYPOGRAPHY.cardSummary}`}>
-                    {honor.summary.map((line, i) => (
-                      <p key={i} className="truncate">
-                        {line}
-                      </p>
-                    ))}
+                  <div
+                    className={`h-10 overflow-hidden ${UI_TYPOGRAPHY.cardSummary}`}
+                  >
+                    {honor.summary.map((line, i) => {
+                      const colonIndex = line.indexOf(":");
+                      if (colonIndex !== -1) {
+                        const label = line.slice(0, colonIndex + 1);
+                        const val = line.slice(colonIndex + 1);
+                        return (
+                          <p key={i} className="truncate">
+                            <strong className="text-gray-800 dark:text-gray-200">
+                              {label}
+                            </strong>
+                            {val}
+                          </p>
+                        );
+                      }
+                      return (
+                        <p key={i} className="truncate">
+                          {line}
+                        </p>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

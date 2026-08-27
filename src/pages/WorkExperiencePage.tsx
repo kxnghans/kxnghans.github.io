@@ -43,12 +43,36 @@ const WorkExperiencePage = () => {
                 <h4 className="truncate text-xl font-bold text-red-500 dark:text-red-400">
                   {job.title}
                 </h4>
-                <div className={`mt-2 h-24 overflow-hidden ${UI_TYPOGRAPHY.cardSummary}`}>
-                  {job.summary.map((line, i) => (
-                    <p key={i} className="truncate">
-                      {i === 0 ? <strong>{line}</strong> : line}
-                    </p>
-                  ))}
+                <div
+                  className={`mt-2 h-24 overflow-hidden ${UI_TYPOGRAPHY.cardSummary}`}
+                >
+                  {job.summary.map((line, i) => {
+                    if (i === 0) {
+                      return (
+                        <p key={i} className="truncate">
+                          <strong>{line}</strong>
+                        </p>
+                      );
+                    }
+                    const colonIndex = line.indexOf(":");
+                    if (colonIndex !== -1) {
+                      const label = line.slice(0, colonIndex + 1);
+                      const val = line.slice(colonIndex + 1);
+                      return (
+                        <p key={i} className="truncate">
+                          <strong className="text-gray-800 dark:text-gray-200">
+                            {label}
+                          </strong>
+                          {val}
+                        </p>
+                      );
+                    }
+                    return (
+                      <p key={i} className="truncate">
+                        {line}
+                      </p>
+                    );
+                  })}
                 </div>
               </div>
             </div>
