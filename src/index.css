@@ -7,6 +7,14 @@
   --color-dark-card: #242529;
   --color-dark-shadow-light: #2e2f34;
   --color-dark-shadow-dark: #1a1b1e;
+  --color-dark-well: #141416;
+  --color-dark-well-hover: #1e1e22;
+  --color-dark-header: #181818;
+
+  /* Hanson-Tube Red Theme Tokens: Light Mode #e53935, Dark Mode #ef4444 */
+  --color-red-600: #e53935;
+  --color-red-700: #cb2b28;
+  --color-red-800: #b3201d;
 
   --animate-gentle-pulse: gentle-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 

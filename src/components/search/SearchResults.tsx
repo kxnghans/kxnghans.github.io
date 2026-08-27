@@ -2,33 +2,22 @@ import {
   useRef,
   useState,
   useEffect,
-  type ReactNode,
   type UIEvent,
 } from "react";
 import { useSearch } from "../../context/SearchContext";
-import {
-  FaCog,
-  FaProjectDiagram,
-  FaBriefcase,
-  FaGraduationCap,
-  FaCertificate,
-  FaUsers,
-  FaAward,
-  FaChevronDown,
-  FaChartLine,
-} from "react-icons/fa";
+import { Icon, ICONS, type IconName } from "../icons";
 import type { SearchCategory, SearchableItem } from "../../types/search";
 import { Highlight, smartTruncate } from "./searchUtils";
 
-const ICONS: Record<SearchCategory, ReactNode> = {
-  Value: <FaChartLine />,
-  Projects: <FaProjectDiagram />,
-  Skills: <FaCog />,
-  Work: <FaBriefcase />,
-  Education: <FaGraduationCap />,
-  Certifications: <FaCertificate />,
-  Community: <FaUsers />,
-  Honors: <FaAward />,
+const CATEGORY_ICON_MAP: Record<SearchCategory, IconName> = {
+  Value: ICONS.VALUE,
+  Projects: ICONS.PROJECTS,
+  Skills: ICONS.COG,
+  Work: ICONS.WORK,
+  Education: ICONS.EDUCATION,
+  Certifications: ICONS.CERTIFICATION,
+  Community: ICONS.USERS,
+  Honors: ICONS.HONORS,
 };
 
 
@@ -95,7 +84,7 @@ const SearchResults = ({ setActivePage }: SearchResultsProps) => {
               className="dark:bg-dark-card dark:hover:bg-dark-bg flex w-full cursor-pointer items-center bg-gray-50 p-4 text-left hover:bg-gray-100"
             >
               <span className="mr-4 text-gray-800 dark:text-gray-200">
-                {ICONS[result.category]}
+                <Icon name={CATEGORY_ICON_MAP[result.category]} />
               </span>
               <div>
                 <p className="font-bold text-gray-800 dark:text-gray-200">
@@ -117,7 +106,10 @@ const SearchResults = ({ setActivePage }: SearchResultsProps) => {
       </ul>
       {showArrow && (
         <div className="dark:bg-dark-card sticky bottom-0 w-full border-t border-gray-200 bg-white py-1 text-center dark:border-gray-700">
-          <FaChevronDown className="mx-auto animate-bounce text-gray-500 dark:text-gray-400" />
+          <Icon
+            name={ICONS.CHEVRON_DOWN}
+            className="mx-auto animate-bounce text-gray-500 dark:text-gray-400"
+          />
         </div>
       )}
     </div>

@@ -21,9 +21,9 @@ describe("ValueRadarChart", () => {
     const label = screen.getByText("Communication");
     fireEvent.mouseEnter(label);
 
-    expect(screen.getByText(/23 Years Practice/i)).toBeInTheDocument();
+    expect(screen.getByText(/Top Tier • 95\/100/i)).toBeInTheDocument();
     expect(
-      screen.getByText(/Lifelong Practice \| Executive Briefings/i),
+      screen.getByText(/Multi-Board Defense Governance/i),
     ).toBeInTheDocument();
 
     fireEvent.mouseLeave(label);
@@ -32,3 +32,4 @@ describe("ValueRadarChart", () => {
     ).toBeInTheDocument();
   });
 });
+

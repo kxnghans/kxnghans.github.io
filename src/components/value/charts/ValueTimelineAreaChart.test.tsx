@@ -1,12 +1,15 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import ValueTimelineAreaChart from "./ValueTimelineAreaChart";
+import { ThemeProvider } from "../../../context/ThemeContext";
 import { lifetimeValueData } from "../../../data/lifetimeValue";
 
 describe("ValueTimelineAreaChart", () => {
   it("renders cumulative savings and reclaimed hours trajectory", () => {
     render(
-      <ValueTimelineAreaChart data={lifetimeValueData.charts.timeline} />,
+      <ThemeProvider>
+        <ValueTimelineAreaChart data={lifetimeValueData.charts.timeline} />
+      </ThemeProvider>,
     );
 
     expect(
@@ -24,7 +27,9 @@ describe("ValueTimelineAreaChart", () => {
 
   it("shows era milestone detail when hovering a data point", () => {
     render(
-      <ValueTimelineAreaChart data={lifetimeValueData.charts.timeline} />,
+      <ThemeProvider>
+        <ValueTimelineAreaChart data={lifetimeValueData.charts.timeline} />
+      </ThemeProvider>,
     );
 
     const svg = screen.getByRole("img");
@@ -34,12 +39,16 @@ describe("ValueTimelineAreaChart", () => {
     expect(screen.getAllByText("2015 – 2019").length).toBeGreaterThan(0);
     expect(screen.getAllByText("$1.09M").length).toBeGreaterThan(0);
     expect(
-      screen.getAllByText(/USAF ETDC Kuwait Theater Distribution/).length,
+      screen.getAllByText(/Logistics & Supply Chain/).length,
     ).toBeGreaterThan(0);
   });
 
   it("renders an empty state with no data", () => {
-    render(<ValueTimelineAreaChart data={[]} />);
+    render(
+      <ThemeProvider>
+        <ValueTimelineAreaChart data={[]} />
+      </ThemeProvider>,
+    );
 
     expect(
       screen.getByText(/no trajectory data matches/i),

@@ -1,9 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <style>
+    .brand-circle { fill: #e53935; }
+    @media (prefers-color-scheme: dark) {
+      .brand-circle { fill: #ef4444; }
+    }
+  </style>
   <defs>
     <mask id="cutout">
       <rect width="512" height="512" fill="white" />
       <path fill="black" stroke="black" stroke-width="24" stroke-linejoin="round" d="M192 144 L192 368 L384 256 Z" />
     </mask>
   </defs>
-  <circle cx="256" cy="256" r="256" fill="#DC2626" mask="url(#cutout)" />
+  <circle class="brand-circle" cx="256" cy="256" r="256" mask="url(#cutout)" />
 </svg>

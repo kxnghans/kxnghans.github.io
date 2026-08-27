@@ -180,7 +180,7 @@ Critical: 0 | High: 0 | Medium: 0 | Low: 1 | Informational: 0 | Remediated: 3
 #### `VIBE-003`: End-to-End User Flow Automation Gap
 
 - **Location**: Test Suite ([`src/test/`](../src/test/setup.ts))
-- **Vulnerability**: Unit/integration tests pass 100% in JSDOM (16 suites, 73 tests), but real browser viewport and service worker interactions lack automated E2E coverage.
+- **Vulnerability**: Unit/integration tests pass 100% in JSDOM (24 suites, 103 tests), but real browser viewport and service worker interactions lack automated E2E coverage.
 - **Remediation**: Introduce a lightweight Playwright test configuration to validate search query hotkeys, modal focus traps, and theme toggling across real Chromium/WebKit/Firefox engines (Phase 6).
 
 ---

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { MultiplierPoint } from "../../../types/data";
+import { UI_SURFACES } from "../../../theme";
 
 export interface ValueMultiplierBarChartProps {
   data: MultiplierPoint[];
@@ -14,44 +15,47 @@ export default function ValueMultiplierBarChart({
     data.length > 0 ? Math.max(...data.map((d) => d.value)) : 0;
 
   return (
-    <div className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card flex flex-col justify-between rounded-2xl p-5 transition-all duration-300">
+    <div className={UI_SURFACES.chartCard}>
       <div className="mb-4 flex items-center justify-between">
         <div>
           <span className="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
-            Velocity Multipliers
+            Impact Multipliers
           </span>
           <h3 className="text-base font-bold text-gray-900 dark:text-gray-100">
-            Cycle-Time Acceleration Factors
+            Cross-Functional Impact Multipliers
           </h3>
         </div>
         <span className="rounded-lg border border-amber-500/20 bg-amber-500/10 px-2 py-0.5 text-[11px] font-bold text-amber-600 dark:text-amber-400">
-          {data.length} Workflows
+          {data.length} Value Vectors
         </span>
       </div>
 
       {/* Columns Grid or Empty State */}
       {data.length > 0 ? (
-        <div className="grid grid-cols-2 items-end gap-2 pb-2 pt-6 sm:grid-cols-4 lg:h-48">
+        <div className="grid grid-cols-2 items-end gap-2 pb-2 pt-6 sm:grid-cols-3 lg:grid-cols-6 lg:h-48">
           {data.map((item) => {
             const heightPercent = Math.max((item.value / maxValue) * 100, 14);
             const isSelected = activeId === item.id;
+            const isAnyHovered = activeId !== null;
 
             return (
               <div
                 key={item.id}
-                className="group flex h-full cursor-pointer flex-col items-center justify-end"
+                className="group relative flex h-full cursor-pointer flex-col items-center justify-end rounded-xl p-1 transition-all"
                 onMouseEnter={() => setActiveId(item.id)}
                 onMouseLeave={() => setActiveId(null)}
               >
-                {/* Speedup pill */}
+                {/* Value pill */}
                 <span
                   className={`mb-1.5 rounded-md px-1.5 py-0.5 text-[10px] font-black transition-all duration-200 ${
                     isSelected
-                      ? "scale-110 bg-red-600 text-white shadow-md dark:bg-red-500"
-                      : "bg-gray-200/80 text-gray-700 dark:bg-black/40 dark:text-gray-300"
+                      ? "scale-105 bg-red-600 text-white shadow-md dark:bg-red-500"
+                      : isAnyHovered
+                        ? "opacity-35 bg-gray-200/80 text-gray-700 dark:bg-black/40 dark:text-gray-300"
+                        : "bg-gray-200/80 text-gray-700 dark:bg-black/40 dark:text-gray-300"
                   }`}
                 >
-                  {item.displayValue} faster
+                  {item.displayValue}
                 </span>
 
                 {/* Bar */}
@@ -60,18 +64,39 @@ export default function ValueMultiplierBarChart({
                     style={{
                       height: `${heightPercent}%`,
                       backgroundColor: item.color,
+                      transition: "height 400ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms ease, transform 200ms ease",
                     }}
-                    className={`w-full rounded-t-xl transition-all duration-500 group-hover:brightness-125 ${
-                      isSelected ? "opacity-100 ring-2 ring-white/50" : "opacity-85"
+                    className={`w-full rounded-t-xl ${
+                      isSelected
+                        ? "opacity-100 ring-2 ring-white/50 brightness-110 shadow-md"
+                        : isAnyHovered
+                          ? "opacity-25"
+                          : "opacity-90"
                     }`}
                   />
                 </div>
 
                 {/* Label */}
-                <span className="mt-2 w-full truncate text-center text-[10px] font-bold text-gray-600 dark:text-gray-400">
+                <span
+                  className={`mt-2 w-full truncate text-center text-[10px] font-bold transition-all duration-200 ${
+                    isSelected
+                      ? "text-gray-900 dark:text-white font-black"
+                      : isAnyHovered
+                        ? "opacity-35 text-gray-600 dark:text-gray-400"
+                        : "text-gray-600 dark:text-gray-400"
+                  }`}
+                >
                   {item.label}
                 </span>
-                <span className="w-full truncate text-center text-[9px] text-gray-500 dark:text-gray-500">
+                <span
+                  className={`w-full truncate text-center text-[9px] transition-all duration-200 ${
+                    isSelected
+                      ? "text-red-600 dark:text-red-400 font-bold"
+                      : isAnyHovered
+                        ? "opacity-35 text-gray-500 dark:text-gray-500"
+                        : "text-gray-500 dark:text-gray-500"
+                  }`}
+                >
                   {item.metric}
                 </span>
               </div>
@@ -80,28 +105,28 @@ export default function ValueMultiplierBarChart({
         </div>
       ) : (
         <div className="flex h-48 flex-col items-center justify-center text-center text-xs text-gray-500 dark:text-gray-400">
-          <span>No acceleration workflows match the active filter criteria.</span>
+          <span>No impact vectors match the active filter criteria.</span>
           <span className="mt-1 text-[11px] text-gray-400">
             Adjust the domain, category, or era slicers above.
           </span>
         </div>
       )}
 
-      {/* Interactive Detail Box */}
-      <div className="mt-4 min-h-[52px] rounded-xl border border-gray-300/60 bg-gray-200/50 p-2.5 text-xs transition-all dark:border-gray-700/60 dark:bg-black/30">
+      {/* Interactive Detail Box (locked height to eliminate hover layout shift jitter) */}
+      <div className="mt-3 h-[68px] flex flex-col justify-center rounded-xl border border-gray-300/60 bg-gray-200/50 p-2.5 text-xs transition-all dark:border-gray-700/60 dark:bg-black/30">
         {activeId !== null ? (
           (() => {
             const activeItem = data.find((d) => d.id === activeId);
             if (!activeItem) return null;
             return (
               <div className="flex items-center justify-between">
-                <div>
-                  <span className="font-bold text-gray-800 dark:text-gray-200">
+                <div className="min-w-0 pr-2">
+                  <span className="font-bold text-gray-800 dark:text-gray-200 truncate block">
                     {activeItem.label} ({activeItem.domain}):
                   </span>
-                  <div className="text-[11px] text-gray-600 dark:text-gray-400">
+                  <div className="text-[11px] text-gray-600 dark:text-gray-400 line-clamp-1">
                     From{" "}
-                    <span className="font-semibold text-red-500">
+                    <span className="font-semibold text-red-600 dark:text-red-400">
                       {activeItem.baseline}
                     </span>{" "}
                     to{" "}
@@ -112,7 +137,7 @@ export default function ValueMultiplierBarChart({
                 </div>
                 <span
                   style={{ color: activeItem.color }}
-                  className="text-sm font-black"
+                  className="text-sm font-black shrink-0"
                 >
                   {activeItem.displayValue}
                 </span>
@@ -120,12 +145,12 @@ export default function ValueMultiplierBarChart({
             );
           })()
         ) : (
-          <div className="flex h-full items-center justify-center text-[11px] text-gray-500 dark:text-gray-400">
-            Hover over any column to inspect measured before &rarr; after cycle-time
-            speedups.
+          <div className="flex h-full items-center justify-center text-[11px] text-gray-500 dark:text-gray-400 text-center">
+            Hover over any column to inspect bundled impact, baseline comparison, and optimization mechanisms.
           </div>
         )}
       </div>
     </div>
   );
 }
+

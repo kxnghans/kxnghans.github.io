@@ -1,6 +1,6 @@
 # Hanson-Tube | Professional Portfolio
 
-Hanson-Tube is an interactive web portfolio built with React, TypeScript, and Tailwind CSS. It includes voice search, neumorphic dark mode, and a modular data layer for work history, projects, and engineering skills.
+Hanson-Tube is an interactive web portfolio built with React, TypeScript, and Tailwind CSS. It features voice search, neumorphic dark mode, and a modular data layer for work history, projects, metrics, and engineering skills.
 
 ---
 
@@ -15,9 +15,9 @@ Hanson-Tube is an interactive web portfolio built with React, TypeScript, and Ta
 | **Offline & PWA**      | Workbox Window & `vite-plugin-pwa` (Service Worker Caching)  |
 | **Package Manager**    | pnpm                                                         |
 | **State Management**   | React Context API (`ThemeContext`, `SearchContext`)          |
-| **Testing**            | Vitest, React Testing Library, JSDOM (16 Passing Suites, 73 Tests) |
+| **Testing**            | Vitest, React Testing Library, JSDOM (24 Passing Suites, 103 Tests) |
 | **Deployment**         | GitHub Pages (via `gh-pages`)                                |
-| **Icons**              | React Icons (`react-icons/fa`, `react-icons/fa6`)            |
+| **Icons**              | Centralized Icon Registry (`<Icon />` primitive via `src/components/icons`) |
 | **Forms & Toasts**     | React Hook Form, Sonner, EmailJS Browser                     |
 
 ---
@@ -33,6 +33,7 @@ kxnghans.github.io/ [Root]
 │   ├── checklist.md          # Execution milestones and context tracker
 │   ├── hanson-tube.md        # System blueprint & lifecycle transitions
 │   ├── images.md             # Visual imagery spec & generation roadmap
+│   ├── lint.md               # Linting policies, AST guardrails, and quality standards
 │   ├── review.md             # Security, a11y, and technical gaps tracker
 │   ├── testing.md            # Testing strategy and resilience verification
 │   └── theme.md              # Neumorphic tokens & interactive physics
@@ -44,11 +45,12 @@ kxnghans.github.io/ [Root]
 ├── src/                      # [Application Core Domain] Main source code
 │   ├── assets/               # Global media assets
 │   ├── components/           # [UI/UX Domain] Reusable UI component library
-│   │   ├── icons/            # Custom SVG icon wrappers (Icons.tsx)
+│   │   ├── icons/            # Centralized icon registry and <Icon /> primitive
 │   │   ├── layout/           # Orchestration (Header.tsx, Sidebar.tsx)
 │   │   ├── modals/           # Overlays & Portals (DetailModal.tsx, ProjectModal.tsx)
 │   │   ├── search/           # Interactive tools (SearchBar.tsx, SearchResults.tsx)
-│   │   └── ui/               # Primitive components (Slideshows, Cards, FormField, Section, LazyImage)
+│   │   ├── ui/               # Primitive components (Slideshows, Cards, FormField, Section, LazyImage)
+│   │   └── value/            # Analytical charts (Radar, Columns, Timeline, Donut, KPI grids)
 │   ├── context/              # [Global State Domain] State orchestrators
 │   │   ├── SearchContext.tsx # Search, Voice, and Modal logic hub
 │   │   └── ThemeContext.tsx  # Global dark/light theme state & persistence
@@ -59,6 +61,7 @@ kxnghans.github.io/ [Root]
 │   │   ├── education.ts      # Academic degrees & coursework
 │   │   ├── formData.ts       # Form fields definition
 │   │   ├── honors.ts         # Awards and honors
+│   │   ├── lifetimeValue.ts  # Verified financial ROI, quantitative metrics & qualitative pillars
 │   │   ├── navigation.ts     # Sidebar routes & navigation icons
 │   │   ├── projects.ts       # Project showcase items & architecture notes
 │   │   ├── skills.ts         # Competency mappings & tech categories
@@ -73,7 +76,11 @@ kxnghans.github.io/ [Root]
 │   │   ├── HomePage.tsx      # Entry point, summary card, and carousels
 │   │   ├── HonorsPage.tsx    # Awards & distinctions
 │   │   ├── ProjectsPage.tsx  # Full project listing & categorization
+│   │   ├── ValuePage.tsx     # Lifetime ROI & quantitative impact visualizers
 │   │   └── WorkExperiencePage.tsx # Professional work timeline
+│   ├── theme/                # [Design System Domain] Central tokens & style recipes
+│   │   ├── theme.ts          # Color tokens, shadows, palettes, and Tailwind recipes
+│   │   └── index.ts          # Theme barrel export
 │   ├── test/                 # [Verification Domain] Test setups
 │   │   └── setup.ts          # Vitest & RTL configuration
 │   ├── types/                # [TypeScript Domain] Shared interface definitions

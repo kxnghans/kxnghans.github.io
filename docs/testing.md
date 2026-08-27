@@ -45,13 +45,13 @@ Hanson-Tube enforces a dual-verification strategy focusing on logical unit resil
 
 ## Active Test Suite Inventory
 
-The Vitest test suite verifies 16 test suites (74 unit and integration tests):
+The Vitest test suite verifies 24 test suites (103 unit and integration tests):
 
 1. **`utils/searchEngine.test.ts`** (13 tests):
    - In-memory indexing and query caching.
    - Exact query, prefix, and substring matching.
    - Field-weighted score hierarchy (Title > Tags > Subtitle > Summary > Content).
-   - Tech and management alias expansion (`c++`/`cpp`, `next.js`/`nextjs`, `tpm`/`scrum`/`conops`, `ai`/`machine learning`).
+   - Tech and management alias expansion (`c++`/`cpp`, `next.js`/`nextjs`, `tpm`/`scrum`/`conops`, `ai`/`machine learning`, `open heavens`/`church`).
    - Multi-token scoring and full-match bonus calculation.
    - Typo-tolerant fuzzy matching via Levenshtein distance.
    - Navigation category ordering and relevance tie-breaking.
@@ -72,11 +72,11 @@ The Vitest test suite verifies 16 test suites (74 unit and integration tests):
    - Global hotkey listener integration (`Ctrl+K`, `/`, `Escape`).
    - Clear query and active filter reset lifecycle.
 
-4. **`App.test.tsx`** (4 tests):
+4. **`App.test.tsx`** (5 tests):
    - Root mounting and default view rendering.
    - Dark/Light mode theme class toggle on `document.documentElement`.
    - Sidebar responsive auto-close behavior on viewport resize.
-   - Custom state routing view switching.
+   - Custom state routing view switching and navigation to Value page.
 
 5. **`components/layout/Header.test.tsx`** (6 tests):
    - Search query input binding and submission.
@@ -120,14 +120,38 @@ The Vitest test suite verifies 16 test suites (74 unit and integration tests):
 13. **`components/ui/Section.test.tsx`** (1 test):
     - Dynamic timeline section header, period, and children rendering.
 
-14. **`hooks/useFocusTrap.test.tsx`** (3 tests):
+14. **`components/ui/FilterDropdown.test.tsx`** (7 tests):
+    - Multi-select checkbox toggling, "All" option reset, popover open/close, and keyboard navigation.
+
+15. **`hooks/useFocusTrap.test.tsx`** (3 tests):
     - Focus trapping within modal dialogs and tab order cycling.
 
-15. **`hooks/usePWA.test.tsx`** (1 test):
+16. **`hooks/usePWA.test.tsx`** (1 test):
     - Service worker registration lifecycle and online/offline event listener tracking.
 
-16. **`pages/ContactPage.test.tsx`** (4 tests):
+17. **`pages/ContactPage.test.tsx`** (4 tests):
     - Contact links and input fields rendering.
     - Form submission via EmailJS and `localStorage` cooldown timestamp storage.
     - Cooldown rate limiting enforcement and countdown error toast notification.
     - Graceful error handling on EmailJS failure.
+
+18. **`pages/EducationPage.test.tsx`** (4 tests):
+    - Degree cards rendering, curriculum sections, DetailModal trigger, and nested capstone ProjectModal trigger.
+
+19. **`pages/WorkExperiencePage.test.tsx`** (3 tests):
+    - Work cards rendering, detail modal triggers, and exposure badge validations.
+
+20. **`pages/ValuePage.test.tsx`** (4 tests):
+    - Executive summary KPI buckets ($9.6M+ savings, 705k+ hrs, 36x peak acceleration, 450 sites), interactive filter slicing, time-cost calculations, and reset filters.
+
+21. **`components/value/charts/ValueDomainDonutChart.test.tsx`** (2 tests):
+    - Domain impact footprint rendering and sector detail callout on hover.
+
+22. **`components/value/charts/ValueMultiplierBarChart.test.tsx`** (3 tests):
+    - Velocity multiplier columns rendering, speedup calculations, and before→after cycle-time detail box.
+
+23. **`components/value/charts/ValueRadarChart.test.tsx`** (2 tests):
+    - 6-axis competency spider graph, SVG web grid, and interactive vertex tenure benchmarks.
+
+24. **`components/value/charts/ValueTimelineAreaChart.test.tsx`** (3 tests):
+    - Cumulative improvement trajectory area/line curves, era milestone callouts, and filter highlighting.

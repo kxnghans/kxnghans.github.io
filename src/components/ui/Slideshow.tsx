@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, type ReactNode } from "react";
 import Section from "./Section";
 import { ChevronLeftIcon, ChevronRightIcon } from "../icons/Icons";
+import { UI_SURFACES } from "../../theme";
 
 export interface ModalRenderProps<M> {
   item: M;
@@ -96,7 +97,7 @@ const Slideshow = <T, M = T>({
               }}
               role="button"
               tabIndex={0}
-              className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card w-64 flex-shrink-0 transform cursor-pointer snap-start overflow-hidden rounded-lg bg-gray-200 text-left transition-transform duration-300 hover:-translate-y-1 sm:w-72 md:w-80"
+              className={UI_SURFACES.slideshowCard}
               onClick={() => handleCardClick(item)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {

@@ -13,6 +13,7 @@ import type {
   RegisterOptions,
 } from "react-hook-form";
 import { useTheme } from "../../context/ThemeContext";
+import { UI_INPUTS, UI_TYPOGRAPHY } from "../../theme";
 
 export interface FormFieldProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -37,8 +38,9 @@ const FormField = <TFieldValues extends FieldValues = FieldValues>({
 }: FormFieldProps<TFieldValues>) => {
   const [isFocused, setIsFocused] = useState(false);
   const [isAutofilled, setIsAutofilled] = useState(false);
-  const { isDarkMode } = useTheme();
+  const { colors, tokens } = useTheme();
 
+  // Detect WebKit autofill event to dynamically overlay the autofill tint shadow
   const handleAutoFill = (
     e: AnimationEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -46,7 +48,11 @@ const FormField = <TFieldValues extends FieldValues = FieldValues>({
       setIsAutofilled(true);
       setValue(
         name,
-        (e.target as HTMLInputElement | HTMLTextAreaElement).value as never,
+        (e.target as HTMLInputElement | HTMLTextAreaElement)
+          .value as import("react-hook-form").PathValue<
+          TFieldValues,
+          Path<TFieldValues>
+        >,
         {
           shouldValidate: true,
           shouldDirty: true,
@@ -55,26 +61,25 @@ const FormField = <TFieldValues extends FieldValues = FieldValues>({
     }
   };
 
+  // Compose dynamic neumorphic inset shadows, focus/error rings, and autofill tints
   const getInputStyle = () => {
-    const baseShadowLight =
-      "inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.7)";
-    const baseShadowDark =
-      "inset 6px 6px 12px #1a1b1e, inset -6px -6px 12px #2e2f34";
-    const blueFocusRing = "0 0 0 1.5px #3b82f6";
-    const redErrorRing = "0 0 0 1.5px #ef4444";
-    const autofillTint = "inset 0 0 0 1000px rgba(59, 130, 246, 0.1)";
+    const baseShadow = tokens.shadows.inset;
+    const blueFocusRing = `0 0 0 1.5px ${colors.focusRing}`;
+    const redErrorRing = `0 0 0 1.5px ${colors.brandRed}`;
+    const autofillTint = tokens.shadows.autofillTint;
 
-    const shadows = [isDarkMode ? baseShadowDark : baseShadowLight];
+    const shadows: string[] = [baseShadow];
     if (isAutofilled) shadows.push(autofillTint);
     if (errors[name]) shadows.unshift(redErrorRing);
     if (isFocused) shadows.unshift(blueFocusRing);
 
     return {
-      backgroundColor: isDarkMode ? "#242529" : "#e5e7eb",
+      backgroundColor: colors.well,
       boxShadow: shadows.join(", "),
     };
   };
 
+  // Register React Hook Form handlers and bind input interaction lifecycle
   const registeredProps = register(name, validation);
 
   const handleChange = (
@@ -109,17 +114,17 @@ const FormField = <TFieldValues extends FieldValues = FieldValues>({
         <textarea
           {...commonProps}
           rows={4}
-          className="detect-autofill w-full rounded-lg p-3 text-gray-800 transition-shadow outline-none placeholder:text-gray-500 dark:text-gray-300 dark:placeholder:text-gray-400"
+          className={UI_INPUTS.field}
         />
       ) : (
         <input
           type={type}
           {...commonProps}
-          className="detect-autofill w-full rounded-lg p-3 text-gray-800 transition-shadow outline-none placeholder:text-gray-500 dark:text-gray-300 dark:placeholder:text-gray-400"
+          className={UI_INPUTS.field}
         />
       )}
       {errorObj && (
-        <p className="mt-1 text-xs text-red-500">
+        <p className={UI_TYPOGRAPHY.errorText}>
           {errorObj.message ? String(errorObj.message) : ""}
         </p>
       )}
@@ -128,3 +133,4 @@ const FormField = <TFieldValues extends FieldValues = FieldValues>({
 };
 
 export default FormField;
+

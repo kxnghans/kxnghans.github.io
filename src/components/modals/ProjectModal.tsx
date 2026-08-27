@@ -1,5 +1,5 @@
 import type { ReactElement } from "react";
-import { FaCirclePlay } from "react-icons/fa6";
+import { Icon, ICONS } from "../icons";
 import ModalShell from "./ModalShell";
 import ModalCARSection from "./ModalCARSection";
 import ModalHighlightsGrid from "./ModalHighlightsGrid";
@@ -25,7 +25,7 @@ export interface ProjectModalProps {
 
 const ProjectModal = ({ project, onClose }: ProjectModalProps): ReactElement => {
   const actions = (project.liveLink || project.codeLink) ? (
-    <div className="mt-6 flex space-x-4">
+    <div className="flex space-x-4">
       {project.liveLink && (
         <a
           href={project.liveLink}
@@ -33,7 +33,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps): ReactElement => 
           rel="noopener noreferrer"
           className="bevel-button-light dark:bevel-button-dark flex transform items-center rounded-lg bg-red-600 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-red-700 active:scale-95"
         >
-          <FaCirclePlay className="mr-2" /> Demo
+          <Icon name={ICONS.PLAY_CIRCLE} className="mr-2" /> Demo
         </a>
       )}
       {project.codeLink && (
@@ -47,7 +47,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps): ReactElement => 
         </a>
       )}
     </div>
-  ) : null;
+  ) : undefined;
 
   return (
     <ModalShell
@@ -55,6 +55,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps): ReactElement => 
       titleId="project-modal-title"
       closeAriaLabel="Close project modal"
       onClose={onClose}
+      footer={actions}
     >
       {/* Video preview if provided */}
       {project.video && (
@@ -84,10 +85,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps): ReactElement => 
       )}
 
       {/* Listed Highlights */}
-      <ModalHighlightsGrid highlights={project.highlights} />
-
-      {/* Action Buttons */}
-      {actions}
+      <ModalHighlightsGrid highlights={project.highlights} showBorder={true} />
     </ModalShell>
   );
 };

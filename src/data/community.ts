@@ -1,19 +1,24 @@
 import type { CommunityItem } from "../types/data";
 
+// Community & Leadership Dataset (SSOT)
+// Volunteer leadership, academic mentorship, and community service.
 export const communityData: CommunityItem[] = [
+  // Photography & Media Venture & Open Heavens Church Media Lead
   {
     title: "Photography & Media",
     imageUrl: "/assets/generated/community/photography-media.webp",
-    summary: ["Venture: HansOnDeck LLC", "Role: Church Media Team Lead"],
+    summary: ["Venture: HansOnDeck LLC", "Role: Open Heavens Media Team Lead"],
     details: {
-      title: "HansOnDeck LLC & Media Lead",
+      title: "HansOnDeck LLC & Open Heavens Media Lead",
       details: [
-        "Serve as volunteer Media Team Lead for my church alongside running HansOnDeck LLC.",
-        "Direct photo and video coverage for major events, including holiday services, conferences, and youth outreaches.",
-        "Manage weekly church media production and social channels.",
+        "Lead the volunteer media team at Open Heavens alongside running commercial shoots for HansOnDeck LLC.",
+        "Direct multi-camera photo, video, and livestream broadcast production for weekly worship services, holiday celebrations, regional conferences, and community outreach.",
+        "Manage weekly media production workflows, digital soundboards, livestream hardware/software, volunteer crew training, and social media distribution.",
       ],
     },
   },
+
+  // NSBE Chapter Vice President
   {
     title: "Vice President of NSBE Chapter",
     imageUrl: "/assets/generated/community/nsbe-chapter.webp",
@@ -25,12 +30,14 @@ export const communityData: CommunityItem[] = [
       title:
         "Vice President of NSBE (National Society of Black Engineers) Chapter",
       details: [
-        "Organized professional workshops, resume reviews, and mock technical interviews for engineering students.",
-        "Connected members with industry professionals through speaker panels and company recruiting visits.",
-        "Led our chapter delegation to the national conference in San Francisco, where all 6 attending members secured job offers.",
+        "Ran weekly professional workshops, peer resume reviews, and mock coding interviews for engineering undergraduates.",
+        "Connected student members with industry engineers through speaker panels and company recruiting visits.",
+        "Led our chapter delegation to the national conference in San Francisco, where all 6 attending members secured engineering job offers.",
       ],
     },
   },
+
+  // Readers and Writers Club President
   {
     title: "President of the Readers and Writers Club",
     imageUrl: "/assets/generated/community/readers-writers.webp",
@@ -38,11 +45,13 @@ export const communityData: CommunityItem[] = [
     details: {
       title: "President of the Readers and Writers Club",
       details: [
-        "Coordinated weekly meetings and organized campus spelling bees and annual student debates.",
-        "Tripled club membership through targeted student outreach and active social channels.",
+        "Coordinated weekly club meetings and organized campus spelling bees and annual student debates.",
+        "Tripled active club membership through campus outreach and student community events.",
       ],
     },
   },
+
+  // Lockheed Martin Code Quest Proctor
   {
     title: "Code Quest",
     imageUrl: "/assets/generated/community/code-quest.webp",
@@ -56,10 +65,12 @@ export const communityData: CommunityItem[] = [
       details: [
         "Served as a technical proctor for the Lockheed Martin Code Quest programming competition across 20 global sites.",
         "Judged and assisted high school teams solving algorithmic problems in Java, Python, C#, and C++.",
-        "Managed lab setup and technical support at the Denver site to keep the competition running smoothly.",
+        "Managed computer lab setup and technical support at the Denver site to ensure smooth competition flow.",
       ],
     },
   },
+
+  // Vegas Strong Thunderbird Airshow
   {
     title: "Vegas Strong Thunderbird Airshow",
     imageUrl: "/assets/generated/community/thunderbird-airshow.webp",

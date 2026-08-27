@@ -4,7 +4,7 @@ import {
   type ImgHTMLAttributes,
   type SyntheticEvent,
 } from "react";
-import { FaImage } from "react-icons/fa6";
+import { Icon, ICONS } from "../icons";
 
 export interface LazyImageProps extends Omit<
   ImgHTMLAttributes<HTMLImageElement>,
@@ -83,7 +83,7 @@ const LazyImage = ({
           data-testid="lazy-image-error"
           className={`dark:bg-dark-card flex h-full w-full flex-col items-center justify-center bg-gray-200 p-4 text-gray-400 dark:text-gray-500 ${className}`}
         >
-          <FaImage className="mb-1 text-2xl" />
+          <Icon name={ICONS.IMAGE} className="mb-1 text-2xl" />
           <span className="truncate text-xs">{alt || "Image unavailable"}</span>
         </div>
       ) : (

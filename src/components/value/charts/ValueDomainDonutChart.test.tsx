@@ -14,8 +14,9 @@ describe("ValueDomainDonutChart", () => {
     expect(
       screen.getByText("Domain Impact Footprint"),
     ).toBeInTheDocument();
-    expect(screen.getByText("50%")).toBeInTheDocument();
-    expect(screen.getByText("25%")).toBeInTheDocument();
+    expect(screen.getByText("45%")).toBeInTheDocument();
+    expect(screen.getByText("30%")).toBeInTheDocument();
+    expect(screen.getByText("15%")).toBeInTheDocument();
   });
 
   it("updates sector detail callout on legend hover", () => {
@@ -25,16 +26,17 @@ describe("ValueDomainDonutChart", () => {
       />,
     );
 
-    const fintechBtn = screen.getByRole("button", {
-      name: /enterprise & fintech/i,
+    const enterpriseBtn = screen.getByRole("button", {
+      name: /enterprise automation/i,
     });
-    fireEvent.mouseEnter(fintechBtn);
+    fireEvent.mouseEnter(enterpriseBtn);
 
     expect(
       screen.getByText(/accounts for/i),
     ).toBeInTheDocument();
     expect(
-      screen.getAllByText(/50%/i)[0],
+      screen.getAllByText(/30%/i)[0],
     ).toBeInTheDocument();
   });
 });
+

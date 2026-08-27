@@ -18,6 +18,7 @@ Hanson-Tube is a client-side React single-page app written in TypeScript. It run
    - When a user picks a page from the sidebar, `setActivePage` updates the state.
    - `renderPage()` runs a `switch` statement on `activePage` and renders the selected view (code-split via `React.lazy` and `Suspense` with a neumorphic skeleton fallback):
      - `HomePage` (eager)
+     - `ValuePage` (lazy)
      - `ProjectsPage` (lazy)
      - `WorkExperiencePage` (lazy)
      - `EducationPage` (lazy)

@@ -27,8 +27,8 @@ export const ModalCARSection = ({
       )}
 
       {action && (
-        <div className="rounded-l-lg rounded-r-md border-l-4 border-blue-600 bg-blue-500/[0.07] px-3.5 py-2 leading-relaxed dark:border-[#3ea6ff] dark:bg-[#3ea6ff]/[0.06]">
-          <span className="mr-1.5 font-bold text-blue-600 dark:text-[#3ea6ff]">
+        <div className="rounded-l-lg rounded-r-md border-l-4 border-blue-600 bg-blue-500/[0.07] px-3.5 py-2 leading-relaxed dark:border-blue-400 dark:bg-blue-500/[0.06]">
+          <span className="mr-1.5 font-bold text-blue-600 dark:text-blue-400">
             Action:
           </span>
           <span className="text-gray-700 dark:text-gray-200">{action}</span>

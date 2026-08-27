@@ -1,14 +1,4 @@
-import {
-  FaHome,
-  FaChartLine,
-  FaCode,
-  FaGraduationCap,
-  FaBriefcase,
-  FaMedal,
-  FaBars,
-  FaSun,
-  FaMoon,
-} from "react-icons/fa";
+import { Icon, ICONS } from "../icons";
 import { useTheme } from "../../context/ThemeContext";
 import { FEATURE_FLAGS } from "../../config/features";
 
@@ -21,21 +11,21 @@ export interface SidebarProps {
 const Sidebar = ({ isOpen, setActivePage, activePage }: SidebarProps) => {
   const { theme, toggleTheme } = useTheme();
   const navItems = [
-    { name: "Home", icon: <FaHome /> },
-    { name: "Education", icon: <FaGraduationCap /> },
-    { name: "Work Experience", icon: <FaBriefcase /> },
-    { name: "Projects", icon: <FaCode /> },
-    { name: "Honors", icon: <FaMedal /> },
+    { name: "Home", icon: <Icon name={ICONS.HOME} /> },
+    { name: "Education", icon: <Icon name={ICONS.EDUCATION} /> },
+    { name: "Work Experience", icon: <Icon name={ICONS.WORK} /> },
+    { name: "Projects", icon: <Icon name={ICONS.SKILLS} /> },
+    { name: "Honors", icon: <Icon name={ICONS.MEDAL} /> },
     ...(FEATURE_FLAGS.showValuePage
-      ? [{ name: "Value", icon: <FaChartLine /> }]
+      ? [{ name: "Value", icon: <Icon name={ICONS.VALUE} /> }]
       : []),
-    { name: "More", icon: <FaBars /> },
+    { name: "More", icon: <Icon name={ICONS.MENU} /> },
   ];
 
 
   return (
     <aside
-      className={`sticky top-0 z-50 flex h-screen flex-col border-r border-gray-300 bg-gray-100 text-gray-600 transition-all duration-300 ease-in-out dark:border-gray-800 dark:bg-[#181818] dark:text-gray-300 ${
+      className={`sticky top-0 z-50 flex h-screen flex-col border-r border-gray-300 bg-gray-100 text-gray-600 transition-all duration-300 ease-in-out dark:border-gray-800 dark:bg-dark-header dark:text-gray-300 ${
         isOpen ? "w-56" : "w-25"
       }`}
     >
@@ -47,7 +37,7 @@ const Sidebar = ({ isOpen, setActivePage, activePage }: SidebarProps) => {
                 onClick={() => setActivePage(item.name)}
                 className={`my-1 flex w-full items-center rounded-lg p-2 transition-colors duration-200 ${
                   activePage === item.name
-                    ? "bg-red-600/20 text-red-500"
+                    ? "bg-red-600/15 text-red-600 dark:bg-red-600/20 dark:text-red-500"
                     : "hover:bg-gray-200 dark:hover:bg-gray-800"
                 }`}
               >
@@ -72,7 +62,11 @@ const Sidebar = ({ isOpen, setActivePage, activePage }: SidebarProps) => {
           className="flex w-full items-center rounded-lg p-2 transition-colors hover:bg-gray-200 dark:hover:bg-gray-800"
         >
           <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center text-[1.4rem]">
-            {theme === "dark" ? <FaSun /> : <FaMoon />}
+            {theme === "dark" ? (
+              <Icon name={ICONS.SUN} />
+            ) : (
+              <Icon name={ICONS.MOON} />
+            )}
           </div>
           <span
             className={`whitespace-nowrap transition-all duration-200 ${

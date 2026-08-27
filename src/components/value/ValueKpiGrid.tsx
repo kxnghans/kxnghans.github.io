@@ -1,9 +1,4 @@
-import {
-  FaDollarSign,
-  FaBolt,
-  FaClock,
-  FaBuilding,
-} from "react-icons/fa";
+import { Icon, ICONS } from "../icons";
 import { lifetimeValueData } from "../../data/lifetimeValue";
 
 export interface ValueKpiGridProps {
@@ -30,7 +25,10 @@ export default function ValueKpiGrid({
       subtext:
         "Boeing retread avoidance, innovation engine validation & 450-site automation",
       icon: (
-        <FaDollarSign className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+        <Icon
+          name={ICONS.DOLLAR}
+          className="h-5 w-5 text-emerald-600 dark:text-emerald-400"
+        />
       ),
       tag: isFiltered ? "Filtered Savings" : "Lifetime Savings",
       color: "border-emerald-500/20 text-emerald-600 dark:text-emerald-400",
@@ -40,7 +38,12 @@ export default function ValueKpiGrid({
       value: totalHours ?? executiveSummary.totalHoursSaved,
       subtext:
         "Enterprise customer workflows + nightly ETL & supply reconciliation automation",
-      icon: <FaClock className="h-5 w-5 text-blue-600 dark:text-blue-400" />,
+      icon: (
+        <Icon
+          name={ICONS.CLOCK}
+          className="h-5 w-5 text-blue-600 dark:text-blue-400"
+        />
+      ),
       tag: isFiltered ? "Filtered Hours / Yr" : "Time Saved",
       color: "border-blue-500/20 text-blue-600 dark:text-blue-400",
     },
@@ -49,7 +52,12 @@ export default function ValueKpiGrid({
       value: maxAcceleration ?? executiveSummary.maxAcceleration,
       subtext:
         "OAR nightly reconciliation 3 hrs → 5 min; plus 10x SNO CI/CD builds (GTB)",
-      icon: <FaBolt className="h-5 w-5 text-amber-600 dark:text-amber-400" />,
+      icon: (
+        <Icon
+          name={ICONS.BOLT}
+          className="h-5 w-5 text-amber-600 dark:text-amber-400"
+        />
+      ),
       tag: "36x Faster",
       color: "border-amber-500/20 text-amber-600 dark:text-amber-400",
     },
@@ -57,9 +65,12 @@ export default function ValueKpiGrid({
       label: "Enterprise Operational Scale",
       value: enterpriseScale ?? executiveSummary.enterpriseScale,
       subtext:
-        "Branches modernized with $662k/yr savings & 0.0% audit error rate",
+        "Sites modernized with $662k/yr savings & 0.0% audit error rate",
       icon: (
-        <FaBuilding className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+        <Icon
+          name={ICONS.BUILDING}
+          className="h-5 w-5 text-purple-600 dark:text-purple-400"
+        />
       ),
       tag: "450 Sites",
       color: "border-purple-500/20 text-purple-600 dark:text-purple-400",

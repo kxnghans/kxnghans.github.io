@@ -1,5 +1,3 @@
-import type { ComponentType } from "react";
-
 export interface Highlight {
   label: string;
   value: string;
@@ -53,8 +51,12 @@ export interface SkillCategory {
 export interface WorkDetails {
   title: string;
   subtitle?: string;
+  challenge?: string;
+  action?: string;
+  outcome?: string;
   details: string[];
   highlights?: Highlight[];
+  exposure?: string[];
 }
 
 export interface WorkExperience {
@@ -67,7 +69,12 @@ export interface WorkExperience {
 export interface EducationDetails {
   title: string;
   subtitle?: string;
+  challenge?: string;
+  action?: string;
+  outcome?: string;
   details: string[];
+  highlights?: Highlight[];
+  exposure?: string[];
 }
 
 export interface EducationItem {
@@ -117,7 +124,7 @@ export interface HonorItem {
 
 export interface ContactLink {
   href: string;
-  icon: ComponentType<{ className?: string }>;
+  icon: import("../components/icons").IconName;
   text: string;
 }
 
@@ -144,10 +151,10 @@ export type ValueCategory =
 
 export type ValueDomain =
   | "Defense & Space"
-  | "Enterprise & Fintech"
-  | "Military Operations"
-  | "Proprietary Ecosystem"
-  | "Academic & Community";
+  | "Enterprise Automation"
+  | "Military Logistics & Readiness"
+  | "Software Solutions"
+  | "Academic & Research";
 
 export type ValueType = "quantitative" | "qualitative";
 
@@ -240,6 +247,7 @@ export interface DistributionPoint {
   percentage: number;
   color: string;
   domain: ValueDomain;
+  description?: string;
 }
 
 export interface LifetimeValueData {

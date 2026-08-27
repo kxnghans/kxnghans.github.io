@@ -3,6 +3,7 @@ import Section from "../components/ui/Section";
 import DetailModal from "../components/modals/DetailModal";
 import LazyImage from "../components/ui/LazyImage";
 import { work } from "../data";
+import { UI_SURFACES, UI_TYPOGRAPHY } from "../theme";
 import type { WorkDetails } from "../types/data";
 
 const WorkExperiencePage = () => {
@@ -23,7 +24,7 @@ const WorkExperiencePage = () => {
               id={`work-${index}`}
               role="button"
               tabIndex={0}
-              className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card cursor-pointer overflow-hidden rounded-lg bg-gray-200 text-left transition-all duration-300 hover:-translate-y-2"
+              className={UI_SURFACES.cardInteractive}
               onClick={() => setSelectedItem(job.details)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
@@ -42,7 +43,7 @@ const WorkExperiencePage = () => {
                 <h4 className="truncate text-xl font-bold text-red-500 dark:text-red-400">
                   {job.title}
                 </h4>
-                <div className="mt-2 h-24 space-y-1 overflow-hidden text-sm text-gray-600 dark:text-gray-400">
+                <div className={`mt-2 h-24 overflow-hidden ${UI_TYPOGRAPHY.cardSummary}`}>
                   {job.summary.map((line, i) => (
                     <p key={i} className="truncate">
                       {i === 0 ? <strong>{line}</strong> : line}

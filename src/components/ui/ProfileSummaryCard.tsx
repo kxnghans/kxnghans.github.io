@@ -1,11 +1,12 @@
-import { FaLinkedin } from "react-icons/fa6";
+import { Icon, ICONS } from "../icons";
+import { UI_SURFACES } from "../../theme";
 import LazyImage from "./LazyImage";
 
 const profileImage = "/assets/Kobs DP.webp";
 const profileImageFallback = "/assets/Kobs DP.png";
 
 const ProfileSummaryCard = () => (
-  <div className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card mb-8 rounded-2xl bg-gray-100 p-4 sm:p-6">
+  <div className={`${UI_SURFACES.section} p-4 sm:p-6`}>
     <div className="flex flex-col items-center sm:flex-row">
       <LazyImage
         src={profileImage}
@@ -26,24 +27,24 @@ const ProfileSummaryCard = () => (
             className="linkedin-icon-link ml-3 text-gray-400 hover:text-gray-500"
             aria-label="Kobby Hanson LinkedIn Profile"
           >
-            <FaLinkedin size={30} className="linkedin-icon" />
+            <Icon name={ICONS.LINKEDIN} size={30} className="linkedin-icon" />
           </a>
         </h1>
         <p className="text-md text-gray-500 sm:text-lg dark:text-gray-400">
-          Systems Engineer & Business Analyst
+          Technical Program Manager & Systems Leader
         </p>
-        <p className="text-md text-red-500 sm:text-lg dark:text-red-400">
+        <p className="text-md text-red-600 sm:text-lg dark:text-red-400">
           <a
             href="https://hansondeck.com"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Entrepreneur
+            Founder & Software Studio Lead
           </a>
         </p>
         <div className="mt-2 text-xs text-gray-500 sm:text-sm dark:text-gray-400">
-          <p>Masters in Data Science - UC Berkeley</p>
-          <p>Bachelors in Electrical Engineering - UCCS</p>
+          <p>M.S. in Data Science - UC Berkeley (4.0 GPA)</p>
+          <p>B.S. in Electrical Engineering - UCCS</p>
           <p>Active Secret Security Clearance</p>
         </div>
       </div>

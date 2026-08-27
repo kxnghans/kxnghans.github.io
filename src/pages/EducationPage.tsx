@@ -1,12 +1,17 @@
 import { useState } from "react";
 import Section from "../components/ui/Section";
 import DetailModal from "../components/modals/DetailModal";
+import ProjectModal from "../components/modals/ProjectModal";
 import LazyImage from "../components/ui/LazyImage";
 import { education } from "../data";
-import type { EducationDetails } from "../types/data";
+import { UI_SURFACES, UI_TYPOGRAPHY } from "../theme";
+import type { EducationDetails, ProjectDetails } from "../types/data";
 
 const EducationPage = () => {
   const [selectedItem, setSelectedItem] = useState<EducationDetails | null>(
+    null,
+  );
+  const [selectedProject, setSelectedProject] = useState<ProjectDetails | null>(
     null,
   );
 
@@ -25,7 +30,7 @@ const EducationPage = () => {
               id={`education-${index}`}
               role="button"
               tabIndex={0}
-              className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card cursor-pointer overflow-hidden rounded-lg bg-gray-200 text-left transition-all duration-300 hover:-translate-y-2"
+              className={UI_SURFACES.cardInteractive}
               onClick={() => setSelectedItem(edu.details)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
@@ -44,7 +49,7 @@ const EducationPage = () => {
                 <h3 className="mb-2 truncate text-lg font-bold text-red-500 dark:text-red-400">
                   {edu.title}
                 </h3>
-                <div className="h-24 space-y-1 overflow-hidden text-sm text-gray-600 dark:text-gray-400">
+                <div className={`h-24 overflow-hidden ${UI_TYPOGRAPHY.cardSummary}`}>
                   {edu.summary.map((line, i) => (
                     <p key={i} className="truncate">
                       {i === 0 ? <strong>{line}</strong> : line}
@@ -59,6 +64,13 @@ const EducationPage = () => {
           <DetailModal
             item={selectedItem}
             onClose={() => setSelectedItem(null)}
+            onSelectProject={(project) => setSelectedProject(project)}
+          />
+        )}
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
           />
         )}
       </Section>

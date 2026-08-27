@@ -4,18 +4,18 @@ import ValueMultiplierBarChart from "./ValueMultiplierBarChart";
 import { lifetimeValueData } from "../../../data/lifetimeValue";
 
 describe("ValueMultiplierBarChart", () => {
-  it("renders acceleration columns with grounded speedup labels", () => {
+  it("renders cross-functional impact multiplier columns with display values", () => {
     render(
       <ValueMultiplierBarChart data={lifetimeValueData.charts.multipliers} />,
     );
 
     expect(
-      screen.getByText("Cycle-Time Acceleration Factors"),
+      screen.getByText("Cross-Functional Impact Multipliers"),
     ).toBeInTheDocument();
+    expect(screen.getByText("$9.6M+")).toBeInTheDocument();
+    expect(screen.getByText("705k+ hrs")).toBeInTheDocument();
     expect(screen.getByText("36x faster")).toBeInTheDocument();
-    expect(screen.getByText("18x faster")).toBeInTheDocument();
-    expect(screen.getByText("10x faster")).toBeInTheDocument();
-    expect(screen.getByText("Supply Reconciliation (OAR)")).toBeInTheDocument();
+    expect(screen.getByText("Total Financial ROI")).toBeInTheDocument();
     expect(screen.getByText(/hover over any column/i)).toBeInTheDocument();
   });
 
@@ -24,17 +24,18 @@ describe("ValueMultiplierBarChart", () => {
       <ValueMultiplierBarChart data={lifetimeValueData.charts.multipliers} />,
     );
 
-    fireEvent.mouseEnter(screen.getByText("Executive Report ETL"));
+    fireEvent.mouseEnter(screen.getByText("Labor Hours Reclaimed"));
 
-    expect(screen.getByText(/180\+ min per refresh/)).toBeInTheDocument();
-    expect(screen.getByText(/<10 min per refresh/)).toBeInTheDocument();
+    expect(screen.getByText(/Manual paper logs & 2,760 annual BA hours/)).toBeInTheDocument();
+    expect(screen.getByText(/Power Platform across 450 sites/)).toBeInTheDocument();
   });
 
-  it("renders an empty state when no workflows match filters", () => {
+  it("renders an empty state when no impact vectors match filters", () => {
     render(<ValueMultiplierBarChart data={[]} />);
 
     expect(
-      screen.getByText(/no acceleration workflows match/i),
+      screen.getByText(/no impact vectors match the active filter criteria/i),
     ).toBeInTheDocument();
   });
 });
+

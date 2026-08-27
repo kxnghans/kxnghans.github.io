@@ -5,14 +5,22 @@ import {
   useEffect,
   type ReactNode,
 } from "react";
+import {
+  tokens,
+  type ThemeTokens,
+  type ThemeColors,
+  type ThemeMode,
+} from "../theme/theme";
 
-export type ThemeMode = "dark" | "light";
+export type { ThemeMode, ThemeTokens, ThemeColors };
 
 export interface ThemeContextType {
   theme: ThemeMode;
   setTheme: (theme: ThemeMode | ((prev: ThemeMode) => ThemeMode)) => void;
   toggleTheme: () => void;
   isDarkMode: boolean;
+  tokens: ThemeTokens;
+  colors: ThemeColors;
 }
 
 export const ThemeContext = createContext<ThemeContextType | null>(null);
@@ -54,6 +62,8 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   };
 
   const isDarkMode = theme === "dark";
+  const currentTokens = tokens[theme];
+  const colors = currentTokens.colors;
 
   return (
     <ThemeContext.Provider
@@ -62,6 +72,8 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
         setTheme,
         toggleTheme,
         isDarkMode,
+        tokens: currentTokens,
+        colors,
       }}
     >
       {children}

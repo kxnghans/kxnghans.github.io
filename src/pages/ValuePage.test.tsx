@@ -1,10 +1,18 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 import ValuePage from "./ValuePage";
+import { ThemeProvider } from "../context/ThemeContext";
+
+const renderValuePage = () =>
+  render(
+    <ThemeProvider>
+      <ValuePage />
+    </ThemeProvider>,
+  );
 
 describe("ValuePage", () => {
   it("renders main heading, executive KPI summaries, and charts", () => {
-    render(<ValuePage />);
+    renderValuePage();
 
     expect(
       screen.getByRole("heading", {
@@ -21,7 +29,7 @@ describe("ValuePage", () => {
       screen.getByText("Capability & Competency Radar"),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Cycle-Time Acceleration Factors"),
+      screen.getByText("Cross-Functional Impact Multipliers"),
     ).toBeInTheDocument();
     expect(
       screen.getByText("Lifetime Improvements Over Time"),
@@ -32,7 +40,7 @@ describe("ValuePage", () => {
   });
 
   it("filters multipliers and savings total when selecting a domain sector filter", () => {
-    render(<ValuePage />);
+    renderValuePage();
 
     const domainBtn = screen.getByRole("button", {
       name: /domain sector/i,
@@ -47,15 +55,15 @@ describe("ValuePage", () => {
     const doneBtn = screen.getByRole("button", { name: "Done" });
     fireEvent.click(doneBtn);
 
-    expect(screen.getByText("SNO CI/CD Builds")).toBeInTheDocument();
+    expect(screen.getByText("Supply Chain Security")).toBeInTheDocument();
     expect(
-      screen.queryByText("Executive Report ETL"),
+      screen.queryByText("Total Financial ROI"),
     ).not.toBeInTheDocument();
-    expect(screen.getByText("$1.0M")).toBeInTheDocument();
+    expect(screen.getAllByText("40+ repos").length).toBeGreaterThan(0);
   });
 
   it("filters time-cost initiatives when selecting a career era filter", () => {
-    render(<ValuePage />);
+    renderValuePage();
 
     const eraBtn = screen.getByRole("button", {
       name: /career era/i,
@@ -63,21 +71,19 @@ describe("ValuePage", () => {
     fireEvent.click(eraBtn);
 
     const usafOpt = screen.getByRole("option", {
-      name: /2015 – 2019 \(USAF Expeditionary Logistics\)/i,
+      name: /2015 – 2019: Logistics & Supply Chain/i,
     });
     fireEvent.click(usafOpt);
 
     const doneBtn = screen.getByRole("button", { name: "Done" });
     fireEvent.click(doneBtn);
 
-    expect(
-      screen.getByText(/no acceleration workflows match/i),
-    ).toBeInTheDocument();
-    expect(screen.queryByText("SNO CI/CD Builds")).not.toBeInTheDocument();
+    expect(screen.getByText("Workflow Velocity")).toBeInTheDocument();
+    expect(screen.queryByText("Supply Chain Security")).not.toBeInTheDocument();
   });
 
   it("resets all active filters when Reset Filters is clicked", () => {
-    render(<ValuePage />);
+    renderValuePage();
 
     const domainBtn = screen.getByRole("button", {
       name: /domain sector/i,
@@ -96,8 +102,8 @@ describe("ValuePage", () => {
     expect(resetBtn).not.toBeDisabled();
     fireEvent.click(resetBtn);
 
-    expect(screen.getByText("SNO CI/CD Builds")).toBeInTheDocument();
-    expect(screen.getByText("Executive Report ETL")).toBeInTheDocument();
+    expect(screen.getByText("Supply Chain Security")).toBeInTheDocument();
+    expect(screen.getByText("Total Financial ROI")).toBeInTheDocument();
     expect(screen.getAllByText("$9.6M+")[0]).toBeInTheDocument();
   });
 });

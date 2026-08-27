@@ -1,4 +1,4 @@
-import { FaSyncAlt } from "react-icons/fa";
+import { Icon, ICONS } from "../icons";
 import FilterDropdown from "../ui/FilterDropdown";
 import {
   VALUE_DOMAINS,
@@ -40,9 +40,9 @@ export default function ValueFilterBar({
           onToggle={onToggleDomain}
         />
 
-        {/* Impact Dimension Filter */}
+        {/* Business Impact Filter */}
         <FilterDropdown
-          label="Impact Dimension"
+          label="Business Impact"
           options={IMPACT_CATEGORIES}
           selected={selectedCategories}
           onToggle={onToggleCategory}
@@ -57,7 +57,7 @@ export default function ValueFilterBar({
         />
 
         {/* Neumorphic Inset Vertical Divider (Desktop) */}
-        <div className="hidden lg:block h-10 w-[3px] shrink-0 self-end rounded-full bg-gray-200 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.22),inset_-1px_-1px_2px_rgba(255,255,255,0.85)] dark:bg-[#1a1b1e] dark:shadow-[inset_1px_1px_2px_rgba(0,0,0,0.95),inset_-1px_-1px_2px_rgba(255,255,255,0.08)]" />
+        <div className="hidden lg:block h-10 w-[3px] shrink-0 self-end rounded-full bevel-light-inset dark:bevel-dark-inset bg-gray-200 dark:bg-dark-bg" />
 
         {/* Reset Button */}
         <div className="flex items-end lg:w-32 shrink-0">
@@ -71,7 +71,8 @@ export default function ValueFilterBar({
                 : "opacity-40 cursor-not-allowed text-gray-500"
             }`}
           >
-            <FaSyncAlt
+            <Icon
+              name={ICONS.SYNC}
               className={`h-3 w-3 ${isFiltered ? "hover:rotate-180 transition-transform" : ""}`}
             />
             <span>Reset</span>

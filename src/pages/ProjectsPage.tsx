@@ -4,6 +4,7 @@ import ProjectModal from "../components/modals/ProjectModal";
 import LazyImage from "../components/ui/LazyImage";
 import { projects } from "../data";
 import { useSearch } from "../context/SearchContext";
+import { UI_SURFACES, UI_TYPOGRAPHY } from "../theme";
 import type { ProjectDetails } from "../types/data";
 
 const ProjectsPage = () => {
@@ -56,7 +57,7 @@ const ProjectsPage = () => {
               key={index}
               role="button"
               tabIndex={0}
-              className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card cursor-pointer overflow-hidden rounded-lg bg-gray-200 text-left transition-all duration-300 hover:-translate-y-2"
+              className={UI_SURFACES.cardInteractive}
               onClick={() => handleOpenModal(project.details, index)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
@@ -72,10 +73,10 @@ const ProjectsPage = () => {
                 containerClassName="h-48 w-full"
               />
               <div className="p-4">
-                <h3 className="mb-2 truncate text-xl font-bold text-gray-900 dark:text-gray-300">
+                <h3 className={`mb-2 ${UI_TYPOGRAPHY.cardTitle}`}>
                   {project.title}
                 </h3>
-                <div className="h-24 space-y-1 overflow-hidden text-sm text-gray-600 dark:text-gray-400">
+                <div className={`h-24 overflow-hidden ${UI_TYPOGRAPHY.cardSummary}`}>
                   {project.summary.map((line, i) => (
                     <p key={i} className="truncate">
                       {line}

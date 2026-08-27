@@ -121,6 +121,12 @@ const getDetailedTags = (item?: DetailedGenericItem): string[] => {
     });
   }
 
+  if (detailsObj && "exposure" in detailsObj && Array.isArray(detailsObj.exposure)) {
+    detailsObj.exposure.forEach((exp) => {
+      if (exp) tags.push(exp);
+    });
+  }
+
   return Array.from(new Set(tags));
 };
 
@@ -133,6 +139,18 @@ const getDetailedContent = (item?: DetailedGenericItem): string => {
     detailsObj && "subtitle" in detailsObj && detailsObj.subtitle
       ? detailsObj.subtitle
       : "";
+  const challenge =
+    detailsObj && "challenge" in detailsObj && detailsObj.challenge
+      ? detailsObj.challenge
+      : "";
+  const action =
+    detailsObj && "action" in detailsObj && detailsObj.action
+      ? detailsObj.action
+      : "";
+  const outcome =
+    detailsObj && "outcome" in detailsObj && detailsObj.outcome
+      ? detailsObj.outcome
+      : "";
   const details = Array.isArray(detailsObj?.details)
     ? detailsObj.details.join(" ")
     : "";
@@ -142,7 +160,11 @@ const getDetailedContent = (item?: DetailedGenericItem): string => {
           .map((h) => `${h.label || ""}: ${h.value || ""}`)
           .join(" ")
       : "";
-  return `${summary} ${title} ${subtitle} ${details} ${highlights}`.trim();
+  const exposure =
+    detailsObj && "exposure" in detailsObj && Array.isArray(detailsObj.exposure)
+      ? detailsObj.exposure.join(" ")
+      : "";
+  return `${summary} ${title} ${subtitle} ${challenge} ${action} ${outcome} ${details} ${highlights} ${exposure}`.trim();
 };
 
 export const searchableData: SearchableItem[] = [

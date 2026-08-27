@@ -4,6 +4,7 @@ import CertificationsSlideshow from "../components/ui/CertificationsSlideshow";
 import LazyImage from "../components/ui/LazyImage";
 import { honors } from "../data";
 import { useSearch } from "../context/SearchContext";
+import { UI_SURFACES, UI_TYPOGRAPHY } from "../theme";
 
 const HonorsPage = () => {
   const { selectedItem, setSelectedItem } = useSearch();
@@ -24,7 +25,7 @@ const HonorsPage = () => {
                 id={`honor-${index}`}
                 role="button"
                 tabIndex={0}
-                className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card cursor-pointer overflow-hidden rounded-lg bg-gray-200 text-left transition-all duration-300 hover:-translate-y-2"
+                className={UI_SURFACES.cardInteractive}
                 onClick={() => setSelectedItem(honor.details)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
@@ -40,10 +41,10 @@ const HonorsPage = () => {
                   containerClassName="h-40 w-full"
                 />
                 <div className="p-4">
-                  <h3 className="mb-1 truncate text-lg font-bold text-gray-900 dark:text-gray-300">
+                  <h3 className={`mb-1 ${UI_TYPOGRAPHY.cardTitleSm}`}>
                     {honor.title}
                   </h3>
-                  <div className="h-10 overflow-hidden text-sm text-gray-600 dark:text-gray-400">
+                  <div className={`h-10 overflow-hidden ${UI_TYPOGRAPHY.cardSummary}`}>
                     {honor.summary.map((line, i) => (
                       <p key={i} className="truncate">
                         {line}

@@ -4,7 +4,8 @@ import { toast } from "sonner";
 import emailjs from "@emailjs/browser";
 import Section from "../components/ui/Section";
 import CommunitySlideshow from "../components/ui/CommunitySlideshow";
-import { FaPaperPlane } from "react-icons/fa6";
+import { Icon, ICONS } from "../components/icons";
+import { UI_BUTTONS } from "../theme";
 import { contactLinks, formFields } from "../data";
 import FormField from "../components/ui/FormField";
 
@@ -58,35 +59,29 @@ const ContactPage = () => {
         toast.success("Message sent successfully!");
         reset();
         setIsSuccess(true);
-        setTimeout(() => setIsSuccess(false), 10000);
+        setIsLoading(false);
+        setTimeout(() => setIsSuccess(false), 3000);
       })
       .catch((error) => {
-        console.error("EmailJS Error:", error);
         toast.error("Failed to send message. Please try again.");
-      })
-      .finally(() => {
+        console.error("EmailJS Error:", error);
+        setIsError(true);
         setIsLoading(false);
+        setTimeout(() => setIsError(false), 3000);
       });
   };
 
-  const onValidationError = (
-    validationErrors: FieldErrors<ContactFormValues>,
-  ) => {
-    console.error("Form Validation Errors:", validationErrors);
-    setIsError(true);
-    setTimeout(() => setIsError(false), 3000);
+  const onValidationError = (formErrors: FieldErrors<ContactFormValues>) => {
+    const firstError = Object.values(formErrors)[0];
+    if (firstError?.message) {
+      toast.error(String(firstError.message));
+    }
   };
 
   const getIconClassName = () => {
-    if (isLoading) {
-      return "text-amber-500 dark:text-yellow-400";
-    }
-    if (isSuccess) {
-      return "text-green-600 dark:text-green-500";
-    }
-    if (isError) {
-      return "text-red-600 dark:text-red-500";
-    }
+    if (isSuccess) return "text-green-500";
+    if (isError) return "text-red-500";
+    if (isLoading) return "animate-spin text-blue-500";
     return "";
   };
 
@@ -103,15 +98,18 @@ const ContactPage = () => {
           <div className="flex flex-col md:flex-row md:space-x-12">
             {/* Mapped Contact Info */}
             <div className="flex-1 space-y-4">
-              {contactLinks.map(({ href, icon: Icon, text }) => (
+              {contactLinks.map(({ href, icon: iconName, text }) => (
                 <a
                   key={href}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center text-gray-600 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400"
+                  className="flex items-center text-gray-600 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400"
                 >
-                  <Icon className="mr-3 h-6 w-6 text-red-500" />
+                  <Icon
+                    name={iconName}
+                    className="mr-3 h-6 w-6 text-red-600 dark:text-red-400"
+                  />
                   {text}
                 </a>
               ))}
@@ -136,10 +134,11 @@ const ContactPage = () => {
                 <button
                   type="submit"
                   disabled={isLoading || isSuccess || isError}
-                  className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card flex w-full transform items-center justify-center rounded-lg bg-gray-100 px-4 py-3 font-bold text-gray-800 transition-all duration-200 hover:opacity-80 active:scale-95 disabled:cursor-not-allowed dark:text-gray-300"
+                  className={UI_BUTTONS.secondary}
                 >
                   Send Message
-                  <FaPaperPlane
+                  <Icon
+                    name={ICONS.SEND}
                     className={`ml-2 inline transition-colors duration-300 ${getIconClassName()}`}
                   />
                 </button>

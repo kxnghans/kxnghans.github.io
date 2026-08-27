@@ -1,19 +1,24 @@
 import type { HonorItem } from "../types/data";
 
+// Honors & Military Decorations Dataset (SSOT)
+// Official awards, military medals, and academic distinctions.
 export const honors: HonorItem[] = [
+  // Academic Distinction: UCCS President's & Dean's Lists
   {
     title: "President's & Dean's Lists",
     imageUrl: "/assets/generated/honors/presidents-deans-list.webp",
-    summary: ["Details: 7x at UCCS", "Criteria: 3.75 - 4.0 GPA"],
+    summary: ["Distinction: 7x Recipient", "College of Engineering & Applied Science"],
     details: {
       title: "UCCS President's & Dean's Lists",
-      subtitle: "7-time recipient",
+      subtitle: "7-time recipient (EAS Academic Honors)",
       details: [
-        "Maintained a 3.75-4.0 semester GPA while enrolled in full-time engineering coursework (12+ credits).",
-        "Earned this distinction across 7 semesters while working as a software developer, serving in the Air Force Reserve, and completing an overseas deployment.",
+        "Maintained semester GPA honors across 7 full-time semesters in the College of Engineering and Applied Science (President's List 3.50+ / Dean's List 3.00–3.49+).",
+        "Earned this continuous academic distinction while working as a university software developer, serving in the Air Force Reserve, and completing an overseas combat deployment.",
       ],
     },
   },
+
+  // Military Award: 22nd NAF Airman of the Year
   {
     title: "Airman of the Year",
     imageUrl: "/assets/generated/honors/airman-of-the-year.webp",
@@ -26,12 +31,14 @@ export const honors: HonorItem[] = [
       title: "Airman of the Year & Diamond Sharp Award",
       subtitle: "Top honor at the 22nd Numbered Air Force (NAF) level & 386 AEW",
       details: [
-        "Selected as 22nd Numbered Air Force (NAF) Airman of the Year for exceptional performance and logistics improvements during combat deployment.",
-        "Advanced through Squadron, Group, and Wing selection boards before winning at the Numbered Air Force level; finished as 1st runner-up at the Air Force Reserve Command (Major Command) - the highest level.",
-        "Awarded the 386th Air Expeditionary Wing Diamond Sharp Award for outstanding leadership, logistics execution, and dedicated community service.",
+        "Won 22nd Numbered Air Force (NAF) Airman of the Year for supply chain leadership and automated logistics during combat deployment.",
+        "Advanced through Squadron, Group, and Wing selection boards before winning at the Numbered Air Force level; finished as 1st runner-up at the Air Force Reserve Command (Major Command) level.",
+        "Earned the 386th Air Expeditionary Wing Diamond Sharp Award for flightline logistics execution and base community support.",
       ],
     },
   },
+
+  // Official Military Medals & Citations
   {
     title: "USAF Decorations and Medals",
     imageUrl: "/assets/generated/honors/decorations-medals.webp",
@@ -51,6 +58,8 @@ export const honors: HonorItem[] = [
       ],
     },
   },
+
+  // Air Force Basic Military Training Honor Graduate
   {
     title: "Honor Graduate",
     imageUrl: "/assets/generated/honors/honor-graduate.webp",
@@ -62,7 +71,7 @@ export const honors: HonorItem[] = [
       title: "Honor Graduate",
       subtitle: "Air Force Basic Training",
       details: [
-        "Awarded for top performance across physical fitness, academic exams, and drill evaluations.",
+        "Awarded for top overall performance across physical fitness, academic examinations, and military drill evaluations.",
         "Scored above 90% in every evaluated category.",
         "Graduated in the top 10% of 800 basic military trainees.",
       ],

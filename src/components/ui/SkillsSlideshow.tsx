@@ -54,7 +54,7 @@ const SkillCardContent = ({ item }: SkillCardContentProps) => {
     return (
       <>
         {summaryText}
-        <span className="text-red-500">...</span>
+        <span className="text-red-600 dark:text-red-500">...</span>
       </>
     );
   };

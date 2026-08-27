@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { FaChevronDown, FaCheck } from "react-icons/fa";
+import { Icon, ICONS } from "../icons";
 
 export interface FilterDropdownProps {
   label: string;
@@ -64,11 +64,11 @@ export default function FilterDropdown({
       <div
         className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-all ${
           active
-            ? "border-red-500 bg-red-500 text-white"
+            ? "border-red-600 bg-red-600 text-white dark:border-red-500 dark:bg-red-500"
             : "border-gray-400/60 bg-transparent dark:border-gray-600"
         }`}
       >
-        {active && <FaCheck className="h-2.5 w-2.5" />}
+        {active && <Icon name={ICONS.CHECK} className="h-2.5 w-2.5" />}
       </div>
       <span className="truncate">{option}</span>
     </button>
@@ -84,7 +84,7 @@ export default function FilterDropdown({
           {label}
         </span>
         {!isAllSelected && (
-          <span className="rounded-full bg-red-500/15 px-1.5 py-0.2 text-[10px] font-black text-red-600 dark:text-red-400">
+          <span className="rounded-full bg-red-600/15 px-1.5 py-0.2 text-[10px] font-black text-red-600 dark:bg-red-500/25 dark:text-red-400">
             {selected.length} active
           </span>
         )}
@@ -98,7 +98,7 @@ export default function FilterDropdown({
         onClick={() => setIsOpen((prev) => !prev)}
         className={`bevel-light dark:neumorphic-outset-dark dark:bg-dark-card flex h-10 w-full cursor-pointer select-none items-center justify-between rounded-xl px-3.5 text-sm font-medium transition-all duration-200 hover:brightness-105 active:scale-[0.98] ${
           !isAllSelected
-            ? "border border-red-500/30 text-red-600 dark:text-red-400 font-bold shadow-sm"
+            ? "border border-red-600/30 text-red-600 dark:border-red-500/30 dark:text-red-400 font-bold shadow-sm"
             : "text-gray-800 dark:text-gray-200"
         }`}
       >
@@ -111,9 +111,10 @@ export default function FilterDropdown({
         >
           {displayText}
         </span>
-        <FaChevronDown
+        <Icon
+          name={ICONS.CHEVRON_DOWN}
           className={`ml-2 h-3 w-3 shrink-0 text-gray-400 transition-transform duration-300 ${
-            isOpen ? "rotate-180 text-red-500" : ""
+            isOpen ? "rotate-180 text-red-600 dark:text-red-500" : ""
           }`}
         />
       </button>
@@ -131,7 +132,7 @@ export default function FilterDropdown({
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="cursor-pointer rounded-lg border border-red-500/20 bg-red-500/10 px-2.5 py-0.5 text-xs font-bold text-red-600 hover:bg-red-500/20 active:scale-95 dark:text-red-400"
+              className="cursor-pointer rounded-lg border border-red-600/20 bg-red-600/10 px-2.5 py-0.5 text-xs font-bold text-red-600 hover:bg-red-600/20 active:scale-95 dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-400 dark:hover:bg-red-500/20"
             >
               Done
             </button>

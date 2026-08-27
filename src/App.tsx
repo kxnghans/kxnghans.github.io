@@ -3,6 +3,7 @@ import Toast from "./components/ui/Toast";
 import { usePWA } from "./hooks/usePWA";
 
 import { FEATURE_FLAGS } from "./config/features";
+import { UI_SURFACES } from "./theme";
 
 // Layout Components
 import Header from "./components/layout/Header";
@@ -23,7 +24,7 @@ const ContactPage = lazy(() => import("./pages/ContactPage"));
 const PageSkeleton = () => (
   <div
     data-testid="page-skeleton"
-    className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card mb-8 rounded-2xl bg-gray-100 transition-opacity duration-300"
+    className={`${UI_SURFACES.section} transition-opacity duration-300`}
   >
     <div className="border-b-2 border-gray-300 p-6 dark:border-gray-700/60">
       <div className="animate-gentle-pulse h-8 w-48 rounded-lg bg-gray-200/90 dark:bg-white/[0.05]" />
@@ -33,7 +34,7 @@ const PageSkeleton = () => (
         {[1, 2, 3].map((key) => (
           <div
             key={key}
-            className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card overflow-hidden rounded-lg bg-gray-200/60 transition-all duration-300"
+            className={`${UI_SURFACES.cardStatic} transition-all duration-300`}
           >
             <div className="animate-gentle-pulse h-48 w-full bg-gray-300/60 dark:bg-white/[0.04]" />
             <div className="space-y-3 p-4">

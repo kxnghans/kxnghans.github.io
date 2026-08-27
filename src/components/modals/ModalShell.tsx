@@ -2,6 +2,7 @@ import { useEffect, type ReactNode, type ReactElement } from "react";
 import { createPortal } from "react-dom";
 import { CloseIcon } from "../icons/Icons";
 import { useFocusTrap } from "../../hooks/useFocusTrap";
+import { UI_SURFACES, UI_TYPOGRAPHY, UI_BUTTONS } from "../../theme";
 
 export interface ModalShellProps {
   title: ReactNode;
@@ -61,41 +62,47 @@ export const ModalShell = ({
       role="dialog"
       aria-modal="true"
       aria-labelledby={titleId}
-      className="animate-fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+      className={UI_SURFACES.modalBackdrop}
     >
       <div
         ref={modalRef}
         tabIndex={-1}
-        className={`modal-shadow dark:bg-dark-card relative flex max-h-[88vh] w-11/12 transform flex-col rounded-lg bg-gray-100 transition-all duration-300 focus:outline-none ${maxWidthClass}`}
+        className={`${UI_SURFACES.modalShell} ${maxWidthClass}`}
       >
         {/* Origin/Main Close Button */}
         <button
           onClick={onClose}
           aria-label={closeAriaLabel}
-          className="absolute top-3 right-3 z-10 text-3xl text-gray-400 transition-colors hover:text-gray-900 dark:hover:text-white"
+          className={`absolute top-3 right-3 z-10 ${UI_BUTTONS.close}`}
         >
           <CloseIcon />
         </button>
 
         {/* Scrollable Modal Content */}
-        <div className="max-h-full overflow-y-auto p-6 py-4">
+        <div className="flex-1 overflow-y-auto p-6 py-4">
           <h2
             id={titleId}
-            className="mb-2 pr-8 text-3xl font-bold text-red-500"
+            className={`mb-2 pr-8 ${UI_TYPOGRAPHY.modalTitle}`}
           >
             {title}
           </h2>
           {subtitle && (
-            <p className="mb-4 text-lg text-gray-500 dark:text-gray-400">
+            <p className={`mb-4 ${UI_TYPOGRAPHY.modalSubtitle}`}>
               {subtitle}
             </p>
           )}
 
           <div className="space-y-4 text-gray-600 dark:text-gray-300">
             {children}
-            {footer}
           </div>
         </div>
+
+        {/* Sticky/Fixed Bottom Footer (Divider + Content) */}
+        {footer && (
+          <div className={UI_SURFACES.modalFooter}>
+            {footer}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -104,3 +111,4 @@ export const ModalShell = ({
 };
 
 export default ModalShell;
+

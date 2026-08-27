@@ -1,6 +1,9 @@
 import type { CertificationItem } from "../types/data";
 
+// Certifications & Professional Training Dataset (SSOT)
+// Industry credentials, technical bootcamps, and professional military education.
 export const certificationsData: CertificationItem[] = [
+  // Continuous Learning & Technical Courses
   {
     title: "LinkedIn Learning Courses",
     imageUrl: "/assets/generated/certifications/linkedin-learning.webp",
@@ -35,6 +38,8 @@ export const certificationsData: CertificationItem[] = [
       ],
     },
   },
+
+  // Microsoft Power Platform Credentials
   {
     title: "Microsoft Power Platform",
     imageUrl: "/assets/generated/certifications/power-platform.webp",
@@ -48,13 +53,15 @@ export const certificationsData: CertificationItem[] = [
       subtitle: "Certifications & Training",
       details: [
         "Citizen Developer Certified: Certified in building business applications with Power Apps and Dataverse.",
-        'App in a Day: Built and deployed a work queue tracking application to automate manual ticketing.',
-        'Dashboard in a Day: Designed interactive sales reporting dashboards with live filters in Power BI.',
-        'Fabric in a Day: Completed hands-on data lakehouse pipelines and modeling in Microsoft Fabric.',
-        'Introduction to Power Apps: Low-code canvas app development and data connectors.',
+        "App in a Day: Built and deployed a work queue tracking application to automate manual ticketing.",
+        "Dashboard in a Day: Designed interactive sales reporting dashboards with live filters in Power BI.",
+        "Fabric in a Day: Completed hands-on data lakehouse pipelines and modeling in Microsoft Fabric.",
+        "Introduction to Power Apps: Low-code canvas app development and data connectors.",
       ],
     },
   },
+
+  // Lockheed Martin Systems Engineering Bootcamp
   {
     title: "Systems Engineering Bootcamp",
     imageUrl: "/assets/generated/certifications/systems-bootcamp.webp",
@@ -66,12 +73,14 @@ export const certificationsData: CertificationItem[] = [
       title: "Systems Engineering Bootcamp",
       subtitle: "Internal Lockheed Martin Training",
       details: [
-        "Program Overview: Intensive Lockheed Martin training covering systems architecture, lifecycle modeling, and cross-functional leadership.",
-        "Focus: Applied systems modeling, trade studies, and requirements verification.",
+        "Program Overview: Lockheed Martin internal training covering systems architecture, lifecycle modeling, and trade studies.",
+        "Focus: Requirements verification, functional baselines, and architectural design reviews.",
         "Capstone Project: Modeled municipal infrastructure, transit networks, and power distribution trade studies from scratch.",
       ],
     },
   },
+
+  // Certified Scrum Master Credential
   {
     title: "Certified Scrum Master",
     imageUrl: "/assets/generated/certifications/scrum-master.webp",
@@ -80,12 +89,14 @@ export const certificationsData: CertificationItem[] = [
       title: "Certified Scrum Master",
       subtitle: "Scrum Inc.",
       details: [
-        "Certification: Certified in Scrum practices, sprint planning, and Agile project delivery.",
-        "Leadership: Facilitate sprint ceremonies, remove development blockers, and track team velocity.",
-        "Values: Focus on iterative delivery, transparency, and continuous retrospectives.",
+        "Certification: Certified in Scrum frameworks, sprint planning, and Agile project delivery.",
+        "Leadership: Facilitating sprint ceremonies, unblocking engineering teams, and tracking sprint velocity.",
+        "Values: Focused on iterative releases, transparency, and retrospectives.",
       ],
     },
   },
+
+  // Health Services Administration (HSA) Officer Accreditation
   {
     title: "Health Services Administration (HSA)",
     imageUrl: "/assets/generated/work/air-force-supply.webp",
@@ -104,6 +115,8 @@ export const certificationsData: CertificationItem[] = [
       ],
     },
   },
+
+  // Airman Leadership School (ALS) PME
   {
     title: "Airman Leadership School (ALS)",
     imageUrl: "/assets/generated/honors/honor-graduate.webp",
@@ -123,4 +136,3 @@ export const certificationsData: CertificationItem[] = [
     },
   },
 ];
-

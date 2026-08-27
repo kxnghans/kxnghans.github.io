@@ -36,7 +36,9 @@ flowchart LR
 | Layer                   | Responsibility                                                 | Key Files                                                                                                                                                                                                                                                                                                                              |
 | :---------------------- | :------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **DOM Entry**           | Injects React tree into `#root` and loads global styles.       | [`main.tsx`](../src/main.tsx), [`index.css`](../src/index.css)                                                                                                                                             |
-| **Theme Context**       | Manages light/dark mode, localStorage sync, and system theme.  | [`ThemeContext.tsx`](../src/context/ThemeContext.tsx)                                                                                                                                                                                                                     |
+| **Theme Engine & SSOT** | Central design tokens, dynamic palettes, and Tailwind class recipes.| [`theme.ts`](../src/theme/theme.ts), [`ThemeContext.tsx`](../src/context/ThemeContext.tsx)                                                                                                                                                                                                                     |
+| **Icon Registry**       | Semantic icon mappings and centralized `<Icon />` primitive.    | [`iconRegistry.ts`](../src/components/icons/iconRegistry.ts), [`Icon.tsx`](../src/components/icons/Icon.tsx)                                                                                                                                                                                                                     |
+
 | **Search Context**      | Orchestrates search queries, voice state, and open modals.     | [`SearchContext.tsx`](../src/context/SearchContext.tsx)                                                                                                                                                                                                                   |
 | **App Shell**           | Manages `activePage`, PWA lifecycle, hotkeys, and layout.      | [`App.tsx`](../src/App.tsx), [`Header.tsx`](../src/components/layout/Header.tsx)                                                                                                                             |
 | **Static Data**         | Single Source of Truth for projects, skills, and work history. | [`src/data/*.ts`](../src/data)                                                                                                                                                                                                                                           |
@@ -176,12 +178,14 @@ flowchart LR
     subgraph RouteMachine["1. Page Routing State"]
         direction LR
         R_Home["'Home' (Default)"]
+        R_Value["'Value'"]
         R_Projects["'Projects'"]
         R_Work["'Work Experience'"]
         R_Edu["'Education'"]
         R_Honors["'Honors'"]
         R_Contact["'Contact'"]
 
+        R_Home <--> R_Value
         R_Home <--> R_Projects
         R_Home <--> R_Work
         R_Home <--> R_Edu

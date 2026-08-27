@@ -53,8 +53,17 @@ const ALIASES: Record<string, string[]> = {
   medal: ["commendation", "achievement", "decoration", "decorations", "honors"],
   decoration: ["medal", "decorations", "commendation", "achievement", "honors"],
   decorations: ["medal", "decoration", "commendation", "achievement", "honors"],
-  hansondeck: ["creative media", "photography", "media production", "cinematography", "llc"],
-  photography: ["hansondeck", "creative media", "cinematography", "media"],
+  hansondeck: ["creative media", "photography", "media production", "cinematography", "open heavens", "llc"],
+  photography: ["hansondeck", "creative media", "cinematography", "media", "open heavens"],
+  "open heavens": ["church", "media team", "hansondeck", "photography", "livestream", "broadcast"],
+  church: ["open heavens", "media team", "worship", "broadcast", "livestream", "hansondeck"],
+  berkeley: ["uc berkeley", "cal", "data science", "masters"],
+  uccs: ["university of colorado", "electrical engineering", "bachelors"],
+  ee: ["electrical engineering", "circuits", "electronics", "semiconductors", "emag"],
+  mlsys: ["machine learning systems", "modelops", "inference", "deep learning"],
+  emag: ["electromagnetics", "rf", "microwave", "maxwell"],
+  semiconductor: ["semiconductors", "solid-state", "mosfet", "bjt", "pn junction"],
+  capstone: ["fretwork", "audio amt", "tabtransformer", "viterbi"],
 };
 
 /**

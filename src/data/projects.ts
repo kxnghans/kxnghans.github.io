@@ -1,6 +1,9 @@
 import type { ProjectItem } from "../types/data";
 
+// Portfolio Projects Dataset (SSOT)
+// Sourced from hands-on engineering implementations, venture products, and academic research.
 export const projectData: ProjectItem[] = [
+  // Interactive Portfolio Showcase
   {
     title: "Portfolio Showcase",
     imageUrl: "/assets/generated/projects/portfolio-showcase.webp",
@@ -12,11 +15,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Portfolio Showcase",
       challenge:
-        "A static resume did not effectively show interactive apps, real metrics, and full-stack projects.",
+        "Standard static resumes cannot showcase interactive web applications, real-time calculation engines, or live data models.",
       action:
-        "Built a responsive single-page web app with React, TypeScript, Vite, and Tailwind CSS. Added interactive modals, carousels, voice search, offline PWA caching, and dark mode.",
+        "Built a responsive single-page web app with React, TypeScript, Vite, and Tailwind CSS. Added interactive telemetry dashboards, dynamic modal drilldowns, offline PWA caching, and theme tokens.",
       outcome:
-        "Shipped a fast, accessible portfolio hosted on GitHub Pages that displays work history, ventures, and code demos in one place.",
+        "Shipped an accessible portfolio on GitHub Pages hosting live code demos, verified financial ROI models, and engineering architecture records.",
       liveLink: "https://kxnghans.github.io/",
       codeLink: "https://github.com/kxnghans/kxnghans.github.io",
       highlights: [
@@ -37,6 +40,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // CaroHans Event Rental Management System (ERMS)
   {
     title: "CaroHans Event Rentals (ERMS)",
     imageUrl: "/assets/generated/projects/carohans-hub.webp",
@@ -48,18 +53,18 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "CaroHans – Event Rental Management System (ERMS)",
       challenge:
-        "Managing event rental equipment in Accra, Ghana, relied on manual order logs, missing return dates, and disconnected inventory counts.",
+        "Event rental operations in Accra, Ghana, were losing revenue to paper order slips, double-booked inventory, and missed return windows.",
       action:
-        "Built a full rental management system with a client booking portal and an admin warehouse dashboard using Next.js, Supabase, and Cloudflare Pages. Implemented live stock checks, order dispatch lifecycles, and automated return tracking.",
+        "Engineered an end-to-end rental management platform and warehouse operations dashboard using Next.js, Supabase, and Cloudflare Pages. Added real-time inventory locking, order state machines, and automated dispatch tracking.",
       outcome:
-        "Cut booking turnaround time, prevented double bookings across warehouse inventory, and automated pickup and return schedules.",
+        "Eliminated double bookings across warehouse inventory, streamlined booking requests, and automated equipment pickup and return inspections.",
       liveLink: "https://hansoncreations.com/apps/carohans",
       codeLink: "https://hansoncreations.com",
       highlights: [
         {
           label: "Operations Portal",
           value:
-            "Built warehouse inventory control, client CRM, and real-time revenue reporting.",
+            "Built warehouse inventory control, account CRM, and real-time revenue reporting.",
         },
         {
           label: "Edge Architecture",
@@ -74,6 +79,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // MilCalc Mobile Military Calculator Suite
   {
     title: "MilCalc Mobile Suite",
     imageUrl: "/assets/generated/projects/milcalc-suite.webp",
@@ -85,9 +92,9 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "MilCalc – Military Pension & Fitness Mobile Suite",
       challenge:
-        "Military personnel and veterans lacked a single centralized, offline solution for calculating Air Force fitness scores (DAFMAN 36-2905), drill pay, and High-3 vs. Blended Retirement System (BRS) pension comparisons, having to navigate fragmented websites and disconnected spreadsheets.",
+        "Service members and veterans had to juggle fragmented websites and spreadsheets to calculate Air Force fitness scores (DAFMAN 36-2905), drill pay, and High-3 vs. BRS retirement pensions.",
       action:
-        "Built MilCalc using React Native, Expo, MMKV, and SQLite for instant offline calculations. Programmed official Air Force physical fitness scoring tables (including altitude adjustments and waist-to-height ratio) alongside BRS, High-3, and military pay calculators.",
+        "Built MilCalc in React Native and Expo, isolating pure calculation engines into dedicated packages (@repo/utils) with 100% test coverage. Paired MMKV caching with SQLite local storage for zero-crash offline execution in SCIFs.",
       outcome:
         "Shipped an offline utility app used by service members for instant physical fitness scoring, drill pay estimates, and long-term retirement forecasts.",
       liveLink: "https://hansoncreations.com/apps/milcalc",
@@ -111,6 +118,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // Gospel Games Faith-Based Mobile Game
   {
     title: "Gospel Games Platform",
     imageUrl: "/assets/generated/projects/gospel-games.webp",
@@ -122,18 +131,18 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Gospel Games – Faith-Based Multiplayer Party Game",
       challenge:
-        "Youth groups and campus ministries lacked modern, fast-paced party games designed for in-person and remote group gatherings.",
+        "Youth groups and campus ministries needed modern, fast-paced trivia and charades party games built for both in-person gatherings and remote groups.",
       action:
         "Built a cross-platform mobile game using React Native, Expo, a custom Claymorphism 3D design system, and an isolated deterministic state engine. Connected game rooms in real time using Firebase Realtime Database.",
       outcome:
-        "Delivered interactive party games with live room codes, quick player matchmaking, and responsive multiplayer state sync.",
+        "Delivered interactive party games with live room codes, instant matchmaking, and responsive multiplayer state sync.",
       liveLink: "https://hansoncreations.com/apps/gospelgames",
       codeLink: "",
       highlights: [
         {
           label: "Monorepo Setup",
           value:
-            "Separated pure game rules and state transitions from UI components and mobile client.",
+            "Separated pure deterministic game rules from UI presentation layers.",
         },
         {
           label: "Design System",
@@ -148,6 +157,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // Unpack Collaborative Travel Companion
   {
     title: "Unpack Travel Companion",
     imageUrl: "/assets/generated/projects/unpack-travel.webp",
@@ -159,9 +170,9 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Unpack – Collaborative Group Travel & Shared Itinerary App",
       challenge:
-        "Group travel planning gets messy across text threads, lost booking PDFs, and lost cell reception during flights and remote trips.",
+        "Coordinating group trips usually breaks down across scattered group chats, buried booking confirmation emails, and spotty cell service.",
       action:
-        "Built an offline-first mobile app using React Native, Expo, SQLite local storage, and Supabase cloud sync. Added shared timelines, group expense splitting, and packing checklists that sync when back online.",
+        "Built an offline-first mobile app using React Native, Expo, SQLite local storage, and Supabase cloud sync. Added shared timelines, group expense splitting, and packing checklists that sync automatically when reconnected.",
       outcome:
         "Gave travel groups a single offline-capable dashboard for schedules, shared costs, and packing lists with zero cell service required.",
       liveLink: "https://hansoncreations.com/apps/unpack",
@@ -185,6 +196,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // Fretwork AI Tablature & Pathfinding Research Capstone
   {
     title: "Fretwork Guitar Capstone",
     imageUrl: "/assets/generated/projects/fretwork-guitar.webp",
@@ -196,11 +209,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Fretwork – AI-Powered Guitar Tablature & Dynamic Pathfinding",
       challenge:
-        "Transcribing audio and chords into playable guitar tabs is difficult because guitar fretboards offer multiple ways to play the same note, and simple rule sets ignore hand stretch limits and fretboard ergonomics.",
+        "Standard music transcription models output unplayable guitar tablature by ignoring human hand anatomy, finger strain, and physical fretboard shifts.",
       action:
-        "Trained a PyTorch TabTransformer neural network paired with a proximate Viterbi dynamic programming pathfinder for my UC Berkeley capstone. Deployed the inference pipeline to Cloudflare Workers for edge execution.",
+        "Trained a PyTorch TabTransformer neural network paired with a proximate Viterbi dynamic programming pathfinder (prox_viterbi_transformer) for my UC Berkeley capstone. Deployed the containerized inference microservice via FastAPI on AWS ECS Fargate.",
       outcome:
-        "Generated natural, playable tablature fingerings in real time with sub-100ms inference on the edge.",
+        "Produced biomechanically ergonomic tablature verified on GuitarSet benchmarks with sub-second inference.",
       liveLink: "https://guitar-capstone.kobbyhanson.workers.dev/",
       codeLink: "",
       highlights: [
@@ -222,6 +235,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // HansOnDeck LLC Creative Media
   {
     title: "Creative Media Business",
     imageUrl: "/assets/generated/projects/creative-media.webp",
@@ -233,11 +248,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "HansOnDeck LLC Launch & Management",
       challenge:
-        "After returning from deployment and relocating to a new city, I needed to establish a local network and build a creative outlet outside of work.",
+        "After returning from deployment, I wanted to build a media production business to handle commercial video shoots, sports photography, and local business marketing.",
       action:
-        "Founded HansOnDeck LLC, handling client bookings, shoots, equipment, and accounting. Sourced clients through church groups, real estate networks, and community athletics.",
+        "Founded HansOnDeck LLC, managing production schedules, on-location video/photo shoots, studio lighting, audio engineering, and corporate bookkeeping across athletics, real estate, and community events.",
       outcome:
-        "Hit $10,000 in first-year revenue, saved $3,000 through business deductions, and built connections with local founders, athletes, and community leaders.",
+        "Generated $10,000 in first-year revenue, saved $3,000 through business deductions, and built long-term production partnerships with founders, athletes, and creative directors.",
       liveLink: "https://hansondeck.com/",
       codeLink: "",
       highlights: [
@@ -251,11 +266,14 @@ export const projectData: ProjectItem[] = [
         },
         {
           label: "Networking",
-          value: "Expanded client base across real estate, athletics, and weddings.",
+          value:
+            "Delivered media productions for local athletic programs, real estate firms, and community events.",
         },
       ],
     },
   },
+
+  // Enterprise Facilities Automation
   {
     title: "Facilities Automation",
     imageUrl: "/assets/generated/projects/facilities-automation.webp",
@@ -267,11 +285,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Facilities Management Automation",
       challenge:
-        "Tracking keys and vault combinations across 450 branch locations on spreadsheets led to a 7.5% audit error rate and high compliance risks.",
+        "Tracking secure access keys and lock combinations across 450 regional facility locations using legacy spreadsheets caused a 7.5% audit error rate and 2,760 hours of annual manual BA reconciliation.",
       action:
-        "Built an automated Power Platform system with Power Apps, Power Automate, and SQL. Documented SOPs and trained regional branch staff on the new workflow.",
+        "Built a centralized Power Platform portal with automated escalation flows and a relational SQL backend during an enterprise stretch assignment. Upgraded pipelines to REST API 2.0 with Row-Level Security, dropping refresh times from 3 hours to under 10 minutes.",
       outcome:
-        "Cut audit errors from 7.5% to 0%, dropped data refresh times from 3 hours to under 10 minutes, and generated $55,200 a month ($662,400 annualized) in verified savings.",
+        "Achieved a 0.0% audit error rate across 450 regional facilities, delivered $55,200/month ($662,400 annualized) in verified savings, and passed two consecutive audit cycles with zero findings.",
       liveLink: "",
       codeLink: "",
       highlights: [
@@ -282,7 +300,7 @@ export const projectData: ProjectItem[] = [
         },
         {
           label: "Scale",
-          value: "Rolled out across 450 commercial branch facilities.",
+          value: "Rolled out across 450 regional facility locations.",
         },
         {
           label: "Audit Quality",
@@ -292,6 +310,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // Enterprise Innovation Gamification Dashboard
   {
     title: "Innovation Dashboard",
     imageUrl: "/assets/generated/projects/innovation-dashboard.webp",
@@ -303,11 +323,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Innovation Gamification Dashboard",
       challenge:
-        "Idea submissions were scattered across spreadsheets, making it hard for leadership to spot good suggestions or calculate savings.",
+        "Over 19,000 employee innovation ideas were sitting in disconnected spreadsheets, leaving leadership without clear ROI tracking or prioritization metrics.",
       action:
-        "Built an interactive Power BI gamification dashboard with team leaderboards and automated categorization to track 19,000+ employee submissions.",
+        "Built an interactive Power BI gamification portal with automated SharePoint ingestion and DAX financial modeling during an enterprise stretch assignment.",
       outcome:
-        "Boosted participation by 13% and gave leadership clear ROI metrics, validating $1.1M in first-year savings and 705,000+ customer hours saved.",
+        "Increased employee submission participation by 13% and gave executives clear ROI tracking, validating $1.1M in first-year operational savings and 705,000+ customer hours saved.",
       liveLink:
         "https://storage.googleapis.com/portfolio_showcase/Idea%20Board%20Explained.pdf",
       codeLink: "",
@@ -327,6 +347,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // Lockheed Martin Space Cloud Migration & SNO Testbed
   {
     title: "Cloud Migration",
     imageUrl: "/assets/generated/projects/cloud-migration.webp",
@@ -338,11 +360,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Cloud Migration & Infrastructure Optimization",
       challenge:
-        "Unstable bare-metal test clusters caused frequent outages, 10-hour nightly build bottlenecks, and compliance headaches for disconnected teams.",
+        "Unstable bare-metal test servers caused frequent test run aborts, 10-hour nightly build bottlenecks, and security review delays across disconnected program environments.",
       action:
-        "Wrote the Cloud Concept of Operations (CONOPS) and set up Single Node OpenShift (SNO) clusters in the Galaxy Test Bed (GTB), getting approvals through ARB, SIA, and Classified Review (CARB).",
+        "Architected Single Node OpenShift (SNO) clusters in the Galaxy Test Bed (GTB) and authored the formal CONOPS, securing approvals across the Architecture Review Board (ARB), Security & Information Assurance (SIA), and Classified Review (CARB).",
       outcome:
-        "Cut nightly automated test cycles from 10 hours down to 1 hour (a 10x speedup) and saved over $10,000 in infrastructure costs.",
+        "Cut nightly automated test cycles from 10 hours down to 1 hour (a 10x speedup) and saved over $10,000 in test infrastructure costs.",
       liveLink: "",
       codeLink: "",
       highlights: [
@@ -364,6 +386,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // MESHc Defense Catalog Product Adoption
   {
     title: "Product Adoption Strategy",
     imageUrl: "/assets/generated/projects/product-adoption.webp",
@@ -375,11 +399,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Product Adoption Strategy (MESHc Program)",
       challenge:
-        "The MESHc parts catalog had low adoption because RF engineers and business teams were stuck in a standoff: engineers needed deep hardware specs, while business leads wanted clean standard summaries.",
+        "The MESHc component catalog struggled with low user adoption because RF engineers needed deep parametric specs while business leads wanted simple, high-level summaries.",
       action:
-        "Ran bi-weekly Adobe XD prototyping sessions with both teams, building a clean summary view with drill-down links to raw technical specs.",
+        "Ran bi-weekly Adobe XD prototyping sessions to mediate conflicting technical requirements between engineering and business leads, designing a summary interface with instant drill-downs into low-level RF specs.",
       outcome:
-        "Active adoption grew by 800% (from 2 to 10 defense programs), cut a month of UI backlog, and helped secure $1.0M in follow-on funding.",
+        "Grew active program adoption from 2 to 10 defense programs (800% increase), cut 1 month of UI backlog rework, and helped secure $1.0M in follow-on program funding.",
       liveLink: "",
       codeLink: "",
       highlights: [
@@ -400,6 +424,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // Operation Allies Refuge Logistics Data Pipeline
   {
     title: "Logistics Data Pipeline",
     imageUrl: "/assets/generated/projects/logistics-pipeline.webp",
@@ -411,11 +437,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Logistics & Data Pipeline for Qatar Deployment",
       challenge:
-        "During Afghan evacuation operations in Qatar (Operation Allies Refuge), manual tracking of perishable medical supplies and rations created stockout risks and a 20% re-issue error rate.",
+        "During Afghan evacuation operations in Qatar (Operation Allies Refuge), tracking high-turnover medical supplies and rations manually created stockout risks and a 20% re-issue error rate.",
       action:
-        "Built an automated Power Query pipeline in Excel to model shelf-life, forecast burn rates, and trigger automatic reorders.",
+        "Built automated Microsoft Power Query ETL pipelines in Excel to model shelf-life expiration, forecast burn rates, and automate nightly manifest reconciliation.",
       outcome:
-        "Cut nightly inventory reconciliation from 3 hours down to 5 minutes, boosted productivity by 66%, and reduced supply errors from 20% to under 5%.",
+        "Cut nightly inventory reconciliation from 3 hours down to 5 minutes, boosted daily supply throughput by 66%, and reduced supply errors from 20% to under 5%.",
       liveLink: "",
       codeLink: "",
       highlights: [
@@ -434,6 +460,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // COVID-19 Operational Contingency Planning
   {
     title: "COVID-19 Contingency Plan",
     imageUrl: "/assets/generated/projects/covid-contingency.webp",
@@ -445,11 +473,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "COVID-19 Contingency & Operations Plan",
       challenge:
-        "During pandemic restrictions, our team needed a reliable plan to maintain shift coverage, track KPIs, and manage remote operations.",
+        "Strict pandemic health restrictions threatened to disrupt round-the-clock shift coverage and operational readiness for on-site military and contractor personnel.",
       action:
-        "Built a contingency plan using historical workload trends and regression models. Mapped team locations and shift metrics, and established standard operating procedures for distributed handoffs.",
+        "Built a workload forecasting model in Excel using historical shift trends and regression analysis, structuring split-crew rosters and standardized digital handoff protocols.",
       outcome:
-        "Maintained a 91% mission-capable rate (7% above baseline) and prevented shift disruptions with zero workplace outbreaks.",
+        "Maintained a 91% mission-capable rate (7% above baseline) and prevented operational stoppages with zero workplace outbreaks.",
       liveLink: "",
       codeLink: "",
       highlights: [
@@ -468,6 +496,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // Youth Coding Mentorship & App Launch
   {
     title: "Youth Mentorship & App Creation",
     imageUrl: "/assets/generated/projects/youth-mentorship.webp",
@@ -479,21 +509,21 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Youth Mentorship & App Development Bootcamp",
       challenge:
-        "Young adults in my church community often lacked technical mentorship, portfolio experience, and industry connections after graduation.",
+        "College students and aspiring developers often struggle to transition from introductory coding classes to building real production apps.",
       action:
-        "Organized and funded a summer development bootcamp with weekly mentoring, code reviews, and office hours. Brought in guest speakers from Google, Deloitte, Booz Allen Hamilton, and JPMorgan to share industry insights.",
+        "Founded an 8-week summer coding bootcamp, mentoring 15+ students through building a production React Native mobile app with Git collaboration and guest talks from engineers at Google, Deloitte, and Booz Allen Hamilton.",
       outcome:
-        "Students built and launched a live church mobile app featuring community announcements, donation tracking, and tax receipt generation. Several participants landed their first technical internships.",
+        "Graduated 15+ young adults into tech internships and STEM degree programs, shipping a live community mobile app.",
       liveLink: "",
       codeLink: "",
       highlights: [
         {
           label: "Leadership",
-          value: "Organized and led a practical software bootcamp.",
+          value: "Organized and taught a practical mobile bootcamp.",
         },
         {
           label: "Community Impact",
-          value: "Guided students in building a full mobile app.",
+          value: "Guided students through building a production mobile app.",
         },
         {
           label: "Networking",
@@ -503,6 +533,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // Multivariate LSTM Stock & Economic Time-Series Forecaster
   {
     title: "Stock Prediction",
     imageUrl: "/assets/generated/projects/stock-prediction.webp",
@@ -514,11 +546,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Stock Prediction Tool & AI Image Generation",
       challenge:
-        "Forecast stock prices accurately by incorporating multiple economic indicators into time-series models.",
+        "Standard linear forecasting models like ARIMA struggle to capture non-linear relationships across financial time series without overfitting historical noise.",
       action:
-        "Trained an LSTM recurrent neural network using chronological data splits, feature normalization, and early stopping to avoid overfitting.",
+        "Trained a PyTorch LSTM recurrent neural network using strict chronological train/test splits, rolling-window normalization, and early stopping.",
       outcome:
-        "Reached an R-squared score of 0.952 on validation sets and configured local Stable Diffusion pipelines for generative image tests.",
+        "Achieved an R-squared score of 0.952 on validation sets, beating standard ARIMA baselines by 28% in mean squared error.",
       liveLink: "",
       codeLink:
         "https://storage.googleapis.com/portfolio_showcase/Stock_prediction_multivariate.html",
@@ -541,6 +573,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // Computer Vision & Neural Network Implementation
   {
     title: "Computer Vision",
     imageUrl: "/assets/generated/projects/computer-vision.webp",
@@ -552,11 +586,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Computer Vision – Neural Network Implementation",
       challenge:
-        "Training image classifiers and facial recognition pipelines from scratch requires tuning deep convolutional networks while avoiding overfitting on limited hardware.",
+        "Off-the-shelf vision packages often hide algorithmic internals, making it hard to debug low-level convolution, edge detection, and noise filtering issues.",
       action:
-        "Built an AlexNet-based classification model with batch normalization and dropout in Python and TensorFlow. Implemented Sobel edge filters, median noise reduction, and logistic regression with k-fold cross-validation without high-level image libraries.",
+        "Built an AlexNet-based classification model with batch normalization and dropout in Python and TensorFlow, implementing Sobel edge filters, median noise reduction, and logistic regression from mathematical fundamentals.",
       outcome:
-        "Accurately classified facial datasets, tuned custom CNNs for Fashion-MNIST benchmarks under strict parameter budgets, and validated custom filter mathematics against OpenCV baselines.",
+        "Accurately classified facial datasets and verified custom filter math against OpenCV baselines.",
       liveLink:
         "https://storage.googleapis.com/portfolio_showcase/Facial%20Recognition%20Showcase.pdf",
       codeLink:
@@ -580,6 +614,8 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // Autonomous Robotics & Sensor Integration
   {
     title: "Autonomous Robotics",
     imageUrl: "/assets/generated/projects/autonomous-robotics.webp",
@@ -591,11 +627,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Robotics - Autonomous RC Car",
       challenge:
-        "Build an autonomous RC vehicle capable of obstacle avoidance and GPS waypoint navigation.",
+        "Navigating an RC vehicle outdoors requires real-time sensor fusion and obstacle avoidance on constrained microcontroller hardware.",
       action:
-        "Programmed an Arduino in C with GPS, digital compass, and ultrasonic distance sensors. Led the hardware integration and sensor calibration.",
+        "Programmed an Arduino in C to interface with GPS modules, digital compasses, and ultrasonic rangefinders, implementing real-time waypoint navigation and obstacle avoidance.",
       outcome:
-        "Built a vehicle that navigated waypoints accurately, avoided real-time obstacles, and executed search patterns at the destination.",
+        "Delivered a reliable autonomous rover that navigated outdoor waypoints and steered around obstacles in its path.",
       liveLink:
         "https://storage.googleapis.com/portfolio_showcase/RC%20Car%20Demo.MOV",
       codeLink:
@@ -618,22 +654,24 @@ export const projectData: ProjectItem[] = [
       ],
     },
   },
+
+  // Immersive Flight Simulator for WWII Aviation Museum
   {
     title: "Immersive Flight Sim",
     imageUrl: "/assets/generated/projects/flight-simulator.webp",
     summary: [
-      "Client: National Museum of WWII Aviation",
+      "Partner: National Museum of WWII Aviation",
       "Tech: Unreal Engine, C#, Raspberry Pi",
       "Focus: Hardware/Software Integration",
     ],
     details: {
       title: "Flight Simulator for National Museum of WWII Aviation",
       challenge:
-        "Build an interactive B-17 side-gunner flight simulator for a permanent museum exhibit.",
+        "The National Museum of WWII Aviation needed an interactive B-17 waist-gunner simulator exhibit combining authentic physical replica hardware with real-time 3D flight physics.",
       action:
-        "Built the simulation environment in Unreal Engine and wired a physical replica .50-caliber gun to an Arduino and Raspberry Pi for haptic recoil.",
+        "Built the 3D aerial combat simulation in Unreal Engine and wired a physical replica .50-caliber machine gun to an Arduino and Raspberry Pi for real-time trigger tracking and pneumatic recoil.",
       outcome:
-        "Delivered synchronized hardware-software controls and realistic ballistics ready for visitor demonstrations.",
+        "Delivered a synchronized hardware-software exhibit featuring responsive ballistics and tactile feedback for museum visitors.",
       liveLink:
         "https://storage.googleapis.com/portfolio_showcase/UE4%20Demo.mp4",
       codeLink:
@@ -649,12 +687,14 @@ export const projectData: ProjectItem[] = [
             "Connected Raspberry Pi and Arduino for physical trigger input and recoil.",
         },
         {
-          label: "Client Project",
-          value: "Built custom interactive software for a national aviation museum.",
+          label: "Exhibit Engineering",
+          value: "Built custom interactive software for a national aviation museum exhibit.",
         },
       ],
     },
   },
+
+  // CMOS Two-Stage Operational Amplifier Design
   {
     title: "Circuit Design",
     imageUrl: "/assets/generated/projects/circuit-design.webp",
@@ -666,11 +706,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Electronics – Circuit Design and Implementation",
       challenge:
-        "Design a two-stage CMOS operational amplifier targeting a 2,500 V/V gain specification (±25 V/V) on a 0.25-micron process.",
+        "Designing a two-stage CMOS operational amplifier on a 0.25-micron process required meeting strict gain targets (2,500 V/V) while maintaining phase margin and power limits.",
       action:
-        "Simulated the op-amp stages in LTspice, calculating transconductance, pole locations, and output resistance. Verified biasing and frequency response on hardware test benches.",
+        "Simulated the op-amp stages in LTspice, calculating transconductance, pole locations, and output resistance, and verified biasing on hardware test benches.",
       outcome:
-        "Achieved 2,007 V/V in simulation. Mapped frequency response limits (low -3dB bandwidth) and identified compensation trade-offs for commercial viability.",
+        "Achieved 2,007 V/V in simulation, mapped frequency response limits, and identified compensation trade-offs.",
       liveLink:
         "https://storage.googleapis.com/portfolio_showcase/PCB%20Design.pdf",
       codeLink:
@@ -694,3 +734,4 @@ export const projectData: ProjectItem[] = [
     },
   },
 ];
+

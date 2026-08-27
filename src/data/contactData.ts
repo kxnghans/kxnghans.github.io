@@ -1,28 +1,27 @@
-import {
-  FaEnvelopeCircleCheck,
-  FaPhoneVolume,
-  FaLinkedin,
-  FaGithub,
-  FaGlobe,
-} from "react-icons/fa6";
+/**
+ * @file contactData.ts
+ * @description Contact links and communication channels for Hanson-Tube.
+ */
+import { ICONS } from "../components/icons";
 import type { ContactLink } from "../types/data";
 
+// Direct contact, career, and developer profile links
 export const contactLinks: ContactLink[] = [
   {
     href: "mailto:kobby.hanson97@gmail.com",
-    icon: FaEnvelopeCircleCheck,
+    icon: ICONS.EMAIL,
     text: "kobby.hanson97@gmail.com",
   },
-  { href: "tel:719-360-2519", icon: FaPhoneVolume, text: "719-360-2519" },
+  { href: "tel:719-360-2519", icon: ICONS.PHONE, text: "719-360-2519" },
   {
     href: "https://www.linkedin.com/in/kobbyhanson",
-    icon: FaLinkedin,
+    icon: ICONS.LINKEDIN,
     text: "linkedin.com/in/kobbyhanson",
   },
   {
     href: "https://github.com/kxnghans",
-    icon: FaGithub,
+    icon: ICONS.GITHUB,
     text: "github.com/kxnghans",
   },
-  { href: "https://hansondeck.com", icon: FaGlobe, text: "hansondeck.com" },
+  { href: "https://hansondeck.com", icon: ICONS.GLOBE, text: "hansondeck.com" },
 ];

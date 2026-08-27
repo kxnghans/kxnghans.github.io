@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { FaBars, FaSearch, FaPlayCircle } from "react-icons/fa";
+import { Icon, ICONS } from "../icons";
 const profileImage = "/assets/Kobs DP.webp";
 import SearchBar from "../search/SearchBar";
 import { useSearch } from "../../context/SearchContext";
@@ -231,7 +231,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }: HeaderProps) => {
   }, [isSearchVisible, setSearchQuery]);
 
   return (
-    <header className="sticky top-0 z-40 flex items-center justify-between border-b border-gray-300 bg-gray-100/80 p-3 backdrop-blur-sm dark:border-gray-800 dark:bg-[#181818]/90">
+    <header className="sticky top-0 z-40 flex items-center justify-between border-b border-gray-300 bg-gray-100/80 p-3 backdrop-blur-sm dark:border-gray-800 dark:bg-dark-header/90">
       {/* Left Section: Menu Toggle and App Title */}
       <div className="flex items-center">
         <button
@@ -241,20 +241,20 @@ const Header = ({ toggleSidebar, setActivePage, activePage }: HeaderProps) => {
           className="mr-4 rounded-full p-2 transition-colors hover:bg-gray-300 md:p-2.5 dark:hover:bg-gray-800"
         >
           <div className="flex h-5 w-5 items-center justify-center text-[1.4rem] sm:h-6 sm:w-6 md:text-[1.6rem]">
-            <FaBars />
+            <Icon name={ICONS.MENU} />
           </div>
         </button>
         <button
           type="button"
-          className="group flex cursor-pointer items-center text-left transition-transform duration-200 ease-in-out hover:text-red-600 active:scale-95"
+          className="group flex cursor-pointer items-center text-left transition-transform duration-200 ease-in-out hover:text-red-600 dark:hover:text-red-500 active:scale-95"
           onClick={() => {
             setActivePage("Home");
             window.scrollTo(0, 0);
           }}
           aria-label="Go to Home"
         >
-          <div className="mr-3 text-[2rem] text-red-600 transition-transform duration-200 ease-in-out group-hover:scale-105 md:text-[2.5rem]">
-            <FaPlayCircle />
+          <div className="mr-3 text-[2rem] text-red-600 transition-transform duration-200 ease-in-out group-hover:scale-105 md:text-[2.5rem] dark:text-red-500">
+            <Icon name={ICONS.PLAY} />
           </div>
           <h1 className="text-[1.4rem] font-bold tracking-wider md:text-[1.6rem]">
             Hanson-Tube
@@ -293,11 +293,12 @@ const Header = ({ toggleSidebar, setActivePage, activePage }: HeaderProps) => {
             className={`transform rounded-full p-1.5 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none md:p-2 lg:hidden ${
               isSearchVisible
                 ? "bg-red-500 text-white shadow-md shadow-red-500/40 hover:shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1),_inset_-2px_-2px_4px_rgba(255,255,255,0.7)] dark:ring-2 dark:ring-red-500 dark:hover:border dark:hover:border-solid dark:hover:border-red-700"
-                : "bevel-light-inset bevel-dark-inset bg-gray-200 hover:bg-gray-300 dark:bg-[#141416] dark:hover:bg-[#1e1e22]"
+                : "bevel-light-inset bevel-dark-inset bg-gray-200 hover:bg-gray-300 dark:bg-dark-well dark:hover:bg-dark-well-hover"
             }`}
           >
             <div className="flex h-5 w-5 items-center justify-center text-[1rem] sm:h-6 sm:w-6 md:text-[1.2rem]">
-              <FaSearch
+              <Icon
+                name={ICONS.SEARCH}
                 className={
                   isSearchVisible
                     ? "text-white dark:text-gray-900"
@@ -321,7 +322,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }: HeaderProps) => {
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              className={`h-10 w-10 transform cursor-pointer rounded-full border-2 border-transparent object-cover hover:border-red-500 ${
+              className={`h-10 w-10 transform cursor-pointer rounded-full border-2 border-transparent object-cover hover:border-red-600 dark:hover:border-red-500 ${
                 activePage === "Home"
                   ? "scale-0 opacity-0"
                   : "scale-100 opacity-100 transition-all delay-150 duration-500"
@@ -333,7 +334,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }: HeaderProps) => {
 
       {/* Mobile Search Popup */}
       {isSearchVisible && (
-        <div className="absolute top-full right-0 left-0 bg-gray-100/95 p-4 shadow-lg backdrop-blur-sm lg:hidden dark:bg-[#181818]/95">
+        <div className="absolute top-full right-0 left-0 bg-gray-100/95 p-4 shadow-lg backdrop-blur-sm lg:hidden dark:bg-dark-header/95">
           <SearchBar
             setActivePage={setActivePage}
             isMicActive={isMicActive}
