@@ -53,13 +53,14 @@ export default function ValueDomainDonutChart({
         ? data.findIndex((d) => selectedDomains.includes(d.domain))
         : null;
 
-  const activeItem = activeIdx !== null && activeIdx !== -1 ? data[activeIdx] : null;
+  const activeItem =
+    activeIdx !== null && activeIdx !== -1 ? data[activeIdx] : null;
 
   return (
     <div className={`${UI_SURFACES.chartCard} h-full`}>
       <div className="mb-2 flex items-center justify-between">
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          <span className="text-xs font-bold tracking-wider text-blue-600 uppercase dark:text-blue-400">
             Portfolio Allocation
           </span>
           <h3 className="text-base font-bold text-gray-900 dark:text-gray-100">
@@ -71,33 +72,39 @@ export default function ValueDomainDonutChart({
         </span>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center gap-4 flex-1 justify-center">
+      <div className="flex flex-1 flex-col items-center justify-center gap-4 sm:flex-row">
         {/* SVG Ring with Non-Overlapping Pill Segments */}
         <div className="relative flex shrink-0 items-center justify-center">
-          <svg viewBox={`0 0 ${size} ${size}`} className="h-36 w-36 -rotate-90 select-none">
+          <svg
+            viewBox={`0 0 ${size} ${size}`}
+            className="h-36 w-36 -rotate-90 select-none"
+          >
             {segments.map((seg, i) => {
-              const isMatch = !isDomainFiltered || selectedDomains.includes(seg.domain);
+              const isMatch =
+                !isDomainFiltered || selectedDomains.includes(seg.domain);
               const isHovered = hoveredIdx === i;
               const isAnyHovered = hoveredIdx !== null;
               const isSelected = activeIdx === i;
 
               // Dynamic strokeWidth: active (16), default (12), inactive (11)
-              const strokeWidth = isHovered || isSelected
-                ? 16
-                : isAnyHovered
-                  ? 11
-                  : isMatch
-                    ? 12
-                    : 11;
+              const strokeWidth =
+                isHovered || isSelected
+                  ? 16
+                  : isAnyHovered
+                    ? 11
+                    : isMatch
+                      ? 12
+                      : 11;
 
               // Dynamic opacity: keep active segment vivid (1), mute others (0.22) on hover
-              const opacityVal = isHovered || isSelected
-                ? 1
-                : isAnyHovered
-                  ? 0.22
-                  : isMatch
-                    ? 1
-                    : 0.22;
+              const opacityVal =
+                isHovered || isSelected
+                  ? 1
+                  : isAnyHovered
+                    ? 0.22
+                    : isMatch
+                      ? 1
+                      : 0.22;
 
               return (
                 <g key={seg.name}>
@@ -115,7 +122,8 @@ export default function ValueDomainDonutChart({
                     className="pointer-events-none"
                     style={{
                       opacity: opacityVal,
-                      transition: "stroke-width 260ms cubic-bezier(0.4, 0, 0.2, 1), opacity 260ms cubic-bezier(0.4, 0, 0.2, 1)",
+                      transition:
+                        "stroke-width 260ms cubic-bezier(0.4, 0, 0.2, 1), opacity 260ms cubic-bezier(0.4, 0, 0.2, 1)",
                     }}
                   />
                   {/* Strictly Non-Overlapping Hit Target (Butt linecap with exact sector boundaries) */}
@@ -139,18 +147,18 @@ export default function ValueDomainDonutChart({
           </svg>
 
           {/* Center Callout */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none transition-all duration-250 ease-out">
+          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center transition-all duration-250 ease-out">
             <span className="text-xl font-black text-gray-900 dark:text-white">
               {activeItem ? `${activeItem.percentage}%` : "100%"}
             </span>
-            <span className="text-[9px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+            <span className="text-[9px] font-bold tracking-wider text-gray-500 uppercase dark:text-gray-400">
               {activeItem ? activeItem.domain.split(" ")[0] : "Coverage"}
             </span>
           </div>
         </div>
 
         {/* Legend */}
-        <div className="flex-1 space-y-1.5 w-full">
+        <div className="w-full flex-1 space-y-1.5">
           {data.map((item, i) => {
             const isSelected = activeIdx === i;
             const isAnyHovered = hoveredIdx !== null;
@@ -168,7 +176,7 @@ export default function ValueDomainDonutChart({
                 onMouseLeave={() => setHoveredIdx(null)}
                 className={`flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-1 text-left text-xs transition-all ${rowOpacity} ${
                   isSelected
-                    ? "bg-gray-200/80 dark:bg-black/40 font-bold text-gray-900 dark:text-white"
+                    ? "bg-gray-200/80 font-bold text-gray-900 dark:bg-black/40 dark:text-white"
                     : "text-gray-700 hover:bg-gray-200/40 dark:text-gray-300 dark:hover:bg-black/20"
                 }`}
               >
@@ -177,11 +185,9 @@ export default function ValueDomainDonutChart({
                     className="h-2.5 w-2.5 shrink-0 rounded-full"
                     style={{ backgroundColor: item.color }}
                   />
-                  <span className="truncate">
-                    {item.name}
-                  </span>
+                  <span className="truncate">{item.name}</span>
                 </div>
-                <span className="ml-2 font-black text-gray-900 dark:text-white shrink-0">
+                <span className="ml-2 shrink-0 font-black text-gray-900 dark:text-white">
                   {item.percentage}%
                 </span>
               </button>
@@ -191,13 +197,13 @@ export default function ValueDomainDonutChart({
       </div>
 
       {/* Interactive Detail Box (fixed height to prevent layout shift) */}
-      <div className="mt-3 h-[68px] flex flex-col justify-center rounded-xl border border-gray-300/60 bg-gray-200/50 p-2.5 text-xs transition-all dark:border-gray-700/60 dark:bg-black/30">
+      <div className="mt-3 flex h-[68px] flex-col justify-center rounded-xl border border-gray-300/60 bg-gray-200/50 p-2.5 text-xs transition-all dark:border-gray-700/60 dark:bg-black/30">
         {activeItem ? (
           <div>
             <div className="flex items-center justify-between">
               <span className="flex items-center gap-1.5 font-bold text-gray-800 dark:text-gray-200">
                 <span
-                  className="inline-block h-2 w-2 rounded-full shrink-0"
+                  className="inline-block h-2 w-2 shrink-0 rounded-full"
                   style={{ backgroundColor: activeItem.color }}
                 />
                 <strong style={{ color: activeItem.color }}>
@@ -206,20 +212,20 @@ export default function ValueDomainDonutChart({
               </span>
               <span
                 style={{ color: activeItem.color }}
-                className="text-xs font-black shrink-0"
+                className="shrink-0 text-xs font-black"
               >
                 {activeItem.percentage}% Allocation
               </span>
             </div>
-            <div className="mt-0.5 text-[11px] leading-snug text-gray-600 dark:text-gray-400 line-clamp-2">
+            <div className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-gray-600 dark:text-gray-400">
               Accounts for <strong>{activeItem.percentage}%</strong> of overall
               career impact value: {activeItem.description}
             </div>
           </div>
         ) : (
-          <div className="flex h-full items-center justify-center text-[11px] text-gray-500 dark:text-gray-400 text-center">
-            Hover over ring segments or legend rows to inspect sector footprint &
-            impact depth.
+          <div className="flex h-full items-center justify-center text-center text-[11px] text-gray-500 dark:text-gray-400">
+            Hover over ring segments or legend rows to inspect sector footprint
+            & impact depth.
           </div>
         )}
       </div>

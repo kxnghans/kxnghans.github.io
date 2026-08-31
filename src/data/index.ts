@@ -13,5 +13,3 @@ export {
   IMPACT_CATEGORIES,
   CAREER_ERAS,
 } from "./lifetimeValue";
-
-

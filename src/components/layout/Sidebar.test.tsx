@@ -43,7 +43,6 @@ describe("Sidebar", () => {
     expect(mockSetActivePage).toHaveBeenCalledWith("Projects");
   });
 
-
   it("toggles theme when theme toggle is clicked", () => {
     renderSidebar();
 

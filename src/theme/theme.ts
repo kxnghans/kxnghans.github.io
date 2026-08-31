@@ -55,7 +55,8 @@ export const tokens = {
       well: "#e5e7eb",
     },
     shadows: {
-      inset: "inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.7)",
+      inset:
+        "inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.7)",
       autofillTint: "inset 0 0 0 1000px rgba(59, 130, 246, 0.1)",
     },
   },

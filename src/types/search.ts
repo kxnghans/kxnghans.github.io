@@ -8,7 +8,6 @@ export type SearchCategory =
   | "Community"
   | "Value";
 
-
 export interface SearchLocation {
   pageName: string;
   componentType: "modal" | "slideshow" | "none";

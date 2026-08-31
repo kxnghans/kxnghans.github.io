@@ -33,36 +33,123 @@ const ALIASES: Record<string, string[]> = {
   gcp: ["google cloud"],
   "ci/cd": ["cicd", "devops"],
   cicd: ["ci/cd", "devops"],
-  tpm: ["technical program manager", "project management", "scrum", "agile", "leadership", "program management"],
+  tpm: [
+    "technical program manager",
+    "project management",
+    "scrum",
+    "agile",
+    "leadership",
+    "program management",
+  ],
   scrum: ["scrum master", "agile", "sprint", "kanban"],
   agile: ["scrum", "kanban", "safe", "sprint"],
   conops: ["concept of operations", "governance", "architecture"],
   governance: ["arb", "carb", "sia", "conops", "compliance"],
   roi: ["cost savings", "operational savings", "business analysis"],
-  usaf: ["air force", "military", "officer", "veteran", "aeromedical", "als", "hsa"],
+  usaf: [
+    "air force",
+    "military",
+    "officer",
+    "veteran",
+    "aeromedical",
+    "als",
+    "hsa",
+  ],
   "air force": ["usaf", "military", "officer", "aeromedical", "als", "hsa"],
-  msc: ["medical service corps", "health services administrator", "officer", "41a3"],
-  "41a3": ["msc", "medical service corps", "health services administrator", "officer"],
-  hsa: ["health services administration", "medical service corps", "41a3", "officer"],
+  msc: [
+    "medical service corps",
+    "health services administrator",
+    "officer",
+    "41a3",
+  ],
+  "41a3": [
+    "msc",
+    "medical service corps",
+    "health services administrator",
+    "officer",
+  ],
+  hsa: [
+    "health services administration",
+    "medical service corps",
+    "41a3",
+    "officer",
+  ],
   als: ["airman leadership school", "pme", "leadership"],
-  officer: ["msc", "health services administrator", "aeromedical", "usaf", "2d lt", "41a3"],
+  officer: [
+    "msc",
+    "health services administrator",
+    "aeromedical",
+    "usaf",
+    "2d lt",
+    "41a3",
+  ],
   aeromedical: ["34th aes", "medical logistics", "evacuation", "usaf", "hsa"],
-  ncoic: ["centralized repair facility", "crf", "materiel management", "usaf", "als"],
+  ncoic: [
+    "centralized repair facility",
+    "crf",
+    "materiel management",
+    "usaf",
+    "als",
+  ],
   crf: ["centralized repair facility", "ncoic", "wheel & tire", "boeing"],
-  commendation: ["air and space commendation medal", "medal", "decoration", "honors"],
+  commendation: [
+    "air and space commendation medal",
+    "medal",
+    "decoration",
+    "honors",
+  ],
   medal: ["commendation", "achievement", "decoration", "decorations", "honors"],
   decoration: ["medal", "decorations", "commendation", "achievement", "honors"],
   decorations: ["medal", "decoration", "commendation", "achievement", "honors"],
-  hansondeck: ["creative media", "photography", "media production", "cinematography", "open heavens", "llc"],
-  photography: ["hansondeck", "creative media", "cinematography", "media", "open heavens"],
-  "open heavens": ["church", "media team", "hansondeck", "photography", "livestream", "broadcast"],
-  church: ["open heavens", "media team", "worship", "broadcast", "livestream", "hansondeck"],
+  hansondeck: [
+    "creative media",
+    "photography",
+    "media production",
+    "cinematography",
+    "open heavens",
+    "llc",
+  ],
+  photography: [
+    "hansondeck",
+    "creative media",
+    "cinematography",
+    "media",
+    "open heavens",
+  ],
+  "open heavens": [
+    "church",
+    "media team",
+    "hansondeck",
+    "photography",
+    "livestream",
+    "broadcast",
+  ],
+  church: [
+    "open heavens",
+    "media team",
+    "worship",
+    "broadcast",
+    "livestream",
+    "hansondeck",
+  ],
   berkeley: ["uc berkeley", "cal", "data science", "masters"],
   uccs: ["university of colorado", "electrical engineering", "bachelors"],
-  ee: ["electrical engineering", "circuits", "electronics", "semiconductors", "emag"],
+  ee: [
+    "electrical engineering",
+    "circuits",
+    "electronics",
+    "semiconductors",
+    "emag",
+  ],
   mlsys: ["machine learning systems", "modelops", "inference", "deep learning"],
   emag: ["electromagnetics", "rf", "microwave", "maxwell"],
-  semiconductor: ["semiconductors", "solid-state", "mosfet", "bjt", "pn junction"],
+  semiconductor: [
+    "semiconductors",
+    "solid-state",
+    "mosfet",
+    "bjt",
+    "pn junction",
+  ],
   capstone: ["fretwork", "audio amt", "tabtransformer", "viterbi"],
 };
 
@@ -165,6 +252,23 @@ interface IndexedDocument {
   categoryOrder: number;
 }
 
+/**
+ * Curated prioritized item IDs surfaced during empty or initial search states.
+ * Balanced across flagship ventures, core TPM skills, key career work, military honors, and ROI metrics.
+ */
+export const CURATED_RECOMMENDED_IDS: readonly string[] = [
+  "project-2", // Gospel Games Platform
+  "project-3", // Unpack Travel Companion
+  "project-1", // MilCalc Mobile Suite
+  "skill-0", // Project & Program Management
+  "skill-1", // Cloud & DevOps Architecture
+  "work-0", // Systems Engineer & Sr Business Analyst
+  "honor-0", // 22nd NAF Airman of the Year
+  "value-metric-val-1", // $9.6M+ Lifetime Cost Savings
+  "education-0", // Masters in Data Science
+  "project-0", // CaroHans Event Rentals (ERMS)
+];
+
 export class SearchEngine {
   private indexedDocs: IndexedDocument[] = [];
   private cache: Map<string, SearchableItem[]> = new Map();
@@ -203,6 +307,65 @@ export class SearchEngine {
   }
 
   /**
+   * Generates a curated, category-diverse list of recommended search items
+   * for empty or initial search states (SEARCH-1 & SEARCH-2).
+   */
+  public getRecommendations(limit: number = 6): SearchableItem[] {
+    if (this.indexedDocs.length === 0) return [];
+
+    // Map item IDs to indexed documents for fast O(1) lookup
+    const itemMap = new Map<string, SearchableItem>();
+    this.indexedDocs.forEach((doc) => itemMap.set(doc.item.id, doc.item));
+
+    const selected: SearchableItem[] = [];
+    const selectedIds = new Set<string>();
+    const categoryCounts: Record<string, number> = {};
+
+    // 1. Select from curated priority list while enforcing max 2 items per category
+    for (const id of CURATED_RECOMMENDED_IDS) {
+      if (selected.length >= limit) break;
+      const item = itemMap.get(id);
+      if (item && !selectedIds.has(item.id)) {
+        const count = categoryCounts[item.category] || 0;
+        if (count < 2) {
+          selected.push(item);
+          selectedIds.add(item.id);
+          categoryCounts[item.category] = count + 1;
+        }
+      }
+    }
+
+    // 2. Diversity backfill: draw from underrepresented categories if limit not yet reached
+    if (selected.length < limit) {
+      for (const doc of this.indexedDocs) {
+        if (selected.length >= limit) break;
+        const item = doc.item;
+        if (!selectedIds.has(item.id)) {
+          const count = categoryCounts[item.category] || 0;
+          if (count < 2) {
+            selected.push(item);
+            selectedIds.add(item.id);
+            categoryCounts[item.category] = count + 1;
+          }
+        }
+      }
+    }
+
+    // 3. Final fallback: fill any remaining slots with unselected indexed items
+    if (selected.length < limit) {
+      for (const doc of this.indexedDocs) {
+        if (selected.length >= limit) break;
+        if (!selectedIds.has(doc.item.id)) {
+          selected.push(doc.item);
+          selectedIds.add(doc.item.id);
+        }
+      }
+    }
+
+    return selected;
+  }
+
+  /**
    * Searches indexed items using field weighting, token scoring, and fuzzy fallback.
    */
   public search(query: string): SearchableItem[] {
@@ -217,7 +380,11 @@ export class SearchEngine {
     const queryTokens = tokenize(trimmed);
     if (queryTokens.length === 0) return [];
 
-    const scoredResults: { item: SearchableItem; score: number; categoryOrder: number }[] = [];
+    const scoredResults: {
+      item: SearchableItem;
+      score: number;
+      categoryOrder: number;
+    }[] = [];
 
     for (const doc of this.indexedDocs) {
       let score = 0;
@@ -236,7 +403,9 @@ export class SearchEngine {
         score += 450;
       }
 
-      if (doc.tagsNorm.some((tag) => tag === queryNorm || tag.includes(queryNorm))) {
+      if (
+        doc.tagsNorm.some((tag) => tag === queryNorm || tag.includes(queryNorm))
+      ) {
         score += 600;
       }
 
@@ -327,7 +496,10 @@ export class SearchEngine {
           // Fuzzy check on Title & Tags
           const highPriorityTokens = [...doc.titleTokens, ...doc.tagsTokens];
           for (const t of highPriorityTokens) {
-            if (t.length >= 4 && levenshteinDistance(qToken, t) <= maxDistance) {
+            if (
+              t.length >= 4 &&
+              levenshteinDistance(qToken, t) <= maxDistance
+            ) {
               tokenScore = Math.max(tokenScore, 45);
               tokenMatched = true;
               break;
@@ -336,9 +508,15 @@ export class SearchEngine {
 
           // Fuzzy check on Subtitle & Summary
           if (!tokenMatched) {
-            const medPriorityTokens = [...doc.subtitleTokens, ...doc.summaryTokens];
+            const medPriorityTokens = [
+              ...doc.subtitleTokens,
+              ...doc.summaryTokens,
+            ];
             for (const t of medPriorityTokens) {
-              if (t.length >= 4 && levenshteinDistance(qToken, t) <= maxDistance) {
+              if (
+                t.length >= 4 &&
+                levenshteinDistance(qToken, t) <= maxDistance
+              ) {
                 tokenScore = Math.max(tokenScore, 25);
                 tokenMatched = true;
                 break;
@@ -381,7 +559,6 @@ export class SearchEngine {
       }
       return b.score - a.score;
     });
-
 
     const results = scoredResults.map((r) => r.item);
 

@@ -39,6 +39,8 @@ import {
   FaCog,
   FaBolt,
   FaBuilding,
+  FaStar,
+  FaCompass,
 } from "react-icons/fa";
 import {
   FaCirclePlay,
@@ -76,6 +78,8 @@ export const ICONS = {
   COG: "COG",
   BOLT: "BOLT",
   BUILDING: "BUILDING",
+  STAR: "STAR",
+  COMPASS: "COMPASS",
 
   // Sections & Navigation
   HOME: "HOME",
@@ -130,6 +134,8 @@ export const ICON_MAP: Record<IconName, IconType> = {
   [ICONS.COG]: FaCog,
   [ICONS.BOLT]: FaBolt,
   [ICONS.BUILDING]: FaBuilding,
+  [ICONS.STAR]: FaStar,
+  [ICONS.COMPASS]: FaCompass,
 
   [ICONS.HOME]: FaHome,
   [ICONS.PROFILE]: FaUser,

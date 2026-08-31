@@ -15,6 +15,7 @@ This document defines the automated linting policies, ESLint configuration, AST 
 ## 2. Active ESLint Configuration (`eslint.config.js`)
 
 Our Flat Config integrates:
+
 - `@eslint/js` recommended rules
 - `typescript-eslint` (`@typescript-eslint/recommended`)
 - `eslint-plugin-react` (`recommended` with `react-in-jsx-scope: off`)
@@ -27,6 +28,7 @@ Our Flat Config integrates:
 ## 3. Strict AST Guardrails & Rules
 
 ### A. Centralized Iconography Enforcement (`no-restricted-imports`)
+
 - **Rule**: Direct imports from `react-icons` or `react-icons/*` are blocked outside of [`src/components/icons/iconRegistry.ts`](../src/components/icons/iconRegistry.ts).
 - **Remediation**: Import `{ Icon, ICONS }` from `src/components/icons`.
   ```tsx
@@ -35,10 +37,11 @@ Our Flat Config integrates:
 
   // ✅ Allowed:
   import { Icon, ICONS } from "../components/icons";
-  <Icon name={ICONS.MENU} className="text-xl" />
+  <Icon name={ICONS.MENU} className="text-xl" />;
   ```
 
 ### B. Centralized Color & Hex Code Prohibition (`no-restricted-syntax`)
+
 - **Rule**: Hardcoded color literals (`#hex`, `rgb(...)`, `rgba(...)`, `hsl(...)`) and arbitrary hex classes in JSX (`bg-[#...]`, `text-[#...]`) are blocked outside of `src/theme/**`.
 - **Remediation**: Use semantic Tailwind classes or dynamic `useTheme().colors` / `src/theme/theme.ts` tokens.
   ```tsx
@@ -56,6 +59,7 @@ Our Flat Config integrates:
   ```
 
 ### C. Type Safety Enforcement
+
 - **Rule**: `@typescript-eslint/no-explicit-any` is set to `"error"`. Any is the enemy.
 - **Unused Variables**: `@typescript-eslint/no-unused-vars` triggers an error on any unreferenced identifier (except those prefixed with `_`).
 
@@ -64,6 +68,7 @@ Our Flat Config integrates:
 ## 4. Whitelist Exemptions
 
 The following files are exempt from `no-restricted-syntax` and `no-restricted-imports`:
+
 - `src/theme/**` (Theme definitions and SSOT token mappings)
 - `src/components/icons/iconRegistry.ts` (Icon registration and react-icons mapping)
 - `**/*.test.ts`, `**/*.test.tsx` (Test mocks and snapshot assertions)

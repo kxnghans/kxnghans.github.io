@@ -1,6 +1,7 @@
 import {
   render,
   screen,
+  within,
   act,
   waitFor,
   fireEvent,
@@ -14,12 +15,14 @@ const TestConsumer = () => {
     searchQuery,
     setSearchQuery,
     searchResults,
+    recommendations,
     navigateToResult,
   } = useSearch();
   return (
     <div>
       <div data-testid="search-query">{searchQuery}</div>
       <div data-testid="results-count">{searchResults.length}</div>
+      <div data-testid="recommendations-count">{recommendations.length}</div>
       <input
         data-testid="search-input"
         value={searchQuery}
@@ -28,6 +31,11 @@ const TestConsumer = () => {
       <ul data-testid="results">
         {searchResults.map((result) => (
           <li key={result.id}>{result.title}</li>
+        ))}
+      </ul>
+      <ul data-testid="recommendations">
+        {recommendations.map((item) => (
+          <li key={item.id}>{item.title}</li>
         ))}
       </ul>
       <button
@@ -51,7 +59,7 @@ describe("SearchContext", () => {
     vi.clearAllMocks();
   });
 
-  it("provides default values", () => {
+  it("provides default values with curated recommendations", () => {
     render(
       <SearchProvider>
         <TestConsumer />
@@ -60,6 +68,9 @@ describe("SearchContext", () => {
 
     expect(screen.getByTestId("search-query")).toHaveTextContent("");
     expect(screen.getByTestId("results-count")).toHaveTextContent("0");
+    expect(
+      Number(screen.getByTestId("recommendations-count").textContent),
+    ).toBeGreaterThan(0);
   });
 
   it("updates search query and filters results", async () => {
@@ -95,20 +106,28 @@ describe("SearchContext", () => {
     // Search for "DAFMAN" (from MilCalc project summary & details)
     fireEvent.change(input, { target: { value: "DAFMAN" } });
     await waitFor(() => {
-      expect(screen.getByText("MilCalc Mobile Suite")).toBeInTheDocument();
+      expect(
+        within(screen.getByTestId("results")).getByText("MilCalc Mobile Suite"),
+      ).toBeInTheDocument();
     });
 
     // Search for "Berkeley" (from Education)
     fireEvent.change(input, { target: { value: "Berkeley" } });
     await waitFor(() => {
-      expect(screen.getByText("Masters in Data Science")).toBeInTheDocument();
+      expect(
+        within(screen.getByTestId("results")).getByText(
+          "Masters in Data Science",
+        ),
+      ).toBeInTheDocument();
     });
 
     // Search for "CONOPS" (from Work experience)
     fireEvent.change(input, { target: { value: "CONOPS" } });
     await waitFor(() => {
       expect(
-        screen.getByText("Systems Engineer & Sr Business Analyst"),
+        within(screen.getByTestId("results")).getByText(
+          "Systems Engineer & Sr Business Analyst",
+        ),
       ).toBeInTheDocument();
     });
   });
@@ -126,7 +145,9 @@ describe("SearchContext", () => {
     fireEvent.change(input, { target: { value: "CaroHans Supabase" } });
     await waitFor(() => {
       expect(
-        screen.getByText("CaroHans Event Rentals (ERMS)"),
+        within(screen.getByTestId("results")).getByText(
+          "CaroHans Event Rentals (ERMS)",
+        ),
       ).toBeInTheDocument();
     });
 
@@ -134,7 +155,9 @@ describe("SearchContext", () => {
     fireEvent.change(input, { target: { value: "nextjs" } });
     await waitFor(() => {
       expect(
-        screen.getByText("CaroHans Event Rentals (ERMS)"),
+        within(screen.getByTestId("results")).getByText(
+          "CaroHans Event Rentals (ERMS)",
+        ),
       ).toBeInTheDocument();
     });
   });
@@ -153,7 +176,9 @@ describe("SearchContext", () => {
       expect(screen.getByTestId("results-count")).not.toHaveTextContent("0");
     });
 
-    fireEvent.change(input, { target: { value: "React (Hooks) [v19] + Vite" } });
+    fireEvent.change(input, {
+      target: { value: "React (Hooks) [v19] + Vite" },
+    });
     await waitFor(() => {
       expect(screen.getByTestId("search-query")).toHaveTextContent(
         "React (Hooks) [v19] + Vite",
@@ -191,5 +216,4 @@ describe("SearchContext", () => {
 
     vi.useRealTimers();
   });
-
 });

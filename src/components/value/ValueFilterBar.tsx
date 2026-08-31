@@ -29,7 +29,7 @@ export default function ValueFilterBar({
   isFiltered,
 }: ValueFilterBarProps) {
   return (
-    <div className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card relative mb-8 overflow-visible rounded-2xl p-4 sm:p-5 transition-all duration-300">
+    <div className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card relative mb-8 overflow-visible rounded-2xl p-4 transition-all duration-300 sm:p-5">
       <div className="absolute top-0 left-0 h-full w-1.5 rounded-l-2xl bg-red-600 dark:bg-red-500" />
       <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:gap-4">
         {/* Domain Filter */}
@@ -57,23 +57,23 @@ export default function ValueFilterBar({
         />
 
         {/* Neumorphic Inset Vertical Divider (Desktop) */}
-        <div className="hidden lg:block h-10 w-[3px] shrink-0 self-end rounded-full bevel-light-inset dark:bevel-dark-inset bg-gray-200 dark:bg-dark-bg" />
+        <div className="bevel-light-inset dark:bevel-dark-inset dark:bg-dark-bg hidden h-10 w-[3px] shrink-0 self-end rounded-full bg-gray-200 lg:block" />
 
         {/* Reset Button */}
-        <div className="flex items-end lg:w-32 shrink-0">
+        <div className="flex shrink-0 items-end lg:w-32">
           <button
             type="button"
             onClick={onResetFilters}
             disabled={!isFiltered}
-            className={`bevel-light dark:neumorphic-outset-dark dark:bg-dark-card flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-xl px-4 text-xs font-bold uppercase tracking-wider transition-all duration-200 active:scale-[0.98] ${
+            className={`bevel-light dark:neumorphic-outset-dark dark:bg-dark-card flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-xl px-4 text-xs font-bold tracking-wider uppercase transition-all duration-200 active:scale-[0.98] ${
               isFiltered
                 ? "text-red-600 hover:brightness-105 dark:text-red-400"
-                : "opacity-40 cursor-not-allowed text-gray-500"
+                : "cursor-not-allowed text-gray-500 opacity-40"
             }`}
           >
             <Icon
               name={ICONS.SYNC}
-              className={`h-3 w-3 ${isFiltered ? "hover:rotate-180 transition-transform" : ""}`}
+              className={`h-3 w-3 ${isFiltered ? "transition-transform hover:rotate-180" : ""}`}
             />
             <span>Reset</span>
           </button>

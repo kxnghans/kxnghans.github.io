@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import Header from "./Header";
 import { SearchProvider } from "../../context/SearchContext";
@@ -82,15 +82,21 @@ describe("Header", () => {
     const searchInput = screen.getByPlaceholderText("Search");
 
     // Press Ctrl+K
-    fireEvent.keyDown(window, { key: "k", ctrlKey: true });
+    act(() => {
+      fireEvent.keyDown(window, { key: "k", ctrlKey: true });
+    });
     expect(document.activeElement).toBe(searchInput);
 
     // Blur input
-    searchInput.blur();
+    act(() => {
+      searchInput.blur();
+    });
     expect(document.activeElement).not.toBe(searchInput);
 
     // Press '/'
-    fireEvent.keyDown(window, { key: "/" });
+    act(() => {
+      fireEvent.keyDown(window, { key: "/" });
+    });
     expect(document.activeElement).toBe(searchInput);
   });
 
@@ -98,11 +104,15 @@ describe("Header", () => {
     renderHeader();
     const searchInput = screen.getByPlaceholderText("Search");
 
-    fireEvent.change(searchInput, { target: { value: "React" } });
-    searchInput.focus();
+    act(() => {
+      fireEvent.change(searchInput, { target: { value: "React" } });
+      searchInput.focus();
+    });
     expect(document.activeElement).toBe(searchInput);
 
-    fireEvent.keyDown(window, { key: "Escape" });
+    act(() => {
+      fireEvent.keyDown(window, { key: "Escape" });
+    });
     expect(document.activeElement).not.toBe(searchInput);
   });
 });

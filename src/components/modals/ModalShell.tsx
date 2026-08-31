@@ -80,16 +80,11 @@ export const ModalShell = ({
 
         {/* Scrollable Modal Content */}
         <div className="flex-1 overflow-y-auto p-6 py-4">
-          <h2
-            id={titleId}
-            className={`mb-2 pr-8 ${UI_TYPOGRAPHY.modalTitle}`}
-          >
+          <h2 id={titleId} className={`mb-2 pr-8 ${UI_TYPOGRAPHY.modalTitle}`}>
             {title}
           </h2>
           {subtitle && (
-            <p className={`mb-4 ${UI_TYPOGRAPHY.modalSubtitle}`}>
-              {subtitle}
-            </p>
+            <p className={`mb-4 ${UI_TYPOGRAPHY.modalSubtitle}`}>{subtitle}</p>
           )}
 
           <div className="space-y-4 text-gray-600 dark:text-gray-300">
@@ -98,11 +93,7 @@ export const ModalShell = ({
         </div>
 
         {/* Sticky/Fixed Bottom Footer (Divider + Content) */}
-        {footer && (
-          <div className={UI_SURFACES.modalFooter}>
-            {footer}
-          </div>
-        )}
+        {footer && <div className={UI_SURFACES.modalFooter}>{footer}</div>}
       </div>
     </div>
   );
@@ -111,4 +102,3 @@ export const ModalShell = ({
 };
 
 export default ModalShell;
-

@@ -3,7 +3,12 @@ import ModalShell from "./ModalShell";
 import ModalCARSection from "./ModalCARSection";
 import ModalHighlightsGrid from "./ModalHighlightsGrid";
 import CategorizedList from "./CategorizedList";
-import type { Highlight, ProjectDetails, SkillDetail, SkillModalDetails } from "../../types/data";
+import type {
+  Highlight,
+  ProjectDetails,
+  SkillDetail,
+  SkillModalDetails,
+} from "../../types/data";
 
 export interface DetailModalItem {
   title?: string;

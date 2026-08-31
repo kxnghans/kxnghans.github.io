@@ -45,21 +45,23 @@ Hanson-Tube enforces a dual-verification strategy focusing on logical unit resil
 
 ## Active Test Suite Inventory
 
-The Vitest test suite verifies 24 test suites (103 unit and integration tests):
+The Vitest test suite verifies 26 test suites (113 unit and integration tests):
 
-1. **`utils/searchEngine.test.ts`** (13 tests):
+1. **`utils/searchEngine.test.ts`** (15 tests):
    - In-memory indexing and query caching.
    - Exact query, prefix, and substring matching.
    - Field-weighted score hierarchy (Title > Tags > Subtitle > Summary > Content).
    - Tech and management alias expansion (`c++`/`cpp`, `next.js`/`nextjs`, `tpm`/`scrum`/`conops`, `ai`/`machine learning`, `open heavens`/`church`).
    - Multi-token scoring and full-match bonus calculation.
    - Typo-tolerant fuzzy matching via Levenshtein distance.
+   - Smart recommendation engine (`getRecommendations`) category diversity and rotation.
    - Navigation category ordering and relevance tie-breaking.
 
-2. **`components/search/SearchResults.test.tsx`** (6 tests):
+2. **`components/search/SearchResults.test.tsx`** (8 tests):
    - Multi-token term highlighting with YouTube red styling.
    - Safe regex character escaping (`C++`, `.NET`, brackets).
    - Contextual smart snippet truncation centered around matching tokens.
+   - Recommended topics panel rendering upon empty query focus.
    - Category group headers and card item rendering.
    - Result item click selection and navigation dispatch.
    - Empty query and zero-result empty state rendering.
@@ -76,6 +78,7 @@ The Vitest test suite verifies 24 test suites (103 unit and integration tests):
    - Root mounting and default view rendering.
    - Dark/Light mode theme class toggle on `document.documentElement`.
    - Sidebar responsive auto-close behavior on viewport resize.
+   - Recommended topics display on search input focus and navigation to results.
    - Custom state routing view switching and navigation to Value page.
 
 5. **`components/layout/Header.test.tsx`** (6 tests):
@@ -141,17 +144,27 @@ The Vitest test suite verifies 24 test suites (103 unit and integration tests):
 19. **`pages/WorkExperiencePage.test.tsx`** (3 tests):
     - Work cards rendering, detail modal triggers, and exposure badge validations.
 
-20. **`pages/ValuePage.test.tsx`** (4 tests):
+20. **`pages/HonorsPage.test.tsx`** (3 tests):
+    - Honors heading, honor cards rendering, and certifications slideshow integration.
+    - DetailModal opening on card click and close button trigger.
+    - Keyboard accessibility (Enter and Space keys) for opening modals.
+
+21. **`pages/ProjectsPage.test.tsx`** (3 tests):
+    - Projects heading and all project cards rendering across categories.
+    - ProjectModal opening on card click and close button trigger.
+    - Keyboard accessibility (Enter and Space keys) for opening modals.
+
+22. **`pages/ValuePage.test.tsx`** (4 tests):
     - Executive summary KPI buckets ($9.6M+ savings, 705k+ hrs, 36x peak acceleration, 450 sites), interactive filter slicing, time-cost calculations, and reset filters.
 
-21. **`components/value/charts/ValueDomainDonutChart.test.tsx`** (2 tests):
+23. **`components/value/charts/ValueDomainDonutChart.test.tsx`** (2 tests):
     - Domain impact footprint rendering and sector detail callout on hover.
 
-22. **`components/value/charts/ValueMultiplierBarChart.test.tsx`** (3 tests):
+24. **`components/value/charts/ValueMultiplierBarChart.test.tsx`** (3 tests):
     - Velocity multiplier columns rendering, speedup calculations, and before→after cycle-time detail box.
 
-23. **`components/value/charts/ValueRadarChart.test.tsx`** (2 tests):
+25. **`components/value/charts/ValueRadarChart.test.tsx`** (2 tests):
     - 6-axis competency spider graph, SVG web grid, and interactive vertex tenure benchmarks.
 
-24. **`components/value/charts/ValueTimelineAreaChart.test.tsx`** (3 tests):
+26. **`components/value/charts/ValueTimelineAreaChart.test.tsx`** (3 tests):
     - Cumulative improvement trajectory area/line curves, era milestone callouts, and filter highlighting.

@@ -67,8 +67,12 @@ describe("DetailModal", () => {
 
     expect(screen.getByText("Programming & Frameworks")).toBeInTheDocument();
     expect(screen.getByText("Modern Full-Stack Stack")).toBeInTheDocument();
-    expect(screen.getByText("Legacy architecture bottleneck")).toBeInTheDocument();
-    expect(screen.getByText("Refactored to modular micro-frontends")).toBeInTheDocument();
+    expect(
+      screen.getByText("Legacy architecture bottleneck"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("Refactored to modular micro-frontends"),
+    ).toBeInTheDocument();
     expect(screen.getByText("Improved latency by 45%")).toBeInTheDocument();
     expect(screen.getByText("Exposure to:")).toBeInTheDocument();
     expect(screen.getByText("Kubernetes")).toBeInTheDocument();

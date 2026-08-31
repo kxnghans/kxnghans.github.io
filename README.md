@@ -6,19 +6,19 @@ Hanson-Tube is an interactive web portfolio built with React, TypeScript, and Ta
 
 ## Tech Stack
 
-| Layer                  | Technology                                                   |
-| :--------------------- | :----------------------------------------------------------- |
-| **Frontend Framework** | React (Functional Components, Hooks, Context API)            |
-| **Language**           | TypeScript (Strict Type-Checking)                            |
-| **Build Tooling**      | Vite, `@vitejs/plugin-react-swc` (SWC Fast Refresh)          |
-| **Styling**            | Tailwind CSS (`@tailwindcss/vite`, `@theme` Design Tokens)   |
-| **Offline & PWA**      | Workbox Window & `vite-plugin-pwa` (Service Worker Caching)  |
-| **Package Manager**    | pnpm                                                         |
-| **State Management**   | React Context API (`ThemeContext`, `SearchContext`)          |
-| **Testing**            | Vitest, React Testing Library, JSDOM (24 Passing Suites, 103 Tests) |
-| **Deployment**         | GitHub Pages (via `gh-pages`)                                |
+| Layer                  | Technology                                                                  |
+| :--------------------- | :-------------------------------------------------------------------------- |
+| **Frontend Framework** | React (Functional Components, Hooks, Context API)                           |
+| **Language**           | TypeScript (Strict Type-Checking)                                           |
+| **Build Tooling**      | Vite, `@vitejs/plugin-react-swc` (SWC Fast Refresh)                         |
+| **Styling**            | Tailwind CSS (`@tailwindcss/vite`, `@theme` Design Tokens)                  |
+| **Offline & PWA**      | Workbox Window & `vite-plugin-pwa` (Service Worker Caching)                 |
+| **Package Manager**    | pnpm                                                                        |
+| **State Management**   | React Context API (`ThemeContext`, `SearchContext`)                         |
+| **Testing**            | Vitest, React Testing Library, JSDOM (26 Passing Suites, 113 Tests)         |
+| **Deployment**         | GitHub Pages (via `gh-pages`)                                               |
 | **Icons**              | Centralized Icon Registry (`<Icon />` primitive via `src/components/icons`) |
-| **Forms & Toasts**     | React Hook Form, Sonner, EmailJS Browser                     |
+| **Forms & Toasts**     | React Hook Form, Sonner, EmailJS Browser                                    |
 
 ---
 

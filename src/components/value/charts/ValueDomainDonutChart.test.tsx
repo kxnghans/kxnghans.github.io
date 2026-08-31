@@ -6,14 +6,10 @@ import { lifetimeValueData } from "../../../data/lifetimeValue";
 describe("ValueDomainDonutChart", () => {
   it("renders donut chart title and domain percentages", () => {
     render(
-      <ValueDomainDonutChart
-        data={lifetimeValueData.charts.distribution}
-      />,
+      <ValueDomainDonutChart data={lifetimeValueData.charts.distribution} />,
     );
 
-    expect(
-      screen.getByText("Domain Impact Footprint"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Domain Impact Footprint")).toBeInTheDocument();
     expect(screen.getByText("45%")).toBeInTheDocument();
     expect(screen.getByText("30%")).toBeInTheDocument();
     expect(screen.getByText("15%")).toBeInTheDocument();
@@ -21,9 +17,7 @@ describe("ValueDomainDonutChart", () => {
 
   it("updates sector detail callout on legend hover", () => {
     render(
-      <ValueDomainDonutChart
-        data={lifetimeValueData.charts.distribution}
-      />,
+      <ValueDomainDonutChart data={lifetimeValueData.charts.distribution} />,
     );
 
     const enterpriseBtn = screen.getByRole("button", {
@@ -31,12 +25,7 @@ describe("ValueDomainDonutChart", () => {
     });
     fireEvent.mouseEnter(enterpriseBtn);
 
-    expect(
-      screen.getByText(/accounts for/i),
-    ).toBeInTheDocument();
-    expect(
-      screen.getAllByText(/30%/i)[0],
-    ).toBeInTheDocument();
+    expect(screen.getByText(/accounts for/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/30%/i)[0]).toBeInTheDocument();
   });
 });
-

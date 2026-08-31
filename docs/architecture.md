@@ -33,18 +33,18 @@ flowchart LR
 
 ### Layer Summary
 
-| Layer                   | Responsibility                                                 | Key Files                                                                                                                                                                                                                                                                                                                              |
-| :---------------------- | :------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **DOM Entry**           | Injects React tree into `#root` and loads global styles.       | [`main.tsx`](../src/main.tsx), [`index.css`](../src/index.css)                                                                                                                                             |
-| **Theme Engine & SSOT** | Central design tokens, dynamic palettes, and Tailwind class recipes.| [`theme.ts`](../src/theme/theme.ts), [`ThemeContext.tsx`](../src/context/ThemeContext.tsx)                                                                                                                                                                                                                     |
-| **Icon Registry**       | Semantic icon mappings and centralized `<Icon />` primitive.    | [`iconRegistry.ts`](../src/components/icons/iconRegistry.ts), [`Icon.tsx`](../src/components/icons/Icon.tsx)                                                                                                                                                                                                                     |
+| Layer                   | Responsibility                                                       | Key Files                                                                                                    |
+| :---------------------- | :------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------- |
+| **DOM Entry**           | Injects React tree into `#root` and loads global styles.             | [`main.tsx`](../src/main.tsx), [`index.css`](../src/index.css)                                               |
+| **Theme Engine & SSOT** | Central design tokens, dynamic palettes, and Tailwind class recipes. | [`theme.ts`](../src/theme/theme.ts), [`ThemeContext.tsx`](../src/context/ThemeContext.tsx)                   |
+| **Icon Registry**       | Semantic icon mappings and centralized `<Icon />` primitive.         | [`iconRegistry.ts`](../src/components/icons/iconRegistry.ts), [`Icon.tsx`](../src/components/icons/Icon.tsx) |
 
-| **Search Context**      | Orchestrates search queries, voice state, and open modals.     | [`SearchContext.tsx`](../src/context/SearchContext.tsx)                                                                                                                                                                                                                   |
-| **App Shell**           | Manages `activePage`, PWA lifecycle, hotkeys, and layout.      | [`App.tsx`](../src/App.tsx), [`Header.tsx`](../src/components/layout/Header.tsx)                                                                                                                             |
-| **Static Data**         | Single Source of Truth for projects, skills, and work history. | [`src/data/*.ts`](../src/data)                                                                                                                                                                                                                                           |
-| **Search & Indexing**   | In-memory token scoring, weighted ranking, and regex snippets. | [`searchEngine.ts`](../src/utils/searchEngine.ts), [`searchableData.ts`](../src/utils/searchableData.ts), [`searchUtils.tsx`](../src/components/search/searchUtils.tsx) |
-| **Hooks & a11y**        | Focus containment, PWA registration, and speech recognition.   | [`useFocusTrap.ts`](../src/hooks/useFocusTrap.ts), [`usePWA.ts`](../src/hooks/usePWA.ts)                                                                                                                 |
-| **External APIs**       | Contact email dispatch and browser speech recognition.         | EmailJS REST, Browser Web Speech API                                                                                                                                                                                                                                                                                                   |
+| **Search Context** | Orchestrates search queries, voice state, and open modals. | [`SearchContext.tsx`](../src/context/SearchContext.tsx) |
+| **App Shell** | Manages `activePage`, PWA lifecycle, hotkeys, and layout. | [`App.tsx`](../src/App.tsx), [`Header.tsx`](../src/components/layout/Header.tsx) |
+| **Static Data** | Single Source of Truth for projects, skills, and work history. | [`src/data/*.ts`](../src/data) |
+| **Search & Indexing** | In-memory token scoring, weighted ranking, and regex snippets. | [`searchEngine.ts`](../src/utils/searchEngine.ts), [`searchableData.ts`](../src/utils/searchableData.ts), [`searchUtils.tsx`](../src/components/search/searchUtils.tsx) |
+| **Hooks & a11y** | Focus containment, PWA registration, and speech recognition. | [`useFocusTrap.ts`](../src/hooks/useFocusTrap.ts), [`usePWA.ts`](../src/hooks/usePWA.ts) |
+| **External APIs** | Contact email dispatch and browser speech recognition. | EmailJS REST, Browser Web Speech API |
 
 ---
 
@@ -125,7 +125,7 @@ flowchart LR
 
 ## 3. Search & Voice Data Flow
 
-The global search engine compiles all typed static dataset files into an in-memory weighted index on startup using [`SearchEngine.ts`](../src/utils/searchEngine.ts). Typing in the search bar or speaking through the microphone performs instant, sub-millisecond multi-token matching, field-weighted scoring, alias resolution, and typo-tolerant retrieval.
+The global search engine compiles all typed static dataset files into an in-memory weighted index on startup using [`searchEngine.ts`](../src/utils/searchEngine.ts). Typing in the search bar or speaking through the microphone performs instant, sub-millisecond multi-token matching, field-weighted scoring, alias resolution, and typo-tolerant retrieval.
 
 ```mermaid
 flowchart LR
@@ -280,4 +280,3 @@ flowchart LR
 
     Shell --> PortalTarget
 ```
-

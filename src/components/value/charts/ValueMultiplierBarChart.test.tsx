@@ -26,8 +26,12 @@ describe("ValueMultiplierBarChart", () => {
 
     fireEvent.mouseEnter(screen.getByText("Labor Hours Reclaimed"));
 
-    expect(screen.getByText(/Manual paper logs & 2,760 annual BA hours/)).toBeInTheDocument();
-    expect(screen.getByText(/Power Platform across 450 sites/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Manual paper logs & 2,760 annual BA hours/),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Power Platform across 450 sites/),
+    ).toBeInTheDocument();
   });
 
   it("renders an empty state when no impact vectors match filters", () => {
@@ -38,4 +42,3 @@ describe("ValueMultiplierBarChart", () => {
     ).toBeInTheDocument();
   });
 });
-

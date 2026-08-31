@@ -34,9 +34,7 @@ describe("ValuePage", () => {
     expect(
       screen.getByText("Lifetime Improvements Over Time"),
     ).toBeInTheDocument();
-    expect(
-      screen.getByText("Domain Impact Footprint"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Domain Impact Footprint")).toBeInTheDocument();
   });
 
   it("filters multipliers and savings total when selecting a domain sector filter", () => {
@@ -56,9 +54,7 @@ describe("ValuePage", () => {
     fireEvent.click(doneBtn);
 
     expect(screen.getByText("Supply Chain Security")).toBeInTheDocument();
-    expect(
-      screen.queryByText("Total Financial ROI"),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText("Total Financial ROI")).not.toBeInTheDocument();
     expect(screen.getAllByText("40+ repos").length).toBeGreaterThan(0);
   });
 

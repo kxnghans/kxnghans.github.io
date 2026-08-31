@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent, act, within } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import App from "./App";
 import { SearchProvider } from "./context/SearchContext";
@@ -26,26 +26,46 @@ describe("App", () => {
     );
   };
 
-  it("renders the Home page by default", () => {
+  it("renders the Home page by default with profile summary card", () => {
     renderApp();
     expect(screen.getByText("Hanson-Tube")).toBeInTheDocument();
-  });
-
-  it("changes page when sidebar item is clicked", async () => {
-    renderApp();
-    const projectsBtn = screen.getByRole("button", { name: /projects/i });
-    fireEvent.click(projectsBtn);
-
     expect(
-      await screen.findByRole("heading", { name: /projects/i }),
+      screen.getByText("Systems Engineer & Sr Business Analyst"),
     ).toBeInTheDocument();
   });
 
-  it("navigates to the Value page when Value sidebar item is clicked", async () => {
+  it("navigates across sidebar routes seamlessly", async () => {
     renderApp();
-    const valueBtn = screen.getByRole("button", { name: /value/i });
-    fireEvent.click(valueBtn);
 
+    const sidebar = document.querySelector("aside")!;
+    expect(sidebar).toBeInTheDocument();
+
+    // 1. Navigate to Work Experience
+    fireEvent.click(within(sidebar).getByText("Work Experience"));
+    expect(
+      await screen.findByRole("heading", { name: "Work Experience" }),
+    ).toBeInTheDocument();
+
+    // 2. Navigate to Projects
+    fireEvent.click(within(sidebar).getByText("Projects"));
+    expect(
+      await screen.findByRole("heading", { name: "Projects" }),
+    ).toBeInTheDocument();
+
+    // 3. Navigate to Education
+    fireEvent.click(within(sidebar).getByText("Education"));
+    expect(
+      await screen.findByRole("heading", { name: "Education" }),
+    ).toBeInTheDocument();
+
+    // 4. Navigate to Honors
+    fireEvent.click(within(sidebar).getByText("Honors"));
+    expect(
+      await screen.findByRole("heading", { name: "Honors & Awards" }),
+    ).toBeInTheDocument();
+
+    // 5. Navigate to Value
+    fireEvent.click(within(sidebar).getByText("Value"));
     expect(
       await screen.findByRole("heading", {
         name: /executive value & impact intelligence/i,
@@ -53,15 +73,44 @@ describe("App", () => {
     ).toBeInTheDocument();
   });
 
+  it("shows recommended topics on search input focus and navigates to result on click", async () => {
+    renderApp();
 
+    const searchInput = screen.getByPlaceholderText("Search");
+    act(() => {
+      fireEvent.focus(searchInput);
+    });
 
-  it("toggles theme correctly", () => {
+    // Verify recommendations header appears
+    const recHeader = await screen.findByText("Recommended Topics");
+    expect(recHeader).toBeInTheDocument();
+
+    // Find the recommendation button uniquely by category tag and title
+    const recButton = screen.getByRole("button", {
+      name: /\[projects\] gospel games platform/i,
+    });
+    expect(recButton).toBeInTheDocument();
+
+    // Click on recommended result
+    fireEvent.click(recButton);
+
+    // Verify target page rendered
+    expect(
+      await screen.findByRole("heading", { name: "Projects" }),
+    ).toBeInTheDocument();
+  });
+
+  it("toggles theme between Light Mode and Dark Mode with html class updates", () => {
     renderApp();
     const themeBtn = screen.getByText("Light Mode");
     fireEvent.click(themeBtn);
 
     expect(document.documentElement.classList.contains("light")).toBe(true);
     expect(screen.getByText("Dark Mode")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText("Dark Mode"));
+    expect(document.documentElement.classList.contains("dark")).toBe(true);
+    expect(screen.getByText("Light Mode")).toBeInTheDocument();
   });
 
   it("auto-closes sidebar on medium screens after a delay", async () => {

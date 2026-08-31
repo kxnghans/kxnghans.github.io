@@ -23,9 +23,7 @@ export default function ValueTimelineAreaChart({
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
   const erasActive =
-    !!selectedEras &&
-    !selectedEras.includes("All") &&
-    selectedEras.length > 0;
+    !!selectedEras && !selectedEras.includes("All") && selectedEras.length > 0;
   const isDimmed = (era?: string) =>
     erasActive && (!era || !selectedEras!.includes(era));
 
@@ -52,12 +50,13 @@ export default function ValueTimelineAreaChart({
 
   const x = (yr: number) =>
     PAD_L + ((yr - minX) / (maxX - minX || 1)) * (W - PAD_L - PAD_R);
-  const yRoi = (v: number) =>
-    H - PAD_B - (v / maxRoi) * (H - PAD_T - PAD_B);
-  const yHrs = (v: number) =>
-    H - PAD_B - (v / maxHrs) * (H - PAD_T - PAD_B);
+  const yRoi = (v: number) => H - PAD_B - (v / maxRoi) * (H - PAD_T - PAD_B);
+  const yHrs = (v: number) => H - PAD_B - (v / maxHrs) * (H - PAD_T - PAD_B);
 
-  const roiPts = data.map((d) => ({ cx: x(d.year), cy: yRoi(d.cumulativeROI) }));
+  const roiPts = data.map((d) => ({
+    cx: x(d.year),
+    cy: yRoi(d.cumulativeROI),
+  }));
   const hrsPts = data.map((d) => ({
     cx: x(d.year),
     cy: yHrs(d.cumulativeHours),
@@ -65,8 +64,7 @@ export default function ValueTimelineAreaChart({
 
   // Catmull-Rom → cubic Bézier smoothing for gentle arcs between points
   const smoothPath = (pts: { cx: number; cy: number }[]) => {
-    if (pts.length < 2)
-      return pts.map((p) => `M${p.cx},${p.cy}`).join(" ");
+    if (pts.length < 2) return pts.map((p) => `M${p.cx},${p.cy}`).join(" ");
     let d = `M${pts[0].cx.toFixed(2)},${pts[0].cy.toFixed(2)}`;
     for (let i = 0; i < pts.length - 1; i++) {
       const p0 = pts[i - 1] ?? pts[i];
@@ -102,7 +100,11 @@ export default function ValueTimelineAreaChart({
         <defs>
           <linearGradient id="roiAreaFillDynamic" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor={colors.brandRed} stopOpacity="0.30" />
-            <stop offset="100%" stopColor={colors.brandRed} stopOpacity="0.02" />
+            <stop
+              offset="100%"
+              stopColor={colors.brandRed}
+              stopOpacity="0.02"
+            />
           </linearGradient>
         </defs>
 
@@ -161,7 +163,7 @@ export default function ValueTimelineAreaChart({
           x={PAD_L - 8}
           y={PAD_T + 4}
           textAnchor="end"
-          className="fill-red-600 dark:fill-red-500 text-[10px] font-bold"
+          className="fill-red-600 text-[10px] font-bold dark:fill-red-500"
         >
           $M
         </text>
@@ -169,7 +171,7 @@ export default function ValueTimelineAreaChart({
           x={W - PAD_R + 10}
           y={PAD_T + 4}
           textAnchor="start"
-          className="fill-blue-500 dark:fill-blue-400 text-[10px] font-bold"
+          className="fill-blue-500 text-[10px] font-bold dark:fill-blue-400"
         >
           hrs
         </text>
@@ -179,67 +181,78 @@ export default function ValueTimelineAreaChart({
           const colWidth = (W - PAD_L - PAD_R) / (data.length - 1 || 1);
           const colX = roiPts[i].cx - colWidth / 2;
 
-            return (
-              <g
-                key={d.period}
-                className="cursor-pointer"
+          return (
+            <g
+              key={d.period}
+              className="cursor-pointer"
+              style={{
+                opacity:
+                  activeIdx === i
+                    ? 1
+                    : activeIdx !== null
+                      ? 0.28
+                      : isDimmed(d.era)
+                        ? 0.25
+                        : 1,
+                transition: "opacity 260ms ease",
+              }}
+              onMouseEnter={() => setActiveIdx(i)}
+              onMouseLeave={() => setActiveIdx(null)}
+            >
+              {/* Visual ROI Point */}
+              <circle
+                cx={roiPts[i].cx}
+                cy={roiPts[i].cy}
+                r={activeIdx === i ? 7 : 4.5}
+                fill="currentColor"
+                strokeWidth="1.5"
+                className="stroke-white text-red-600 dark:text-red-500"
                 style={{
-                  opacity: activeIdx === i ? 1 : activeIdx !== null ? 0.28 : isDimmed(d.era) ? 0.25 : 1,
-                  transition: "opacity 260ms ease",
+                  transition:
+                    "r 260ms cubic-bezier(0.4, 0, 0.2, 1), filter 260ms ease",
+                  filter:
+                    activeIdx === i
+                      ? "drop-shadow(0 0 6px rgba(239, 68, 68, 0.6))"
+                      : "none",
                 }}
                 onMouseEnter={() => setActiveIdx(i)}
                 onMouseLeave={() => setActiveIdx(null)}
               >
-                {/* Visual ROI Point */}
-                <circle
-                  cx={roiPts[i].cx}
-                  cy={roiPts[i].cy}
-                  r={activeIdx === i ? 7 : 4.5}
-                  fill="currentColor"
-                  strokeWidth="1.5"
-                  className="text-red-600 stroke-white dark:text-red-500"
-                  style={{
-                    transition: "r 260ms cubic-bezier(0.4, 0, 0.2, 1), filter 260ms ease",
-                    filter: activeIdx === i ? "drop-shadow(0 0 6px rgba(239, 68, 68, 0.6))" : "none",
-                  }}
-                  onMouseEnter={() => setActiveIdx(i)}
-                  onMouseLeave={() => setActiveIdx(null)}
-                >
-                  <title>{`${d.displayROI} — ${d.milestone}`}</title>
-                </circle>
-                {/* Visual Hours Point */}
-                <circle
-                  cx={hrsPts[i].cx}
-                  cy={hrsPts[i].cy}
-                  r={activeIdx === i ? 6 : 3.5}
-                  strokeWidth="1.5"
-                  className="fill-blue-500 stroke-white"
-                  style={{
-                    transition: "r 260ms cubic-bezier(0.4, 0, 0.2, 1)",
-                  }}
-                  onMouseEnter={() => setActiveIdx(i)}
-                  onMouseLeave={() => setActiveIdx(null)}
-                >
-                  <title>{`${d.displayHours} — ${d.milestone}`}</title>
-                </circle>
-                {/* Year & Period Labels */}
-                <text
-                  x={roiPts[i].cx}
-                  y={H - PAD_B + 16}
-                  textAnchor="middle"
-                  className={`fill-current text-[9px] select-none transition-all duration-200 ${
-                    activeIdx === i
-                      ? "font-black text-gray-900 dark:text-white scale-105"
-                      : "font-bold text-gray-500 dark:text-gray-400"
-                  }`}
-                >
-                  {d.year}
-                </text>
+                <title>{`${d.displayROI} — ${d.milestone}`}</title>
+              </circle>
+              {/* Visual Hours Point */}
+              <circle
+                cx={hrsPts[i].cx}
+                cy={hrsPts[i].cy}
+                r={activeIdx === i ? 6 : 3.5}
+                strokeWidth="1.5"
+                className="fill-blue-500 stroke-white"
+                style={{
+                  transition: "r 260ms cubic-bezier(0.4, 0, 0.2, 1)",
+                }}
+                onMouseEnter={() => setActiveIdx(i)}
+                onMouseLeave={() => setActiveIdx(null)}
+              >
+                <title>{`${d.displayHours} — ${d.milestone}`}</title>
+              </circle>
+              {/* Year & Period Labels */}
+              <text
+                x={roiPts[i].cx}
+                y={H - PAD_B + 16}
+                textAnchor="middle"
+                className={`fill-current text-[9px] transition-all duration-200 select-none ${
+                  activeIdx === i
+                    ? "scale-105 font-black text-gray-900 dark:text-white"
+                    : "font-bold text-gray-500 dark:text-gray-400"
+                }`}
+              >
+                {d.year}
+              </text>
               <text
                 x={roiPts[i].cx}
                 y={H - PAD_B + 28}
                 textAnchor="middle"
-                className="fill-current text-[8px] text-gray-400 dark:text-gray-500 select-none"
+                className="fill-current text-[8px] text-gray-400 select-none dark:text-gray-500"
               >
                 {d.period}
               </text>
@@ -279,8 +292,8 @@ export default function ValueTimelineAreaChart({
           </div>
         ) : (
           <div className="flex h-full items-center justify-center text-[11px] text-gray-500 dark:text-gray-400">
-            Hover over any point to inspect cumulative savings and reclaimed hours
-            by career era.
+            Hover over any point to inspect cumulative savings and reclaimed
+            hours by career era.
           </div>
         )}
       </div>
@@ -292,7 +305,7 @@ function TimelineHeader({ count }: { count: number }) {
   return (
     <div className="mb-4 flex items-center justify-between">
       <div>
-        <span className="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400">
+        <span className="text-xs font-bold tracking-wider text-red-600 uppercase dark:text-red-400">
           Improvement Trajectory
         </span>
         <h3 className="text-base font-bold text-gray-900 dark:text-gray-100">
@@ -301,7 +314,8 @@ function TimelineHeader({ count }: { count: number }) {
       </div>
       <div className="flex items-center gap-2">
         <span className="hidden items-center gap-1 text-[10px] font-bold text-gray-500 sm:flex dark:text-gray-400">
-          <span className="inline-block h-0.5 w-4 rounded bg-red-600 dark:bg-red-500" /> $ Saved
+          <span className="inline-block h-0.5 w-4 rounded bg-red-600 dark:bg-red-500" />{" "}
+          $ Saved
         </span>
         <span className="hidden items-center gap-1 text-[10px] font-bold text-gray-500 sm:flex dark:text-gray-400">
           <span className="inline-block h-0.5 w-4 rounded bg-blue-500" /> Hours

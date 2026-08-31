@@ -64,8 +64,7 @@ export default function ValueKpiGrid({
     {
       label: "Enterprise Operational Scale",
       value: enterpriseScale ?? executiveSummary.enterpriseScale,
-      subtext:
-        "Sites modernized with $662k/yr savings & 0.0% audit error rate",
+      subtext: "Sites modernized with $662k/yr savings & 0.0% audit error rate",
       icon: (
         <Icon
           name={ICONS.BUILDING}
@@ -89,7 +88,7 @@ export default function ValueKpiGrid({
               {kpi.icon}
             </div>
             <span
-              className={`rounded-lg border px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider ${kpi.color} bg-gray-100 dark:bg-black/30`}
+              className={`rounded-lg border px-2 py-0.5 text-[11px] font-bold tracking-wider uppercase ${kpi.color} bg-gray-100 dark:bg-black/30`}
             >
               {kpi.tag}
             </span>

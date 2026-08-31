@@ -25,7 +25,6 @@ type DetailedGenericItem =
   | CommunityItem
   | HonorItem;
 
-
 const getProjectTags = (item?: ProjectItem): string[] => {
   if (!item) return [];
   const tags: string[] = [];
@@ -115,13 +114,21 @@ const getDetailedTags = (item?: DetailedGenericItem): string[] => {
   const tags: string[] = [];
   const detailsObj = item.details;
 
-  if (detailsObj && "highlights" in detailsObj && Array.isArray(detailsObj.highlights)) {
+  if (
+    detailsObj &&
+    "highlights" in detailsObj &&
+    Array.isArray(detailsObj.highlights)
+  ) {
     detailsObj.highlights.forEach((h) => {
       if (h.label) tags.push(h.label);
     });
   }
 
-  if (detailsObj && "exposure" in detailsObj && Array.isArray(detailsObj.exposure)) {
+  if (
+    detailsObj &&
+    "exposure" in detailsObj &&
+    Array.isArray(detailsObj.exposure)
+  ) {
     detailsObj.exposure.forEach((exp) => {
       if (exp) tags.push(exp);
     });
@@ -155,7 +162,9 @@ const getDetailedContent = (item?: DetailedGenericItem): string => {
     ? detailsObj.details.join(" ")
     : "";
   const highlights =
-    detailsObj && "highlights" in detailsObj && Array.isArray(detailsObj.highlights)
+    detailsObj &&
+    "highlights" in detailsObj &&
+    Array.isArray(detailsObj.highlights)
       ? detailsObj.highlights
           .map((h) => `${h.label || ""}: ${h.value || ""}`)
           .join(" ")
@@ -200,7 +209,9 @@ export const searchableData: SearchableItem[] = [
   ...workData.map((item, index) => ({
     id: `work-${index}`,
     title: item.title,
-    subtitle: item.details?.title ? `${item.details.title} - ${item.details.subtitle || ""}`.trim() : item.details?.subtitle,
+    subtitle: item.details?.title
+      ? `${item.details.title} - ${item.details.subtitle || ""}`.trim()
+      : item.details?.subtitle,
     tags: getDetailedTags(item),
     summary: item.summary?.join(". "),
     content: getDetailedContent(item),
@@ -311,5 +322,3 @@ export const searchableData: SearchableItem[] = [
     },
   })),
 ];
-
-

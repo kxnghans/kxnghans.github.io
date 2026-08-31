@@ -54,9 +54,7 @@ async function convertImage(filePath) {
 
   const originalStats = fs.statSync(filePath);
 
-  await sharp(filePath)
-    .webp({ quality: 85, effort: 6 })
-    .toFile(webpPath);
+  await sharp(filePath).webp({ quality: 85, effort: 6 }).toFile(webpPath);
 
   const webpStats = fs.statSync(webpPath);
   const relativePath = path.relative(ROOT_DIR, filePath).replace(/\\/g, "/");
@@ -77,10 +75,14 @@ async function convertImage(filePath) {
 async function main() {
   console.log("🚀 Starting automated WebP conversion pipeline...\n");
   console.log(`Source directory : ${path.relative(ROOT_DIR, MEDIA_DIR)}`);
-  console.log(`Output directory : ${path.relative(ROOT_DIR, PUBLIC_ASSETS_DIR)}\n`);
+  console.log(
+    `Output directory : ${path.relative(ROOT_DIR, PUBLIC_ASSETS_DIR)}\n`,
+  );
 
   if (!fs.existsSync(MEDIA_DIR)) {
-    console.log(`No media directory found at ${MEDIA_DIR}. Nothing to convert.`);
+    console.log(
+      `No media directory found at ${MEDIA_DIR}. Nothing to convert.`,
+    );
     return;
   }
 

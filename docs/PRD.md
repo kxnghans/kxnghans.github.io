@@ -31,7 +31,7 @@ _Intent: The user is trying to accomplish a specific, critical goal (e.g., hirin
 _Intent: The user is passively browsing, evaluating the aesthetic "feel" and technical depth of the portfolio._
 
 - **Lifetime Value Slicers & Neumorphic Dropdowns**: Multi-dimensional slicers (Domain Sector, Business Impact, Career Era) allowing hiring managers and technical leads to filter ROI metrics, financial ledgers, and CAR case studies.
-- **Voice-Integrated Search**: A "delight" feature allowing natural language navigation. Requires graceful degradation if microphone access is denied or the Speech API is unsupported.
+- **Voice-Integrated Search & Smart Recommendations**: A "delight" feature allowing natural language navigation and instant query filtering. Surfaces category-diverse recommended topics (flagship ventures, core TPM skills, military honors, career milestones) upon search focus with empty query, transitioning seamlessly into live search on keystrokes. Requires graceful degradation if microphone access is denied or the Speech API is unsupported.
 
 - **Neumorphic UI Engine**: The dark/light mode toggle and the consistent application of inset/outset shadows that react to user hover/active states.
 - **Interactive Slideshows & Modals**: Dynamic project and skill carousels on the homepage, expanding into deep-dive overlays. These require smooth entry/exit animations (300ms bezier curves).

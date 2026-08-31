@@ -22,6 +22,7 @@ export interface SearchContextType {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   searchResults: SearchableItem[];
+  recommendations: SearchableItem[];
   activeModal: string | number | null;
   setActiveModal: (modal: string | number | null) => void;
   selectedItem: ModalDetailItem;
@@ -53,6 +54,10 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
     return engine.search(deferredQuery);
   }, [deferredQuery]);
 
+  // Curated category-diverse recommendations surfaced during empty search states
+  const recommendations = useMemo(() => {
+    return engine.getRecommendations(6);
+  }, []);
 
   const setSearchQuerySafe = useCallback((query: string) => {
     setSearchQuery(query);
@@ -99,6 +104,7 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
       searchQuery,
       setSearchQuery: setSearchQuerySafe,
       searchResults,
+      recommendations,
       activeModal,
       setActiveModal,
       selectedItem,
@@ -110,6 +116,7 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
       searchQuery,
       setSearchQuerySafe,
       searchResults,
+      recommendations,
       activeModal,
       selectedItem,
       activeSlides,
@@ -118,9 +125,7 @@ export const SearchProvider = ({ children }: SearchProviderProps) => {
   );
 
   return (
-    <SearchContext.Provider value={value}>
-      {children}
-    </SearchContext.Provider>
+    <SearchContext.Provider value={value}>{children}</SearchContext.Provider>
   );
 };
 

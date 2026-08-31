@@ -231,7 +231,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }: HeaderProps) => {
   }, [isSearchVisible, setSearchQuery]);
 
   return (
-    <header className="sticky top-0 z-40 flex items-center justify-between border-b border-gray-300 bg-gray-100/80 p-3 backdrop-blur-sm dark:border-gray-800 dark:bg-dark-header/90">
+    <header className="dark:bg-dark-header/90 sticky top-0 z-40 flex items-center justify-between border-b border-gray-300 bg-gray-100/80 p-3 backdrop-blur-sm dark:border-gray-800">
       {/* Left Section: Menu Toggle and App Title */}
       <div className="flex items-center">
         <button
@@ -246,7 +246,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }: HeaderProps) => {
         </button>
         <button
           type="button"
-          className="group flex cursor-pointer items-center text-left transition-transform duration-200 ease-in-out hover:text-red-600 dark:hover:text-red-500 active:scale-95"
+          className="group flex cursor-pointer items-center text-left transition-transform duration-200 ease-in-out hover:text-red-600 active:scale-95 dark:hover:text-red-500"
           onClick={() => {
             setActivePage("Home");
             window.scrollTo(0, 0);
@@ -293,7 +293,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }: HeaderProps) => {
             className={`transform rounded-full p-1.5 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none md:p-2 lg:hidden ${
               isSearchVisible
                 ? "bg-red-500 text-white shadow-md shadow-red-500/40 hover:shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1),_inset_-2px_-2px_4px_rgba(255,255,255,0.7)] dark:ring-2 dark:ring-red-500 dark:hover:border dark:hover:border-solid dark:hover:border-red-700"
-                : "bevel-light-inset bevel-dark-inset bg-gray-200 hover:bg-gray-300 dark:bg-dark-well dark:hover:bg-dark-well-hover"
+                : "bevel-light-inset bevel-dark-inset dark:bg-dark-well dark:hover:bg-dark-well-hover bg-gray-200 hover:bg-gray-300"
             }`}
           >
             <div className="flex h-5 w-5 items-center justify-center text-[1rem] sm:h-6 sm:w-6 md:text-[1.2rem]">
@@ -334,7 +334,7 @@ const Header = ({ toggleSidebar, setActivePage, activePage }: HeaderProps) => {
 
       {/* Mobile Search Popup */}
       {isSearchVisible && (
-        <div className="absolute top-full right-0 left-0 bg-gray-100/95 p-4 shadow-lg backdrop-blur-sm lg:hidden dark:bg-dark-header/95">
+        <div className="dark:bg-dark-header/95 absolute top-full right-0 left-0 bg-gray-100/95 p-4 shadow-lg backdrop-blur-sm lg:hidden">
           <SearchBar
             setActivePage={setActivePage}
             isMicActive={isMicActive}

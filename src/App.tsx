@@ -20,7 +20,6 @@ const WorkExperiencePage = lazy(() => import("./pages/WorkExperiencePage"));
 const HonorsPage = lazy(() => import("./pages/HonorsPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 
-
 const PageSkeleton = () => (
   <div
     data-testid="page-skeleton"

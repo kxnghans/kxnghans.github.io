@@ -10,7 +10,9 @@ describe("EducationPage", () => {
   it("renders education degree cards with summaries", () => {
     render(<EducationPage />);
 
-    expect(screen.getByRole("heading", { name: "Education" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Education" }),
+    ).toBeInTheDocument();
     expect(screen.getByText("Masters in Data Science")).toBeInTheDocument();
     expect(
       screen.getByText("Bachelors in Electrical Engineering"),
@@ -35,7 +37,9 @@ describe("EducationPage", () => {
     const dialog = screen.getByRole("dialog");
     expect(dialog).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "Master of Science in Data Science" }),
+      screen.getByRole("heading", {
+        name: "Master of Science in Data Science",
+      }),
     ).toBeInTheDocument();
     expect(screen.getByText("Academic GPA:")).toBeInTheDocument();
     expect(
@@ -89,7 +93,9 @@ describe("EducationPage", () => {
       screen.getByText("RF, Electromagnetics & Wave Propagation"),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Signal Processing, Mathematics & Applied Deep Learning"),
+      screen.getByText(
+        "Signal Processing, Mathematics & Applied Deep Learning",
+      ),
     ).toBeInTheDocument();
     expect(
       screen.getByText("Senior Capstone (AR-VR Flight Simulator):"),

@@ -37,7 +37,6 @@ describe("searchEngine utilities", () => {
     expect(levenshteinDistance("completely", "different")).toBe(8);
     expect(levenshteinDistance("hi", "different")).toBe(99);
   });
-
 });
 
 describe("SearchEngine class", () => {
@@ -48,7 +47,8 @@ describe("SearchEngine class", () => {
       subtitle: "CaroHans – Event Rental Management System",
       tags: ["Next.js", "Supabase", "Cloudflare Pages", "PostgreSQL"],
       summary: "Venture: HansonCreations Studio. Platform: Next.js.",
-      content: "Managing event rental equipment in Accra, Ghana with live stock checks and automated return tracking.",
+      content:
+        "Managing event rental equipment in Accra, Ghana with live stock checks and automated return tracking.",
       category: "Projects",
       location: { pageName: "Projects", componentType: "modal", itemId: 0 },
     },
@@ -57,8 +57,10 @@ describe("SearchEngine class", () => {
       title: "MilCalc Mobile Suite",
       subtitle: "MilCalc – Military Pension & Fitness Mobile Suite",
       tags: ["React Native", "Expo", "SQLite", "MMKV"],
-      summary: "Venture: HansonCreations Suite. Focus: DAFMAN 36-2905 & Military Pensions.",
-      content: "Mobile suite for active-duty Air Force and Space Force personnel with offline fitness calculators.",
+      summary:
+        "Venture: HansonCreations Suite. Focus: DAFMAN 36-2905 & Military Pensions.",
+      content:
+        "Mobile suite for active-duty Air Force and Space Force personnel with offline fitness calculators.",
       category: "Projects",
       location: { pageName: "Projects", componentType: "modal", itemId: 1 },
     },
@@ -68,7 +70,8 @@ describe("SearchEngine class", () => {
       subtitle: "Frontend & Full-Stack Core",
       tags: ["TypeScript", "JavaScript", "React", "Next.js", "Python", "C++"],
       summary: "Production proficiency in modern web & mobile architectures.",
-      content: "TypeScript, JavaScript, React, Next.js, Python, C++, Tailwind CSS, GraphQL.",
+      content:
+        "TypeScript, JavaScript, React, Next.js, Python, C++, Tailwind CSS, GraphQL.",
       category: "Skills",
       location: { pageName: "Skills", componentType: "slideshow", itemId: 0 },
     },
@@ -77,10 +80,16 @@ describe("SearchEngine class", () => {
       title: "Masters in Data Science",
       subtitle: "University of California, Berkeley",
       tags: ["Machine Learning", "Data Mining", "Statistics"],
-      summary: "UC Berkeley graduate degree specializing in statistical modeling and machine learning.",
-      content: "Advanced Machine Learning, Scalable Data Systems, and Statistical Modeling.",
+      summary:
+        "UC Berkeley graduate degree specializing in statistical modeling and machine learning.",
+      content:
+        "Advanced Machine Learning, Scalable Data Systems, and Statistical Modeling.",
       category: "Education",
-      location: { pageName: "Education", componentType: "none", itemId: "education-0" },
+      location: {
+        pageName: "Education",
+        componentType: "none",
+        itemId: "education-0",
+      },
     },
   ];
 
@@ -178,5 +187,17 @@ describe("SearchEngine class", () => {
     const second = engine.search("Berkeley");
     expect(first).toBe(second);
   });
-});
 
+  it("generates curated, diverse recommendations for empty search states", () => {
+    const recommendations = engine.getRecommendations(3);
+    expect(recommendations.length).toBe(3);
+    // Ensure all returned items are unique
+    const uniqueIds = new Set(recommendations.map((r) => r.id));
+    expect(uniqueIds.size).toBe(3);
+  });
+
+  it("handles getRecommendations on an empty search engine gracefully", () => {
+    const emptyEngine = new SearchEngine([]);
+    expect(emptyEngine.getRecommendations()).toEqual([]);
+  });
+});

@@ -11,14 +11,13 @@ export default function ValueMultiplierBarChart({
 }: ValueMultiplierBarChartProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
 
-  const maxValue =
-    data.length > 0 ? Math.max(...data.map((d) => d.value)) : 0;
+  const maxValue = data.length > 0 ? Math.max(...data.map((d) => d.value)) : 0;
 
   return (
     <div className={UI_SURFACES.chartCard}>
       <div className="mb-4 flex items-center justify-between">
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+          <span className="text-xs font-bold tracking-wider text-amber-600 uppercase dark:text-amber-400">
             Impact Multipliers
           </span>
           <h3 className="text-base font-bold text-gray-900 dark:text-gray-100">
@@ -32,7 +31,7 @@ export default function ValueMultiplierBarChart({
 
       {/* Columns Grid or Empty State */}
       {data.length > 0 ? (
-        <div className="grid grid-cols-2 items-end gap-2 pb-2 pt-6 sm:grid-cols-3 lg:grid-cols-6 lg:h-48">
+        <div className="grid grid-cols-2 items-end gap-2 pt-6 pb-2 sm:grid-cols-3 lg:h-48 lg:grid-cols-6">
           {data.map((item) => {
             const heightPercent = Math.max((item.value / maxValue) * 100, 14);
             const isSelected = activeId === item.id;
@@ -51,7 +50,7 @@ export default function ValueMultiplierBarChart({
                     isSelected
                       ? "scale-105 bg-red-600 text-white shadow-md dark:bg-red-500"
                       : isAnyHovered
-                        ? "opacity-35 bg-gray-200/80 text-gray-700 dark:bg-black/40 dark:text-gray-300"
+                        ? "bg-gray-200/80 text-gray-700 opacity-35 dark:bg-black/40 dark:text-gray-300"
                         : "bg-gray-200/80 text-gray-700 dark:bg-black/40 dark:text-gray-300"
                   }`}
                 >
@@ -64,11 +63,12 @@ export default function ValueMultiplierBarChart({
                     style={{
                       height: `${heightPercent}%`,
                       backgroundColor: item.color,
-                      transition: "height 400ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms ease, transform 200ms ease",
+                      transition:
+                        "height 400ms cubic-bezier(0.4, 0, 0.2, 1), opacity 200ms ease, transform 200ms ease",
                     }}
                     className={`w-full rounded-t-xl ${
                       isSelected
-                        ? "opacity-100 ring-2 ring-white/50 brightness-110 shadow-md"
+                        ? "opacity-100 shadow-md ring-2 ring-white/50 brightness-110"
                         : isAnyHovered
                           ? "opacity-25"
                           : "opacity-90"
@@ -80,9 +80,9 @@ export default function ValueMultiplierBarChart({
                 <span
                   className={`mt-2 w-full truncate text-center text-[10px] font-bold transition-all duration-200 ${
                     isSelected
-                      ? "text-gray-900 dark:text-white font-black"
+                      ? "font-black text-gray-900 dark:text-white"
                       : isAnyHovered
-                        ? "opacity-35 text-gray-600 dark:text-gray-400"
+                        ? "text-gray-600 opacity-35 dark:text-gray-400"
                         : "text-gray-600 dark:text-gray-400"
                   }`}
                 >
@@ -91,9 +91,9 @@ export default function ValueMultiplierBarChart({
                 <span
                   className={`w-full truncate text-center text-[9px] transition-all duration-200 ${
                     isSelected
-                      ? "text-red-600 dark:text-red-400 font-bold"
+                      ? "font-bold text-red-600 dark:text-red-400"
                       : isAnyHovered
-                        ? "opacity-35 text-gray-500 dark:text-gray-500"
+                        ? "text-gray-500 opacity-35 dark:text-gray-500"
                         : "text-gray-500 dark:text-gray-500"
                   }`}
                 >
@@ -113,7 +113,7 @@ export default function ValueMultiplierBarChart({
       )}
 
       {/* Interactive Detail Box (locked height to eliminate hover layout shift jitter) */}
-      <div className="mt-3 h-[68px] flex flex-col justify-center rounded-xl border border-gray-300/60 bg-gray-200/50 p-2.5 text-xs transition-all dark:border-gray-700/60 dark:bg-black/30">
+      <div className="mt-3 flex h-[68px] flex-col justify-center rounded-xl border border-gray-300/60 bg-gray-200/50 p-2.5 text-xs transition-all dark:border-gray-700/60 dark:bg-black/30">
         {activeId !== null ? (
           (() => {
             const activeItem = data.find((d) => d.id === activeId);
@@ -121,10 +121,10 @@ export default function ValueMultiplierBarChart({
             return (
               <div className="flex items-center justify-between">
                 <div className="min-w-0 pr-2">
-                  <span className="font-bold text-gray-800 dark:text-gray-200 truncate block">
+                  <span className="block truncate font-bold text-gray-800 dark:text-gray-200">
                     {activeItem.label} ({activeItem.domain}):
                   </span>
-                  <div className="text-[11px] text-gray-600 dark:text-gray-400 line-clamp-1">
+                  <div className="line-clamp-1 text-[11px] text-gray-600 dark:text-gray-400">
                     From{" "}
                     <span className="font-semibold text-red-600 dark:text-red-400">
                       {activeItem.baseline}
@@ -137,7 +137,7 @@ export default function ValueMultiplierBarChart({
                 </div>
                 <span
                   style={{ color: activeItem.color }}
-                  className="text-sm font-black shrink-0"
+                  className="shrink-0 text-sm font-black"
                 >
                   {activeItem.displayValue}
                 </span>
@@ -145,12 +145,12 @@ export default function ValueMultiplierBarChart({
             );
           })()
         ) : (
-          <div className="flex h-full items-center justify-center text-[11px] text-gray-500 dark:text-gray-400 text-center">
-            Hover over any column to inspect bundled impact, baseline comparison, and optimization mechanisms.
+          <div className="flex h-full items-center justify-center text-center text-[11px] text-gray-500 dark:text-gray-400">
+            Hover over any column to inspect bundled impact, baseline
+            comparison, and optimization mechanisms.
           </div>
         )}
       </div>
     </div>
   );
 }
-

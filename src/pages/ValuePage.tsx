@@ -70,7 +70,9 @@ export default function ValuePage() {
   // Filtered Velocity Multipliers
   const filteredMultipliers = lifetimeValueData.charts.multipliers.filter(
     (m) =>
-      domainMatches(m.domain) && categoryMatches(m.category) && eraMatches(m.era),
+      domainMatches(m.domain) &&
+      categoryMatches(m.category) &&
+      eraMatches(m.era),
   );
 
   // Filtered Radar
@@ -80,7 +82,8 @@ export default function ValuePage() {
 
   // Dynamically aggregated savings when filtered
   const filteredSavingsTotal = (() => {
-    if (!isFiltered) return lifetimeValueData.executiveSummary.totalFinancialROI;
+    if (!isFiltered)
+      return lifetimeValueData.executiveSummary.totalFinancialROI;
     const sum = FINANCIAL_LEDGER.filter((l) =>
       selectedDomains.includes(l.domain),
     ).reduce((acc, curr) => acc + curr.amountM, 0);

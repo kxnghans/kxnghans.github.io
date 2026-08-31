@@ -27,9 +27,6 @@ describe("ValueRadarChart", () => {
     ).toBeInTheDocument();
 
     fireEvent.mouseLeave(label);
-    expect(
-      screen.getByText(/Hover over any axis vertex/i),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Hover over any axis vertex/i)).toBeInTheDocument();
   });
 });
-

@@ -22,7 +22,8 @@ const findMatchedProject = (label: string): ProjectDetails | undefined => {
     (p) =>
       normalized.includes(p.title.toLowerCase()) ||
       p.title.toLowerCase().includes(normalized) ||
-      (normalized.includes("fretwork") && p.title.toLowerCase().includes("fretwork")),
+      (normalized.includes("fretwork") &&
+        p.title.toLowerCase().includes("fretwork")),
   );
   return matched?.details;
 };
@@ -70,9 +71,7 @@ export const CategorizedList = ({
                     />
                   </button>
                 ) : (
-                  <span className={UI_TYPOGRAPHY.metaLabel}>
-                    {label}:
-                  </span>
+                  <span className={UI_TYPOGRAPHY.metaLabel}>{label}:</span>
                 )}
                 {value}
               </li>
@@ -114,7 +113,7 @@ export const CategorizedList = ({
           key={groupIdx}
           className="rounded-lg border border-gray-300/80 bg-gray-200/40 p-3 dark:border-white/5 dark:bg-white/[0.02]"
         >
-          <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400">
+          <h4 className="mb-2 text-xs font-bold tracking-wider text-red-600 uppercase dark:text-red-400">
             {group.title}
           </h4>
           <ul className="list-outside list-disc space-y-2 pl-4 text-gray-600 dark:text-gray-300">
@@ -128,7 +127,10 @@ export const CategorizedList = ({
                   : undefined;
 
                 return (
-                  <li key={itemIdx} className="text-sm sm:text-base leading-relaxed">
+                  <li
+                    key={itemIdx}
+                    className="text-sm leading-relaxed sm:text-base"
+                  >
                     {matchedProject ? (
                       <button
                         type="button"
@@ -144,9 +146,7 @@ export const CategorizedList = ({
                         />
                       </button>
                     ) : (
-                      <span className={UI_TYPOGRAPHY.metaLabel}>
-                        {label}:
-                      </span>
+                      <span className={UI_TYPOGRAPHY.metaLabel}>{label}:</span>
                     )}
                     {value}
                   </li>
@@ -155,7 +155,7 @@ export const CategorizedList = ({
               return (
                 <li
                   key={itemIdx}
-                  className="text-sm sm:text-base leading-relaxed text-gray-600 dark:text-gray-300"
+                  className="text-sm leading-relaxed text-gray-600 sm:text-base dark:text-gray-300"
                 >
                   {detail}
                 </li>

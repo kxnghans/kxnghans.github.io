@@ -50,8 +50,6 @@ describe("ValueTimelineAreaChart", () => {
       </ThemeProvider>,
     );
 
-    expect(
-      screen.getByText(/no trajectory data matches/i),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/no trajectory data matches/i)).toBeInTheDocument();
   });
 });

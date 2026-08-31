@@ -32,7 +32,10 @@ export default function FilterDropdown({
 
   useEffect(() => {
     const handleClick = (e: MouseEvent | TouchEvent) => {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
@@ -77,14 +80,14 @@ export default function FilterDropdown({
   return (
     <div
       ref={containerRef}
-      className={`relative flex flex-1 flex-col gap-1.5 min-w-[170px] ${className}`}
+      className={`relative flex min-w-[170px] flex-1 flex-col gap-1.5 ${className}`}
     >
       <div className="flex items-center justify-between px-1">
-        <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+        <span className="text-xs font-bold tracking-wider text-gray-500 uppercase dark:text-gray-400">
           {label}
         </span>
         {!isAllSelected && (
-          <span className="rounded-full bg-red-600/15 px-1.5 py-0.2 text-[10px] font-black text-red-600 dark:bg-red-500/25 dark:text-red-400">
+          <span className="py-0.2 rounded-full bg-red-600/15 px-1.5 text-[10px] font-black text-red-600 dark:bg-red-500/25 dark:text-red-400">
             {selected.length} active
           </span>
         )}
@@ -96,9 +99,9 @@ export default function FilterDropdown({
         aria-expanded={isOpen}
         aria-label={`Filter by ${label}: currently ${displayText}`}
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`bevel-light dark:neumorphic-outset-dark dark:bg-dark-card flex h-10 w-full cursor-pointer select-none items-center justify-between rounded-xl px-3.5 text-sm font-medium transition-all duration-200 hover:brightness-105 active:scale-[0.98] ${
+        className={`bevel-light dark:neumorphic-outset-dark dark:bg-dark-card flex h-10 w-full cursor-pointer items-center justify-between rounded-xl px-3.5 text-sm font-medium transition-all duration-200 select-none hover:brightness-105 active:scale-[0.98] ${
           !isAllSelected
-            ? "border border-red-600/30 text-red-600 dark:border-red-500/30 dark:text-red-400 font-bold shadow-sm"
+            ? "border border-red-600/30 font-bold text-red-600 shadow-sm dark:border-red-500/30 dark:text-red-400"
             : "text-gray-800 dark:text-gray-200"
         }`}
       >
@@ -123,9 +126,9 @@ export default function FilterDropdown({
         <div
           role="listbox"
           aria-label={`Options for ${label}`}
-          className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card absolute top-full left-0 z-50 mt-2 w-72 sm:w-80 max-h-76 overflow-y-auto rounded-2xl border border-gray-300/80 p-3 shadow-2xl backdrop-blur-md dark:border-gray-700/80"
+          className="bevel-light dark:neumorphic-outset-dark dark:bg-dark-card absolute top-full left-0 z-50 mt-2 max-h-76 w-72 overflow-y-auto rounded-2xl border border-gray-300/80 p-3 shadow-2xl backdrop-blur-md sm:w-80 dark:border-gray-700/80"
         >
-          <div className="mb-2 flex items-center justify-between border-b border-gray-300/60 pb-2 px-1 dark:border-gray-700/60">
+          <div className="mb-2 flex items-center justify-between border-b border-gray-300/60 px-1 pb-2 dark:border-gray-700/60">
             <span className="text-xs font-bold text-gray-700 dark:text-gray-300">
               Select {label}
             </span>

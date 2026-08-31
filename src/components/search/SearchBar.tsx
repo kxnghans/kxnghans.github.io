@@ -1,4 +1,4 @@
-import { useContext, type ChangeEvent, type RefObject } from "react";
+import { useContext, useState, type ChangeEvent, type RefObject } from "react";
 import { SearchContext } from "../../context/SearchContext";
 import { useTheme } from "../../context/ThemeContext";
 import SearchResults from "./SearchResults";
@@ -28,10 +28,16 @@ const SearchBar = ({
   const searchCtx = useContext(SearchContext);
   const searchQuery = searchCtx?.searchQuery || "";
   const setSearchQuery = searchCtx?.setSearchQuery || (() => {});
+  const [isFocused, setIsFocused] = useState<boolean>(false);
   const { theme } = useTheme();
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
+  };
+
+  const handleCloseResults = () => {
+    setIsFocused(false);
+    inputRef.current?.blur();
   };
 
   return (
@@ -44,7 +50,9 @@ const SearchBar = ({
           placeholder={placeholderText}
           value={searchQuery}
           onChange={handleSearchChange}
-          className={`bevel-light-inset bevel-dark-inset w-full rounded-full bg-gray-200 py-2 pr-10 pl-10 text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 md:text-base dark:bg-dark-well dark:focus:border-red-500 ${
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          className={`bevel-light-inset bevel-dark-inset dark:bg-dark-well w-full rounded-full bg-gray-200 py-2 pr-10 pl-10 text-sm transition-all duration-200 focus:ring-2 focus:ring-red-500 focus:outline-none md:text-base dark:focus:border-red-500 ${
             showVisualCues
               ? "ring-2 ring-red-500 dark:!border-red-500 dark:shadow-md dark:shadow-red-500/30"
               : ""
@@ -86,7 +94,11 @@ const SearchBar = ({
             </kbd>
           </div>
         )}
-        <SearchResults setActivePage={setActivePage} />
+        <SearchResults
+          setActivePage={setActivePage}
+          isFocused={isFocused}
+          onClose={handleCloseResults}
+        />
       </div>
 
       {/* Speech Recognition Mic Button */}
@@ -96,14 +108,14 @@ const SearchBar = ({
         type="button"
         onClick={toggleMic}
         aria-label="Toggle microphone"
-        className={`ml-3 transform rounded-full p-2 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none dark:focus-visible:ring-offset-2 dark:focus-visible:ring-offset-dark-header ${
+        className={`dark:focus-visible:ring-offset-dark-header ml-3 transform rounded-full p-2 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:outline-none dark:focus-visible:ring-offset-2 ${
           showVisualCues
-            ? "animate-gentle-pulse scale-105 bg-red-500 text-white shadow-lg shadow-red-500/40 ring-2 ring-red-500"
+            ? "animate-gentle-pulse scale-105 bg-red-500 text-white shadow-lg ring-2 shadow-red-500/40 ring-red-500"
             : isMicActive
-              ? "bevel-light-inset bevel-dark-inset bg-gray-200 dark:bg-dark-well dark:ring-2 dark:ring-red-500/60"
+              ? "bevel-light-inset bevel-dark-inset dark:bg-dark-well bg-gray-200 dark:ring-2 dark:ring-red-500/60"
               : !isSpeechSupported
-                ? "bevel-light-inset bevel-dark-inset bg-gray-200 opacity-50 dark:bg-dark-well"
-                : "bevel-light-inset bevel-dark-inset bg-gray-200 hover:bg-gray-300 dark:bg-dark-well dark:hover:bg-dark-well-hover"
+                ? "bevel-light-inset bevel-dark-inset dark:bg-dark-well bg-gray-200 opacity-50"
+                : "bevel-light-inset bevel-dark-inset dark:bg-dark-well dark:hover:bg-dark-well-hover bg-gray-200 hover:bg-gray-300"
         }`}
       >
         <div className="flex h-5 w-5 items-center justify-center text-[1.2rem] sm:h-6 sm:w-6 md:text-[1.4rem]">

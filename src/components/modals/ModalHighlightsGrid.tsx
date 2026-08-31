@@ -34,8 +34,10 @@ export const ModalHighlightsGrid = ({
       <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
         {highlights.map((highlight, index) => {
           const matchedProject =
-            onSelectProject && highlight.value.toLowerCase().includes("fretwork")
-              ? projects.find((p) => p.title.toLowerCase().includes("fretwork"))?.details
+            onSelectProject &&
+            highlight.value.toLowerCase().includes("fretwork")
+              ? projects.find((p) => p.title.toLowerCase().includes("fretwork"))
+                  ?.details
               : undefined;
 
           if (matchedProject) {
@@ -48,7 +50,7 @@ export const ModalHighlightsGrid = ({
                 title={`View ${highlight.value} Project Modal`}
                 aria-label={`View ${highlight.value} project modal`}
               >
-                <span className="flex w-full items-center justify-between text-xs font-semibold uppercase tracking-wider text-red-600 dark:text-red-400">
+                <span className="flex w-full items-center justify-between text-xs font-semibold tracking-wider text-red-600 uppercase dark:text-red-400">
                   <span>{highlight.label}:</span>
                   <Icon
                     name={ICONS.EXTERNAL_LINK}
@@ -67,7 +69,7 @@ export const ModalHighlightsGrid = ({
               key={index}
               className="rounded-lg border border-gray-300/70 bg-gray-200/50 p-2.5 dark:border-white/5 dark:bg-white/[0.03]"
             >
-              <span className="block text-xs font-semibold uppercase tracking-wider text-red-600 dark:text-red-400">
+              <span className="block text-xs font-semibold tracking-wider text-red-600 uppercase dark:text-red-400">
                 {highlight.label}:
               </span>
               <span className="mt-0.5 block text-sm font-medium text-gray-700 dark:text-gray-200">

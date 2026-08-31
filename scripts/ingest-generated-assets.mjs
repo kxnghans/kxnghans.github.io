@@ -6,7 +6,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const ROOT_DIR = path.resolve(__dirname, "..");
-const BRAIN_DIR = "C:\\Users\\kobby\\.gemini\\antigravity-cli\\brain\\20a86d5c-b1be-4d27-95b3-82e626bda38a";
+const BRAIN_DIR =
+  "C:\\Users\\kobby\\.gemini\\antigravity-cli\\brain\\20a86d5c-b1be-4d27-95b3-82e626bda38a";
 const GENERATED_DIR = path.join(ROOT_DIR, "public", "assets", "generated");
 
 const ASSET_MAPPINGS = [
@@ -18,7 +19,10 @@ const ASSET_MAPPINGS = [
   { prefix: "fretwork_guitar", dest: "projects/fretwork-guitar.jpg" },
   { prefix: "creative_media", dest: "projects/creative-media.jpg" },
   { prefix: "portfolio_showcase", dest: "projects/portfolio-showcase.jpg" },
-  { prefix: "facilities_automation", dest: "projects/facilities-automation.jpg" },
+  {
+    prefix: "facilities_automation",
+    dest: "projects/facilities-automation.jpg",
+  },
   { prefix: "innovation_dashboard", dest: "projects/innovation-dashboard.jpg" },
   { prefix: "cloud_migration", dest: "projects/cloud-migration.jpg" },
   { prefix: "product_adoption", dest: "projects/product-adoption.jpg" },
@@ -35,33 +39,60 @@ const ASSET_MAPPINGS = [
   { prefix: "skills_programming", dest: "skills/programming.jpg" },
   { prefix: "skills_bi_analytics", dest: "skills/bi-analytics.jpg" },
   { prefix: "skills_cloud_devops", dest: "skills/cloud-devops.jpg" },
-  { prefix: "skills_project_management", dest: "skills/project-management.jpg" },
+  {
+    prefix: "skills_project_management",
+    dest: "skills/project-management.jpg",
+  },
   { prefix: "skills_it_systems", dest: "skills/it-systems.jpg" },
   { prefix: "skills_adobe_suite", dest: "skills/adobe-suite.jpg" },
   { prefix: "skills_electronics", dest: "skills/electronics.jpg" },
   { prefix: "skills_languages", dest: "skills/languages.jpg" },
 
   // Certifications (4)
-  { prefix: "cert_linkedin_learning", dest: "certifications/linkedin-learning.jpg" },
+  {
+    prefix: "cert_linkedin_learning",
+    dest: "certifications/linkedin-learning.jpg",
+  },
   { prefix: "cert_power_platform", dest: "certifications/power-platform.jpg" },
-  { prefix: "cert_systems_bootcamp", dest: "certifications/systems-bootcamp.jpg" },
+  {
+    prefix: "cert_systems_bootcamp",
+    dest: "certifications/systems-bootcamp.jpg",
+  },
   { prefix: "cert_scrum_master", dest: "certifications/scrum-master.jpg" },
 
   // Community (5)
-  { prefix: "community_photography_media", dest: "community/photography-media.jpg" },
+  {
+    prefix: "community_photography_media",
+    dest: "community/photography-media.jpg",
+  },
   { prefix: "community_nsbe_chapter", dest: "community/nsbe-chapter.jpg" },
-  { prefix: "community_readers_writers", dest: "community/readers-writers.jpg" },
+  {
+    prefix: "community_readers_writers",
+    dest: "community/readers-writers.jpg",
+  },
   { prefix: "community_code_quest", dest: "community/code-quest.jpg" },
-  { prefix: "community_thunderbird_airshow", dest: "community/thunderbird-airshow.jpg" },
+  {
+    prefix: "community_thunderbird_airshow",
+    dest: "community/thunderbird-airshow.jpg",
+  },
 
   // Education (2)
   { prefix: "edu_uc_berkeley_ms", dest: "education/uc-berkeley-ms.jpg" },
   { prefix: "edu_uccs_ee_bs", dest: "education/uccs-ee-bs.jpg" },
 
   // Honors (4)
-  { prefix: "honors_presidents_deans_list", dest: "honors/presidents-deans-list.jpg" },
-  { prefix: "honors_airman_of_the_year", dest: "honors/airman-of-the-year.jpg" },
-  { prefix: "honors_decorations_medals", dest: "honors/decorations-medals.jpg" },
+  {
+    prefix: "honors_presidents_deans_list",
+    dest: "honors/presidents-deans-list.jpg",
+  },
+  {
+    prefix: "honors_airman_of_the_year",
+    dest: "honors/airman-of-the-year.jpg",
+  },
+  {
+    prefix: "honors_decorations_medals",
+    dest: "honors/decorations-medals.jpg",
+  },
   { prefix: "honors_honor_graduate", dest: "honors/honor-graduate.jpg" },
 
   // Work (3)
@@ -78,11 +109,13 @@ async function main() {
 
   for (const mapping of ASSET_MAPPINGS) {
     const matchingFiles = brainFiles.filter(
-      (f) => f.startsWith(mapping.prefix + "_") && f.endsWith(".jpg")
+      (f) => f.startsWith(mapping.prefix + "_") && f.endsWith(".jpg"),
     );
 
     if (matchingFiles.length === 0) {
-      console.warn(`⚠️ Warning: No file found matching prefix '${mapping.prefix}'`);
+      console.warn(
+        `⚠️ Warning: No file found matching prefix '${mapping.prefix}'`,
+      );
       continue;
     }
 
@@ -101,7 +134,9 @@ async function main() {
     copiedCount++;
   }
 
-  console.log(`\n🎉 Successfully ingested ${copiedCount}/${ASSET_MAPPINGS.length} studio assets!\n`);
+  console.log(
+    `\n🎉 Successfully ingested ${copiedCount}/${ASSET_MAPPINGS.length} studio assets!\n`,
+  );
 }
 
 main().catch((err) => {

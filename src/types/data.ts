@@ -143,11 +143,7 @@ export interface FormFieldItem {
   validation: FormFieldValidation;
 }
 
-export type ValueCategory =
-  | "financial"
-  | "efficiency"
-  | "scale"
-  | "governance";
+export type ValueCategory = "financial" | "efficiency" | "scale" | "governance";
 
 export type ValueDomain =
   | "Defense & Space"
@@ -269,5 +265,3 @@ export interface LifetimeValueData {
     distribution: DistributionPoint[];
   };
 }
-
-

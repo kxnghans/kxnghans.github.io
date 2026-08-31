@@ -22,10 +22,9 @@ const Sidebar = ({ isOpen, setActivePage, activePage }: SidebarProps) => {
     { name: "More", icon: <Icon name={ICONS.MENU} /> },
   ];
 
-
   return (
     <aside
-      className={`sticky top-0 z-50 flex h-screen flex-col border-r border-gray-300 bg-gray-100 text-gray-600 transition-all duration-300 ease-in-out dark:border-gray-800 dark:bg-dark-header dark:text-gray-300 ${
+      className={`dark:bg-dark-header sticky top-0 z-50 flex h-screen flex-col border-r border-gray-300 bg-gray-100 text-gray-600 transition-all duration-300 ease-in-out dark:border-gray-800 dark:text-gray-300 ${
         isOpen ? "w-56" : "w-25"
       }`}
     >

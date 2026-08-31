@@ -111,17 +111,9 @@ const FormField = <TFieldValues extends FieldValues = FieldValues>({
   return (
     <div>
       {type === "textarea" ? (
-        <textarea
-          {...commonProps}
-          rows={4}
-          className={UI_INPUTS.field}
-        />
+        <textarea {...commonProps} rows={4} className={UI_INPUTS.field} />
       ) : (
-        <input
-          type={type}
-          {...commonProps}
-          className={UI_INPUTS.field}
-        />
+        <input type={type} {...commonProps} className={UI_INPUTS.field} />
       )}
       {errorObj && (
         <p className={UI_TYPOGRAPHY.errorText}>
@@ -133,4 +125,3 @@ const FormField = <TFieldValues extends FieldValues = FieldValues>({
 };
 
 export default FormField;
-

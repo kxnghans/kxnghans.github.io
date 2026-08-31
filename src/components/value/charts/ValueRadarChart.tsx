@@ -19,7 +19,8 @@ export default function ValueRadarChart({
   const radius = 95;
   const numAxes = data.length;
 
-  const isDomainFiltered = !selectedDomains.includes("All") && selectedDomains.length > 0;
+  const isDomainFiltered =
+    !selectedDomains.includes("All") && selectedDomains.length > 0;
 
   const getCoordinates = (index: number, valueRatio: number) => {
     const angle = (Math.PI * 2 * index) / numAxes - Math.PI / 2;
@@ -42,7 +43,7 @@ export default function ValueRadarChart({
     <div className={UI_SURFACES.chartCard}>
       <div className="mb-2 flex items-center justify-between">
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-red-600 dark:text-red-400">
+          <span className="text-xs font-bold tracking-wider text-red-600 uppercase dark:text-red-400">
             Core Dimensions
           </span>
           <h3 className="text-base font-bold text-gray-900 dark:text-gray-100">
@@ -100,14 +101,15 @@ export default function ValueRadarChart({
           <polygon
             points={points}
             strokeWidth="2.5"
-            className="fill-red-600/20 stroke-red-600 dark:fill-red-500/25 dark:stroke-red-500 transition-all duration-300 hover:fill-red-600/30 dark:hover:fill-red-500/35"
+            className="fill-red-600/20 stroke-red-600 transition-all duration-300 hover:fill-red-600/30 dark:fill-red-500/25 dark:stroke-red-500 dark:hover:fill-red-500/35"
           />
 
           {/* Vertices & Labels */}
           {data.map((d, i) => {
             const { x, y } = getCoordinates(i, d.score / 100);
             const labelPos = getCoordinates(i, 1.22);
-            const isMatch = !isDomainFiltered || selectedDomains.includes(d.domain);
+            const isMatch =
+              !isDomainFiltered || selectedDomains.includes(d.domain);
             const isActive = activeIdx === i;
 
             return (
@@ -115,7 +117,13 @@ export default function ValueRadarChart({
                 key={d.axis}
                 className="cursor-pointer"
                 style={{
-                  opacity: isActive ? 1 : activeIdx !== null ? 0.28 : isMatch ? 1 : 0.35,
+                  opacity: isActive
+                    ? 1
+                    : activeIdx !== null
+                      ? 0.28
+                      : isMatch
+                        ? 1
+                        : 0.35,
                   transition: "opacity 260ms ease",
                 }}
                 onMouseEnter={() => setActiveIdx(i)}
@@ -125,12 +133,19 @@ export default function ValueRadarChart({
                 <circle
                   cx={x}
                   cy={y}
-                  r={isActive ? "7.5" : isMatch && isDomainFiltered ? "5.5" : "4"}
+                  r={
+                    isActive ? "7.5" : isMatch && isDomainFiltered ? "5.5" : "4"
+                  }
                   className="fill-red-600 stroke-white dark:fill-red-500"
-                  strokeWidth={isActive ? "2.5" : isMatch && isDomainFiltered ? "2" : "1.5"}
+                  strokeWidth={
+                    isActive ? "2.5" : isMatch && isDomainFiltered ? "2" : "1.5"
+                  }
                   style={{
-                    transition: "r 260ms cubic-bezier(0.4, 0, 0.2, 1), filter 260ms ease",
-                    filter: isActive ? "drop-shadow(0 0 6px rgba(239, 68, 68, 0.6))" : "none",
+                    transition:
+                      "r 260ms cubic-bezier(0.4, 0, 0.2, 1), filter 260ms ease",
+                    filter: isActive
+                      ? "drop-shadow(0 0 6px rgba(239, 68, 68, 0.6))"
+                      : "none",
                   }}
                 />
                 {/* Visual Label */}
@@ -139,21 +154,16 @@ export default function ValueRadarChart({
                   y={labelPos.y}
                   textAnchor="middle"
                   dominantBaseline="central"
-                  className={`text-[10px] select-none transition-all duration-200 ${
+                  className={`text-[10px] transition-all duration-200 select-none ${
                     isActive
-                      ? "font-black fill-red-600 dark:fill-red-400"
-                      : "font-bold fill-gray-700 dark:fill-gray-300"
+                      ? "fill-red-600 font-black dark:fill-red-400"
+                      : "fill-gray-700 font-bold dark:fill-gray-300"
                   }`}
                 >
                   {d.axis}
                 </text>
                 {/* Stable Hit Target */}
-                <circle
-                  cx={x}
-                  cy={y}
-                  r="16"
-                  fill="transparent"
-                />
+                <circle cx={x} cy={y} r="16" fill="transparent" />
               </g>
             );
           })}
@@ -178,7 +188,8 @@ export default function ValueRadarChart({
           </div>
         ) : (
           <div className="flex h-full items-center justify-center text-[11px] text-gray-500 dark:text-gray-400">
-            Hover over any axis vertex to view verified capability benchmarks and domain scope.
+            Hover over any axis vertex to view verified capability benchmarks
+            and domain scope.
           </div>
         )}
       </div>

@@ -23,31 +23,35 @@ export interface ProjectModalProps {
   onClose: () => void;
 }
 
-const ProjectModal = ({ project, onClose }: ProjectModalProps): ReactElement => {
-  const actions = (project.liveLink || project.codeLink) ? (
-    <div className="flex space-x-4">
-      {project.liveLink && (
-        <a
-          href={project.liveLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bevel-button-light dark:bevel-button-dark flex transform items-center rounded-lg bg-red-600 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-red-700 active:scale-95"
-        >
-          <Icon name={ICONS.PLAY_CIRCLE} className="mr-2" /> Demo
-        </a>
-      )}
-      {project.codeLink && (
-        <a
-          href={project.codeLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bevel-button-light dark:bevel-button-dark transform rounded-lg bg-gray-700 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-gray-800 active:scale-95 dark:bg-gray-700 dark:hover:bg-gray-600"
-        >
-          View Project
-        </a>
-      )}
-    </div>
-  ) : undefined;
+const ProjectModal = ({
+  project,
+  onClose,
+}: ProjectModalProps): ReactElement => {
+  const actions =
+    project.liveLink || project.codeLink ? (
+      <div className="flex space-x-4">
+        {project.liveLink && (
+          <a
+            href={project.liveLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bevel-button-light dark:bevel-button-dark flex transform items-center rounded-lg bg-red-600 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-red-700 active:scale-95"
+          >
+            <Icon name={ICONS.PLAY_CIRCLE} className="mr-2" /> Demo
+          </a>
+        )}
+        {project.codeLink && (
+          <a
+            href={project.codeLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bevel-button-light dark:bevel-button-dark transform rounded-lg bg-gray-700 px-4 py-2 font-bold text-white transition-all duration-200 hover:bg-gray-800 active:scale-95 dark:bg-gray-700 dark:hover:bg-gray-600"
+          >
+            View Project
+          </a>
+        )}
+      </div>
+    ) : undefined;
 
   return (
     <ModalShell

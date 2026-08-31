@@ -10,4 +10,3 @@ export const navOrder: string[] = [
   "Community",
   ...(FEATURE_FLAGS.showValuePage ? ["Value"] : []),
 ];
-

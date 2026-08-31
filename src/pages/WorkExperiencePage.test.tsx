@@ -101,6 +101,8 @@ describe("WorkExperiencePage", () => {
         /Commissioned as Medical Service Corps \(MSC\) Officer/i,
       ),
     ).toBeInTheDocument();
-    expect(within(usafDialog).getByText("Expeditionary Logistics")).toBeInTheDocument();
+    expect(
+      within(usafDialog).getByText("Expeditionary Logistics"),
+    ).toBeInTheDocument();
   });
 });

@@ -180,7 +180,7 @@ Critical: 0 | High: 0 | Medium: 0 | Low: 1 | Informational: 0 | Remediated: 3
 #### `VIBE-003`: End-to-End User Flow Automation Gap
 
 - **Location**: Test Suite ([`src/test/`](../src/test/setup.ts))
-- **Vulnerability**: Unit/integration tests pass 100% in JSDOM (24 suites, 103 tests), but real browser viewport and service worker interactions lack automated E2E coverage.
+- **Vulnerability**: Unit/integration tests pass 100% in JSDOM (26 suites, 113 tests), but real browser viewport and service worker interactions lack automated E2E coverage.
 - **Remediation**: Introduce a lightweight Playwright test configuration to validate search query hotkeys, modal focus traps, and theme toggling across real Chromium/WebKit/Firefox engines (Phase 6).
 
 ---
@@ -201,7 +201,7 @@ Critical: 0 | High: 0 | Medium: 0 | Low: 1 | Informational: 0 | Remediated: 3
 | Verification Check           | Tool / Standard                | Result                     | Notes                                                                                  |
 | :--------------------------- | :----------------------------- | :------------------------- | :------------------------------------------------------------------------------------- |
 | **Linter Zero-Tolerance**    | ESLint (`pnpm run lint`)       | **Passed (0 errors)**      | Full compliance with TypeScript and React rules.                                       |
-| **Unit & Integration Suite** | Vitest + RTL (`pnpm test:run`) | **Passed (103/103 tests)** | 24 test suites verified across contexts, pages, hooks, modals, and search engine.      |
+| **Unit & Integration Suite** | Vitest + RTL (`pnpm test:run`) | **Passed (113/113 tests)** | 26 test suites verified across contexts, pages, hooks, modals, and search engine.      |
 | **Secrets Scan**             | Gitleaks / Pattern Regex       | **Passed (0 leaks)**       | Zero credentials or private tokens detected in git tracked files.                      |
 | **DOM Sanitization**         | Static Code Analysis           | **Passed (0 sinks)**       | Zero `dangerouslySetInnerHTML` or `eval` sinks detected.                               |
 | **Tab-Nabbing Defense**      | AST Audit                      | **Passed (100%)**          | All external anchor tags implement `target="_blank"` with `rel="noopener noreferrer"`. |
