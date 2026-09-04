@@ -12,7 +12,7 @@ Hanson-Tube is intentionally designed as a **Static Single Page Application** wi
 
 ## Data Layer Management (Static SSOT)
 
-Instead of a relational or document database, the application utilizes a modular JavaScript data architecture:
+Instead of a relational or document database, the application uses a modular TypeScript data architecture:
 
 - **Source of Truth (`src/data/`)**: All domain records are maintained as modular, typed TypeScript modules (`projects.ts`, `skills.ts`, `work.ts`, `education.ts`, `honors.ts`, `community.ts`, `certifications.ts`, `lifetimeValue.ts`, `contactData.ts`, `formData.ts`, `navigation.ts`).
 - **Barrel Export (`src/data/index.ts`)**: Provides a centralized entry point exporting all data entities.
@@ -42,7 +42,7 @@ To handle form submissions on `ContactPage.tsx` without hosting a custom server 
 
 ## Cloud Storage & CDN Media Staging (`VIBE-004`)
 
-When utilizing Google Cloud Storage (`gs://portfolio_showcase`) as a fallback or origin for external media assets and downloads:
+When using Google Cloud Storage (`gs://portfolio_showcase`) as a fallback or origin for external media assets and downloads:
 
 - **Uniform Bucket-Level Access**: Bucket ACLs enforce uniform access policies to prevent individual object permission drift:
   ```sh

@@ -132,7 +132,7 @@ Evaluating the codebase across all 9 core security audit vectors defined by the 
 
 ### 3.9 Domain 9: Input Validation, XSS & ReDoS Defense
 
-- **React DOM Escaping**: All dynamic text rendering utilizes standard React JSX data binding (`{text}`), preventing Cross-Site Scripting. There are zero instances of `dangerouslySetInnerHTML`, `eval()`, or `innerHTML` in the codebase.
+- **React DOM Escaping**: All dynamic text rendering uses standard React JSX data binding (`{text}`), preventing Cross-Site Scripting. There are zero instances of `dangerouslySetInnerHTML`, `eval()`, or `innerHTML` in the codebase.
 - **Form Input Validation**: [`src/components/ui/FormField.tsx`](../src/components/ui/FormField.tsx) and [`src/data/formData.ts`](../src/data/formData.ts#L3-L31) enforce required fields and strict email format patterns (`/\S+@\S+\.\S+/`) prior to submission.
 - **ReDoS Protection in Search Engine**:
   - In [`src/utils/searchEngine.ts`](../src/utils/searchEngine.ts#L41-L43), all user input strings are escaped via [`escapeRegExp`](../src/utils/searchEngine.ts#L41) before dynamic regular expressions are constructed:

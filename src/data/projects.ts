@@ -398,7 +398,7 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Product Adoption Strategy (MESHc Space EBOM)",
       challenge:
-        "The MESHc (Master Software & Hardware Catalog) space logistics platform—designed to manage Engineering Bills of Materials (EBOM), Work Breakdown Structures (WBS), and technical requirements—struggled with low user adoption because RF engineers needed deep parametric specs while business leads wanted high-level summaries.",
+        "The MESHc (Master Software & Hardware Catalog) space logistics platform managed Engineering Bills of Materials (EBOM) and technical requirements. It struggled with adoption because RF engineers needed deep parametric specs while business leads wanted high-level summaries.",
       action:
         "Ran bi-weekly Adobe XD prototyping sessions to mediate conflicting technical requirements between engineering and business leads, designing a tiered catalog interface with instant drill-downs into low-level RF specs and WBS structures.",
       outcome:

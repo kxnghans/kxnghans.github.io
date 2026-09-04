@@ -221,7 +221,7 @@ export const skillsData: SkillCategory[] = [
       details: [
         "UI/UX & Prototyping: Interactive wireframing, component design, responsive screen flows, and user journey design in Adobe XD.",
         "Video Editing & Motion Graphics: Non-linear video timeline editing, multi-track audio mixing, and color grading in Premiere Pro; motion graphics and title animation in After Effects.",
-        "Graphic Design & Publishing: Raster image manipulation, compositing, and photo enhancement in Photoshop; vector asset and iconography creation in Illustrator; interactive PDF document workflows in Acrobat Pro.",
+        "Graphic Design & Publishing: Raster image manipulation, compositing, and photo retouching in Photoshop; vector asset and iconography creation in Illustrator; interactive PDF document workflows in Acrobat Pro.",
       ],
       exposure: [
         "Adobe XD Prototyping",
