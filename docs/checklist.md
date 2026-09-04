@@ -2,7 +2,7 @@
 
 ## Summary of All Completed Milestones
 
-- **Zero-Backend Architecture Validated**: React / Vite Single Page Application leverages a static TypeScript data layer (`src/data/`) and Context API without external databases, servers, or runtime state management libraries.
+- **Zero-Backend Architecture Validated**: React and Vite single-page app uses a static TypeScript data layer (`src/data/`) and Context API without external databases, servers, or runtime state management libraries.
 - **Local Toolchain Modernization**: Standardized on `pnpm`, Vite with `@vitejs/plugin-react-swc`, Tailwind CSS (`@tailwindcss/vite`, `@theme`), TypeScript, ESLint Flat Config, and Husky + `lint-staged` pre-commit/pre-push hooks.
 - **Visual Asset Suite Overhaul Completed**: Replaced legacy stock photos and flat word clouds across all 7 data layers (`skills.ts`, `projects.ts`, `work.ts`, `honors.ts`, `education.ts`, `certifications.ts`, `community.ts`) with standardized 16:9 abstract 3D dioramas, physical titanium/crystal artifacts, and grounded photorealistic operational scenes.
 - **Modal Surface Shadow Orchestration**: Implemented `.modal-shadow` tokens in `src/index.css` and applied them to `ProjectModal.tsx` and `DetailModal.tsx`, replacing top/left specular highlights with lighter ambient shadows in both Light and Dark modes.
@@ -56,26 +56,26 @@
 
 ## Active Roadmap: To-Do Items
 
-### Phase 1: 🛡️ Strict Type Safety & Accessibility (a11y) Hardening
+### Phase 1: Strict Type Safety & Accessibility (a11y) Hardening
 
 - [x] **[TYP-1] Strict Web Speech API Type Definitions**: Create `src/types/speech.d.ts` declaring standard W3C Web Speech API interfaces (`SpeechRecognition`, `SpeechRecognitionEvent`, `SpeechRecognitionErrorEvent`) to eliminate all 5 `// eslint-disable-next-line @typescript-eslint/no-explicit-any` workarounds in `Header.tsx`.
 - [x] **[A11Y-1] Navigation & Control ARIA Attributes**: Add explicit `aria-label` and `aria-current={activePage === item.name ? "page" : undefined}` on `Sidebar.tsx` navigation buttons and theme toggle; add explicit `aria-label="Search portfolio items"` on `SearchBar.tsx` input.
 - [x] **[A11Y-2] Form Field Accessibility & Error Association**: Add `aria-invalid={Boolean(errorObj)}` and `aria-describedby` error element linking to input and textarea controls in `FormField.tsx`.
 
-### Phase 2: 🧩 Pragmatic Component Modularization & Hook Extraction
+### Phase 2: Pragmatic Component Modularization & Hook Extraction
 
 - [x] **[MOD-1] Header & Search State Decomposition**: Extract speech recognition lifecycle into `useVoiceSearch.ts` and global hotkey bindings (`Ctrl+K`, `Cmd+K`, `/`, `Esc`) into `useSearchHotkeys.ts`, streamlining `Header.tsx` (355 lines) into a lean presentation shell.
 - [x] **[MOD-2] App Shell & Responsive Layout Decomposition**: Extract `PageSkeleton` into `src/components/ui/PageSkeleton.tsx` and window resize / click-outside / auto-collapse logic into `useResponsiveSidebar.ts`, bringing `App.tsx` (193 lines) to < 100 lines.
 - [x] **[MOD-3] Contact Form Logic & Cooldown Extraction**: Extract EmailJS dispatch, client-side timestamp cooldown (`SUBMIT_COOLDOWN_MS`), and submission statuses into a reusable `useContactForm.ts` hook, keeping `ContactPage.tsx` (155 lines) focused strictly on layout.
 - [x] **[MOD-4] Interactive Value Chart Geometry Extraction**: Extract Catmull-Rom smoothing math and SVG coordinate utilities from `ValueTimelineAreaChart.tsx` into `chartUtils.ts`, and extract subcomponents (`TimelineHeader.tsx`, `TimelineDetailBox.tsx`, `DonutLegend.tsx`), reducing `ValueTimelineAreaChart.tsx` (330 lines) and `ValueDomainDonutChart.tsx` (235 lines) into concise visual shells.
 
-### Phase 3: ♻️ DRY Code Consolidation & Rendering Primitives
+### Phase 3: DRY Code Consolidation & Rendering Primitives
 
 - [x] **[DRY-1] Unified Card Summary Text Component**: Create a reusable `<SummaryTextLines lines={item.summary} />` primitive in `src/components/ui/` to eliminate duplicate colon-splitting parsing across `ProjectsPage.tsx`, `WorkExperiencePage.tsx`, `EducationPage.tsx`, and `HonorsPage.tsx`.
 - [x] **[DRY-2] Modal Item Categorized List Deduplication**: Consolidate duplicate label colon-splitting and external project button rendering in `CategorizedList.tsx` into a single helper/subcomponent.
 - [x] **[DRY-3] Project Modal Interface Deduplication**: Remove redundant duplicate object union in `ProjectModalProps` in `ProjectModal.tsx`, unifying on `ProjectDetails`.
 
-### Phase 4: ⚡ Data Structures, Indexing & Performance Optimization
+### Phase 4: Data Structures, Indexing & Performance Optimization
 
 - [x] **[DAT-1] O(1) In-Memory Project Lookup Map**: Build a pre-indexed `Map<string, ProjectDetails>` in `src/data/projects.ts` to replace repeated O(N) `.find()` searches and redundant `.toLowerCase()` calls in `CategorizedList.tsx`.
 - [x] **[DAT-2] SkillCategory Schema & Summary Standardization**: Standardize `SkillCategory` by adding static `summary: string[]` (matching `ProjectItem`, `WorkExperience`, `EducationItem`, etc.) and typing `details` consistently, eliminating dynamic array slicing and sorting on every render in `SkillsSlideshow.tsx`.
@@ -83,13 +83,13 @@
 - [x] **[PERF-2] Theme Context Provider Value Memoization**: Wrap the context value object in `ThemeContext.tsx` with `useMemo` to eliminate unnecessary full-tree re-renders when theme state is unchanged.
 - [x] **[PERF-3] Search Engine Token Allocation Optimization**: Pre-concatenate high-priority token arrays (`doc.highPriorityTokens`) during indexing in `SearchEngine.ts` to avoid re-allocating arrays inside hot query token loops.
 
-### Phase 5: 🧪 Continuous Verification & E2E Validation
+### Phase 5: Continuous Verification & E2E Validation
 
 - [x] **[TST-1] Expanded Unit & Hook Test Coverage**: Add unit tests for newly extracted hooks (`useVoiceSearch`, `useSearchHotkeys`, `useResponsiveSidebar`, `useContactForm`) and utility modules (`chartUtils`, `SummaryTextLines`, `CategorizedList`).
 - [ ] **[TST-2] Playwright End-to-End Test Suite**: Implement Playwright tests verifying end-to-end user journeys (searching, filtering, responsive navigation, and modal flows).
 - [x] **[VER-3] Visual Regression & Quality Verification**: Validate zero broken images, UI layout stability, ESLint rules, TypeScript strictness, Vitest tests (`pnpm test:run`), and Vite production build (`pnpm build`).
 
-### Phase 6: 🚀 Production Readiness & Pre-Deployment Pipeline
+### Phase 6: Production Readiness & Pre-Deployment Pipeline
 
 - [ ] **[DEP-1] Production Bundle Optimization & Asset Audit**: Audit Vite production bundle chunking, asset hashing, and PWA precache manifest integrity.
 - [ ] **[DEP-2] Edge Header & CDN Staging Verification**: Verify Cloudflare DNS, edge security headers, and GitHub Pages custom domain routing.

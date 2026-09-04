@@ -1,7 +1,7 @@
 import type { SearchableItem } from "../types/search";
 import { navOrder } from "../data/navigation";
 
-// Tech term aliases and synonyms for enhanced recall
+// Tech term aliases and synonyms for query recall
 const ALIASES: Record<string, string[]> = {
   "next.js": ["nextjs", "next"],
   nextjs: ["next.js", "next"],

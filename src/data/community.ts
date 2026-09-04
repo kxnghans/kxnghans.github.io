@@ -27,8 +27,7 @@ export const communityData: CommunityItem[] = [
       "Achievement: All members secured offers",
     ],
     details: {
-      title:
-        "Vice President of NSBE (National Society of Black Engineers) Chapter",
+      title: "Vice President of National Society of Black Engineers Chapter",
       details: [
         "Ran weekly professional workshops, peer resume reviews, and mock coding interviews for engineering undergraduates.",
         "Connected student members with industry engineers through speaker panels and company recruiting visits.",

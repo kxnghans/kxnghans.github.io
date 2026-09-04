@@ -33,7 +33,7 @@ _Intent: The user is browsing, evaluating visual presentation and technical dept
 - **Lifetime Value Slicers & Dropdowns**: Multi-dimensional slicers (Domain Sector, Business Impact, Career Era) to filter ROI metrics, financial ledgers, and case studies.
 - **Voice-Integrated Search & Smart Recommendations**: Natural language navigation and query filtering. Surfaces recommended topics (flagship ventures, core TPM skills, military honors, career milestones) when focused with an empty query, switching directly to live search on keystrokes. Shows a toast alert if the microphone is unavailable or unsupported.
 - **Neumorphic UI Engine**: Dark/light mode toggle with inset and outset shadows responding to hover and active states.
-- **Interactive Slideshows & Modals**: Project and skill carousels on the homepage with deep-dive modal dialogs.
+- **Interactive Slideshows & Modals**: Project and skill carousels on the homepage with detailed modal dialogs.
 - **Hanson-Tube Branding**: YouTube-inspired header and play-icon branding establishing the portfolio theme.
 
 ---
