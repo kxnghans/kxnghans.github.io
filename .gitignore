@@ -10,7 +10,10 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
-# gitupload.ipynb
+# Notebooks and local upload scripts
+gitupload.ipynb
+
+# Environment files
 *.local
 .env
 .env.*
@@ -30,13 +33,13 @@ dist-ssr
 # Testing
 coverage/
 
-# Vite
+# Vite & Server
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .eslintcache
+server.log
 
-# Generated asset raw sources (WebP is the production format)
-public/assets/generated/**/*.jpg
-public/assets/generated/**/*.jpeg
+# Media & Generated Assets (production assets served via Google Cloud Storage CDN)
+public/assets/generated/
 media/
 

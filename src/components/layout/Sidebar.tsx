@@ -8,6 +8,7 @@ import { useMemo } from "react";
 import { Icon, ICONS } from "../icons";
 import { useTheme } from "../../context/ThemeContext";
 import { FEATURE_FLAGS } from "../../config/features";
+import { prefetchRoute } from "../../utils/routePreloaders";
 
 export interface SidebarProps {
   isOpen: boolean;
@@ -47,6 +48,8 @@ const Sidebar = ({ isOpen, setActivePage, activePage }: SidebarProps) => {
               <button
                 type="button"
                 onClick={() => setActivePage(item.name)}
+                onMouseEnter={() => prefetchRoute(item.name)}
+                onFocus={() => prefetchRoute(item.name)}
                 aria-label={`Navigate to ${item.name}`}
                 aria-current={activePage === item.name ? "page" : undefined}
                 className={`my-1 flex w-full items-center rounded-lg p-2 transition-colors duration-200 ${

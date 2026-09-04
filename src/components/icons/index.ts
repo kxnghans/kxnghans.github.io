@@ -4,9 +4,4 @@
  */
 export { Icon, type IconProps } from "./Icon";
 export { ICONS, ICON_MAP, type IconName, type IconKey } from "./iconRegistry";
-export {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  CloseIcon,
-  ExternalLinkIcon,
-} from "./Icons";
+export { ChevronLeftIcon, ChevronRightIcon, CloseIcon } from "./Icons";

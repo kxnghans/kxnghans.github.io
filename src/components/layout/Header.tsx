@@ -10,8 +10,9 @@ import SearchBar from "../search/SearchBar";
 import { useSearch } from "../../context/SearchContext";
 import { useVoiceSearch } from "../../hooks/useVoiceSearch";
 import { useSearchHotkeys } from "../../hooks/useSearchHotkeys";
+import { ASSET_URLS } from "../../data/assets";
 
-const profileImage = "/assets/Kobs DP.webp";
+const profileImage = ASSET_URLS.PROFILE.AVATAR_WEBP;
 
 export interface HeaderProps {
   toggleSidebar: () => void;

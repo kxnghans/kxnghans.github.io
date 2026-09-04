@@ -21,6 +21,7 @@ export interface FormFieldProps<
   name: Path<TFieldValues>;
   type: string;
   placeholder: string;
+  autoComplete?: string;
   register: UseFormRegister<TFieldValues>;
   validation?: RegisterOptions<TFieldValues, Path<TFieldValues>>;
   errors: FieldErrors<TFieldValues>;
@@ -31,6 +32,7 @@ const FormField = <TFieldValues extends FieldValues = FieldValues>({
   name,
   type,
   placeholder,
+  autoComplete,
   register,
   validation,
   errors,
@@ -101,7 +103,9 @@ const FormField = <TFieldValues extends FieldValues = FieldValues>({
 
   const commonProps = {
     ...registeredProps,
+    id: String(name),
     placeholder,
+    autoComplete,
     "aria-label": placeholder,
     "aria-invalid": Boolean(errorObj),
     "aria-describedby": errorObj ? errorId : undefined,

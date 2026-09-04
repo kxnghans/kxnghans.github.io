@@ -1,4 +1,5 @@
 import type { CommunityItem } from "../types/data";
+import { ASSET_URLS } from "./assets";
 
 // Community & Leadership Dataset (SSOT)
 // Volunteer leadership, academic mentorship, and community service.
@@ -6,7 +7,7 @@ export const communityData: CommunityItem[] = [
   // Photography & Media Venture & Open Heavens Church Media Lead
   {
     title: "Photography & Media",
-    imageUrl: "/assets/generated/community/photography-media.webp",
+    imageUrl: ASSET_URLS.COMMUNITY.PHOTOGRAPHY_MEDIA,
     summary: ["Venture: HansOnDeck LLC", "Role: Open Heavens Media Team Lead"],
     details: {
       title: "HansOnDeck LLC & Open Heavens Media Lead",
@@ -21,7 +22,7 @@ export const communityData: CommunityItem[] = [
   // NSBE Chapter Vice President
   {
     title: "Vice President of NSBE Chapter",
-    imageUrl: "/assets/generated/community/nsbe-chapter.webp",
+    imageUrl: ASSET_URLS.COMMUNITY.NSBE_CHAPTER,
     summary: [
       "Role: Vice President",
       "Achievement: All members secured offers",
@@ -39,7 +40,7 @@ export const communityData: CommunityItem[] = [
   // Readers and Writers Club President
   {
     title: "President of the Readers and Writers Club",
-    imageUrl: "/assets/generated/community/readers-writers.webp",
+    imageUrl: ASSET_URLS.COMMUNITY.READERS_WRITERS,
     summary: ["Role: President", "Achievement: Tripled Club Membership"],
     details: {
       title: "President of the Readers and Writers Club",
@@ -53,7 +54,7 @@ export const communityData: CommunityItem[] = [
   // Lockheed Martin Code Quest Proctor
   {
     title: "Code Quest",
-    imageUrl: "/assets/generated/community/code-quest.webp",
+    imageUrl: ASSET_URLS.COMMUNITY.CODE_QUEST,
     summary: [
       "Event: Lockheed Martin Code Quest",
       "Role: Technical Proctor",
@@ -72,7 +73,7 @@ export const communityData: CommunityItem[] = [
   // Vegas Strong Thunderbird Airshow
   {
     title: "Vegas Strong Thunderbird Airshow",
-    imageUrl: "/assets/generated/community/thunderbird-airshow.webp",
+    imageUrl: ASSET_URLS.COMMUNITY.THUNDERBIRD_AIRSHOW,
     summary: ["Event: Vegas Strong Airshow", "Role: Community Engagement"],
     details: {
       title: "Vegas Strong Thunderbird Airshow",

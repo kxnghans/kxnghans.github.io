@@ -1,19 +1,22 @@
 import Slideshow from "./Slideshow";
 import DetailModal from "../modals/DetailModal";
 import LazyImage from "./LazyImage";
+import SummaryTextLines from "./SummaryTextLines";
 import { community } from "../../data";
 import { useSearch } from "../../context/SearchContext";
 import type { CommunityItem, CommunityDetails } from "../../types/data";
 
 interface DefaultCardProps {
   item: CommunityItem;
+  index: number;
 }
 
-const DefaultCard = ({ item }: DefaultCardProps) => (
+const DefaultCard = ({ item, index }: DefaultCardProps) => (
   <>
     <LazyImage
       src={item.imageUrl}
       alt={item.title}
+      loading={index < 3 ? "eager" : "lazy"}
       className="h-32 w-full object-cover sm:h-40"
       containerClassName="h-32 sm:h-40 w-full"
     />
@@ -22,26 +25,7 @@ const DefaultCard = ({ item }: DefaultCardProps) => (
         {item.title}
       </h3>
       <div className="h-12 space-y-1 overflow-hidden text-xs text-gray-600 sm:h-16 sm:text-sm dark:text-gray-400">
-        {item.summary.map((line, i) => {
-          const colonIndex = line.indexOf(":");
-          if (colonIndex !== -1) {
-            const label = line.slice(0, colonIndex + 1);
-            const val = line.slice(colonIndex + 1);
-            return (
-              <p key={i} className="truncate">
-                <strong className="text-gray-800 dark:text-gray-200">
-                  {label}
-                </strong>
-                {val}
-              </p>
-            );
-          }
-          return (
-            <p key={i} className="truncate">
-              {line}
-            </p>
-          );
-        })}
+        <SummaryTextLines lines={item.summary} />
       </div>
     </div>
   </>
@@ -53,7 +37,7 @@ const CommunitySlideshow = () => {
     <Slideshow<CommunityItem, CommunityDetails>
       title="Community Involvement"
       data={community}
-      renderCard={(item) => <DefaultCard item={item} />}
+      renderCard={(item, index) => <DefaultCard item={item} index={index} />}
       renderModal={({ item, onClose }) => (
         <DetailModal item={item} onClose={onClose} />
       )}

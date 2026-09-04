@@ -3,6 +3,7 @@ import { useSearch } from "../../context/SearchContext";
 import { Icon, ICONS, type IconName } from "../icons";
 import type { SearchCategory, SearchableItem } from "../../types/search";
 import { Highlight, smartTruncate } from "./searchUtils";
+import { prefetchRoute } from "../../utils/routePreloaders";
 
 const CATEGORY_ICON_MAP: Record<SearchCategory, IconName> = {
   Value: ICONS.VALUE,
@@ -114,6 +115,8 @@ const SearchResults = ({
                 type="button"
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => handleResultClick(result)}
+                onMouseEnter={() => prefetchRoute(result.location.pageName)}
+                onFocus={() => prefetchRoute(result.location.pageName)}
                 className="dark:bg-dark-card dark:hover:bg-dark-bg flex w-full cursor-pointer items-center bg-gray-50 p-3.5 text-left transition-colors hover:bg-gray-100"
               >
                 <span className="mr-3 text-base text-gray-800 dark:text-gray-200">

@@ -1,4 +1,5 @@
 import type { HonorItem } from "../types/data";
+import { ASSET_URLS } from "./assets";
 
 // Honors & Military Decorations Dataset (SSOT)
 // Official awards, military medals, and academic distinctions.
@@ -6,7 +7,7 @@ export const honors: HonorItem[] = [
   // 1. Official Military Medals & Citations
   {
     title: "USAF Decorations and Medals",
-    imageUrl: "/assets/generated/honors/decorations-medals.webp",
+    imageUrl: ASSET_URLS.HONORS.DECORATIONS_MEDALS,
     summary: [
       "Medals: 2x Commendation, 1x Achievement",
       "Authority: AFCENT & 302 AW",
@@ -27,7 +28,7 @@ export const honors: HonorItem[] = [
   // 2. Military Award: 22nd NAF Airman of the Year
   {
     title: "Airman of the Year",
-    imageUrl: "/assets/generated/honors/airman-of-the-year.webp",
+    imageUrl: ASSET_URLS.HONORS.AIRMAN_OF_THE_YEAR,
     summary: [
       "Summary: Air Force",
       "Level: 22nd Numbered Air Force",
@@ -48,7 +49,7 @@ export const honors: HonorItem[] = [
   // 3. Academic Distinction: UCCS President's & Dean's Lists
   {
     title: "President's & Dean's Lists",
-    imageUrl: "/assets/generated/honors/presidents-deans-list.webp",
+    imageUrl: ASSET_URLS.HONORS.PRESIDENTS_DEANS_LIST,
     summary: [
       "Distinction: 7x Recipient",
       "College of Engineering & Applied Science",
@@ -66,7 +67,7 @@ export const honors: HonorItem[] = [
   // 4. Air Force Basic Military Training Honor Graduate
   {
     title: "Honor Graduate",
-    imageUrl: "/assets/generated/honors/honor-graduate.webp",
+    imageUrl: ASSET_URLS.HONORS.HONOR_GRADUATE,
     summary: [
       "Awarded: Air Force Basic Training",
       "Details: Top 10% of 800 recruits",

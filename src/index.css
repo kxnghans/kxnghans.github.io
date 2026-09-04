@@ -175,9 +175,7 @@
     6px 6px 20px rgba(0, 0, 0, 0.18);
 }
 
-.dark .modal-shadow,
-.dark .bevel-dark,
-.bevel-dark {
+.dark .modal-shadow {
   box-shadow:
     -4px -4px 16px rgba(0, 0, 0, 0.4),
     8px 8px 24px rgba(0, 0, 0, 0.75);
@@ -229,9 +227,7 @@
       -2px -2px 8px rgba(0, 0, 0, 0.06),
       4px 4px 14px rgba(0, 0, 0, 0.14);
   }
-  .dark .modal-shadow,
-  .dark .bevel-dark,
-  .bevel-dark {
+  .dark .modal-shadow {
     box-shadow:
       -2px -2px 10px rgba(0, 0, 0, 0.35),
       5px 5px 18px rgba(0, 0, 0, 0.7);

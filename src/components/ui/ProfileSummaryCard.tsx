@@ -1,9 +1,10 @@
 import { Icon, ICONS } from "../icons";
 import { UI_SURFACES } from "../../theme";
 import LazyImage from "./LazyImage";
+import { ASSET_URLS } from "../../data/assets";
 
-const profileImage = "/assets/Kobs DP.webp";
-const profileImageFallback = "/assets/Kobs DP.png";
+const profileImage = ASSET_URLS.PROFILE.AVATAR_WEBP;
+const profileImageFallback = ASSET_URLS.PROFILE.AVATAR_PNG;
 
 const ProfileSummaryCard = () => (
   <div className={`${UI_SURFACES.section} p-4 sm:p-6`}>

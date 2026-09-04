@@ -1,4 +1,5 @@
 import type { CertificationItem } from "../types/data";
+import { ASSET_URLS } from "./assets";
 
 // Certifications & Professional Training Dataset (SSOT)
 // Industry credentials, technical bootcamps, and professional military education.
@@ -6,7 +7,7 @@ export const certificationsData: CertificationItem[] = [
   // 1. Certified Scrum Master Credential
   {
     title: "Certified Scrum Master",
-    imageUrl: "/assets/generated/certifications/scrum-master.webp",
+    imageUrl: ASSET_URLS.CERTIFICATIONS.SCRUM_MASTER,
     summary: ["Certification: Certified Scrum Master", "Provider: Scrum Inc."],
     details: {
       title: "Certified Scrum Master",
@@ -22,7 +23,7 @@ export const certificationsData: CertificationItem[] = [
   // 2. Lockheed Martin Systems Engineering Bootcamp
   {
     title: "Systems Engineering Bootcamp",
-    imageUrl: "/assets/generated/certifications/systems-bootcamp.webp",
+    imageUrl: ASSET_URLS.CERTIFICATIONS.SYSTEMS_BOOTCAMP,
     summary: [
       "Training: Systems Engineering Bootcamp",
       "Provider: Lockheed Martin",
@@ -41,7 +42,7 @@ export const certificationsData: CertificationItem[] = [
   // 3. Microsoft Power Platform Credentials
   {
     title: "Microsoft Power Platform",
-    imageUrl: "/assets/generated/certifications/power-platform.webp",
+    imageUrl: ASSET_URLS.CERTIFICATIONS.POWER_PLATFORM,
     summary: [
       "Citizen Developer Certified",
       "Training: Microsoft Power Platform",
@@ -63,7 +64,7 @@ export const certificationsData: CertificationItem[] = [
   // 4. Health Services Administration (HSA) Officer Accreditation
   {
     title: "Health Services Administration (HSA)",
-    imageUrl: "/assets/generated/work/air-force-supply.webp",
+    imageUrl: ASSET_URLS.CERTIFICATIONS.AIR_FORCE_SUPPLY,
     summary: [
       "Medical Service Corps Officer",
       "Course: Health Services Admin",
@@ -83,7 +84,7 @@ export const certificationsData: CertificationItem[] = [
   // 5. Airman Leadership School (ALS) PME
   {
     title: "Airman Leadership School (ALS)",
-    imageUrl: "/assets/generated/honors/honor-graduate.webp",
+    imageUrl: ASSET_URLS.CERTIFICATIONS.HONOR_GRADUATE,
     summary: [
       "USAF Noncommissioned Officer PME",
       "Focus: Supervisory Leadership",
@@ -103,7 +104,7 @@ export const certificationsData: CertificationItem[] = [
   // 6. Continuous Learning & Technical Courses
   {
     title: "LinkedIn Learning Courses",
-    imageUrl: "/assets/generated/certifications/linkedin-learning.webp",
+    imageUrl: ASSET_URLS.CERTIFICATIONS.LINKEDIN_LEARNING,
     summary: ["Training: 20+ specialized courses", "Provider: LinkedIn"],
     details: {
       title: "LinkedIn Learning Courses",

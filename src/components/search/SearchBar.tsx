@@ -46,6 +46,8 @@ const SearchBar = ({
         {/* Recessed search input with bevel styling and dynamic visual cues */}
         <input
           type="text"
+          id="search-input"
+          name="search"
           ref={inputRef}
           aria-label="Search portfolio"
           placeholder={placeholderText}

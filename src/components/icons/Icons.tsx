@@ -16,7 +16,3 @@ export const ChevronRightIcon = () => (
 export const CloseIcon = () => (
   <Icon name={ICONS.CLOSE} className="h-6 w-6 text-red-600 dark:text-red-500" />
 );
-
-export const ExternalLinkIcon = () => (
-  <Icon name={ICONS.EXTERNAL_LINK} className="ml-1 inline-block h-4 w-4" />
-);

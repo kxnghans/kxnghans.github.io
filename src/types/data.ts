@@ -141,6 +141,7 @@ export interface FormFieldItem {
   name: "name" | "email" | "subject" | "message";
   type: "text" | "email" | "textarea";
   placeholder: string;
+  autoComplete?: string;
   validation: FormFieldValidation;
 }
 

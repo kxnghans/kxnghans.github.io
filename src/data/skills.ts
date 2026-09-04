@@ -1,4 +1,5 @@
 import type { SkillCategory } from "../types/data";
+import { ASSET_URLS } from "./assets";
 
 // Skills & Technical Competencies Dataset (SSOT)
 // Categorized proficiencies structured around TPM Core Competencies:
@@ -7,7 +8,7 @@ export const skillsData: SkillCategory[] = [
   // 1. Project & Program Management Leadership (TPM / Systems Leadership / Governance)
   {
     title: "Project & Program Management",
-    imageUrl: "/assets/generated/skills/project-management.webp",
+    imageUrl: ASSET_URLS.SKILLS.PROJECT_MANAGEMENT,
     summary: ["Agile & Scrum Leadership", "Technical Program Management"],
     details: [
       { name: "Agile & Scrum Leadership", priority: 1 },
@@ -44,7 +45,7 @@ export const skillsData: SkillCategory[] = [
   // 2. Cloud Infrastructure & DevSecOps (Technical Architecture / Containerization / CI/CD)
   {
     title: "Cloud & DevOps",
-    imageUrl: "/assets/generated/skills/cloud-devops.webp",
+    imageUrl: ASSET_URLS.SKILLS.CLOUD_DEVOPS,
     summary: ["Kubernetes & OpenShift", "Docker & Containers"],
     details: [
       { name: "Kubernetes & OpenShift", priority: 1 },
@@ -81,7 +82,7 @@ export const skillsData: SkillCategory[] = [
   // 3. Business Intelligence & Data Analytics (Data Telemetry, Lakehouse & Automated ETL)
   {
     title: "BI & Data Analytics",
-    imageUrl: "/assets/generated/skills/bi-analytics.webp",
+    imageUrl: ASSET_URLS.SKILLS.BI_ANALYTICS,
     summary: ["Microsoft Power BI", "Power Query & ETL"],
     details: [
       { name: "Microsoft Power BI", priority: 1 },
@@ -134,7 +135,7 @@ export const skillsData: SkillCategory[] = [
   // 4. Programming Languages & Frameworks (Software & Full-Stack Development)
   {
     title: "Programming",
-    imageUrl: "/assets/generated/skills/programming.webp",
+    imageUrl: ASSET_URLS.SKILLS.PROGRAMMING,
     summary: ["Python", "TypeScript / JavaScript", "React & React Native"],
     details: [
       { name: "Python", priority: 1 },
@@ -174,7 +175,7 @@ export const skillsData: SkillCategory[] = [
   // 5. Operating Systems, Hardware & Defense Systems
   {
     title: "IT & Systems",
-    imageUrl: "/assets/generated/skills/it-systems.webp",
+    imageUrl: ASSET_URLS.SKILLS.IT_SYSTEMS,
     summary: ["Linux (RHEL, Ubuntu)", "Microsoft 365 / VBA"],
     details: [
       { name: "Linux (RHEL, Ubuntu)", priority: 1 },
@@ -205,7 +206,7 @@ export const skillsData: SkillCategory[] = [
   // 6. Adobe Creative Suite & UI/UX Design
   {
     title: "Adobe Suite",
-    imageUrl: "/assets/generated/skills/adobe-suite.webp",
+    imageUrl: ASSET_URLS.SKILLS.ADOBE_SUITE,
     summary: ["Adobe XD", "Photoshop", "Premiere Pro", "After Effects"],
     details: [
       { name: "Adobe XD", priority: 1 },
@@ -237,7 +238,7 @@ export const skillsData: SkillCategory[] = [
   // 7. Electronics, SPICE Simulation & Hardware Design
   {
     title: "Electronics",
-    imageUrl: "/assets/generated/skills/electronics.webp",
+    imageUrl: ASSET_URLS.SKILLS.ELECTRONICS,
     summary: ["LTspice", "MATLAB & Simulink", "AutoCAD", "ModelSim"],
     details: [
       { name: "LTspice", priority: 1 },
@@ -268,7 +269,7 @@ export const skillsData: SkillCategory[] = [
   // 8. Spoken & Written Natural Languages
   {
     title: "Languages",
-    imageUrl: "/assets/generated/skills/languages.webp",
+    imageUrl: ASSET_URLS.SKILLS.LANGUAGES,
     summary: ["English (Fluent)", "French (Intermediate)"],
     details: [
       { name: "English (Fluent)", priority: 1 },

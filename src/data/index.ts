@@ -17,3 +17,9 @@ export {
   IMPACT_CATEGORIES,
   CAREER_ERAS,
 } from "./lifetimeValue";
+export {
+  ASSET_URLS,
+  GCS_BASE_URL,
+  ASSET_BASE_URL,
+  getAssetUrl,
+} from "./assets";

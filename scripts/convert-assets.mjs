@@ -7,13 +7,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const ROOT_DIR = path.resolve(__dirname, "..");
-const MEDIA_DIR = path.join(ROOT_DIR, "media");
-const PUBLIC_ASSETS_DIR = path.join(ROOT_DIR, "public", "assets");
+const DEV_ASSETS_DIR = path.resolve(ROOT_DIR, "..", "dev-assets", "hansontube");
 
 const SUPPORTED_EXTENSIONS = new Set([".jpg", ".jpeg", ".png"]);
 
 /**
- * Recursively retrieves all source image files matching supported extensions.
+ * Recursively retrieves all source image files matching supported extensions,
+ * ignoring already generated 'webp' subdirectories.
  */
 function getFilesRecursively(dir) {
   let results = [];
@@ -23,7 +23,9 @@ function getFilesRecursively(dir) {
   for (const entry of list) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      results = results.concat(getFilesRecursively(fullPath));
+      if (entry.name !== "webp") {
+        results = results.concat(getFilesRecursively(fullPath));
+      }
     } else if (entry.isFile()) {
       const ext = path.extname(entry.name).toLowerCase();
       if (SUPPORTED_EXTENSIONS.has(ext)) {
@@ -35,17 +37,14 @@ function getFilesRecursively(dir) {
 }
 
 /**
- * Resolves the WebP output path for a given source file.
- * - media/generated/<category>/<name>.<ext> -> public/assets/generated/<category>/<name>.webp
- * - media/<name>.<ext>                      -> public/assets/<name>.webp
+ * Resolves the WebP output path for a given source file within dev-assets/hansontube.
+ * - <domain>/<name>.<ext> -> <domain>/webp/<name>.webp
  */
 function resolveOutputPath(sourceFile) {
-  const relativeToMedia = path.relative(MEDIA_DIR, sourceFile);
-  const withoutExt = relativeToMedia.slice(
-    0,
-    -path.extname(relativeToMedia).length,
-  );
-  return path.join(PUBLIC_ASSETS_DIR, `${withoutExt}.webp`);
+  const dir = path.dirname(sourceFile);
+  const ext = path.extname(sourceFile);
+  const base = path.basename(sourceFile, ext);
+  return path.join(dir, "webp", `${base}.webp`);
 }
 
 async function convertImage(filePath) {
@@ -57,7 +56,12 @@ async function convertImage(filePath) {
   await sharp(filePath).webp({ quality: 85, effort: 6 }).toFile(webpPath);
 
   const webpStats = fs.statSync(webpPath);
-  const relativePath = path.relative(ROOT_DIR, filePath).replace(/\\/g, "/");
+  const relativePath = path
+    .relative(DEV_ASSETS_DIR, filePath)
+    .replace(/\\/g, "/");
+  const relativeOutput = path
+    .relative(DEV_ASSETS_DIR, webpPath)
+    .replace(/\\/g, "/");
   const savings = (
     ((originalStats.size - webpStats.size) / originalStats.size) *
     100
@@ -65,7 +69,7 @@ async function convertImage(filePath) {
 
   return {
     file: relativePath,
-    output: path.relative(ROOT_DIR, webpPath).replace(/\\/g, "/"),
+    output: relativeOutput,
     originalSize: originalStats.size,
     webpSize: webpStats.size,
     savings: Number(savings),
@@ -73,23 +77,22 @@ async function convertImage(filePath) {
 }
 
 async function main() {
-  console.log("🚀 Starting automated WebP conversion pipeline...\n");
-  console.log(`Source directory : ${path.relative(ROOT_DIR, MEDIA_DIR)}`);
   console.log(
-    `Output directory : ${path.relative(ROOT_DIR, PUBLIC_ASSETS_DIR)}\n`,
+    "🚀 Starting automated WebP conversion pipeline (dev-assets/hansontube)...\n",
   );
+  console.log(`Dev Assets directory: ${DEV_ASSETS_DIR}\n`);
 
-  if (!fs.existsSync(MEDIA_DIR)) {
+  if (!fs.existsSync(DEV_ASSETS_DIR)) {
     console.log(
-      `No media directory found at ${MEDIA_DIR}. Nothing to convert.`,
+      `No dev-assets directory found at ${DEV_ASSETS_DIR}. Nothing to convert.`,
     );
     return;
   }
 
-  const allFiles = getFilesRecursively(MEDIA_DIR);
+  const allFiles = getFilesRecursively(DEV_ASSETS_DIR);
 
   if (allFiles.length === 0) {
-    console.log("No images found to convert.");
+    console.log("No raw images (.jpg, .jpeg, .png) found to convert.");
     return;
   }
 

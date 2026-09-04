@@ -87,6 +87,11 @@ export default tseslint.config(
           message:
             "Do not use string literals for icon names. Use the semantic ICONS object from src/components/icons instead.",
         },
+        {
+          selector: "Literal[value=/\\.(webp|png|jpg|jpeg)$/i]",
+          message:
+            "Do not declare hardcoded image asset paths directly. All image assets must be declared in src/data/assets.ts using ASSET_URLS.",
+        },
       ],
     },
   },
@@ -96,6 +101,8 @@ export default tseslint.config(
       "**/theme.ts",
       "**/iconRegistry.ts",
       "**/Icons.tsx",
+      "**/assets.ts",
+      "**/scripts/**",
       "**/*.test.ts",
       "**/*.test.tsx",
       "**/test/**",

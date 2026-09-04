@@ -4,12 +4,13 @@
  * and layout coordination for Hanson-Tube.
  */
 
-import { useState, lazy, Suspense } from "react";
+import { useState, lazy, Suspense, useEffect } from "react";
 import Toast from "./components/ui/Toast";
 import PageSkeleton from "./components/ui/PageSkeleton";
 import { usePWA } from "./hooks/usePWA";
 import { useResponsiveSidebar } from "./hooks/useResponsiveSidebar";
 import { FEATURE_FLAGS } from "./config/features";
+import { prefetchAllRoutesIdle } from "./utils/routePreloaders";
 
 // Layout Components
 import Header from "./components/layout/Header";
@@ -31,6 +32,11 @@ export default function App() {
   const [activePage, setActivePage] = useState<string>("Home");
   const { isSidebarOpen, setIsSidebarOpen, sidebarRef } =
     useResponsiveSidebar();
+
+  // Prefetch dynamic route chunks sequentially during browser idle windows post-hydration
+  useEffect(() => {
+    prefetchAllRoutesIdle();
+  }, []);
 
   // Dynamic route dispatcher resolving eager home or lazy code-split pages
   const renderPage = () => {

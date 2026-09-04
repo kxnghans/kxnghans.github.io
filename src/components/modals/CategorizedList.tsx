@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import { useMemo, type ReactElement } from "react";
 import { UI_TYPOGRAPHY } from "../../theme";
 import { Icon, ICONS } from "../icons";
 import { findProjectByLabel } from "../../data";
@@ -20,6 +20,33 @@ interface CategorizedListItemProps {
   className?: string;
   onSelectProject?: (project: ProjectDetails) => void;
 }
+
+// Pure helper to parse unstructured string items into categorized section groups
+const parseCategorizedGroups = (items: string[]): ItemGroup[] => {
+  const groups: ItemGroup[] = [];
+  let currentGroup: ItemGroup | null = null;
+
+  items.forEach((item) => {
+    const trimmed = item.trim();
+    if (trimmed.endsWith(":")) {
+      currentGroup = {
+        title: trimmed.slice(0, -1),
+        items: [],
+      };
+      groups.push(currentGroup);
+    } else if (currentGroup) {
+      currentGroup.items.push(item);
+    } else {
+      currentGroup = {
+        title: "Overview",
+        items: [item],
+      };
+      groups.push(currentGroup);
+    }
+  });
+
+  return groups;
+};
 
 // Renders an individual item, linking project titles to project detail modals
 const CategorizedListItem = ({
@@ -67,12 +94,21 @@ export const CategorizedList = ({
   className = "",
   onSelectProject,
 }: CategorizedListProps): ReactElement | null => {
+  // Memoize header detection to avoid repeated array scanning
+  const hasCategoryHeaders = useMemo(
+    () => Boolean(items && items.some((item) => item.trim().endsWith(":"))),
+    [items],
+  );
+
+  // Memoize group grouping calculation
+  const groups = useMemo(
+    () => (hasCategoryHeaders ? parseCategorizedGroups(items) : []),
+    [hasCategoryHeaders, items],
+  );
+
   if (!items || items.length === 0) {
     return null;
   }
-
-  // Detect whether the list contains section headers (strings ending with ':')
-  const hasCategoryHeaders = items.some((item) => item.trim().endsWith(":"));
 
   if (!hasCategoryHeaders) {
     return (
@@ -89,29 +125,6 @@ export const CategorizedList = ({
       </ul>
     );
   }
-
-  // Parse items into categorized groups
-  const groups: ItemGroup[] = [];
-  let currentGroup: ItemGroup | null = null;
-
-  items.forEach((item) => {
-    const trimmed = item.trim();
-    if (trimmed.endsWith(":")) {
-      currentGroup = {
-        title: trimmed.slice(0, -1),
-        items: [],
-      };
-      groups.push(currentGroup);
-    } else if (currentGroup) {
-      currentGroup.items.push(item);
-    } else {
-      currentGroup = {
-        title: "Overview",
-        items: [item],
-      };
-      groups.push(currentGroup);
-    }
-  });
 
   return (
     <div className={`space-y-4 ${className}`}>

@@ -11,7 +11,7 @@ export interface ModalRenderProps<M> {
 export interface SlideshowProps<T, M = T> {
   title: ReactNode;
   data: T[];
-  renderCard: (item: T) => ReactNode;
+  renderCard: (item: T, index: number) => ReactNode;
   renderModal: (props: ModalRenderProps<M>) => ReactNode;
   getModalItem?: (item: T) => M;
   sectionClassName?: string;
@@ -112,7 +112,7 @@ const Slideshow = <T, M = T>({
                 }
               }}
             >
-              {renderCard(item)}
+              {renderCard(item, index)}
             </div>
           ))}
           <div className="w-4 flex-shrink-0 sm:w-6 md:w-8" />

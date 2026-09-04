@@ -1,18 +1,21 @@
 import Slideshow from "./Slideshow";
 import ProjectModal from "../modals/ProjectModal";
 import LazyImage from "./LazyImage";
+import SummaryTextLines from "./SummaryTextLines";
 import { projects } from "../../data";
 import type { ProjectItem, ProjectDetails } from "../../types/data";
 
 interface ProjectCardProps {
   item: ProjectItem;
+  index: number;
 }
 
-const ProjectCard = ({ item }: ProjectCardProps) => (
+const ProjectCard = ({ item, index }: ProjectCardProps) => (
   <>
     <LazyImage
       src={item.imageUrl}
       alt={item.title}
+      loading={index < 3 ? "eager" : "lazy"}
       className="h-32 w-full object-cover sm:h-40"
       containerClassName="h-32 sm:h-40 w-full"
     />
@@ -21,26 +24,7 @@ const ProjectCard = ({ item }: ProjectCardProps) => (
         {item.title}
       </h3>
       <div className="space-y-1 overflow-hidden text-xs text-gray-600 sm:text-sm dark:text-gray-400">
-        {item.summary.map((line, i) => {
-          const colonIndex = line.indexOf(":");
-          if (colonIndex !== -1) {
-            const label = line.slice(0, colonIndex + 1);
-            const val = line.slice(colonIndex + 1);
-            return (
-              <p key={i} className="truncate">
-                <strong className="text-gray-800 dark:text-gray-200">
-                  {label}
-                </strong>
-                {val}
-              </p>
-            );
-          }
-          return (
-            <p key={i} className="truncate">
-              {line}
-            </p>
-          );
-        })}
+        <SummaryTextLines lines={item.summary} />
       </div>
     </div>
   </>
@@ -55,7 +39,7 @@ const ProjectSlideshow = () => (
       </>
     }
     data={projects}
-    renderCard={(item) => <ProjectCard item={item} />}
+    renderCard={(item, index) => <ProjectCard item={item} index={index} />}
     renderModal={({ item, onClose }) => (
       <ProjectModal project={item} onClose={onClose} />
     )}

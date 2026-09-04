@@ -1,4 +1,5 @@
 import type { WorkExperience } from "../types/data";
+import { ASSET_URLS } from "./assets";
 
 // Work Experience Dataset (SSOT)
 // Professional career achievements across Defense, Enterprise, and Military Logistics.
@@ -6,7 +7,7 @@ export const workData: WorkExperience[] = [
   // Lockheed Martin Space - Systems Engineer & Sr Business Analyst
   {
     title: "Systems Engineer & Sr Business Analyst",
-    imageUrl: "/assets/generated/work/lockheed-martin.webp",
+    imageUrl: ASSET_URLS.WORK.LOCKHEED_MARTIN,
     summary: [
       "Lockheed Martin, Space",
       "Projects: MESHc (Space EBOM), Testbed Infra & SBOM",
@@ -43,7 +44,7 @@ export const workData: WorkExperience[] = [
   // UCCS - Software Developer
   {
     title: "Software Developer",
-    imageUrl: "/assets/generated/work/uccs-software.webp",
+    imageUrl: ASSET_URLS.WORK.UCCS_SOFTWARE,
     summary: [
       "UCCS",
       "Stack: TypeScript, VueJS, PHP, SQL",
@@ -73,7 +74,7 @@ export const workData: WorkExperience[] = [
   // United States Air Force - Supply Chain Manager & Medical Service Corps Officer
   {
     title: "Supply Chain Manager",
-    imageUrl: "/assets/generated/work/air-force-supply.webp",
+    imageUrl: ASSET_URLS.WORK.AIR_FORCE_SUPPLY,
     summary: [
       "US Air Force",
       "Role: Aircraft Repair Cycle & Aeromedical Evac Ops",

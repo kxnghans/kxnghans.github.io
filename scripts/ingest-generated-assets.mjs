@@ -6,9 +6,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const ROOT_DIR = path.resolve(__dirname, "..");
-const BRAIN_DIR =
-  "C:\\Users\\kobby\\.gemini\\antigravity-cli\\brain\\20a86d5c-b1be-4d27-95b3-82e626bda38a";
-const GENERATED_DIR = path.join(ROOT_DIR, "public", "assets", "generated");
+const BRAIN_DIR = process.env.BRAIN_DIR || "";
+const GENERATED_DIR = path.resolve(
+  ROOT_DIR,
+  "..",
+  "dev-assets",
+  "hansontube",
+);
 
 const ASSET_MAPPINGS = [
   // Projects (19)
@@ -103,6 +107,12 @@ const ASSET_MAPPINGS = [
 
 async function main() {
   console.log("📦 Ingesting generated studio images...\n");
+  if (!BRAIN_DIR || !fs.existsSync(BRAIN_DIR)) {
+    console.log(
+      "No valid BRAIN_DIR specified. Set BRAIN_DIR environment variable to ingest raw images.",
+    );
+    return;
+  }
   const brainFiles = fs.readdirSync(BRAIN_DIR);
 
   let copiedCount = 0;

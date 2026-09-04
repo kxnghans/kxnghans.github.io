@@ -1,4 +1,5 @@
 import type { ProjectItem, ProjectDetails } from "../types/data";
+import { ASSET_URLS } from "./assets";
 
 // Portfolio Projects Dataset (SSOT)
 // Sourced from hands-on engineering implementations, venture products, and academic research.
@@ -6,7 +7,7 @@ export const projectData: ProjectItem[] = [
   // Interactive Portfolio Showcase
   {
     title: "Portfolio Showcase",
-    imageUrl: "/assets/generated/projects/portfolio-showcase.webp",
+    imageUrl: ASSET_URLS.PROJECTS.PORTFOLIO_SHOWCASE,
     summary: [
       "Tech: React, Vite, Tailwind CSS",
       "Role: Sole Developer",
@@ -44,7 +45,7 @@ export const projectData: ProjectItem[] = [
   // CaroHans Event Rental Management System (ERMS)
   {
     title: "CaroHans Event Rentals (ERMS)",
-    imageUrl: "/assets/generated/projects/carohans-hub.webp",
+    imageUrl: ASSET_URLS.PROJECTS.CAROHANS_HUB,
     summary: [
       "Venture: HansonCreations Studio",
       "Platform: Next.js, Supabase, Cloudflare Pages",
@@ -83,7 +84,7 @@ export const projectData: ProjectItem[] = [
   // MilCalc Mobile Military Calculator Suite
   {
     title: "MilCalc Mobile Suite",
-    imageUrl: "/assets/generated/projects/milcalc-suite.webp",
+    imageUrl: ASSET_URLS.PROJECTS.MILCALC_SUITE,
     summary: [
       "Venture: HansonCreations Suite",
       "Stack: React Native, Expo, SQLite, MMKV",
@@ -122,7 +123,7 @@ export const projectData: ProjectItem[] = [
   // Gospel Games Faith-Based Mobile Game
   {
     title: "Gospel Games Platform",
-    imageUrl: "/assets/generated/projects/gospel-games.webp",
+    imageUrl: ASSET_URLS.PROJECTS.GOSPEL_GAMES,
     summary: [
       "Venture: HansonCreations Gaming",
       "Stack: React Native, Expo, Firebase RTDB",
@@ -161,7 +162,7 @@ export const projectData: ProjectItem[] = [
   // Unpack Collaborative Travel Companion
   {
     title: "Unpack Travel Companion",
-    imageUrl: "/assets/generated/projects/unpack-travel.webp",
+    imageUrl: ASSET_URLS.PROJECTS.UNPACK_TRAVEL,
     summary: [
       "Venture: HansonCreations Travel Tech",
       "Stack: React Native, Expo, SQLite, Supabase",
@@ -200,7 +201,7 @@ export const projectData: ProjectItem[] = [
   // Fretwork AI Tablature & Pathfinding Research Capstone
   {
     title: "Fretwork Guitar Capstone",
-    imageUrl: "/assets/generated/projects/fretwork-guitar.webp",
+    imageUrl: ASSET_URLS.PROJECTS.FRETWORK_GUITAR,
     summary: [
       "Venture: AI/ML Research Capstone",
       "Tech: PyTorch, TabTransformer, Viterbi",
@@ -239,7 +240,7 @@ export const projectData: ProjectItem[] = [
   // HansOnDeck LLC Creative Media
   {
     title: "Creative Media Business",
-    imageUrl: "/assets/generated/projects/creative-media.webp",
+    imageUrl: ASSET_URLS.PROJECTS.CREATIVE_MEDIA,
     summary: [
       "Venture: HansOnDeck LLC",
       "Revenue: $10K in first year",
@@ -276,7 +277,7 @@ export const projectData: ProjectItem[] = [
   // Enterprise Facilities Automation
   {
     title: "Facilities Automation",
-    imageUrl: "/assets/generated/projects/facilities-automation.webp",
+    imageUrl: ASSET_URLS.PROJECTS.FACILITIES_AUTOMATION,
     summary: [
       "ROI: $55.2k/mo ($662k/yr)",
       "Scale: 450 Commercial Sites",
@@ -314,7 +315,7 @@ export const projectData: ProjectItem[] = [
   // Enterprise Innovation Gamification Dashboard
   {
     title: "Innovation Dashboard",
-    imageUrl: "/assets/generated/projects/innovation-dashboard.webp",
+    imageUrl: ASSET_URLS.PROJECTS.INNOVATION_DASHBOARD,
     summary: [
       "ROI: $1.1M First-Year Savings",
       "Engagement: 19,000+ Employee Ideas",
@@ -351,7 +352,7 @@ export const projectData: ProjectItem[] = [
   // Lockheed Martin Space Cloud Migration & SNO Testbed
   {
     title: "Cloud Migration",
-    imageUrl: "/assets/generated/projects/cloud-migration.webp",
+    imageUrl: ASSET_URLS.PROJECTS.CLOUD_MIGRATION,
     summary: [
       "Velocity: 10x Test Cycle Reduction",
       "Governance: ARB / CARB / SIA Approved",
@@ -389,7 +390,7 @@ export const projectData: ProjectItem[] = [
   // MESHc Defense Catalog Product Adoption
   {
     title: "Product Adoption Strategy",
-    imageUrl: "/assets/generated/projects/product-adoption.webp",
+    imageUrl: ASSET_URLS.PROJECTS.PRODUCT_ADOPTION,
     summary: [
       "Adoption: 800% Usage Expansion",
       "Funding: $1.0M Follow-On Secured",
@@ -425,7 +426,7 @@ export const projectData: ProjectItem[] = [
   // Operation Allies Refuge Logistics Data Pipeline
   {
     title: "Logistics Data Pipeline",
-    imageUrl: "/assets/generated/projects/logistics-pipeline.webp",
+    imageUrl: ASSET_URLS.PROJECTS.LOGISTICS_PIPELINE,
     summary: [
       "Throughput: 66% Efficiency Boost",
       "Crisis: Operation Allies Refuge",
@@ -461,7 +462,7 @@ export const projectData: ProjectItem[] = [
   // COVID-19 Operational Contingency Planning
   {
     title: "COVID-19 Contingency Plan",
-    imageUrl: "/assets/generated/projects/covid-contingency.webp",
+    imageUrl: ASSET_URLS.PROJECTS.COVID_CONTINGENCY,
     summary: [
       "Performance: 91% mission capable rate",
       "Skills: Contingency Planning, Data Analysis",
@@ -497,7 +498,7 @@ export const projectData: ProjectItem[] = [
   // Youth Coding Mentorship & App Launch
   {
     title: "Youth Mentorship & App Creation",
-    imageUrl: "/assets/generated/projects/youth-mentorship.webp",
+    imageUrl: ASSET_URLS.PROJECTS.YOUTH_MENTORSHIP,
     summary: [
       "Role: Founder & Lead Mentor",
       "Outcome: Launched a community app",
@@ -534,7 +535,7 @@ export const projectData: ProjectItem[] = [
   // Multivariate LSTM Stock & Economic Time-Series Forecaster
   {
     title: "Stock Prediction",
-    imageUrl: "/assets/generated/projects/stock-prediction.webp",
+    imageUrl: ASSET_URLS.PROJECTS.STOCK_PREDICTION,
     summary: [
       "Project: Stock Prediction Tool",
       "Tech: RNN, LSTM, Stable Diffusion",
@@ -574,7 +575,7 @@ export const projectData: ProjectItem[] = [
   // Computer Vision & Neural Network Implementation
   {
     title: "Computer Vision",
-    imageUrl: "/assets/generated/projects/computer-vision.webp",
+    imageUrl: ASSET_URLS.PROJECTS.COMPUTER_VISION,
     summary: [
       "Focus: Neural Networks",
       "Application: Facial Recognition & Classification",
@@ -614,7 +615,7 @@ export const projectData: ProjectItem[] = [
   // Autonomous Robotics & Sensor Integration
   {
     title: "Autonomous Robotics",
-    imageUrl: "/assets/generated/projects/autonomous-robotics.webp",
+    imageUrl: ASSET_URLS.PROJECTS.AUTONOMOUS_ROBOTICS,
     summary: [
       "Project: Autonomous RC Car",
       "Tech: Arduino, C, GPS, Sonar",
@@ -652,7 +653,7 @@ export const projectData: ProjectItem[] = [
   // Immersive Flight Simulator for WWII Aviation Museum
   {
     title: "Immersive Flight Sim",
-    imageUrl: "/assets/generated/projects/flight-simulator.webp",
+    imageUrl: ASSET_URLS.PROJECTS.FLIGHT_SIMULATOR,
     summary: [
       "Partner: National Museum of WWII Aviation",
       "Tech: Unreal Engine, C#, Raspberry Pi",
@@ -692,7 +693,7 @@ export const projectData: ProjectItem[] = [
   // CMOS Two-Stage Operational Amplifier Design
   {
     title: "Circuit Design",
-    imageUrl: "/assets/generated/projects/circuit-design.webp",
+    imageUrl: ASSET_URLS.PROJECTS.CIRCUIT_DESIGN,
     summary: [
       "Focus: CMOS Op-Amp Design",
       "Tools: AutoCAD, LTSpice, MATLAB",
@@ -745,9 +746,12 @@ projectData.forEach((project) => {
   });
 });
 
+// Secondary cache for previously resolved fallback labels
+const fallbackResolutionCache = new Map<string, ProjectDetails | null>();
+
 /**
  * Resolves a ProjectDetails reference from a label using O(1) map lookup
- * with keyword fallback for cross-modal linking.
+ * with keyword fallback and memoized resolution cache.
  */
 export const findProjectByLabel = (
   label: string,
@@ -756,10 +760,17 @@ export const findProjectByLabel = (
   const directMatch = projectLookupMap.get(normalized);
   if (directMatch) return directMatch;
 
+  if (fallbackResolutionCache.has(normalized)) {
+    return fallbackResolutionCache.get(normalized) || undefined;
+  }
+
   for (const [key, details] of projectLookupMap.entries()) {
     if (normalized.includes(key) || key.includes(normalized)) {
+      fallbackResolutionCache.set(normalized, details);
       return details;
     }
   }
+
+  fallbackResolutionCache.set(normalized, null);
   return undefined;
 };

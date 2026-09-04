@@ -1,4 +1,5 @@
 import type { EducationItem } from "../types/data";
+import { ASSET_URLS } from "./assets";
 
 // Education Dataset (SSOT)
 // Academic coursework, degrees, capstone systems, and engineering honors.
@@ -6,7 +7,7 @@ export const educationData: EducationItem[] = [
   // Graduate Degree: UC Berkeley Master of Science in Data Science
   {
     title: "Masters in Data Science",
-    imageUrl: "/assets/generated/education/uc-berkeley-ms.webp",
+    imageUrl: ASSET_URLS.EDUCATION.UC_BERKELEY_MS,
     summary: [
       "University of California, Berkeley",
       "Degree: Master of Science",
@@ -51,7 +52,7 @@ export const educationData: EducationItem[] = [
   // Undergraduate Degree: UCCS Bachelor of Science in Electrical Engineering
   {
     title: "Bachelors in Electrical Engineering",
-    imageUrl: "/assets/generated/education/uccs-ee-bs.webp",
+    imageUrl: ASSET_URLS.EDUCATION.UCCS_EE_BS,
     summary: [
       "University of Colorado, Colorado Springs",
       "Degree: Bachelor of Science",

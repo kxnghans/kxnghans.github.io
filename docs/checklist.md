@@ -51,6 +51,20 @@
   - **DRY Code Consolidation**: Engineered `<SummaryTextLines />` Single Source of Truth for card summary colon-parsing, migrating `ProjectsPage.tsx`, `WorkExperiencePage.tsx`, `EducationPage.tsx`, and `HonorsPage.tsx`; extracted internal `CategorizedListItem` in `CategorizedList.tsx`; and unified `ProjectModalProps` on `ProjectDetails`.
   - **Data Structures, Indexing & Performance**: Built in-memory `projectLookupMap` (`Map<string, ProjectDetails>`) and `findProjectByLabel` in `src/data/projects.ts` replacing O(N) array searching with O(1) map indexing; standardized `SkillCategory` with static `summary?: string[]` across all 8 competency categories in `src/data/skills.ts`, dropping complex runtime nested sorting and character-counting loops in `SkillsSlideshow.tsx`; memoized filter calculations in `ValuePage.tsx` (`useMemo`, `useCallback`) and donut segments in `ValueDomainDonutChart.tsx`; memoized context provider value in `ThemeContext.tsx` to prevent tree re-renders; and pre-merged `highPriorityTokens` / `medPriorityTokens` in `SearchEngine.ts` to eliminate array allocations in hot search loops.
   - **Unit Test Coverage Expansion**: Added 7 new test suites (`chartUtils.test.ts`, `SummaryTextLines.test.tsx`, `useSearchHotkeys.test.ts`, `useResponsiveSidebar.test.ts`, `useContactForm.test.ts`, `useVoiceSearch.test.ts`, `CategorizedList.test.tsx`), bringing total test coverage to 33 test files and 140 passing tests with 100% pass rate, zero ESLint errors, zero TypeScript errors, and verified production builds.
+- **Google Cloud Storage Media CDN & Centralized Asset Registry Architecture**:
+  - **Cloud Ingestion**: Ingested all 49 production images into Google Cloud Storage bucket `portfolio_showcase` under `images/` (`projects/`, `skills/`, `work/`, `education/`, `honors/`, `certifications/`, `community/`, `profile/`, `brand/`) via `kxnghans-portfolio-gcp-storage` MCP with proper MIME types (`image/webp`, `image/png`), public read access (`roles/storage.objectViewer`), and `Cache-Control: public, max-age=3600`.
+  - **Single Source of Truth (`src/data/assets.ts`)**: Built centralized registry aligning with sibling directories (`gospelgames`, `milcalc`, `hansoncreations`), declaring `GCS_BASE_URL` (`https://storage.googleapis.com/portfolio_showcase/images`), `ASSET_BASE_URL`, `getAssetUrl(path)` with URI encoding, and typed domain dictionaries (`ASSET_URLS.PROJECTS`, `SKILLS`, `WORK`, `EDUCATION`, `HONORS`, `CERTIFICATIONS`, `COMMUNITY`, `PROFILE`, `BRAND`).
+  - **Data Layer & UI Migration**: Migrated all 7 domain datasets (`projects.ts`, `skills.ts`, `work.ts`, `education.ts`, `honors.ts`, `certifications.ts`, `community.ts`), `Header.tsx`, and `ProfileSummaryCard.tsx` to consume `ASSET_URLS`.
+  - **ESLint AST Guardrail**: Engineered custom AST selector rule in `eslint.config.js` (`no-restricted-syntax`) prohibiting hardcoded image extension literals (`.webp`, `.png`, `.jpg`, `.jpeg`) anywhere in the application outside `src/data/assets.ts`, scripts, and test suites.
+  - **Workbox Caching & Resilience**: Enhanced Workbox runtime caching in `vite.config.ts` for GCS CDN assets with `cacheableResponse: { statuses: [0, 200] }` to safely cache cross-origin image responses offline.
+  - **Comprehensive Verification**: Authored `src/data/assets.test.ts` (10 tests), achieving 100% test pass rate across 34 test files (150 tests), zero ESLint errors/warnings, clean TypeScript compilation (`tsc --noEmit`), and 2.74s production build.
+- **Data Structures, Caching & Predictive Preloading Architecture**:
+  - **GCS CDN Preconnect & LCP Preload**: Added `preconnect` and `dns-prefetch` resource hints to `index.html` for `https://storage.googleapis.com` alongside early `<link rel="preload" as="image">` for the LCP WebP avatar, eliminating TLS/DNS handshakes before JS hydration.
+  - **Predictive Route Prefetching**: Built `src/utils/routePreloaders.ts` with network data-saver awareness (`saveData`), hooking `onMouseEnter` / `onFocus` in `Sidebar.tsx` and `SearchResults.tsx` for instant 0ms page transitions, plus background idle sequential prefetching in `App.tsx` via `requestIdleCallback`.
+  - **In-Memory Image Caching & Eager Slideshows**: Upgraded `LazyImage.tsx` with module-level `loadedImageCache` and synchronous resolution for cached images (eliminating skeleton flashing on re-renders). Configured `Slideshow.tsx` to eagerly load initial visible cards (indices 0–2).
+  - **DRY Consolidation & Memoization**: Replaced duplicate colon-splitting loops in `ProjectSlideshow.tsx`, `CertificationsSlideshow.tsx`, and `CommunitySlideshow.tsx` with shared `<SummaryTextLines />`. Wrapped category grouping in `CategorizedList.tsx` with `useMemo`, and added memoized secondary cache to `findProjectByLabel` in `projects.ts`.
+  - **DevTools a11y Remediation**: Added `id="search-input"` and `name="search"` to `SearchBar.tsx`; added `autoComplete` attributes and unique field IDs across `FormField.tsx`, `types/data.ts`, and `formData.ts` for full browser accessibility compliance.
+  - **Verification**: 35 passing Vitest test files (157 tests), clean ESLint (`pnpm run lint`), strict type-check (`tsc --noEmit`), and 3.36s production build.
 
 ---
 
@@ -94,3 +108,41 @@
 - [ ] **[DEP-1] Production Bundle Optimization & Asset Audit**: Audit Vite production bundle chunking, asset hashing, and PWA precache manifest integrity.
 - [ ] **[DEP-2] Edge Header & CDN Staging Verification**: Verify Cloudflare DNS, edge security headers, and GitHub Pages custom domain routing.
 - [ ] **[DEP-3] Cross-Browser & Device Verification**: Verify touch gestures, voice speech recognition, and keyboard shortcuts across Chrome, Safari, Firefox, and mobile viewports.
+
+### Phase 7: Google Cloud Storage Media CDN & Centralized Asset Registry
+
+- [x] **[GCS-1] GCS Folder Hierarchy & Complete Asset Upload**: Create dedicated `images/` directory in bucket `portfolio_showcase` and upload all 49 image assets (`projects/`, `skills/`, `work/`, `education/`, `honors/`, `certifications/`, `community/`, `profile/`, `brand/`) via `kxnghans-portfolio-gcp-storage` MCP with proper MIME types (`image/webp`, `image/png`) and public cache headers.
+- [x] **[GCS-2] Single Source of Truth Asset Registry (`src/data/assets.ts`)**: Build centralized `ASSET_URLS` registry with canonical base URL (`https://storage.googleapis.com/portfolio_showcase/images`), helper `getAssetUrl`, and domain exports matching sibling patterns (`gospelgames`, `milcalc`, `hansoncreations`).
+- [x] **[GCS-3] Data Layer & Presentation Component Migration**: Refactor all 7 domain datasets (`projects.ts`, `skills.ts`, `work.ts`, `education.ts`, `honors.ts`, `certifications.ts`, `community.ts`), `Header.tsx`, and `ProfileSummaryCard.tsx` to consume `ASSET_URLS`.
+- [x] **[GCS-4] AST ESLint Guardrail Enforcement**: Add AST rule in `eslint.config.js` (`no-restricted-syntax`) prohibiting hardcoded image file literals outside `src/data/assets.ts`.
+- [x] **[GCS-5] Workbox PWA & Cache-First Hardening**: Configure `vite.config.ts` runtime caching for cross-origin GCS assets with `cacheableResponse: { statuses: [0, 200] }`.
+- [x] **[GCS-6] Verification & Codebase Stability Check**: Verify GCS CDN HTTP 200 availability, test suite pass rate (150 tests across 34 test files), ESLint zero-tolerance compliance (0 errors, 0 warnings), clean TypeScript compilation (`tsc --noEmit`), and production build (`vite build` in 2.74s, 16 precache entries).
+
+### Phase 8: Data Structures, Caching & Preloading Optimization
+
+- [x] **[PRE-1] GCS CDN Preconnect & DNS Hints**: Add `preconnect` and `dns-prefetch` resource hints to `index.html` for `https://storage.googleapis.com` to eliminate connection handshake latency.
+- [x] **[PRE-2] Hero LCP Asset Early Preload**: Add high-priority preload hint in `index.html` for the primary WebP avatar image.
+- [x] **[RTE-1] Predictive Route Prefetching Module**: Create `src/utils/routePreloaders.ts` with typed dynamic import loaders and `saveData` network awareness.
+- [x] **[RTE-2] Hover & Focus Route Prefetching**: Connect `Sidebar.tsx` navigation buttons and `SearchResults.tsx` items to trigger route prefetching on hover and focus.
+- [x] **[RTE-3] Idle Background Route Prefetch Queue**: Implement sequential idle preloading in `App.tsx` via `requestIdleCallback` to warm secondary route bundles post-hydration.
+- [x] **[IMG-1] In-Memory Cache & Zero-Flicker LazyImage**: Upgrade `LazyImage.tsx` with module-level `loadedImageCache` and synchronous resolution for cached assets.
+- [x] **[IMG-2] Slideshow Initial Viewport Eagerness**: Enable eager loading for the first 3 cards in `Slideshow.tsx` to eliminate carousel scroll pop-in.
+- [x] **[DRY-4] Deduplicate Slideshow Card Parsing**: Refactor `ProjectSlideshow.tsx`, `CertificationsSlideshow.tsx`, and `CommunitySlideshow.tsx` to consume `<SummaryTextLines />`.
+- [x] **[DAT-3] Memoize Category Group Parsing**: Wrap grouping logic in `CategorizedList.tsx` with `useMemo` to eliminate redundant string parsing on re-renders.
+- [x] **[DAT-4] Fast Cache for Fallback Project Resolution**: Add memoized lookup map in `src/data/projects.ts` (`findProjectByLabel`) to avoid repeating linear iteration.
+- [x] **[VER-4] Verification & Stability Check**: Validate unit tests, strict typing (`tsc --noEmit`), ESLint zero-tolerance compliance, and production build stability.
+
+### Phase 9: Dead Code, Style Recipe & Unused Asset Pruning
+
+- [x] **[DED-1] Test Fixture Decoupling in `LazyImage.test.tsx`**: Decouple test cases from obsolete local paths (`/assets/generated/...`) by switching to canonical asset URLs or standard mock fixtures.
+- [x] **[DED-2] Purge Orphaned Local WebPs & Raw Media**: Remove obsolete `public/assets/generated/` (45 files, 5.37 MB), `media/` (6 raw files, 3.94 MB), unreferenced `public/assets/hanson-tube.webp` (173.8 KB), and root `server.log`.
+- [x] **[DED-3] Icon System Pruning**: Remove unreferenced `ExternalLinkIcon` from `src/components/icons/Icons.tsx` and barrel export `src/components/icons/index.ts`. Prune unused icon registry entries (`FILE`, `TARGET`, `ROCKET`, `PROFILE`, `CONTACT`) and unused `react-icons/fa` imports (`FaFileAlt`, `FaBullseye`, `FaRocket`, `FaUser`, `FaEnvelope`) from `src/components/icons/iconRegistry.ts`.
+- [x] **[DED-4] Theme Token & CSS Recipe Pruning**: Remove dead `UI_BADGES` export, dead `UI_TYPOGRAPHY` recipes (`modalHeading`, `sectionDividerHeader`, `bodyText`, `bodyTextMuted`), and `UI_BUTTONS.primary` from `src/theme/theme.ts`. Remove unused `.bevel-dark` CSS utility classes from `src/index.css`.
+
+### Phase 10: Centralized Dev-Assets Pipeline & Image Strategy Alignment (`../dev-assets/hansontube/`)
+
+- [x] **[AST-1] Establish `../dev-assets/hansontube/` Directory Structure**: Set up canonical local dev-assets directories across all 9 domains (`brand/`, `projects/`, `skills/`, `work/`, `education/`, `honors/`, `certifications/`, `community/`, `profile/`) matching sibling patterns (`carohans`, `milcalc`, `unpack`, etc.).
+- [x] **[AST-2] Migrate Master & Source Assets to `../dev-assets/hansontube/`**: Populate `../dev-assets/hansontube/` with master source assets, raw JPGs, and optimized WebP archives organized by domain.
+- [x] **[AST-3] Retool Asset Pipeline Scripts for `dev-assets`**: Update `scripts/convert-assets.mjs` and `scripts/ingest-generated-assets.mjs` to read from and write to `../dev-assets/hansontube/` instead of bundling into the web application repository.
+- [x] **[AST-4] Update Architectural Documentation**: Update `docs/images.md`, `docs/architecture.md`, and `docs/checklist.md` documenting the centralized `dev-assets` workflow and GCS CDN delivery model.
+- [x] **[AST-5] Verification & Stability Check**: Run `pnpm test:run`, `pnpm run lint`, `tsc --noEmit`, and `pnpm build` to verify clean build, zero errors, and reduced production bundle size.

@@ -24,14 +24,16 @@ const SkillCardContent = ({ item }: SkillCardContentProps): ReactElement => {
 
 interface SkillCardProps {
   item: SkillCategory;
+  index: number;
 }
 
 // Renders the presentation card within the Skills slideshow
-const SkillCard = ({ item }: SkillCardProps): ReactElement => (
+const SkillCard = ({ item, index }: SkillCardProps): ReactElement => (
   <>
     <LazyImage
       src={item.imageUrl}
       alt={item.title}
+      loading={index < 3 ? "eager" : "lazy"}
       className="h-32 w-full object-cover sm:h-40"
       containerClassName="h-32 sm:h-40 w-full"
     />
@@ -50,7 +52,7 @@ const SkillsSlideshow = (): ReactElement => {
     <Slideshow<SkillCategory>
       title="Skills"
       data={skills}
-      renderCard={(item) => <SkillCard item={item} />}
+      renderCard={(item, index) => <SkillCard item={item} index={index} />}
       renderModal={({ item, onClose }) => (
         <DetailModal item={item} onClose={onClose} />
       )}

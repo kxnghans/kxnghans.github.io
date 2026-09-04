@@ -1,14 +1,16 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
-import LazyImage from "./LazyImage";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import LazyImage, { clearImageCache, markImageCached } from "./LazyImage";
+import { ASSET_URLS } from "../../data/assets";
 
 describe("LazyImage", () => {
-  it("renders the skeleton placeholder initially", () => {
+  beforeEach(() => {
+    clearImageCache();
+  });
+
+  it("renders the skeleton placeholder initially for uncached images", () => {
     render(
-      <LazyImage
-        src="/assets/generated/projects/carohans-hub.webp"
-        alt="CaroHans Hub"
-      />,
+      <LazyImage src={ASSET_URLS.PROJECTS.CAROHANS_HUB} alt="CaroHans Hub" />,
     );
 
     const skeleton = screen.getByTestId("lazy-image-skeleton");
@@ -22,7 +24,7 @@ describe("LazyImage", () => {
     const handleLoad = vi.fn();
     render(
       <LazyImage
-        src="/assets/generated/projects/carohans-hub.webp"
+        src={ASSET_URLS.PROJECTS.CAROHANS_HUB}
         alt="CaroHans Hub"
         onLoad={handleLoad}
       />,
@@ -40,7 +42,7 @@ describe("LazyImage", () => {
     const handleError = vi.fn();
     render(
       <LazyImage
-        src="/assets/invalid-path.webp"
+        src="https://storage.googleapis.com/portfolio_showcase/images/invalid-path.webp"
         alt="Invalid Asset"
         onError={handleError}
       />,
@@ -58,17 +60,34 @@ describe("LazyImage", () => {
   it("falls back to fallbackSrc when primary source fails", () => {
     render(
       <LazyImage
-        src="/assets/invalid-path.webp"
-        fallbackSrc="/assets/fallback.webp"
+        src="https://storage.googleapis.com/portfolio_showcase/images/invalid-path.webp"
+        fallbackSrc="https://storage.googleapis.com/portfolio_showcase/images/fallback.webp"
         alt="With Fallback"
       />,
     );
 
     const img = screen.getByAltText("With Fallback");
-    expect(img).toHaveAttribute("src", "/assets/invalid-path.webp");
+    expect(img).toHaveAttribute(
+      "src",
+      "https://storage.googleapis.com/portfolio_showcase/images/invalid-path.webp",
+    );
 
     fireEvent.error(img);
 
-    expect(img).toHaveAttribute("src", "/assets/fallback.webp");
+    expect(img).toHaveAttribute(
+      "src",
+      "https://storage.googleapis.com/portfolio_showcase/images/fallback.webp",
+    );
+  });
+
+  it("renders cached image immediately with opacity-100 and no skeleton", () => {
+    const cachedUrl = ASSET_URLS.PROJECTS.CAROHANS_HUB;
+    markImageCached(cachedUrl);
+
+    render(<LazyImage src={cachedUrl} alt="Cached Image" />);
+
+    const img = screen.getByAltText("Cached Image");
+    expect(img).toHaveClass("opacity-100");
+    expect(screen.queryByTestId("lazy-image-skeleton")).not.toBeInTheDocument();
   });
 });

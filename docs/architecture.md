@@ -23,11 +23,11 @@ flowchart LR
     %% External & Static Integrations
     Layout -. "Voice Input" .-> WebSpeech["Web Speech API"]
     ActiveView -- "Contact Form POST" --> EmailJS["EmailJS REST API"]
-    ActiveView -- "Load Images" --> LocalMedia[("public/assets/generated/")]
+    ActiveView -- "Load Images" --> CloudMedia[("Google Cloud Storage CDN (portfolio_showcase/images/)")]
     AppShell -- "Offline Precaching" --> PWAWorker["Workbox Service Worker (sw.js)"]
 
     %% Data Layer
-    DataIndex[("Static SSOT Index (src/data/)")] --> SearchCtx
+    DataIndex[("Static SSOT Index & Assets (src/data/)")] --> SearchCtx
     DataIndex --> ActiveView
 ```
 
@@ -41,10 +41,10 @@ flowchart LR
 
 | **Search Context** | Orchestrates search queries, voice state, and open modals. | [`SearchContext.tsx`](../src/context/SearchContext.tsx) |
 | **App Shell** | Manages `activePage`, PWA lifecycle, hotkeys, and layout. | [`App.tsx`](../src/App.tsx), [`Header.tsx`](../src/components/layout/Header.tsx) |
-| **Static Data** | Single Source of Truth for projects, skills, and work history. | [`src/data/*.ts`](../src/data) |
+| **Static Data & Assets** | Single Source of Truth for projects, skills, work, and GCS CDN asset mappings (`ASSET_URLS`). | [`src/data/*.ts`](../src/data), [`assets.ts`](../src/data/assets.ts) |
 | **Search & Indexing** | In-memory token scoring, weighted ranking, and regex snippets. | [`searchEngine.ts`](../src/utils/searchEngine.ts), [`searchableData.ts`](../src/utils/searchableData.ts), [`searchUtils.tsx`](../src/components/search/searchUtils.tsx) |
 | **Hooks & a11y** | Voice search, hotkeys, responsive sidebar, form state, focus trap, and PWA registration. | [`useVoiceSearch.ts`](../src/hooks/useVoiceSearch.ts), [`useSearchHotkeys.ts`](../src/hooks/useSearchHotkeys.ts), [`useResponsiveSidebar.ts`](../src/hooks/useResponsiveSidebar.ts), [`useContactForm.ts`](../src/hooks/useContactForm.ts), [`useFocusTrap.ts`](../src/hooks/useFocusTrap.ts), [`usePWA.ts`](../src/hooks/usePWA.ts) |
-| **External APIs** | Contact email dispatch and browser speech recognition. | EmailJS REST, Browser Web Speech API |
+| **External APIs & Cloud** | Contact email dispatch, browser speech recognition, and GCS CDN image delivery. | EmailJS REST, Browser Web Speech API, Google Cloud Storage CDN |
 
 ---
 
@@ -281,4 +281,44 @@ flowchart LR
     ProjectModal --> HighlightsGrid
 
     Shell --> PortalTarget
+```
+
+---
+
+## 6. Centralized Dev-Assets Pipeline & GCS Cloud Storage Architecture
+
+The media and visual asset pipeline is decoupled from the web application repository. Source imagery and compiled WebP variants are preserved in the centralized local development repository (`../dev-assets/hansontube/`), deployed to Google Cloud Storage CDN, and resolved dynamically through a strongly-typed TypeScript registry.
+
+```mermaid
+flowchart LR
+    subgraph DevAssetsPipeline ["Local Dev-Assets Pipeline (dev-assets/hansontube/)"]
+        direction TB
+        RawSources["Master Sources (.jpg, .png)"]
+        SharpPipeline["Sharp WebP Pipeline (Q=85, Effort=6)"]
+        WebPArchives["Optimized WebPs (dev-assets/hansontube/*/webp)"]
+
+        RawSources --> SharpPipeline
+        SharpPipeline --> WebPArchives
+    end
+
+    subgraph GCSStorage ["Google Cloud Storage CDN (portfolio_showcase)"]
+        direction TB
+        GCSBucket["Public GCS Bucket (roles/storage.objectViewer)"]
+        CdnUrls["/images/{category}/{asset}.webp (HTTP 200, max-age=3600)"]
+
+        GCSBucket --> CdnUrls
+    end
+
+    subgraph AppIntegration ["Application Runtime (kxnghans.github.io)"]
+        direction TB
+        AssetRegistry["Single Source of Truth: src/data/assets.ts (ASSET_URLS)"]
+        WorkboxSW["Workbox Service Worker (CacheFirst Strategy)"]
+        Components["Presentation Layer (LazyImage, Slideshows, Cards)"]
+
+        AssetRegistry --> WorkboxSW
+        WorkboxSW --> Components
+    end
+
+    WebPArchives -. "Upload (GCP Storage MCP / gsutil)" .-> GCSBucket
+    CdnUrls --> AssetRegistry
 ```
