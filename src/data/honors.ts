@@ -17,9 +17,9 @@ export const honors: HonorItem[] = [
       title: "USAF Decorations and Medals",
       subtitle: "United States Air Force & Air Forces Central (AFCENT)",
       details: [
-        "Air and Space Commendation Medal (1st Oak Leaf Cluster - Jul 2022): Awarded by Commander 9 AF (AFCENT) for outstanding achievement as NCOIC Centralized Repair Facility at Al Udeid AB, Qatar; managed AFCENT sole Wheel & Tire repair hub ($92M), directing 2,000 shipments across 20 Wings supporting 7 airframes (ISO OFS, OIR, OSS), averted $750K in acquisition costs, and enabled 12,000 flight hours.",
-        "Air Force Commendation Medal (Jan 2021): Awarded by 302 LRS Commander for meritorious service; fulfilled 386 GPC transactions ($179K in <3 weeks), inspected 8 California shelter kits securing 8,000 critical WRM assets ($656K) for USAFE, recouped $130K via DLADS turn-in, and delivered 71 assets ($5.5M) mitigating C-130 fleet hail damage.",
-        "Air Force Achievement Medal (Jul 2018): Awarded by Lieutenant General, USAFCENT at Ali Al Salem AB, Kuwait; synchronized supply automated systems enabling rapid distribution of 14,000 combat equipment assets ($3M) to 1,000 forward-deploying Airmen ISO Operation Inherent Resolve, expedited 148 weapons, and overhauled $7M shelf-life inventory.",
+        "Air and Space Commendation Medal (1st Oak Leaf Cluster - Jul 2022): Awarded by Commander 9 AF (AFCENT) for outstanding service as NCOIC of the Centralized Repair Facility at Al Udeid Air Base, Qatar. Directed operations for AFCENT's sole $92M Wheel & Tire repair hub, coordinating 2,000 shipments across 20 Wings to support 7 airframes (in support of OFS, OIR, and OSS). Averted $750K in acquisition costs and enabled 12,000 flight hours.",
+        "Air Force Commendation Medal (Jan 2021): Awarded by the 302 LRS Commander for meritorious service. Executed 386 Government Purchase Card transactions ($179K) in under 3 weeks. Inspected 8 California shelter kits, securing 8,000 critical war reserve materiel assets ($656K) for USAFE, recouped $130K through DLADS disposition, and delivered 71 mission assets ($5.5M) during C-130 hail damage recovery.",
+        "Air Force Achievement Medal (Jul 2018): Awarded by Lieutenant General, USAFCENT at Ali Al Salem Air Base, Kuwait. Automated supply systems to distribute 14,000 combat assets ($3M) to 1,000 forward-deploying Airmen in support of Operation Inherent Resolve. Expedited 148 weapons and restored $7M in shelf-life inventory.",
       ],
     },
   },

@@ -436,7 +436,7 @@ export const lifetimeValueData: LifetimeValueData = {
         context:
           "Nightly integration testing across classified defense programs ran on unstable servers, taking 10+ hours and lacking formal operational accreditation.",
         action:
-          "Architected a containerized SNO cluster inside the Galaxy Test Bed, authored the formal CONOPS, shepherded it through ARB, SIA, and Classified CARB review boards, and stepped in as Scrum Master during a 50% developer shortfall.",
+          "Architected a containerized SNO cluster inside the Galaxy Test Bed and authored the formal CONOPS, securing approvals through ARB, SIA, and Classified CARB review boards. Stepped in as Scrum Master during a 50% developer reduction to keep sprint commitments on track.",
         result:
           "Secured full production accreditation, cut nightly test runs from 10 hours to 1 hour, and delivered executive live demonstrations on schedule.",
       },
@@ -496,7 +496,7 @@ export const lifetimeValueData: LifetimeValueData = {
         context:
           "Managing high-tempo flightline maintenance and humanitarian evacuation across AFCENT required strict property accountability, contractor oversight, and rapid crisis data handling.",
         action:
-          "Directed AFCENT's sole $92M Wheel & Tire repair hub (2,000 shipments across 20 Wings), negotiated a $5.0M retread program with Boeing-Qatar, restored 29 critical defense assets ($750k returned to inventory), and built automated Power Query ETL pipelines to model shelf-life and burn rates during Operation Allies Refuge.",
+          "Directed AFCENT's sole $92M Wheel & Tire repair hub, coordinating 2,000 shipments across 20 Wings and negotiating a $5.0M retread contract with Boeing-Qatar. Restored 29 critical defense assets ($750k returned to inventory) and built automated Power Query ETL pipelines to model shelf-life and burn rates during Operation Allies Refuge.",
         result:
           "Cut supply errors from 20% to under 5%, slashed nightly reconciliation from 3 hours to 5 minutes, sustained 100% property accountability across 2,216 aeromedical assets ($672k), and enabled 12,000 flight hours.",
       },

@@ -13,7 +13,7 @@ export const certificationsData: CertificationItem[] = [
       subtitle: "Scrum Inc.",
       details: [
         "Certification: Certified in Scrum frameworks, sprint planning, and Agile project delivery.",
-        "Leadership: Facilitating sprint ceremonies, unblocking engineering teams, and tracking sprint velocity.",
+        "Leadership: Facilitates sprint ceremonies, unblocks engineering teams, and tracks sprint velocity.",
         "Values: Focused on iterative releases, transparency, and retrospectives.",
       ],
     },
@@ -75,7 +75,7 @@ export const certificationsData: CertificationItem[] = [
       details: [
         "Accreditation: Medical Service Corps (MSC) Officer Training.",
         "Core Competencies: Healthcare administration, aeromedical evacuation readiness, medical resource management, and defense medical logistics systems.",
-        "Operational Impact: Directs aeromedical equipment readiness for the 34th Aeromedical Evacuation Squadron (AFRC), digitizing medical records archives and sustaining 100% asset accountability across $672K inventory.",
+        "Operational Impact: Directs aeromedical equipment readiness for the 34th Aeromedical Evacuation Squadron (AFRC). Digitized medical records archives, cut audit turnaround by 50%, and sustained 100% asset accountability across 2,216 assets ($672K).",
       ],
     },
   },
