@@ -6,10 +6,10 @@ This document provides an exhaustive security audit and architectural integrity 
 
 ## 1. Executive Summary & Security Topology
 
-Hanson-Tube is an interactive developer portfolio and venture showcase architected as a **Static Single Page Application (SPA)** powered by **React**, **TypeScript**, **Vite**, and **Tailwind CSS**. Operating without a traditional runtime database or backend application server, the attack surface differs fundamentally from monolithic or full-stack architectures:
+Hanson-Tube is an interactive developer portfolio and venture showcase architected as a **Static Single Page Application** powered by **React**, **TypeScript**, **Vite**, and **Tailwind CSS**. Operating without a traditional runtime database or backend application server, the attack surface differs fundamentally from monolithic or full-stack architectures:
 
-- **Zero-Backend Advantage**: Eliminates server-side remote code execution (RCE), SQL injection, server authentication bypasses, and database credential leakage.
-- **Client-Side Focus**: Security focuses on client-side secret leakage prevention, external transactional API protection (EmailJS), Cross-Site Scripting (XSS) / Reverse Tab-nabbing defenses, Regular Expression Denial of Service (ReDoS) prevention, and Service Worker / PWA cache isolation.
+- **Zero-Backend Advantage**: Eliminates server-side Remote Code Execution, SQL injection, server authentication bypasses, and database credential leakage.
+- **Client-Side Focus**: Security focuses on client-side secret leakage prevention, external transactional API protection (EmailJS), Cross-Site Scripting / Reverse Tab-nabbing defenses, Regular Expression Denial of Service prevention, and Service Worker / PWA cache isolation.
 
 ```mermaid
 flowchart LR
@@ -21,7 +21,7 @@ flowchart LR
         ContactForm["Contact Form State (React Hook Form)"]
     end
 
-    subgraph DataLayer["Static Data Boundary (SSOT)"]
+    subgraph DataLayer["Static Data Boundary"]
         StaticTS[("Static TypeScript Modules (src/data/)")]
         MediaAssets[("Optimized WebP Assets (public/assets/)")]
     end
@@ -85,7 +85,7 @@ Evaluating the codebase across all 9 core security audit vectors defined by the 
 
 ### 3.3 Domain 3: Authentication, Authorization & Session Management
 
-- **Public Scope**: The application serves public professional records. No user authentication (JWT, OAuth, session cookies) or role-based access control (RBAC) is implemented or required.
+- **Public Scope**: The application serves public professional records. No user authentication (JWT, OAuth, session cookies) or role-based access control is implemented or required.
 - **State-Based Page Routing**: Navigation is managed via the `activePage` state hook in [`src/App.tsx`](../src/App.tsx#L35-L42). There are no protected administrative routes or sensitive unauthenticated endpoints.
 
 ### 3.4 Domain 4: Rate Limiting & Abuse Prevention (EmailJS)
@@ -132,7 +132,7 @@ Evaluating the codebase across all 9 core security audit vectors defined by the 
 
 ### 3.9 Domain 9: Input Validation, XSS & ReDoS Defense
 
-- **React DOM Escaping**: All dynamic text rendering utilizes standard React JSX data binding (`{text}`), preventing Cross-Site Scripting (XSS). There are zero instances of `dangerouslySetInnerHTML`, `eval()`, or `innerHTML` in the codebase.
+- **React DOM Escaping**: All dynamic text rendering utilizes standard React JSX data binding (`{text}`), preventing Cross-Site Scripting. There are zero instances of `dangerouslySetInnerHTML`, `eval()`, or `innerHTML` in the codebase.
 - **Form Input Validation**: [`src/components/ui/FormField.tsx`](../src/components/ui/FormField.tsx) and [`src/data/formData.ts`](../src/data/formData.ts#L3-L31) enforce required fields and strict email format patterns (`/\S+@\S+\.\S+/`) prior to submission.
 - **ReDoS Protection in Search Engine**:
   - In [`src/utils/searchEngine.ts`](../src/utils/searchEngine.ts#L41-L43), all user input strings are escaped via [`escapeRegExp`](../src/utils/searchEngine.ts#L41) before dynamic regular expressions are constructed:
@@ -159,7 +159,7 @@ Critical: 0 | High: 0 | Medium: 0 | Low: 1 | Informational: 0 | Remediated: 3
 
 - **Location**: [`src/pages/ContactPage.tsx:30-55`](../src/pages/ContactPage.tsx#L30-L55), [`src/pages/ContactPage.test.tsx`](../src/pages/ContactPage.test.tsx)
 - **Status**: **Remediated & Verified**.
-- **Implementation**: `SUBMIT_COOLDOWN_MS = 60 * 1000` (60s) client-side submission timestamp throttling in `localStorage` with remaining time calculation, Sonner error toast on cooldown violation, EmailJS domain whitelist, and comprehensive Vitest unit test coverage.
+- **Implementation**: `SUBMIT_COOLDOWN_MS = 60 * 1000` (60s) client-side submission timestamp throttling in `localStorage` with remaining time calculation, Sonner error toast on cooldown violation, EmailJS domain whitelist, and 26 passing Vitest test suites (113 tests).
 
 #### `VIBE-002`: Edge Security Headers & CDN Hardening (Staged & Documented)
 
@@ -190,7 +190,7 @@ Critical: 0 | High: 0 | Medium: 0 | Low: 1 | Informational: 0 | Remediated: 3
 | Priority | Issue ID   | Area                      | Action Item                                                                       | Status          |
 | :------- | :--------- | :------------------------ | :-------------------------------------------------------------------------------- | :-------------- |
 | **P1**   | `VIBE-001` | Anti-Spam / Rate Limiting | Client submission cooldown timer in `ContactPage.tsx` + unit test suite.          | **Completed**   |
-| **P2**   | `VIBE-002` | Edge Security             | Stage Edge Rules for Content-Security-Policy (CSP), HSTS, and nosniff.            | **Completed**   |
+| **P2**   | `VIBE-002` | Edge Security             | Stage Edge Rules for Content-Security-Policy, HSTS, and nosniff.                  | **Completed**   |
 | **P3**   | `VIBE-004` | Media Assets              | Verify GCP Cloud Storage Uniform Bucket-Level Access & objectViewer IAM.          | **Completed**   |
 | **P4**   | `VIBE-003` | Automated Verification    | Set up Playwright E2E browser test pipeline for cross-browser regression testing. | Phase 6 Roadmap |
 
@@ -198,10 +198,10 @@ Critical: 0 | High: 0 | Medium: 0 | Low: 1 | Informational: 0 | Remediated: 3
 
 ## 6. Verification & Compliance Record
 
-| Verification Check           | Tool / Standard                | Result                     | Notes                                                                                  |
-| :--------------------------- | :----------------------------- | :------------------------- | :------------------------------------------------------------------------------------- |
-| **Linter Zero-Tolerance**    | ESLint (`pnpm run lint`)       | **Passed (0 errors)**      | Full compliance with TypeScript and React rules.                                       |
-| **Unit & Integration Suite** | Vitest + RTL (`pnpm test:run`) | **Passed (113/113 tests)** | 26 test suites verified across contexts, pages, hooks, modals, and search engine.      |
+| Verification Check           | Tool / Standard                             | Result                     | Notes                                                                                  |
+| :--------------------------- | :------------------------------------------ | :------------------------- | :------------------------------------------------------------------------------------- |
+| **Linter Zero-Tolerance**    | ESLint (`pnpm run lint`)                    | **Passed (0 errors)**      | Full compliance with TypeScript and React rules.                                       |
+| **Unit & Integration Suite** | Vitest + React Testing Library (`pnpm test:run`) | **Passed (113/113 tests)** | 26 test suites verified across contexts, pages, hooks, modals, and search engine.      |
 | **Secrets Scan**             | Gitleaks / Pattern Regex       | **Passed (0 leaks)**       | Zero credentials or private tokens detected in git tracked files.                      |
 | **DOM Sanitization**         | Static Code Analysis           | **Passed (0 sinks)**       | Zero `dangerouslySetInnerHTML` or `eval` sinks detected.                               |
 | **Tab-Nabbing Defense**      | AST Audit                      | **Passed (100%)**          | All external anchor tags implement `target="_blank"` with `rel="noopener noreferrer"`. |

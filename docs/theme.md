@@ -6,7 +6,7 @@ Hanson-Tube employs a Dark Neumorphic design system. The aesthetic relies on pre
 
 ---
 
-## Single Source of Truth (SSOT) Architecture
+## Single Source of Truth Architecture
 
 All tokens, styles, and themes originate from four authoritative layers:
 

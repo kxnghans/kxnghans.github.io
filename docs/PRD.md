@@ -1,4 +1,4 @@
-# Product Requirements Document (PRD) - Hanson-Tube
+# Product Requirements Document - Hanson-Tube
 
 ## Vision
 
@@ -20,22 +20,21 @@ To guide UX complexity, error handling, and component architecture, all features
 
 _Intent: The user is trying to accomplish a specific, critical goal (e.g., hiring, contacting, verifying credentials). Failure here results in immediate drop-off._
 
-- **Contact System (EmailJS Integration)**: Must have robust validation, clear error states, and immediate Toast feedback upon success/failure.
-- **Project Links & Verification**: External links to live demos and GitHub repositories. Must open in new tabs (`target="_blank"`) securely (`rel="noopener noreferrer"`).
-- **Work Experience & Education Timelines**: Structured, chronological rendering of professional milestones. The data mapping must be flawless and highly legible.
-- **Lifetime Value & ROI Intelligence**: Verifiable quantitative ROI metrics ($9.6M+ savings, 36x peak acceleration, 705k+ hours reclaimed, 0.0% audit error rates, 100% engine test coverage) and accredited qualitative governance pillars.
-- **Mobile Navigation**: The sidebar toggle must be 100% reliable on viewports < 1024px to prevent content blocking.
+- **Contact System (EmailJS Integration)**: Requires strict validation, clear error states, and immediate toast feedback on send attempts.
+- **Project Links & Verification**: External links to live demos and repositories open in new tabs (`target="_blank"`) with `rel="noopener noreferrer"`.
+- **Work Experience & Education Timelines**: Chronological milestones with direct metric callouts and legible card summaries.
+- **Lifetime Value & ROI Intelligence**: Quantified ROI metrics ($9.6M+ savings, 36x peak acceleration, 705k+ hours reclaimed, 0.0% audit error rates, 100% engine test coverage) and accredited governance pillars.
+- **Mobile Navigation**: Sidebar toggle is responsive and reliable on viewports under 1024px.
 
-### 2. Exploratory & Social (High Engagement & "Delight" Required)
+### 2. Exploratory & Social (High Engagement & Interaction)
 
-_Intent: The user is passively browsing, evaluating the aesthetic "feel" and technical depth of the portfolio._
+_Intent: The user is browsing, evaluating visual presentation and technical depth._
 
-- **Lifetime Value Slicers & Neumorphic Dropdowns**: Multi-dimensional slicers (Domain Sector, Business Impact, Career Era) allowing hiring managers and technical leads to filter ROI metrics, financial ledgers, and CAR case studies.
-- **Voice-Integrated Search & Smart Recommendations**: A "delight" feature allowing natural language navigation and instant query filtering. Surfaces category-diverse recommended topics (flagship ventures, core TPM skills, military honors, career milestones) upon search focus with empty query, transitioning seamlessly into live search on keystrokes. Requires graceful degradation if microphone access is denied or the Speech API is unsupported.
-
-- **Neumorphic UI Engine**: The dark/light mode toggle and the consistent application of inset/outset shadows that react to user hover/active states.
-- **Interactive Slideshows & Modals**: Dynamic project and skill carousels on the homepage, expanding into deep-dive overlays. These require smooth entry/exit animations (300ms bezier curves).
-- **"Hanson-Tube" Branding**: The YouTube-inspired header and play-icon interactions that establish the overarching theme.
+- **Lifetime Value Slicers & Dropdowns**: Multi-dimensional slicers (Domain Sector, Business Impact, Career Era) to filter ROI metrics, financial ledgers, and case studies.
+- **Voice-Integrated Search & Smart Recommendations**: Natural language navigation and query filtering. Surfaces recommended topics (flagship ventures, core TPM skills, military honors, career milestones) when focused with an empty query, switching directly to live search on keystrokes. Shows a toast alert if the microphone is unavailable or unsupported.
+- **Neumorphic UI Engine**: Dark/light mode toggle with inset and outset shadows responding to hover and active states.
+- **Interactive Slideshows & Modals**: Project and skill carousels on the homepage with deep-dive modal dialogs.
+- **Hanson-Tube Branding**: YouTube-inspired header and play-icon branding establishing the portfolio theme.
 
 ---
 

@@ -8,7 +8,7 @@ This document codifies the core architecture, constraints, and interaction guide
 - **Styling**: Tailwind CSS (`@tailwindcss/vite`), integrated with custom `@theme` and Neumorphic tokens in `src/index.css`.
 - **Build/Routing**: Vite with `@vitejs/plugin-react-swc`. The app is an SPA using custom state-based routing (`activePage` in `App.tsx`) with `React.lazy` code splitting, NOT `react-router-dom`.
 - **Package Manager**: pnpm.
-- **Testing**: Vitest with React Testing Library (RTL) and JSDOM.
+- **Testing**: Vitest with React Testing Library and JSDOM.
 - **Form/Validation**: React Hook Form, Sonner for Toast notifications, EmailJS for contact dispatch.
 
 ---
@@ -18,7 +18,7 @@ This document codifies the core architecture, constraints, and interaction guide
 - **Zero-Tolerance ESLint Policy**: All generated code must be free of linting errors (`pnpm run lint`). Do not disable rules (e.g., `// eslint-disable-next-line`) without explicit user permission.
 - **Strict Dependency Management**: Do not introduce new dependencies (e.g., UI libraries like Material UI or Chakra) unless explicitly requested. Rely on the existing primitive components in `src/components/ui`.
 - **Performance Targets**: Keep components lightweight. Favor `useMemo` and `useCallback` when filtering or sorting data (e.g., search results) to prevent unnecessary re-renders.
-- **Data Immutability**: The `src/data/` layer is the Single Source of Truth (SSOT). All UI components must read from these static files. DO NOT hardcode content directly into components.
+- **Data Immutability**: The `src/data/` layer is the Single Source of Truth. All UI components must read from these static files. DO NOT hardcode content directly into components.
 - **Accessibility (a11y)**: Semantic HTML tags (`<nav>`, `<main>`, `<article>`) and `aria-labels` are mandatory for all interactive elements, especially custom inputs and buttons.
 
 ---

@@ -2,7 +2,7 @@
 
 ## Architectural Rationale
 
-Hanson-Tube is intentionally designed as a **Static Single Page Application (SPA)** with a **zero-backend architecture**. By relying entirely on client-side logic and static asset delivery, the platform guarantees:
+Hanson-Tube is intentionally designed as a **Static Single Page Application** with a **zero-backend architecture**. By relying entirely on client-side logic and static asset delivery, the platform guarantees:
 
 1. **Maximum Uptime**: Dependent only on CDN edge distribution (e.g., GitHub Pages).
 2. **Zero Latency Data**: All domain data is compiled directly into static JavaScript modules, eliminating API round-trips for content loading.
@@ -58,7 +58,7 @@ When utilizing Google Cloud Storage (`gs://portfolio_showcase`) as a fallback or
 
 ---
 
-## Role-Based Access Control (RBAC)
+## Role-Based Access Control
 
 **Status: Not Applicable.**
 All portfolio content is public. Access control is maintained at the repository and deployment level via GitHub branch protection and commit signing.

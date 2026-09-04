@@ -9,7 +9,7 @@ Hanson-Tube enforces a dual-verification strategy focusing on logical unit resil
 ## Core Tooling & Test Pipeline
 
 - **Test Runner**: Vitest with native Vite integration for rapid ESM-native execution.
-- **DOM Verification**: React Testing Library (RTL) paired with `@testing-library/jest-dom`.
+- **DOM Verification**: React Testing Library paired with `@testing-library/jest-dom`.
 - **Environment**: JSDOM.
 - **Linting & Code Standards**: ESLint Flat Config (`eslint.config.js`) enforcing `react-hooks` and `jsx-a11y` accessibility rules.
 - **Formatting**: Prettier with `prettier-plugin-tailwindcss`.

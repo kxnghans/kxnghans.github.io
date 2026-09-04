@@ -34,7 +34,7 @@ describe("App", () => {
     ).toBeInTheDocument();
   });
 
-  it("navigates across sidebar routes seamlessly", async () => {
+  it("navigates across sidebar routes directly", async () => {
     renderApp();
 
     const sidebar = document.querySelector("aside")!;

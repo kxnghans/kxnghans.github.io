@@ -54,7 +54,7 @@ kxnghans.github.io/ [Root]
 │   ├── context/              # [Global State Domain] State orchestrators
 │   │   ├── SearchContext.tsx # Search, Voice, and Modal logic hub
 │   │   └── ThemeContext.tsx  # Global dark/light theme state & persistence
-│   ├── data/                 # [Domain Data] Static content definitions (SSOT)
+│   ├── data/                 # [Domain Data] Static content definitions
 │   │   ├── certifications.ts # Certifications & credentials
 │   │   ├── community.ts      # Community involvement & leadership
 │   │   ├── contactData.ts    # Contact channels & metadata
@@ -143,7 +143,7 @@ kxnghans.github.io/ [Root]
 
 - **Logic**: Prefer functional components and hooks over class components.
 - **Styling**: Tailwind CSS utility classes; reserve `src/index.css` for custom `@theme` variables and neumorphic shadow definitions.
-- **Data**: Keep data decoupled from UI; all content resides in `src/data/` as the Single Source of Truth (SSOT).
+- **Data**: Keep data decoupled from UI; all content resides in `src/data/` as the Single Source of Truth.
 - **Testing**: UI components, custom hooks, and pure utilities must maintain unit test coverage in `*.test.tsx` and `*.test.ts`.
 
 ---

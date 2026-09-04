@@ -6,7 +6,7 @@ This document maps the architectural structure, component trees, and runtime dat
 
 ## 1. System Topology & Infrastructure
 
-Hanson-Tube runs as a client-side Single Page Application (SPA) hosted on GitHub Pages CDN with zero server-side infrastructure. Built on **React**, **TypeScript**, **Vite**, and **Tailwind CSS**, all domain data is strongly-typed and bundled into static modules with route code-splitting and Workbox PWA service-worker caching.
+Hanson-Tube runs as a client-side Single Page Application hosted on GitHub Pages CDN with zero server-side infrastructure. Built on **React**, **TypeScript**, **Vite**, and **Tailwind CSS**, all domain data is strongly-typed and bundled into static modules with route code-splitting and Workbox PWA service-worker caching.
 
 ```mermaid
 flowchart LR
