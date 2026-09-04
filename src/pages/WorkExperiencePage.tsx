@@ -4,6 +4,7 @@ import DetailModal from "../components/modals/DetailModal";
 import LazyImage from "../components/ui/LazyImage";
 import { work } from "../data";
 import { UI_SURFACES, UI_TYPOGRAPHY } from "../theme";
+import SummaryTextLines from "../components/ui/SummaryTextLines";
 import type { WorkDetails } from "../types/data";
 
 const WorkExperiencePage = () => {
@@ -46,33 +47,7 @@ const WorkExperiencePage = () => {
                 <div
                   className={`mt-2 h-24 overflow-hidden ${UI_TYPOGRAPHY.cardSummary}`}
                 >
-                  {job.summary.map((line, i) => {
-                    if (i === 0) {
-                      return (
-                        <p key={i} className="truncate">
-                          <strong>{line}</strong>
-                        </p>
-                      );
-                    }
-                    const colonIndex = line.indexOf(":");
-                    if (colonIndex !== -1) {
-                      const label = line.slice(0, colonIndex + 1);
-                      const val = line.slice(colonIndex + 1);
-                      return (
-                        <p key={i} className="truncate">
-                          <strong className="text-gray-800 dark:text-gray-200">
-                            {label}
-                          </strong>
-                          {val}
-                        </p>
-                      );
-                    }
-                    return (
-                      <p key={i} className="truncate">
-                        {line}
-                      </p>
-                    );
-                  })}
+                  <SummaryTextLines lines={job.summary} boldFirstLine={true} />
                 </div>
               </div>
             </div>

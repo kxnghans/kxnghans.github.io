@@ -96,17 +96,21 @@ const FormField = <TFieldValues extends FieldValues = FieldValues>({
     registeredProps.onBlur(e);
   };
 
+  const errorObj = errors[name];
+  const errorId = `${name}-error`;
+
   const commonProps = {
     ...registeredProps,
     placeholder,
+    "aria-label": placeholder,
+    "aria-invalid": Boolean(errorObj),
+    "aria-describedby": errorObj ? errorId : undefined,
     onChange: handleChange,
     onFocus: () => setIsFocused(true),
     onBlur: handleBlur,
     onAnimationStart: handleAutoFill,
     style: getInputStyle(),
   };
-
-  const errorObj = errors[name];
 
   return (
     <div>
@@ -116,7 +120,7 @@ const FormField = <TFieldValues extends FieldValues = FieldValues>({
         <input type={type} {...commonProps} className={UI_INPUTS.field} />
       )}
       {errorObj && (
-        <p className={UI_TYPOGRAPHY.errorText}>
+        <p id={errorId} role="alert" className={UI_TYPOGRAPHY.errorText}>
           {errorObj.message ? String(errorObj.message) : ""}
         </p>
       )}

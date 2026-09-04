@@ -1,6 +1,14 @@
-import { useState } from "react";
+/**
+ * @file ValueDomainDonutChart.tsx
+ * @description Radial donut distribution chart visualizing career footprint allocation
+ * across defense, enterprise, military, software, and academic domains.
+ */
+
+import { useState, useMemo } from "react";
 import type { DistributionPoint } from "../../../types/data";
 import { UI_SURFACES } from "../../../theme";
+import DonutLegend from "./DonutLegend";
+import DonutDetailBox from "./DonutDetailBox";
 
 export interface ValueDomainDonutChartProps {
   data: DistributionPoint[];
@@ -24,27 +32,30 @@ export default function ValueDomainDonutChart({
   const baseStrokeWidth = 12;
   const gapSize = 5;
 
-  let cumulativeOffset = 0;
-  const segments = data.map((item) => {
-    const rawDash = (item.percentage / 100) * circumference;
-    const strokeDash = Math.max(rawDash - baseStrokeWidth - gapSize, 2);
-    const offset = cumulativeOffset + (baseStrokeWidth + gapSize) / 2;
+  // Memoize radial stroke segment calculations and non-overlapping hit targets
+  const segments = useMemo(() => {
+    let cumulativeOffset = 0;
+    return data.map((item) => {
+      const rawDash = (item.percentage / 100) * circumference;
+      const strokeDash = Math.max(rawDash - baseStrokeWidth - gapSize, 2);
+      const offset = cumulativeOffset + (baseStrokeWidth + gapSize) / 2;
 
-    // Non-overlapping hit area dash and offset with butt linecap
-    const hitDash = Math.max(rawDash - 1, 1);
-    const hitOffset = cumulativeOffset + 0.5;
+      // Non-overlapping hit area dash and offset with butt linecap
+      const hitDash = Math.max(rawDash - 1, 1);
+      const hitOffset = cumulativeOffset + 0.5;
 
-    cumulativeOffset += rawDash;
+      cumulativeOffset += rawDash;
 
-    return {
-      ...item,
-      rawDash,
-      strokeDasharray: `${strokeDash} ${circumference - strokeDash}`,
-      strokeDashoffset: -offset,
-      hitDasharray: `${hitDash} ${circumference - hitDash}`,
-      hitDashoffset: -hitOffset,
-    };
-  });
+      return {
+        ...item,
+        rawDash,
+        strokeDasharray: `${strokeDash} ${circumference - strokeDash}`,
+        strokeDashoffset: -offset,
+        hitDasharray: `${hitDash} ${circumference - hitDash}`,
+        hitDashoffset: -hitOffset,
+      };
+    });
+  }, [data, circumference]);
 
   const activeIdx =
     hoveredIdx !== null
@@ -158,77 +169,16 @@ export default function ValueDomainDonutChart({
         </div>
 
         {/* Legend */}
-        <div className="w-full flex-1 space-y-1.5">
-          {data.map((item, i) => {
-            const isSelected = activeIdx === i;
-            const isAnyHovered = hoveredIdx !== null;
-            const rowOpacity = isSelected
-              ? "opacity-100"
-              : isAnyHovered
-                ? "opacity-35"
-                : "opacity-100";
-
-            return (
-              <button
-                key={item.name}
-                type="button"
-                onMouseEnter={() => setHoveredIdx(i)}
-                onMouseLeave={() => setHoveredIdx(null)}
-                className={`flex w-full cursor-pointer items-center justify-between rounded-lg px-2 py-1 text-left text-xs transition-all ${rowOpacity} ${
-                  isSelected
-                    ? "bg-gray-200/80 font-bold text-gray-900 dark:bg-black/40 dark:text-white"
-                    : "text-gray-700 hover:bg-gray-200/40 dark:text-gray-300 dark:hover:bg-black/20"
-                }`}
-              >
-                <div className="flex items-center gap-2 truncate">
-                  <div
-                    className="h-2.5 w-2.5 shrink-0 rounded-full"
-                    style={{ backgroundColor: item.color }}
-                  />
-                  <span className="truncate">{item.name}</span>
-                </div>
-                <span className="ml-2 shrink-0 font-black text-gray-900 dark:text-white">
-                  {item.percentage}%
-                </span>
-              </button>
-            );
-          })}
-        </div>
+        <DonutLegend
+          data={data}
+          activeIdx={activeIdx}
+          hoveredIdx={hoveredIdx}
+          onHoverItem={setHoveredIdx}
+        />
       </div>
 
       {/* Interactive Detail Box (fixed height to prevent layout shift) */}
-      <div className="mt-3 flex h-[68px] flex-col justify-center rounded-xl border border-gray-300/60 bg-gray-200/50 p-2.5 text-xs transition-all dark:border-gray-700/60 dark:bg-black/30">
-        {activeItem ? (
-          <div>
-            <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1.5 font-bold text-gray-800 dark:text-gray-200">
-                <span
-                  className="inline-block h-2 w-2 shrink-0 rounded-full"
-                  style={{ backgroundColor: activeItem.color }}
-                />
-                <strong style={{ color: activeItem.color }}>
-                  {activeItem.name}
-                </strong>
-              </span>
-              <span
-                style={{ color: activeItem.color }}
-                className="shrink-0 text-xs font-black"
-              >
-                {activeItem.percentage}% Allocation
-              </span>
-            </div>
-            <div className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-gray-600 dark:text-gray-400">
-              Accounts for <strong>{activeItem.percentage}%</strong> of overall
-              career impact value: {activeItem.description}
-            </div>
-          </div>
-        ) : (
-          <div className="flex h-full items-center justify-center text-center text-[11px] text-gray-500 dark:text-gray-400">
-            Hover over ring segments or legend rows to inspect sector footprint
-            & impact depth.
-          </div>
-        )}
-      </div>
+      <DonutDetailBox activeItem={activeItem} />
     </div>
   );
 }

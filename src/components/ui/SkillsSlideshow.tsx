@@ -1,70 +1,23 @@
+import type { ReactElement } from "react";
 import Slideshow from "./Slideshow";
 import DetailModal from "../modals/DetailModal";
 import LazyImage from "./LazyImage";
 import { skills } from "../../data";
 import { useSearch } from "../../context/SearchContext";
-import type { SkillCategory, SkillDetail } from "../../types/data";
+import type { SkillCategory } from "../../types/data";
 
 interface SkillCardContentProps {
   item: SkillCategory;
 }
 
-const SkillCardContent = ({ item }: SkillCardContentProps) => {
-  const createSummary = () => {
-    let allDetails: { name: string; priority: number }[] = [];
-    if (item.details) {
-      allDetails = item.details.map((d) =>
-        typeof d === "string" ? { name: d, priority: 99 } : d,
-      );
-      allDetails.sort(
-        (a: SkillDetail, b: SkillDetail) => a.priority - b.priority,
-      );
-    }
-
-    if (item.subcategories) {
-      item.subcategories.forEach((subcat) => {
-        if (subcat.details) {
-          allDetails = allDetails.concat(
-            subcat.details.map((d) => ({
-              name: `${subcat.title}: ${d}`,
-              priority: 50,
-            })),
-          );
-        }
-      });
-    }
-
-    // Accumulate items that fit comfortably within ~55 characters (2 lines of text)
-    const selected: string[] = [];
-    let currentLength = 0;
-    const maxChars = 55;
-
-    for (const detail of allDetails) {
-      const name = detail.name;
-      // If we already have at least 2 items and adding another exceeds maxChars, stop
-      if (selected.length >= 2 && currentLength + name.length > maxChars) {
-        break;
-      }
-      selected.push(name);
-      currentLength += name.length + 2; // account for comma and space
-      if (currentLength >= maxChars) {
-        break;
-      }
-    }
-
-    const summaryText = selected.join(", ");
-
-    return (
-      <>
-        {summaryText}
-        <span className="text-red-500 dark:text-red-400">...</span>
-      </>
-    );
-  };
+// Renders preview summary badges for a skill category card
+const SkillCardContent = ({ item }: SkillCardContentProps): ReactElement => {
+  const summaryText = item.summary?.join(", ");
 
   return (
     <div className="h-16 overflow-hidden text-left text-xs text-gray-600 sm:text-sm dark:text-gray-400">
-      {createSummary()}
+      {summaryText}
+      <span className="text-red-500 dark:text-red-400">...</span>
     </div>
   );
 };
@@ -73,7 +26,8 @@ interface SkillCardProps {
   item: SkillCategory;
 }
 
-const SkillCard = ({ item }: SkillCardProps) => (
+// Renders the presentation card within the Skills slideshow
+const SkillCard = ({ item }: SkillCardProps): ReactElement => (
   <>
     <LazyImage
       src={item.imageUrl}
@@ -90,7 +44,7 @@ const SkillCard = ({ item }: SkillCardProps) => (
   </>
 );
 
-const SkillsSlideshow = () => {
+const SkillsSlideshow = (): ReactElement => {
   const { activeSlides } = useSearch();
   return (
     <Slideshow<SkillCategory>

@@ -56,11 +56,10 @@ describe("Header", () => {
 
   it("shows error toast when mic is clicked and speech is not supported", () => {
     // Force SpeechRecognition to be undefined
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const win = window as any;
-    const originalSpeechRecognition = win.SpeechRecognition;
-    delete win.SpeechRecognition;
-    delete win.webkitSpeechRecognition;
+    const originalSpeechRecognition = window.SpeechRecognition;
+    const originalWebkit = window.webkitSpeechRecognition;
+    delete window.SpeechRecognition;
+    delete window.webkitSpeechRecognition;
 
     renderHeader();
 
@@ -73,8 +72,8 @@ describe("Header", () => {
     );
 
     // Restore
-    win.SpeechRecognition = originalSpeechRecognition;
-    win.webkitSpeechRecognition = originalSpeechRecognition;
+    window.SpeechRecognition = originalSpeechRecognition;
+    window.webkitSpeechRecognition = originalWebkit;
   });
 
   it("focuses search input when Ctrl+K or '/' hotkey is pressed", () => {

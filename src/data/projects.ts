@@ -1,4 +1,4 @@
-import type { ProjectItem } from "../types/data";
+import type { ProjectItem, ProjectDetails } from "../types/data";
 
 // Portfolio Projects Dataset (SSOT)
 // Sourced from hands-on engineering implementations, venture products, and academic research.
@@ -729,3 +729,37 @@ export const projectData: ProjectItem[] = [
     },
   },
 ];
+
+// In-memory O(1) project lookup index mapping normalized keywords to ProjectDetails
+export const projectLookupMap = new Map<string, ProjectDetails>();
+
+projectData.forEach((project) => {
+  const normTitle = project.title.toLowerCase();
+  projectLookupMap.set(normTitle, project.details);
+  // Index primary venture and technology keywords for fast cross-modal linking
+  const keyTokens = normTitle.split(/[\s–—\-()]+/).filter(Boolean);
+  keyTokens.forEach((token) => {
+    if (token.length >= 4 && !projectLookupMap.has(token)) {
+      projectLookupMap.set(token, project.details);
+    }
+  });
+});
+
+/**
+ * Resolves a ProjectDetails reference from a label using O(1) map lookup
+ * with keyword fallback for cross-modal linking.
+ */
+export const findProjectByLabel = (
+  label: string,
+): ProjectDetails | undefined => {
+  const normalized = label.toLowerCase().trim();
+  const directMatch = projectLookupMap.get(normalized);
+  if (directMatch) return directMatch;
+
+  for (const [key, details] of projectLookupMap.entries()) {
+    if (normalized.includes(key) || key.includes(normalized)) {
+      return details;
+    }
+  }
+  return undefined;
+};

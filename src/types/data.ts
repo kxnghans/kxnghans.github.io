@@ -42,6 +42,7 @@ export interface SkillModalDetails {
 export interface SkillCategory {
   title: string;
   imageUrl: string;
+  summary?: string[];
   details: (string | SkillDetail)[];
   exposure?: string[];
   subcategories?: SkillSubcategory[];

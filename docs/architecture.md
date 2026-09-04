@@ -43,7 +43,7 @@ flowchart LR
 | **App Shell** | Manages `activePage`, PWA lifecycle, hotkeys, and layout. | [`App.tsx`](../src/App.tsx), [`Header.tsx`](../src/components/layout/Header.tsx) |
 | **Static Data** | Single Source of Truth for projects, skills, and work history. | [`src/data/*.ts`](../src/data) |
 | **Search & Indexing** | In-memory token scoring, weighted ranking, and regex snippets. | [`searchEngine.ts`](../src/utils/searchEngine.ts), [`searchableData.ts`](../src/utils/searchableData.ts), [`searchUtils.tsx`](../src/components/search/searchUtils.tsx) |
-| **Hooks & a11y** | Focus containment, PWA registration, and speech recognition. | [`useFocusTrap.ts`](../src/hooks/useFocusTrap.ts), [`usePWA.ts`](../src/hooks/usePWA.ts) |
+| **Hooks & a11y** | Voice search, hotkeys, responsive sidebar, form state, focus trap, and PWA registration. | [`useVoiceSearch.ts`](../src/hooks/useVoiceSearch.ts), [`useSearchHotkeys.ts`](../src/hooks/useSearchHotkeys.ts), [`useResponsiveSidebar.ts`](../src/hooks/useResponsiveSidebar.ts), [`useContactForm.ts`](../src/hooks/useContactForm.ts), [`useFocusTrap.ts`](../src/hooks/useFocusTrap.ts), [`usePWA.ts`](../src/hooks/usePWA.ts) |
 | **External APIs** | Contact email dispatch and browser speech recognition. | EmailJS REST, Browser Web Speech API |
 
 ---
@@ -89,6 +89,8 @@ flowchart LR
         FormComp["FormField.tsx"]
         LazyImg["LazyImage.tsx"]
         FilterDrop["FilterDropdown.tsx"]
+        SummaryText["SummaryTextLines.tsx"]
+        PageSkel["PageSkeleton.tsx"]
     end
 
     subgraph ModalLayer["Overlays (src/components/modals/)"]

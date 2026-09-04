@@ -1,7 +1,16 @@
-import { useState } from "react";
+/**
+ * @file ValueTimelineAreaChart.tsx
+ * @description Interactive dual-series area and line chart depicting cumulative cost savings ($M)
+ * and reclaimed operational hours across career milestones.
+ */
+
+import { useState, useMemo } from "react";
 import { useTheme } from "../../../context/ThemeContext";
 import { UI_SURFACES } from "../../../theme";
 import type { TimelinePoint } from "../../../types/data";
+import { smoothPath } from "./chartUtils";
+import TimelineHeader from "./TimelineHeader";
+import TimelineDetailBox from "./TimelineDetailBox";
 
 export interface ValueTimelineAreaChartProps {
   data: TimelinePoint[];
@@ -29,7 +38,39 @@ export default function ValueTimelineAreaChart({
 
   const activeItem = activeIdx !== null ? data[activeIdx] : undefined;
 
-  if (data.length === 0) {
+  // Memoize geometry scales and spline interpolation paths across timeline points
+  const chartGeometry = useMemo(() => {
+    if (data.length === 0) return null;
+
+    const minX = Math.min(...data.map((d) => d.year));
+    const maxX = Math.max(...data.map((d) => d.year));
+    const maxRoi = Math.max(...data.map((d) => d.cumulativeROI)) * 1.12 || 1;
+    const maxHrs = Math.max(...data.map((d) => d.cumulativeHours)) * 1.12 || 1;
+
+    const x = (yr: number) =>
+      PAD_L + ((yr - minX) / (maxX - minX || 1)) * (W - PAD_L - PAD_R);
+    const yRoi = (v: number) => H - PAD_B - (v / maxRoi) * (H - PAD_T - PAD_B);
+    const yHrs = (v: number) => H - PAD_B - (v / maxHrs) * (H - PAD_T - PAD_B);
+
+    const roiPts = data.map((d) => ({
+      cx: x(d.year),
+      cy: yRoi(d.cumulativeROI),
+    }));
+    const hrsPts = data.map((d) => ({
+      cx: x(d.year),
+      cy: yHrs(d.cumulativeHours),
+    }));
+
+    const roiCurve = smoothPath(roiPts);
+    const areaPath = `${roiCurve} L${roiPts[roiPts.length - 1].cx},${
+      H - PAD_B
+    } L${roiPts[0].cx},${H - PAD_B} Z`;
+    const hrsCurve = smoothPath(hrsPts);
+
+    return { roiPts, hrsPts, roiCurve, areaPath, hrsCurve };
+  }, [data]);
+
+  if (data.length === 0 || !chartGeometry) {
     return (
       <div className={UI_SURFACES.chartCard}>
         <TimelineHeader count={0} />
@@ -43,49 +84,7 @@ export default function ValueTimelineAreaChart({
     );
   }
 
-  const minX = Math.min(...data.map((d) => d.year));
-  const maxX = Math.max(...data.map((d) => d.year));
-  const maxRoi = Math.max(...data.map((d) => d.cumulativeROI)) * 1.12 || 1;
-  const maxHrs = Math.max(...data.map((d) => d.cumulativeHours)) * 1.12 || 1;
-
-  const x = (yr: number) =>
-    PAD_L + ((yr - minX) / (maxX - minX || 1)) * (W - PAD_L - PAD_R);
-  const yRoi = (v: number) => H - PAD_B - (v / maxRoi) * (H - PAD_T - PAD_B);
-  const yHrs = (v: number) => H - PAD_B - (v / maxHrs) * (H - PAD_T - PAD_B);
-
-  const roiPts = data.map((d) => ({
-    cx: x(d.year),
-    cy: yRoi(d.cumulativeROI),
-  }));
-  const hrsPts = data.map((d) => ({
-    cx: x(d.year),
-    cy: yHrs(d.cumulativeHours),
-  }));
-
-  // Catmull-Rom → cubic Bézier smoothing for gentle arcs between points
-  const smoothPath = (pts: { cx: number; cy: number }[]) => {
-    if (pts.length < 2) return pts.map((p) => `M${p.cx},${p.cy}`).join(" ");
-    let d = `M${pts[0].cx.toFixed(2)},${pts[0].cy.toFixed(2)}`;
-    for (let i = 0; i < pts.length - 1; i++) {
-      const p0 = pts[i - 1] ?? pts[i];
-      const p1 = pts[i];
-      const p2 = pts[i + 1];
-      const p3 = pts[i + 2] ?? p2;
-
-      const cp1x = p1.cx + (p2.cx - p0.cx) / 6;
-      const cp1y = p1.cy + (p2.cy - p0.cy) / 6;
-      const cp2x = p2.cx - (p3.cx - p1.cx) / 6;
-      const cp2y = p2.cy - (p3.cy - p1.cy) / 6;
-
-      d += ` C${cp1x.toFixed(2)},${cp1y.toFixed(2)} ${cp2x.toFixed(2)},${cp2y.toFixed(2)} ${p2.cx.toFixed(2)},${p2.cy.toFixed(2)}`;
-    }
-    return d;
-  };
-
-  const roiCurve = smoothPath(roiPts);
-  const areaPath = `${roiCurve} L${roiPts[roiPts.length - 1].cx},${
-    H - PAD_B
-  } L${roiPts[0].cx},${H - PAD_B} Z`;
+  const { roiPts, hrsPts, roiCurve, areaPath, hrsCurve } = chartGeometry;
 
   return (
     <div className={UI_SURFACES.chartCard}>
@@ -149,7 +148,7 @@ export default function ValueTimelineAreaChart({
 
         {/* Cumulative hours line */}
         <path
-          d={smoothPath(hrsPts)}
+          d={hrsCurve}
           fill="none"
           stroke="currentColor"
           strokeWidth="2.5"
@@ -215,8 +214,6 @@ export default function ValueTimelineAreaChart({
                       ? "drop-shadow(0 0 6px rgba(239, 68, 68, 0.6))"
                       : "none",
                 }}
-                onMouseEnter={() => setActiveIdx(i)}
-                onMouseLeave={() => setActiveIdx(null)}
               >
                 <title>{`${d.displayROI} — ${d.milestone}`}</title>
               </circle>
@@ -230,8 +227,6 @@ export default function ValueTimelineAreaChart({
                 style={{
                   transition: "r 260ms cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
-                onMouseEnter={() => setActiveIdx(i)}
-                onMouseLeave={() => setActiveIdx(null)}
               >
                 <title>{`${d.displayHours} — ${d.milestone}`}</title>
               </circle>
@@ -269,61 +264,7 @@ export default function ValueTimelineAreaChart({
         })}
       </svg>
 
-      {/* Interactive Detail Box */}
-      <div className="mt-3 min-h-[52px] rounded-xl border border-gray-300/60 bg-gray-200/50 p-2.5 text-xs transition-all dark:border-gray-700/60 dark:bg-black/30">
-        {activeItem ? (
-          <div>
-            <div className="flex items-center justify-between">
-              <span className="font-bold text-gray-800 dark:text-gray-200">
-                {activeItem.period}
-              </span>
-              <span className="flex gap-3">
-                <span className="font-black text-red-600 dark:text-red-400">
-                  {activeItem.displayROI}
-                </span>
-                <span className="font-black text-blue-500 dark:text-blue-400">
-                  {activeItem.displayHours}
-                </span>
-              </span>
-            </div>
-            <div className="mt-0.5 text-[11px] leading-snug text-gray-600 dark:text-gray-400">
-              {activeItem.milestone}
-            </div>
-          </div>
-        ) : (
-          <div className="flex h-full items-center justify-center text-[11px] text-gray-500 dark:text-gray-400">
-            Hover over any point to inspect cumulative savings and reclaimed
-            hours by career era.
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function TimelineHeader({ count }: { count: number }) {
-  return (
-    <div className="mb-4 flex items-center justify-between">
-      <div>
-        <span className="text-xs font-bold tracking-wider text-red-600 uppercase dark:text-red-400">
-          Improvement Trajectory
-        </span>
-        <h3 className="text-base font-bold text-gray-900 dark:text-gray-100">
-          Lifetime Improvements Over Time
-        </h3>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="hidden items-center gap-1 text-[10px] font-bold text-gray-500 sm:flex dark:text-gray-400">
-          <span className="inline-block h-0.5 w-4 rounded bg-red-600 dark:bg-red-500" />{" "}
-          $ Saved
-        </span>
-        <span className="hidden items-center gap-1 text-[10px] font-bold text-gray-500 sm:flex dark:text-gray-400">
-          <span className="inline-block h-0.5 w-4 rounded bg-blue-500" /> Hours
-        </span>
-        <span className="rounded-lg border border-red-600/20 bg-red-600/10 px-2 py-0.5 text-[11px] font-bold text-red-600 dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-400">
-          {count} Eras
-        </span>
-      </div>
+      <TimelineDetailBox activeItem={activeItem} />
     </div>
   );
 }

@@ -15,7 +15,7 @@ Hanson-Tube is an interactive web portfolio built with React, TypeScript, and Ta
 | **Offline & PWA**      | Workbox Window & `vite-plugin-pwa` (Service Worker Caching)                 |
 | **Package Manager**    | pnpm                                                                        |
 | **State Management**   | React Context API (`ThemeContext`, `SearchContext`)                         |
-| **Testing**            | Vitest, React Testing Library, JSDOM (26 Passing Suites, 113 Tests)         |
+| **Testing**            | Vitest, React Testing Library, JSDOM (33 Passing Suites, 140 Tests)         |
 | **Deployment**         | GitHub Pages (via `gh-pages`)                                               |
 | **Icons**              | Centralized Icon Registry (`<Icon />` primitive via `src/components/icons`) |
 | **Forms & Toasts**     | React Hook Form, Sonner, EmailJS Browser                                    |
@@ -49,7 +49,7 @@ kxnghans.github.io/ [Root]
 │   │   ├── layout/           # Orchestration (Header.tsx, Sidebar.tsx)
 │   │   ├── modals/           # Overlays & Portals (DetailModal.tsx, ProjectModal.tsx)
 │   │   ├── search/           # Interactive tools (SearchBar.tsx, SearchResults.tsx)
-│   │   ├── ui/               # Primitive components (Slideshows, Cards, FormField, Section, LazyImage)
+│   │   ├── ui/               # Primitive components (Slideshows, Cards, FormField, Section, LazyImage, SummaryTextLines)
 │   │   └── value/            # Analytical charts (Radar, Columns, Timeline, Donut, KPI grids)
 │   ├── context/              # [Global State Domain] State orchestrators
 │   │   ├── SearchContext.tsx # Search, Voice, and Modal logic hub
@@ -68,8 +68,12 @@ kxnghans.github.io/ [Root]
 │   │   ├── work.ts           # Work experience timeline
 │   │   └── index.ts          # Barrel export & data aggregation
 │   ├── hooks/                # [Custom React Hooks]
+│   │   ├── useContactForm.ts # EmailJS submission, cooldown, and form lifecycle
 │   │   ├── useFocusTrap.ts   # WCAG modal focus containment
-│   │   └── usePWA.ts         # Service worker & offline state management
+│   │   ├── usePWA.ts         # Service worker & offline state management
+│   │   ├── useResponsiveSidebar.ts # Viewport breakpoint and auto-collapse tracking
+│   │   ├── useSearchHotkeys.ts     # Global search keyboard shortcuts
+│   │   └── useVoiceSearch.ts # Web Speech API recognition controller
 │   ├── pages/                # [Routing Domain] View compositions (React.lazy)
 │   │   ├── ContactPage.tsx   # Contact form & communication channels
 │   │   ├── EducationPage.tsx # Academic milestones & achievements

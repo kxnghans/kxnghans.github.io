@@ -16,14 +16,15 @@ Hanson-Tube enforces a dual-verification strategy focusing on logical unit resil
 
 ### Execution Commands
 
-| Workflow                   | Command          | Context                              |
-| :------------------------- | :--------------- | :----------------------------------- |
-| **Interactive Watch Mode** | `pnpm test`      | Local test development               |
-| **Deterministic Run**      | `pnpm test:run`  | CI/CD and pre-push validation        |
-| **TypeScript Type Check**  | `pnpm typecheck` | Strict compiler type verification    |
-| **Code Linting**           | `pnpm lint`      | Zero-tolerance ESLint enforcement    |
-| **Lint & Autofix**         | `pnpm lint:fix`  | Automated code formatting/linting    |
-| **Production Build Check** | `pnpm build`     | Static bundle compilation validation |
+| Workflow                     | Command             | Context                                                                      |
+| :--------------------------- | :------------------ | :--------------------------------------------------------------------------- |
+| **Interactive Watch Mode**   | `pnpm test`         | Local test development                                                       |
+| **Deterministic Run**        | `pnpm test:run`     | CI/CD and pre-push validation                                                |
+| **TypeScript Type Check**    | `pnpm typecheck`    | Strict compiler type verification                                            |
+| **Code Linting**             | `pnpm lint`         | Zero-tolerance ESLint enforcement                                            |
+| **Lint & Autofix**           | `pnpm lint:fix`     | Automated code formatting/linting                                            |
+| **Production Build Check**   | `pnpm build`        | Static bundle compilation validation                                         |
+| **Interactive Browser Test** | Chrome DevTools MCP | Full two-iteration test matrix ([`docs/browser-test.md`](./browser-test.md)) |
 
 ---
 
@@ -45,7 +46,7 @@ Hanson-Tube enforces a dual-verification strategy focusing on logical unit resil
 
 ## Active Test Suite Inventory
 
-The Vitest test suite verifies 26 test suites (113 unit and integration tests):
+The Vitest test suite verifies 33 test suites (140 unit and integration tests):
 
 1. **`utils/searchEngine.test.ts`** (15 tests):
    - In-memory indexing and query caching.
@@ -118,7 +119,7 @@ The Vitest test suite verifies 26 test suites (113 unit and integration tests):
     - Left/right arrow key navigation and pause on hover.
 
 12. **`components/ui/FormField.test.tsx`** (1 test):
-    - Input and textarea rendering with error messaging states.
+    - Input and textarea rendering with error messaging states and accessibility associations.
 
 13. **`components/ui/Section.test.tsx`** (1 test):
     - Dynamic timeline section header, period, and children rendering.
@@ -168,3 +169,49 @@ The Vitest test suite verifies 26 test suites (113 unit and integration tests):
 
 26. **`components/value/charts/ValueTimelineAreaChart.test.tsx`** (3 tests):
     - Cumulative improvement trajectory area/line curves, era milestone callouts, and filter highlighting.
+
+27. **`components/value/charts/chartUtils.test.ts`** (5 tests):
+    - Catmull-Rom cubic Bézier curve calculation (`smoothPath`) for 0, 1, and multi-point geometries.
+    - Linear scale coordinate projections (`scaleLinear`) and zero-span safety.
+
+28. **`components/ui/SummaryTextLines.test.tsx`** (4 tests):
+    - Unformatted string rendering as standard paragraphs.
+    - Colon splitting with bold label styling for structured key-value lines.
+    - Headline bolding on line 0 when `boldFirstLine={true}`.
+    - Empty state handling.
+
+29. **`hooks/useSearchHotkeys.test.ts`** (4 tests):
+    - `Ctrl+K` global search focus dispatch.
+    - Forward-slash `/` focus dispatch and active form input typing protection.
+    - Escape key search query dismissal and focus release.
+
+30. **`hooks/useResponsiveSidebar.test.ts`** (5 tests):
+    - Desktop viewport (>= 1024px) initial open state.
+    - Mobile/tablet viewport (< 1024px) initial collapsed state.
+    - 5-second automatic inactivity collapse on medium viewports.
+    - Outside click and inside click discrimination.
+
+31. **`hooks/useContactForm.test.ts`** (3 tests):
+    - Default idle form state initialization and submission status indicators.
+    - Field validation error toast notifications.
+    - Anti-spam submission cooldown enforcement and countdown error toast.
+
+32. **`hooks/useVoiceSearch.test.ts`** (2 tests):
+    - Unsupported Web Speech API graceful fallback toast notification.
+    - Supported Web Speech API microphone start/stop toggle lifecycle.
+
+33. **`components/modals/CategorizedList.test.tsx`** (4 tests):
+    - Null check on empty items.
+    - Key-value item rendering with colon splitting.
+    - Project registry lookup button rendering and `onSelectProject` dispatch.
+    - Categorized section group rendering for lines ending with colons.
+
+---
+
+## End-to-End Browser Validation Matrix
+
+For full interactive browser testing, consult [`docs/browser-test.md`](./browser-test.md), which details the automated and interactive verification suite spanning:
+
+- **Desktop Workflow (1440x900)**: Profile header, slideshow carousels, search indexing with red highlights, CAR modals, Work & Education details, executive value dashboard dynamic calculations, and form validation.
+- **Responsive & Cross-Theme Matrix**: Viewports across Tablet (768x1024) and Mobile (375x667), drawer navigation, search dropdown outside-click and Escape key dismissals, and Light/Dark mode neumorphic contrast.
+- **Telemetry**: Zero runtime errors, zero uncaught exceptions, and zero 404 broken assets across 137 HTTP network requests.

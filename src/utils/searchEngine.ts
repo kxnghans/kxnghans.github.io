@@ -249,6 +249,8 @@ interface IndexedDocument {
   tagsTokens: string[];
   summaryTokens: string[];
   contentTokens: string[];
+  highPriorityTokens: string[];
+  medPriorityTokens: string[];
   categoryOrder: number;
 }
 
@@ -289,6 +291,12 @@ export class SearchEngine {
 
       const categoryOrder = navOrder.indexOf(item.category);
 
+      const titleTokens = tokenize(item.title);
+      const subtitleTokens = tokenize(item.subtitle || "");
+      const tagsTokens = (item.tags || []).flatMap(tokenize);
+      const summaryTokens = tokenize(item.summary || "");
+      const contentTokens = tokenize(item.content || "");
+
       return {
         item,
         titleNorm,
@@ -296,11 +304,13 @@ export class SearchEngine {
         tagsNorm,
         summaryNorm,
         contentNorm,
-        titleTokens: tokenize(item.title),
-        subtitleTokens: tokenize(item.subtitle || ""),
-        tagsTokens: (item.tags || []).flatMap(tokenize),
-        summaryTokens: tokenize(item.summary || ""),
-        contentTokens: tokenize(item.content || ""),
+        titleTokens,
+        subtitleTokens,
+        tagsTokens,
+        summaryTokens,
+        contentTokens,
+        highPriorityTokens: [...titleTokens, ...tagsTokens],
+        medPriorityTokens: [...subtitleTokens, ...summaryTokens],
         categoryOrder: categoryOrder >= 0 ? categoryOrder : 99,
       };
     });
@@ -494,8 +504,7 @@ export class SearchEngine {
           const maxDistance = qToken.length >= 7 ? 2 : 1;
 
           // Fuzzy check on Title & Tags
-          const highPriorityTokens = [...doc.titleTokens, ...doc.tagsTokens];
-          for (const t of highPriorityTokens) {
+          for (const t of doc.highPriorityTokens) {
             if (
               t.length >= 4 &&
               levenshteinDistance(qToken, t) <= maxDistance
@@ -508,11 +517,7 @@ export class SearchEngine {
 
           // Fuzzy check on Subtitle & Summary
           if (!tokenMatched) {
-            const medPriorityTokens = [
-              ...doc.subtitleTokens,
-              ...doc.summaryTokens,
-            ];
-            for (const t of medPriorityTokens) {
+            for (const t of doc.medPriorityTokens) {
               if (
                 t.length >= 4 &&
                 levenshteinDistance(qToken, t) <= maxDistance

@@ -47,6 +47,7 @@ const SearchBar = ({
         <input
           type="text"
           ref={inputRef}
+          aria-label="Search portfolio"
           placeholder={placeholderText}
           value={searchQuery}
           onChange={handleSearchChange}

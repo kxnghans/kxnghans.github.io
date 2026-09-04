@@ -1,14 +1,17 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+/**
+ * @file Header.tsx
+ * @description Top navigation bar with branding, mobile drawer toggle, desktop search,
+ * mobile search popover, and profile avatar link.
+ */
+
+import { useState, useRef } from "react";
 import { Icon, ICONS } from "../icons";
-const profileImage = "/assets/Kobs DP.webp";
 import SearchBar from "../search/SearchBar";
 import { useSearch } from "../../context/SearchContext";
-import { toast } from "sonner";
+import { useVoiceSearch } from "../../hooks/useVoiceSearch";
+import { useSearchHotkeys } from "../../hooks/useSearchHotkeys";
 
-interface IWindowSpeechRecognition extends Window {
-  SpeechRecognition?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
-  webkitSpeechRecognition?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
-}
+const profileImage = "/assets/Kobs DP.webp";
 
 export interface HeaderProps {
   toggleSidebar: () => void;
@@ -18,217 +21,31 @@ export interface HeaderProps {
 
 const Header = ({ toggleSidebar, setActivePage, activePage }: HeaderProps) => {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
-  const [isMicActive, setIsMicActive] = useState(false);
-  const [isSpeechSupported, setIsSpeechSupported] = useState(true);
-  const [showVisualCues, setShowVisualCues] = useState(false);
   const { setSearchQuery } = useSearch();
-  const [placeholderText, setPlaceholderText] = useState("Search");
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const recognitionRef = useRef<any>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const silenceTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const lastSpeechTimeRef = useRef<number | null>(null);
-  const visualCuesTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
-    null,
-  );
   const micRef = useRef<HTMLButtonElement | null>(null);
 
-  useEffect(() => {
-    const win = window as unknown as IWindowSpeechRecognition;
-    const SpeechRecognition =
-      win.SpeechRecognition || win.webkitSpeechRecognition;
+  // Bind voice recognition lifecycle and speech error handlers
+  const {
+    isMicActive,
+    isSpeechSupported,
+    showVisualCues,
+    placeholderText,
+    toggleMic,
+  } = useVoiceSearch({
+    onTranscript: setSearchQuery,
+    inputRef,
+    micRef,
+  });
 
-    if (SpeechRecognition) {
-      setIsSpeechSupported(true);
-      const recognition = new SpeechRecognition();
-      recognition.continuous = true;
-      recognition.interimResults = true;
-      recognition.lang = "en-US";
-
-      recognition.onstart = () => {
-        visualCuesTimeoutRef.current = setTimeout(() => {
-          setShowVisualCues(true);
-          setPlaceholderText("Start talking...");
-          setTimeout(() => {
-            inputRef.current?.focus();
-          }, 50);
-        }, 500);
-      };
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      recognition.onresult = (event: any) => {
-        let finalTranscript = "";
-        let interimTranscript = "";
-        let hasNewSpeech = false;
-
-        for (let i = 0; i < event.results.length; i++) {
-          if (event.results[i].isFinal) {
-            finalTranscript += event.results[i][0].transcript;
-            hasNewSpeech = true;
-          } else {
-            interimTranscript += event.results[i][0].transcript;
-            if (event.results[i][0].transcript.trim()) {
-              hasNewSpeech = true;
-            }
-          }
-        }
-
-        setSearchQuery((finalTranscript + interimTranscript).trim());
-
-        if (hasNewSpeech) {
-          lastSpeechTimeRef.current = Date.now();
-          if (silenceTimeoutRef.current) {
-            clearTimeout(silenceTimeoutRef.current);
-          }
-          silenceTimeoutRef.current = setTimeout(() => {
-            const timeSinceLastSpeech =
-              Date.now() - (lastSpeechTimeRef.current || 0);
-            if (timeSinceLastSpeech >= 2000) {
-              recognitionRef.current?.stop();
-            }
-          }, 2000);
-        }
-      };
-
-      recognition.onend = () => {
-        setIsMicActive(false);
-        setShowVisualCues(false);
-        setPlaceholderText("Search");
-        if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
-        if (visualCuesTimeoutRef.current)
-          clearTimeout(visualCuesTimeoutRef.current);
-        inputRef.current?.blur();
-      };
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      recognition.onerror = (event: any) => {
-        let errorMessage = "An error occurred. Try again.";
-        if (event.error === "no-speech") {
-          errorMessage = "No speech detected. Please try again.";
-        } else if (event.error === "audio-capture") {
-          errorMessage = "Microphone not available. Check permissions.";
-        } else if (event.error === "not-allowed") {
-          errorMessage = "Microphone permission was denied.";
-        }
-        setPlaceholderText(errorMessage);
-        setIsMicActive(false);
-        setShowVisualCues(false);
-        if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
-        if (visualCuesTimeoutRef.current)
-          clearTimeout(visualCuesTimeoutRef.current);
-      };
-
-      recognitionRef.current = recognition;
-    } else {
-      setIsSpeechSupported(false);
-    }
-
-    return () => {
-      recognitionRef.current?.stop();
-      if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
-      if (visualCuesTimeoutRef.current)
-        clearTimeout(visualCuesTimeoutRef.current);
-    };
-  }, [setSearchQuery]);
-
-  const toggleMic = useCallback(() => {
-    if (!isSpeechSupported) {
-      toast.error("Voice search is not supported in this browser.", {
-        description: "Please try using a modern browser like Chrome or Edge.",
-      });
-      return;
-    }
-
-    if (recognitionRef.current) {
-      if (!isMicActive) {
-        setIsMicActive(true);
-        setSearchQuery("");
-        lastSpeechTimeRef.current = null;
-        setShowVisualCues(false);
-        if (silenceTimeoutRef.current) clearTimeout(silenceTimeoutRef.current);
-        if (visualCuesTimeoutRef.current)
-          clearTimeout(visualCuesTimeoutRef.current);
-        try {
-          recognitionRef.current.start();
-        } catch {
-          // Ignore if already active
-        }
-      } else {
-        setIsMicActive(false);
-        setShowVisualCues(false);
-        setPlaceholderText("Search");
-        if (visualCuesTimeoutRef.current)
-          clearTimeout(visualCuesTimeoutRef.current);
-        recognitionRef.current.stop();
-      }
-    }
-  }, [isSpeechSupported, isMicActive, setSearchQuery]);
-
-  useEffect(() => {
-    const handleScreenInteraction = (event: MouseEvent | TouchEvent) => {
-      if (
-        isMicActive &&
-        micRef.current &&
-        !micRef.current.contains(event.target as Node)
-      ) {
-        toggleMic();
-      }
-    };
-
-    window.addEventListener("click", handleScreenInteraction);
-    window.addEventListener("touchstart", handleScreenInteraction);
-
-    return () => {
-      window.removeEventListener("click", handleScreenInteraction);
-      window.removeEventListener("touchstart", handleScreenInteraction);
-    };
-  }, [isMicActive, toggleMic]);
-
-  // Global hotkeys: Ctrl+K / Cmd+K / "/" to focus search; Esc to clear & blur search
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      const isMac =
-        typeof window !== "undefined" &&
-        /Mac|iPhone|iPod|iPad/.test(window.navigator?.userAgent || "");
-      const isCmdOrCtrlK =
-        (isMac ? event.metaKey : event.ctrlKey) &&
-        (event.key === "k" || event.key === "K");
-      const isSlash = event.key === "/";
-
-      const activeElement = document.activeElement as HTMLElement | null;
-      const isEditingText =
-        activeElement &&
-        (activeElement.tagName === "INPUT" ||
-          activeElement.tagName === "TEXTAREA" ||
-          activeElement.isContentEditable);
-
-      if (isCmdOrCtrlK || (isSlash && !isEditingText)) {
-        event.preventDefault();
-        if (inputRef.current) {
-          inputRef.current.focus();
-          inputRef.current.select?.();
-        } else {
-          setIsSearchVisible(true);
-        }
-        return;
-      }
-
-      if (event.key === "Escape") {
-        if (document.activeElement === inputRef.current || isSearchVisible) {
-          event.preventDefault();
-          setSearchQuery("");
-          inputRef.current?.blur();
-          setIsSearchVisible(false);
-        }
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isSearchVisible, setSearchQuery]);
+  // Bind global keyboard shortcuts (Ctrl+K, Cmd+K, /, Esc)
+  useSearchHotkeys({
+    inputRef,
+    isSearchVisible,
+    setIsSearchVisible,
+    onClearSearch: () => setSearchQuery(""),
+  });
 
   return (
     <header className="dark:bg-dark-header/90 sticky top-0 z-40 flex items-center justify-between border-b border-gray-300 bg-gray-100/80 p-3 backdrop-blur-sm dark:border-gray-800">

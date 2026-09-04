@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 import { UI_TYPOGRAPHY } from "../../theme";
 import { Icon, ICONS } from "../icons";
-import { projects } from "../../data";
+import { findProjectByLabel } from "../../data";
 import type { ProjectDetails } from "../../types/data";
 
 export interface CategorizedListProps {
@@ -15,17 +15,51 @@ interface ItemGroup {
   items: string[];
 }
 
-// Matches item labels against the projects dataset to enable cross-modal linking
-const findMatchedProject = (label: string): ProjectDetails | undefined => {
-  const normalized = label.toLowerCase();
-  const matched = projects.find(
-    (p) =>
-      normalized.includes(p.title.toLowerCase()) ||
-      p.title.toLowerCase().includes(normalized) ||
-      (normalized.includes("fretwork") &&
-        p.title.toLowerCase().includes("fretwork")),
-  );
-  return matched?.details;
+interface CategorizedListItemProps {
+  detail: string;
+  className?: string;
+  onSelectProject?: (project: ProjectDetails) => void;
+}
+
+// Renders an individual item, linking project titles to project detail modals
+const CategorizedListItem = ({
+  detail,
+  className = "",
+  onSelectProject,
+}: CategorizedListItemProps): ReactElement => {
+  const colonIndex = detail.indexOf(":");
+  if (colonIndex > 0) {
+    const label = detail.slice(0, colonIndex);
+    const value = detail.slice(colonIndex + 1);
+    const matchedProject = onSelectProject
+      ? findProjectByLabel(label)
+      : undefined;
+
+    return (
+      <li className={className}>
+        {matchedProject ? (
+          <button
+            type="button"
+            onClick={() => onSelectProject?.(matchedProject)}
+            className="group inline-flex items-center gap-1 font-bold text-red-600 hover:text-red-700 hover:underline dark:text-red-400 dark:hover:text-red-300"
+            title={`View ${label} Project Modal`}
+            aria-label={`View ${label} project modal`}
+          >
+            <span>{label}:</span>
+            <Icon
+              name={ICONS.EXTERNAL_LINK}
+              className="inline h-3 w-3 transition-transform group-hover:scale-110"
+            />
+          </button>
+        ) : (
+          <span className={UI_TYPOGRAPHY.metaLabel}>{label}:</span>
+        )}
+        {value}
+      </li>
+    );
+  }
+
+  return <li className={className}>{detail}</li>;
 };
 
 export const CategorizedList = ({
@@ -45,40 +79,13 @@ export const CategorizedList = ({
       <ul
         className={`list-outside list-disc space-y-2.5 pl-5 text-gray-600 dark:text-gray-300 ${className}`}
       >
-        {items.map((detail, index) => {
-          const colonIndex = detail.indexOf(":");
-          if (colonIndex > 0) {
-            const label = detail.slice(0, colonIndex);
-            const value = detail.slice(colonIndex + 1);
-            const matchedProject = onSelectProject
-              ? findMatchedProject(label)
-              : undefined;
-
-            return (
-              <li key={index}>
-                {matchedProject ? (
-                  <button
-                    type="button"
-                    onClick={() => onSelectProject?.(matchedProject)}
-                    className="group inline-flex items-center gap-1 font-bold text-red-600 hover:text-red-700 hover:underline dark:text-red-400 dark:hover:text-red-300"
-                    title={`View ${label} Project Modal`}
-                    aria-label={`View ${label} project modal`}
-                  >
-                    <span>{label}:</span>
-                    <Icon
-                      name={ICONS.EXTERNAL_LINK}
-                      className="inline h-3 w-3 transition-transform group-hover:scale-110"
-                    />
-                  </button>
-                ) : (
-                  <span className={UI_TYPOGRAPHY.metaLabel}>{label}:</span>
-                )}
-                {value}
-              </li>
-            );
-          }
-          return <li key={index}>{detail}</li>;
-        })}
+        {items.map((detail, index) => (
+          <CategorizedListItem
+            key={index}
+            detail={detail}
+            onSelectProject={onSelectProject}
+          />
+        ))}
       </ul>
     );
   }
@@ -117,50 +124,14 @@ export const CategorizedList = ({
             {group.title}
           </h4>
           <ul className="list-outside list-disc space-y-2 pl-4 text-gray-600 dark:text-gray-300">
-            {group.items.map((detail, itemIdx) => {
-              const colonIndex = detail.indexOf(":");
-              if (colonIndex > 0) {
-                const label = detail.slice(0, colonIndex);
-                const value = detail.slice(colonIndex + 1);
-                const matchedProject = onSelectProject
-                  ? findMatchedProject(label)
-                  : undefined;
-
-                return (
-                  <li
-                    key={itemIdx}
-                    className="text-sm leading-relaxed sm:text-base"
-                  >
-                    {matchedProject ? (
-                      <button
-                        type="button"
-                        onClick={() => onSelectProject?.(matchedProject)}
-                        className="group inline-flex items-center gap-1 font-bold text-red-600 hover:text-red-700 hover:underline dark:text-red-400 dark:hover:text-red-300"
-                        title={`View ${label} Project Modal`}
-                        aria-label={`View ${label} project modal`}
-                      >
-                        <span>{label}:</span>
-                        <Icon
-                          name={ICONS.EXTERNAL_LINK}
-                          className="inline h-3 w-3 transition-transform group-hover:scale-110"
-                        />
-                      </button>
-                    ) : (
-                      <span className={UI_TYPOGRAPHY.metaLabel}>{label}:</span>
-                    )}
-                    {value}
-                  </li>
-                );
-              }
-              return (
-                <li
-                  key={itemIdx}
-                  className="text-sm leading-relaxed text-gray-600 sm:text-base dark:text-gray-300"
-                >
-                  {detail}
-                </li>
-              );
-            })}
+            {group.items.map((detail, itemIdx) => (
+              <CategorizedListItem
+                key={itemIdx}
+                detail={detail}
+                onSelectProject={onSelectProject}
+                className="text-sm leading-relaxed sm:text-base"
+              />
+            ))}
           </ul>
         </div>
       ))}

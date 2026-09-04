@@ -5,6 +5,7 @@ import ProjectModal from "../components/modals/ProjectModal";
 import LazyImage from "../components/ui/LazyImage";
 import { education } from "../data";
 import { UI_SURFACES, UI_TYPOGRAPHY } from "../theme";
+import SummaryTextLines from "../components/ui/SummaryTextLines";
 import type { EducationDetails, ProjectDetails } from "../types/data";
 
 const EducationPage = () => {
@@ -52,33 +53,7 @@ const EducationPage = () => {
                 <div
                   className={`h-24 overflow-hidden ${UI_TYPOGRAPHY.cardSummary}`}
                 >
-                  {edu.summary.map((line, i) => {
-                    if (i === 0) {
-                      return (
-                        <p key={i} className="truncate">
-                          <strong>{line}</strong>
-                        </p>
-                      );
-                    }
-                    const colonIndex = line.indexOf(":");
-                    if (colonIndex !== -1) {
-                      const label = line.slice(0, colonIndex + 1);
-                      const val = line.slice(colonIndex + 1);
-                      return (
-                        <p key={i} className="truncate">
-                          <strong className="text-gray-800 dark:text-gray-200">
-                            {label}
-                          </strong>
-                          {val}
-                        </p>
-                      );
-                    }
-                    return (
-                      <p key={i} className="truncate">
-                        {line}
-                      </p>
-                    );
-                  })}
+                  <SummaryTextLines lines={edu.summary} boldFirstLine={true} />
                 </div>
               </div>
             </div>

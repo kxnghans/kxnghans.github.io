@@ -8,6 +8,7 @@ export const skillsData: SkillCategory[] = [
   {
     title: "Project & Program Management",
     imageUrl: "/assets/generated/skills/project-management.webp",
+    summary: ["Agile & Scrum Leadership", "Technical Program Management"],
     details: [
       { name: "Agile & Scrum Leadership", priority: 1 },
       { name: "Technical Program Management", priority: 1 },
@@ -44,6 +45,7 @@ export const skillsData: SkillCategory[] = [
   {
     title: "Cloud & DevOps",
     imageUrl: "/assets/generated/skills/cloud-devops.webp",
+    summary: ["Kubernetes & OpenShift", "Docker & Containers"],
     details: [
       { name: "Kubernetes & OpenShift", priority: 1 },
       { name: "Docker & Containers", priority: 1 },
@@ -80,6 +82,7 @@ export const skillsData: SkillCategory[] = [
   {
     title: "BI & Data Analytics",
     imageUrl: "/assets/generated/skills/bi-analytics.webp",
+    summary: ["Microsoft Power BI", "Power Query & ETL"],
     details: [
       { name: "Microsoft Power BI", priority: 1 },
       { name: "Power Query & ETL", priority: 1 },
@@ -132,6 +135,7 @@ export const skillsData: SkillCategory[] = [
   {
     title: "Programming",
     imageUrl: "/assets/generated/skills/programming.webp",
+    summary: ["Python", "TypeScript / JavaScript", "React & React Native"],
     details: [
       { name: "Python", priority: 1 },
       { name: "TypeScript / JavaScript", priority: 1 },
@@ -171,6 +175,7 @@ export const skillsData: SkillCategory[] = [
   {
     title: "IT & Systems",
     imageUrl: "/assets/generated/skills/it-systems.webp",
+    summary: ["Linux (RHEL, Ubuntu)", "Microsoft 365 / VBA"],
     details: [
       { name: "Linux (RHEL, Ubuntu)", priority: 1 },
       { name: "Microsoft 365 / VBA", priority: 1 },
@@ -201,6 +206,7 @@ export const skillsData: SkillCategory[] = [
   {
     title: "Adobe Suite",
     imageUrl: "/assets/generated/skills/adobe-suite.webp",
+    summary: ["Adobe XD", "Photoshop", "Premiere Pro", "After Effects"],
     details: [
       { name: "Adobe XD", priority: 1 },
       { name: "Photoshop", priority: 1 },
@@ -232,6 +238,7 @@ export const skillsData: SkillCategory[] = [
   {
     title: "Electronics",
     imageUrl: "/assets/generated/skills/electronics.webp",
+    summary: ["LTspice", "MATLAB & Simulink", "AutoCAD", "ModelSim"],
     details: [
       { name: "LTspice", priority: 1 },
       { name: "MATLAB & Simulink", priority: 1 },
@@ -262,6 +269,7 @@ export const skillsData: SkillCategory[] = [
   {
     title: "Languages",
     imageUrl: "/assets/generated/skills/languages.webp",
+    summary: ["English (Fluent)", "French (Intermediate)"],
     details: [
       { name: "English (Fluent)", priority: 1 },
       { name: "French (Intermediate)", priority: 2 },

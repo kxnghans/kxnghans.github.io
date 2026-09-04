@@ -3,6 +3,8 @@ import {
   useContext,
   useState,
   useEffect,
+  useCallback,
+  useMemo,
   type ReactNode,
 } from "react";
 import {
@@ -57,25 +59,29 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     }
   }, [theme]);
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
-  };
+  }, []);
 
   const isDarkMode = theme === "dark";
   const currentTokens = tokens[theme];
   const colors = currentTokens.colors;
 
+  // Memoized context value prevents cascading re-renders across the entire component tree
+  const contextValue = useMemo(
+    () => ({
+      theme,
+      setTheme,
+      toggleTheme,
+      isDarkMode,
+      tokens: currentTokens,
+      colors,
+    }),
+    [theme, toggleTheme, isDarkMode, currentTokens, colors],
+  );
+
   return (
-    <ThemeContext.Provider
-      value={{
-        theme,
-        setTheme,
-        toggleTheme,
-        isDarkMode,
-        tokens: currentTokens,
-        colors,
-      }}
-    >
+    <ThemeContext.Provider value={contextValue}>
       {children}
     </ThemeContext.Provider>
   );

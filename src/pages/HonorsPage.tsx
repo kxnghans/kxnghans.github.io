@@ -5,6 +5,7 @@ import LazyImage from "../components/ui/LazyImage";
 import { honors } from "../data";
 import { useSearch } from "../context/SearchContext";
 import { UI_SURFACES, UI_TYPOGRAPHY } from "../theme";
+import SummaryTextLines from "../components/ui/SummaryTextLines";
 
 const HonorsPage = () => {
   const { selectedItem, setSelectedItem } = useSearch();
@@ -47,26 +48,7 @@ const HonorsPage = () => {
                   <div
                     className={`h-10 overflow-hidden ${UI_TYPOGRAPHY.cardSummary}`}
                   >
-                    {honor.summary.map((line, i) => {
-                      const colonIndex = line.indexOf(":");
-                      if (colonIndex !== -1) {
-                        const label = line.slice(0, colonIndex + 1);
-                        const val = line.slice(colonIndex + 1);
-                        return (
-                          <p key={i} className="truncate">
-                            <strong className="text-gray-800 dark:text-gray-200">
-                              {label}
-                            </strong>
-                            {val}
-                          </p>
-                        );
-                      }
-                      return (
-                        <p key={i} className="truncate">
-                          {line}
-                        </p>
-                      );
-                    })}
+                    <SummaryTextLines lines={honor.summary} />
                   </div>
                 </div>
               </div>

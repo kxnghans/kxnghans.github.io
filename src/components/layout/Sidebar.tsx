@@ -1,3 +1,10 @@
+/**
+ * @file Sidebar.tsx
+ * @description Collapsible vertical navigation drawer with route links, section icons,
+ * and dark/light mode toggle control.
+ */
+
+import { useMemo } from "react";
 import { Icon, ICONS } from "../icons";
 import { useTheme } from "../../context/ThemeContext";
 import { FEATURE_FLAGS } from "../../config/features";
@@ -10,17 +17,22 @@ export interface SidebarProps {
 
 const Sidebar = ({ isOpen, setActivePage, activePage }: SidebarProps) => {
   const { theme, toggleTheme } = useTheme();
-  const navItems = [
-    { name: "Home", icon: <Icon name={ICONS.HOME} /> },
-    { name: "Education", icon: <Icon name={ICONS.EDUCATION} /> },
-    { name: "Work Experience", icon: <Icon name={ICONS.WORK} /> },
-    { name: "Projects", icon: <Icon name={ICONS.SKILLS} /> },
-    { name: "Honors", icon: <Icon name={ICONS.MEDAL} /> },
-    ...(FEATURE_FLAGS.showValuePage
-      ? [{ name: "Value", icon: <Icon name={ICONS.VALUE} /> }]
-      : []),
-    { name: "More", icon: <Icon name={ICONS.MENU} /> },
-  ];
+
+  // Memoize navigation configuration to avoid array recreation per render
+  const navItems = useMemo(
+    () => [
+      { name: "Home", icon: <Icon name={ICONS.HOME} /> },
+      { name: "Education", icon: <Icon name={ICONS.EDUCATION} /> },
+      { name: "Work Experience", icon: <Icon name={ICONS.WORK} /> },
+      { name: "Projects", icon: <Icon name={ICONS.SKILLS} /> },
+      { name: "Honors", icon: <Icon name={ICONS.MEDAL} /> },
+      ...(FEATURE_FLAGS.showValuePage
+        ? [{ name: "Value", icon: <Icon name={ICONS.VALUE} /> }]
+        : []),
+      { name: "More", icon: <Icon name={ICONS.MENU} /> },
+    ],
+    [],
+  );
 
   return (
     <aside
@@ -28,12 +40,15 @@ const Sidebar = ({ isOpen, setActivePage, activePage }: SidebarProps) => {
         isOpen ? "w-56" : "w-25"
       }`}
     >
-      <nav className="mt-8 flex-1">
+      <nav aria-label="Main Navigation" className="mt-8 flex-1">
         <ul>
           {navItems.map((item) => (
             <li key={item.name} className="px-4">
               <button
+                type="button"
                 onClick={() => setActivePage(item.name)}
+                aria-label={`Navigate to ${item.name}`}
+                aria-current={activePage === item.name ? "page" : undefined}
                 className={`my-1 flex w-full items-center rounded-lg p-2 transition-colors duration-200 ${
                   activePage === item.name
                     ? "bg-red-600/15 text-red-600 dark:bg-red-600/20 dark:text-red-500"
@@ -57,7 +72,9 @@ const Sidebar = ({ isOpen, setActivePage, activePage }: SidebarProps) => {
       </nav>
       <div className="mb-5 px-4">
         <button
+          type="button"
           onClick={toggleTheme}
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           className="flex w-full items-center rounded-lg p-2 transition-colors hover:bg-gray-200 dark:hover:bg-gray-800"
         >
           <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center text-[1.4rem]">

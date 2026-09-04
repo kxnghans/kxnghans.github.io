@@ -1,89 +1,35 @@
-import { useState } from "react";
-import { useForm, type FieldErrors, type SubmitHandler } from "react-hook-form";
-import { toast } from "sonner";
-import emailjs from "@emailjs/browser";
+/**
+ * @file ContactPage.tsx
+ * @description Contact and networking page featuring direct communication channels,
+ * social connections, community slideshow, and an accessible message dispatch form.
+ */
+
 import Section from "../components/ui/Section";
 import CommunitySlideshow from "../components/ui/CommunitySlideshow";
 import { Icon, ICONS } from "../components/icons";
 import { UI_BUTTONS } from "../theme";
 import { contactLinks, formFields } from "../data";
 import FormField from "../components/ui/FormField";
+import {
+  useContactForm,
+  type ContactFormValues,
+} from "../hooks/useContactForm";
 
-export interface ContactFormValues {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
-
-const SUBMIT_COOLDOWN_MS = 60 * 1000;
-const STORAGE_KEY_LAST_SENT = "hanson_last_contact_sent";
+export type { ContactFormValues };
 
 const ContactPage = () => {
   const {
     register,
     handleSubmit,
-    reset,
     setValue,
-    formState: { errors },
-  } = useForm<ContactFormValues>();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isError, setIsError] = useState(false);
-
-  const sendEmail: SubmitHandler<ContactFormValues> = (data) => {
-    const lastSent = localStorage.getItem(STORAGE_KEY_LAST_SENT);
-    if (lastSent) {
-      const elapsed = Date.now() - Number(lastSent);
-      if (elapsed < SUBMIT_COOLDOWN_MS) {
-        const remainingSeconds = Math.ceil(
-          (SUBMIT_COOLDOWN_MS - elapsed) / 1000,
-        );
-        toast.error(
-          `Please wait ${remainingSeconds}s before sending another message.`,
-        );
-        return;
-      }
-    }
-
-    setIsLoading(true);
-    emailjs
-      .send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        data as unknown as Record<string, unknown>,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-      )
-      .then(() => {
-        localStorage.setItem(STORAGE_KEY_LAST_SENT, String(Date.now()));
-        toast.success("Message sent successfully!");
-        reset();
-        setIsSuccess(true);
-        setIsLoading(false);
-        setTimeout(() => setIsSuccess(false), 3000);
-      })
-      .catch((error) => {
-        toast.error("Failed to send message. Please try again.");
-        console.error("EmailJS Error:", error);
-        setIsError(true);
-        setIsLoading(false);
-        setTimeout(() => setIsError(false), 3000);
-      });
-  };
-
-  const onValidationError = (formErrors: FieldErrors<ContactFormValues>) => {
-    const firstError = Object.values(formErrors)[0];
-    if (firstError?.message) {
-      toast.error(String(firstError.message));
-    }
-  };
-
-  const getIconClassName = () => {
-    if (isSuccess) return "text-green-500";
-    if (isError) return "text-red-500";
-    if (isLoading) return "animate-spin text-blue-500";
-    return "";
-  };
+    errors,
+    isLoading,
+    isSuccess,
+    isError,
+    sendEmail,
+    onValidationError,
+    getIconClassName,
+  } = useContactForm();
 
   return (
     <>
@@ -96,7 +42,7 @@ const ContactPage = () => {
         <CommunitySlideshow />
         <Section title="Contact Me">
           <div className="flex flex-col md:flex-row md:space-x-12">
-            {/* Mapped Contact Info */}
+            {/* Mapped Contact Channels */}
             <div className="flex-1 space-y-4">
               {contactLinks.map(({ href, icon: iconName, text }) => (
                 <a
@@ -115,7 +61,7 @@ const ContactPage = () => {
               ))}
             </div>
 
-            {/* Mapped Form */}
+            {/* Direct Message Form */}
             <div className="mt-8 flex-1 md:mt-0">
               <form
                 onSubmit={handleSubmit(sendEmail, onValidationError)}

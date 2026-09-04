@@ -7,19 +7,7 @@ import CategorizedList from "./CategorizedList";
 import type { ProjectDetails } from "../../types/data";
 
 export interface ProjectModalProps {
-  project:
-    | ProjectDetails
-    | {
-        title?: string;
-        details?: string[];
-        challenge?: string;
-        action?: string;
-        outcome?: string;
-        highlights?: { label: string; value: string }[];
-        liveLink?: string;
-        codeLink?: string;
-        video?: string;
-      };
+  project: ProjectDetails;
   onClose: () => void;
 }
 
