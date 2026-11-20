@@ -60,7 +60,7 @@ export const FINANCIAL_LEDGER: LedgerEntry[] = [
   },
   {
     id: "led-6",
-    label: "Branch Facilities Annualized Savings",
+    label: "Enterprise Facilities Annualized Savings",
     domain: "Enterprise Automation",
     amountM: 0.6624,
   },
@@ -126,7 +126,7 @@ export const lifetimeValueData: LifetimeValueData = {
         "Enterprise Innovation Program (Internal Stretch Assignment)",
       badge: "Enterprise Gamification",
     },
-    // Multi-Branch Facilities Automation
+    // Multi-Site Facilities Automation
     {
       id: "val-3",
       title: "Facilities Key & Combo Modernization ROI",
@@ -136,7 +136,7 @@ export const lifetimeValueData: LifetimeValueData = {
       domain: "Enterprise Automation",
       type: "quantitative",
       description:
-        "Replaced manual spreadsheets across 450 branch locations with a unified Power Platform and SQL system, saving $55,200 each month.",
+        "Replaced manual spreadsheets across 450 regional sites with a unified Power Platform and SQL system, saving $55,200 each month.",
       impactHighlight:
         "2,760 annual hours saved with zero recurring maintenance overhead.",
       timeframe: "2024 – Present",
@@ -221,7 +221,7 @@ export const lifetimeValueData: LifetimeValueData = {
       description:
         "Removed processing bottlenecks and manual paperwork using automated digital workflows across customer service points.",
       impactHighlight:
-        "Faster transaction turnaround across branch operations.",
+        "Faster transaction turnaround across enterprise facility operations.",
       timeframe: "2024 – Present",
       organization: "Enterprise Customer Operations Automation",
       badge: "Customer Impact",
@@ -371,9 +371,9 @@ export const lifetimeValueData: LifetimeValueData = {
       domain: "Academic & Research",
       type: "quantitative",
       description:
-        "Designed and led hands-on AI agent workshops, building live agentic workflows in Google Gemini Enterprise.",
+        "Led company-wide Microsoft Teams training sessions covering AI agent fundamentals and demonstrating safe, practical corporate workflows.",
       impactHighlight:
-        "Trained 50+ analysts and helped establish internal AI agent governance standards.",
+        "Trained 50+ engineers and analysts on grounded, governed AI agent adoption.",
       timeframe: "2024 – Present",
       organization: "Enterprise AI Enablement Program",
       badge: "AI Enablement",
@@ -466,14 +466,14 @@ export const lifetimeValueData: LifetimeValueData = {
         context:
           "Corporate facilities tracked keys and combinations in scattered Excel sheets, leading to a 7.5% audit error rate and 2,760 hours of manual reconciliation each year.",
         action:
-          "Built a centralized Power Platform portal with automated escalation flows, created real-time executive capital pipeline dashboards ($280M+ queues), and conducted hands-on AI agent workshops for 50+ analysts.",
+          "Engineered a centralized Power Platform portal with automated escalation flows, built real-time executive capital pipeline dashboards ($280M+ queues), and led corporate Microsoft Teams training sessions on AI agent adoption for 50+ engineers and analysts.",
         result:
-          "Achieved a 0.0% audit error rate across 450 sites, delivered $662,400 in annualized operational savings, and established enterprise AI standards.",
+          "Achieved a 0.0% audit error rate across 450 sites, delivered $662,400 in annualized operational savings, and established enterprise AI governance practices.",
       },
       keyArtifacts: [
         "Enterprise Power Apps Portal",
         "Executive Power BI Pipeline Dashboards",
-        "Grounded Gemini Agent Workshop Curriculum",
+        "Corporate AI Agent Training Curriculum",
       ],
     },
     // Military Operations Leadership & Data Engineering Pillar
@@ -498,7 +498,7 @@ export const lifetimeValueData: LifetimeValueData = {
         action:
           "Directed AFCENT's sole $92M Wheel & Tire repair hub, coordinating 2,000 shipments across 20 Wings and negotiating a $5.0M retread contract with Boeing-Qatar. Restored 29 critical defense assets ($750k returned to inventory) and built automated Power Query ETL pipelines to model shelf-life and burn rates during Operation Allies Refuge.",
         result:
-          "Cut supply errors from 20% to under 5%, slashed nightly reconciliation from 3 hours to 5 minutes, sustained 100% property accountability across 2,216 aeromedical assets ($672k), and enabled 12,000 flight hours.",
+          "Reduced supply errors from 20% to under 5%, shortened nightly reconciliation from 3 hours to 5 minutes, sustained 100% property accountability across 2,216 aeromedical assets ($672k), and enabled 12,000 flight hours.",
       },
       keyArtifacts: [
         "AFCENT CRF $92M Operations Matrix",

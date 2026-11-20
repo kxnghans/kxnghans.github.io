@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import Section from "../components/ui/Section";
 import ProjectModal from "../components/modals/ProjectModal";
 import LazyImage from "../components/ui/LazyImage";
@@ -6,41 +5,25 @@ import { projects } from "../data";
 import { useSearch } from "../context/SearchContext";
 import { UI_SURFACES, UI_TYPOGRAPHY } from "../theme";
 import SummaryTextLines from "../components/ui/SummaryTextLines";
-import type { ProjectDetails } from "../types/data";
 
 const ProjectsPage = () => {
-  const [selectedProject, setSelectedProject] = useState<ProjectDetails | null>(
-    null,
-  );
   const { activeModal, setActiveModal } = useSearch();
-
-  useEffect(() => {
-    const modalIdx =
-      typeof activeModal === "number"
-        ? activeModal
-        : typeof activeModal === "string"
-          ? parseInt(activeModal, 10)
-          : null;
-
-    if (
-      modalIdx !== null &&
-      !isNaN(modalIdx) &&
-      modalIdx >= 0 &&
-      modalIdx < projects.length
-    ) {
-      setSelectedProject(projects[modalIdx].details);
-    } else {
-      setSelectedProject(null);
-    }
-  }, [activeModal]);
-
-  const handleOpenModal = (projectDetails: ProjectDetails, index: number) => {
-    setSelectedProject(projectDetails);
-    setActiveModal(index);
-  };
+  const modalIdx =
+    typeof activeModal === "number"
+      ? activeModal
+      : typeof activeModal === "string"
+        ? parseInt(activeModal, 10)
+        : null;
+  const selectedProject =
+    modalIdx !== null &&
+    !isNaN(modalIdx) &&
+    modalIdx >= 0 &&
+    modalIdx < projects.length
+      ? projects[modalIdx].details
+      : null;
+  const handleOpenModal = (index: number) => setActiveModal(index);
 
   const handleCloseModal = () => {
-    setSelectedProject(null);
     setActiveModal(null);
   };
 
@@ -59,11 +42,11 @@ const ProjectsPage = () => {
               role="button"
               tabIndex={0}
               className={UI_SURFACES.cardInteractive}
-              onClick={() => handleOpenModal(project.details, index)}
+              onClick={() => handleOpenModal(index)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
-                  handleOpenModal(project.details, index);
+                  handleOpenModal(index);
                 }
               }}
             >

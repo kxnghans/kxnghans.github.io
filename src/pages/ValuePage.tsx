@@ -46,8 +46,11 @@ export default function ValuePage(): ReactElement {
     [],
   );
 
+  const isDomainFiltered =
+    !selectedDomains.includes("All") && selectedDomains.length > 0;
+
   const isFiltered =
-    (!selectedDomains.includes("All") && selectedDomains.length > 0) ||
+    isDomainFiltered ||
     (!selectedCategories.includes("All") && selectedCategories.length > 0) ||
     (!selectedEras.includes("All") && selectedEras.length > 0);
 
@@ -101,7 +104,7 @@ export default function ValuePage(): ReactElement {
 
   // Dynamically aggregated ROI and ledger totals when domain filters are active
   const filteredSavingsTotal = useMemo(() => {
-    if (!isFiltered) {
+    if (!isDomainFiltered) {
       return lifetimeValueData.executiveSummary.totalFinancialROI;
     }
     const sum = FINANCIAL_LEDGER.filter((l) =>
@@ -110,7 +113,7 @@ export default function ValuePage(): ReactElement {
     if (sum === 0) return "$0";
     if (sum >= 1) return `$${sum.toFixed(1)}M`;
     return `$${Math.round(sum * 1000)}k`;
-  }, [isFiltered, selectedDomains]);
+  }, [isDomainFiltered, selectedDomains]);
 
   // Stable filter toggle callbacks for ValueFilterBar
   const handleToggleDomain = useCallback(
@@ -158,7 +161,7 @@ export default function ValuePage(): ReactElement {
 
         <ValueKpiGrid
           totalSavings={filteredSavingsTotal}
-          isFiltered={isFiltered}
+          isFiltered={isDomainFiltered}
         />
 
         {/* Visual Analytics Grid */}
