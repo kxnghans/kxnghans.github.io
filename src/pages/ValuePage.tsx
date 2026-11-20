@@ -101,7 +101,9 @@ export default function ValuePage(): ReactElement {
 
   // Dynamically aggregated ROI and ledger totals when domain filters are active
   const filteredSavingsTotal = useMemo(() => {
-    if (!isFiltered) {
+    const isDomainFiltered =
+      !selectedDomains.includes("All") && selectedDomains.length > 0;
+    if (!isDomainFiltered) {
       return lifetimeValueData.executiveSummary.totalFinancialROI;
     }
     const sum = FINANCIAL_LEDGER.filter((l) =>
@@ -110,7 +112,7 @@ export default function ValuePage(): ReactElement {
     if (sum === 0) return "$0";
     if (sum >= 1) return `$${sum.toFixed(1)}M`;
     return `$${Math.round(sum * 1000)}k`;
-  }, [isFiltered, selectedDomains]);
+  }, [selectedDomains]);
 
   // Stable filter toggle callbacks for ValueFilterBar
   const handleToggleDomain = useCallback(

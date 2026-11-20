@@ -146,3 +146,7 @@
 - [x] **[AST-3] Retool Asset Pipeline Scripts for `dev-assets`**: Update `scripts/convert-assets.mjs` and `scripts/ingest-generated-assets.mjs` to read from and write to `../dev-assets/hansontube/` instead of bundling into the web application repository.
 - [x] **[AST-4] Update Architectural Documentation**: Update `docs/images.md`, `docs/architecture.md`, and `docs/checklist.md` documenting the centralized `dev-assets` workflow and GCS CDN delivery model.
 - [x] **[AST-5] Verification & Stability Check**: Run `pnpm test:run`, `pnpm run lint`, `tsc --noEmit`, and `pnpm build` to verify clean build, zero errors, and reduced production bundle size.
+
+### Dependency modernization & content alignment (2026-10-29 – 2026-11-20)
+
+- [x] **[MOD-FINAL]** Dependency/tooling modernization (React 19.3.1, Vite 8.3.8, Vitest 5.1.1, TypeScript 6.0.3, `vite-plugin-pwa` 2.0.0), hook migrations, Value filter & Skills nav fixes, and grounded AI/prose alignment implemented; types/lint/157 tests/production PWA build and peers pass. Browser lifecycle gates remain in [dependency report](./dependency-modernization.md).

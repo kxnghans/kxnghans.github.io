@@ -57,29 +57,30 @@ export const Highlight = ({ text, highlight }: HighlightProps): ReactNode => {
     .sort((a, b) => b.length - a.length)
     .join("|");
 
+  let regex: RegExp;
+  let parts: string[];
   try {
-    const regex = new RegExp(`(${pattern})`, "gi");
-    const parts = text.split(regex);
-
-    return (
-      <span>
-        {parts.map((part, i) =>
-          regex.test(part) ? (
-            <span
-              key={i}
-              className="rounded-xs bg-red-500/15 px-0.5 font-semibold text-red-600 dark:bg-red-500/25 dark:text-red-400"
-            >
-              {part}
-            </span>
-          ) : (
-            renderWithRedEllipsis(part, i)
-          ),
-        )}
-      </span>
-    );
+    regex = new RegExp(`(${pattern})`, "gi");
+    parts = text.split(regex);
   } catch {
     return renderWithRedEllipsis(text, "fallback");
   }
+  return (
+    <span>
+      {parts.map((part, i) =>
+        regex.test(part) ? (
+          <span
+            key={i}
+            className="rounded-xs bg-red-500/15 px-0.5 font-semibold text-red-600 dark:bg-red-500/25 dark:text-red-400"
+          >
+            {part}
+          </span>
+        ) : (
+          renderWithRedEllipsis(part, i)
+        ),
+      )}
+    </span>
+  );
 };
 
 /**

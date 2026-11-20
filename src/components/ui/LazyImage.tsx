@@ -1,7 +1,6 @@
 import {
   useState,
-  useEffect,
-  useRef,
+  useCallback,
   type ImgHTMLAttributes,
   type SyntheticEvent,
 } from "react";
@@ -55,7 +54,7 @@ export interface LazyImageProps extends Omit<
  * - Smooth fade-in on load
  * - Fallback handling on error
  */
-const LazyImage = ({
+const LazyImageContent = ({
   src,
   alt = "",
   className = "",
@@ -67,31 +66,20 @@ const LazyImage = ({
   onError,
   ...restProps
 }: LazyImageProps) => {
-  const imgRef = useRef<HTMLImageElement | null>(null);
   const isInitiallyCached = Boolean(src && loadedImageCache.has(src));
   const [isLoaded, setIsLoaded] = useState<boolean>(isInitiallyCached);
   const [hasError, setHasError] = useState<boolean>(false);
   const [currentSrc, setCurrentSrc] = useState<string | undefined>(src);
 
-  // Synchronize internal state when src prop changes
-  useEffect(() => {
-    setCurrentSrc(src);
-    const cached = Boolean(src && loadedImageCache.has(src));
-    setIsLoaded(cached);
-    setHasError(false);
-  }, [src]);
-
-  // Handle immediate browser-cache completions where onLoad might not fire
-  useEffect(() => {
-    if (
-      imgRef.current?.complete &&
-      imgRef.current.naturalWidth > 0 &&
-      !isLoaded
-    ) {
-      if (currentSrc) markImageCached(currentSrc);
-      setIsLoaded(true);
-    }
-  }, [currentSrc, isLoaded]);
+  const handleImageRef = useCallback(
+    (node: HTMLImageElement | null) => {
+      if (node?.complete && node.naturalWidth > 0) {
+        if (currentSrc) markImageCached(currentSrc);
+        setIsLoaded(true);
+      }
+    },
+    [currentSrc],
+  );
 
   const handleImageLoad = (e: SyntheticEvent<HTMLImageElement, Event>) => {
     if (currentSrc) markImageCached(currentSrc);
@@ -132,7 +120,7 @@ const LazyImage = ({
         </div>
       ) : (
         <img
-          ref={imgRef}
+          ref={handleImageRef}
           src={currentSrc}
           alt={alt}
           loading={loading}
@@ -149,4 +137,7 @@ const LazyImage = ({
   );
 };
 
+const LazyImage = (props: LazyImageProps) => (
+  <LazyImageContent key={props.src} {...props} />
+);
 export default LazyImage;
