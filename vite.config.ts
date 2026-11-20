@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react-swc";
 import tailwindcss from "@tailwindcss/vite";
@@ -83,10 +84,9 @@ export default defineConfig(({ mode }) => ({
   },
   test: {
     alias: {
-      "virtual:pwa-register/react": new URL(
-        "./src/test/pwaMock.ts",
-        import.meta.url,
-      ).pathname.replace(/^\/([A-Za-z]:)/, "$1"),
+      "virtual:pwa-register/react": fileURLToPath(
+        new URL("./src/test/pwaMock.ts", import.meta.url),
+      ),
     },
     globals: true,
     environment: "jsdom",

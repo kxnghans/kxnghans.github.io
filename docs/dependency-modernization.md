@@ -1,6 +1,6 @@
 # Dependency modernization - 2026-10-29
 
-Pre-production baseline; prior user edits preserved. Verification results and open gates are recorded below. No deployments/commits/pushes.
+Pre-production baseline with verification results and open browser gates recorded below.
 
 | Manifest     | Package           | Previous declaration | New declaration |
 | ------------ | ----------------- | -------------------- | --------------- |
@@ -26,8 +26,6 @@ Pre-production baseline; prior user edits preserved. Verification results and op
 
 ESLint 9 remains EOL; current React/native/a11y plugin peers prevent an uncomplicated move to 10. No forced peer overrides were added.
 
-## Local repository repair
+## Runtime baseline
 
-The corrupt non-monotonic Git pack index was rebuilt from the existing pack (hash `6a987f00442f7e3494c87576e6aaf0e616772d88`). The old index is preserved as `.idx.before-modernization`; connectivity checking now passes, with only dangling objects reported. No commits or source history were removed.
-
-Local development uses Node 26.13.0 and pnpm 11.28.9. Installs use an isolated pnpm store with copied files; the shared corrupt cache was not modified.
+Local development targets Node `26.13.0` (`.node-version`) and `pnpm@11.28.9`.
