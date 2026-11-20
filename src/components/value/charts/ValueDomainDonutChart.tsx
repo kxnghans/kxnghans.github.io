@@ -35,7 +35,8 @@ export default function ValueDomainDonutChart({
   // Memoize radial stroke segment calculations and non-overlapping hit targets
   const segments = useMemo(() => {
     let cumulativeOffset = 0;
-    return data.map((item) => {
+    const result = [];
+    for (const item of data) {
       const rawDash = (item.percentage / 100) * circumference;
       const strokeDash = Math.max(rawDash - baseStrokeWidth - gapSize, 2);
       const offset = cumulativeOffset + (baseStrokeWidth + gapSize) / 2;
@@ -46,15 +47,16 @@ export default function ValueDomainDonutChart({
 
       cumulativeOffset += rawDash;
 
-      return {
+      result.push({
         ...item,
         rawDash,
         strokeDasharray: `${strokeDash} ${circumference - strokeDash}`,
         strokeDashoffset: -offset,
         hitDasharray: `${hitDash} ${circumference - hitDash}`,
         hitDashoffset: -hitOffset,
-      };
-    });
+      });
+    }
+    return result;
   }, [data, circumference]);
 
   const activeIdx =

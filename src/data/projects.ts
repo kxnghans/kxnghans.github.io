@@ -93,7 +93,7 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "MilCalc – Military Pension & Fitness Mobile Suite",
       challenge:
-        "Service members and veterans had to juggle fragmented websites and spreadsheets to calculate Air Force fitness scores (DAFMAN 36-2905), drill pay, and High-3 vs. BRS retirement pensions.",
+        "Service members and veterans relied on fragmented websites and spreadsheets to calculate Air Force fitness scores (DAFMAN 36-2905), drill pay, and High-3 vs. BRS retirement pensions.",
       action:
         "Built MilCalc in React Native and Expo, isolating pure calculation engines into dedicated packages (@repo/utils) with 100% test coverage. Paired MMKV caching with SQLite local storage for zero-crash offline execution in SCIFs.",
       outcome:
@@ -171,11 +171,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Unpack – Collaborative Group Travel & Shared Itinerary App",
       challenge:
-        "Coordinating group trips usually breaks down across scattered group chats, buried booking confirmation emails, and spotty cell service.",
+        "Coordinating group trips often breaks down across disconnected chats, buried booking confirmations, and unreliable cell service.",
       action:
-        "Built an offline-first mobile app using React Native, Expo, SQLite local storage, and Supabase cloud sync. Added shared timelines, group expense splitting, and packing checklists that sync automatically when reconnected.",
+        "Engineered an offline-first mobile app using React Native, Expo, SQLite local storage, and Supabase cloud sync, supporting shared timelines, group expense splitting, and packing checklists that reconcile automatically upon reconnection.",
       outcome:
-        "Gave travel groups a single offline-capable dashboard for schedules, shared costs, and packing lists with zero cell service required.",
+        "Delivered a single offline-capable dashboard for travel schedules, shared costs, and packing lists without requiring cell service.",
       liveLink: "https://hansoncreations.com/apps/unpack",
       codeLink: "",
       highlights: [
@@ -249,7 +249,7 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "HansOnDeck LLC Launch & Management",
       challenge:
-        "After returning from deployment, I wanted to build a media production business to handle commercial video shoots, sports photography, and local business marketing.",
+        "Following deployment, identified an opportunity to establish a media production business delivering commercial video, sports photography, and local brand marketing.",
       action:
         "Founded HansOnDeck LLC, managing production schedules, on-location video/photo shoots, studio lighting, audio engineering, and corporate bookkeeping across athletics, real estate, and community events.",
       outcome:
@@ -324,11 +324,11 @@ export const projectData: ProjectItem[] = [
     details: {
       title: "Innovation Gamification Dashboard",
       challenge:
-        "Over 19,000 employee innovation ideas were sitting in disconnected spreadsheets, leaving leadership without clear ROI tracking or prioritization metrics.",
+        "Over 19,000 employee innovation ideas were tracked in disconnected spreadsheets, leaving leadership without reliable ROI visibility or prioritization metrics.",
       action:
-        "Built an interactive Power BI gamification portal with automated SharePoint ingestion and DAX financial modeling during an enterprise stretch assignment.",
+        "Engineered an interactive Power BI gamification portal with automated SharePoint ingestion and DAX financial modeling during an enterprise stretch assignment.",
       outcome:
-        "Increased employee submission participation by 13% and gave executives clear ROI tracking, validating $1.1M in first-year operational savings and 705,000+ customer hours saved.",
+        "Increased employee submission participation by 13% and provided executive leadership with clear ROI visibility, validating $1.1M in first-year operational savings and 705,000+ customer hours saved.",
       liveLink:
         "https://storage.googleapis.com/portfolio_showcase/Idea%20Board%20Explained.pdf",
       codeLink: "",
@@ -365,7 +365,7 @@ export const projectData: ProjectItem[] = [
       action:
         "Architected Single Node OpenShift (SNO) clusters in the Galaxy Test Bed (GTB) and authored the formal CONOPS, securing approvals across the Architecture Review Board (ARB), Security & Information Assurance (SIA), and Classified Review (CARB).",
       outcome:
-        "Cut nightly automated test cycles from 10 hours down to 1 hour (a 10x speedup) and saved over $10,000 in test infrastructure costs.",
+        "Reduced nightly automated test cycles from 10 hours to 1 hour (10x acceleration) and saved over $10,000 in test infrastructure costs.",
       liveLink: "",
       codeLink: "",
       highlights: [
@@ -401,9 +401,9 @@ export const projectData: ProjectItem[] = [
       challenge:
         "The MESHc (Master Software & Hardware Catalog) space logistics platform managed Engineering Bills of Materials (EBOM) and technical requirements. It struggled with adoption because RF engineers needed deep parametric specs while business leads wanted high-level summaries.",
       action:
-        "Ran bi-weekly Adobe XD prototyping sessions to mediate conflicting technical requirements between engineering and business leads, designing a tiered catalog interface with instant drill-downs into low-level RF specs and WBS structures.",
+        "Facilitated bi-weekly Adobe XD prototyping sessions to mediate conflicting technical requirements between engineering and business leads, designing a tiered catalog interface with direct drill-downs into low-level RF specs and WBS structures.",
       outcome:
-        "Grew active program adoption from 2 to 10 defense programs (800% increase), cut 1 month of UI backlog rework, and helped secure $1.0M in follow-on program funding.",
+        "Expanded active adoption from 2 to 10 defense programs (800% growth), eliminated 1 month of UI backlog rework, and helped secure $1.0M in follow-on program funding.",
       liveLink: "",
       codeLink: "",
       highlights: [
@@ -439,7 +439,7 @@ export const projectData: ProjectItem[] = [
       action:
         "Built automated Microsoft Power Query ETL pipelines in Excel to model shelf-life expiration, forecast burn rates, and automate nightly manifest reconciliation.",
       outcome:
-        "Cut nightly inventory reconciliation from 3 hours down to 5 minutes, boosted daily supply throughput by 66%, and reduced supply errors from 20% to under 5%.",
+        "Reduced nightly inventory reconciliation from 3 hours to 5 minutes, increased daily supply throughput by 66%, and lowered supply errors from 20% to under 5%.",
       liveLink: "",
       codeLink: "",
       highlights: [

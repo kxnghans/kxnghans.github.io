@@ -33,7 +33,9 @@ export const useVoiceSearch = ({
   micRef,
 }: UseVoiceSearchOptions): UseVoiceSearchResult => {
   const [isMicActive, setIsMicActive] = useState(false);
-  const [isSpeechSupported, setIsSpeechSupported] = useState(true);
+  const isSpeechSupported =
+    typeof window !== "undefined" &&
+    Boolean(window.SpeechRecognition || window.webkitSpeechRecognition);
   const [showVisualCues, setShowVisualCues] = useState(false);
   const [placeholderText, setPlaceholderText] = useState("Search");
 
@@ -51,7 +53,6 @@ export const useVoiceSearch = ({
       window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (SpeechRecognition) {
-      setIsSpeechSupported(true);
       const recognition = new SpeechRecognition();
       recognition.continuous = true;
       recognition.interimResults = true;
@@ -136,8 +137,6 @@ export const useVoiceSearch = ({
       };
 
       recognitionRef.current = recognition;
-    } else {
-      setIsSpeechSupported(false);
     }
 
     return () => {

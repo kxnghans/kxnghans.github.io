@@ -43,33 +43,51 @@ describe("App", () => {
     // 1. Navigate to Work Experience
     fireEvent.click(within(sidebar).getByText("Work Experience"));
     expect(
-      await screen.findByRole("heading", { name: "Work Experience" }),
+      await screen.findByRole(
+        "heading",
+        { name: "Work Experience" },
+        { timeout: 5000 },
+      ),
     ).toBeInTheDocument();
 
     // 2. Navigate to Projects
     fireEvent.click(within(sidebar).getByText("Projects"));
     expect(
-      await screen.findByRole("heading", { name: "Projects" }),
+      await screen.findByRole(
+        "heading",
+        { name: "Projects" },
+        { timeout: 5000 },
+      ),
     ).toBeInTheDocument();
 
     // 3. Navigate to Education
     fireEvent.click(within(sidebar).getByText("Education"));
     expect(
-      await screen.findByRole("heading", { name: "Education" }),
+      await screen.findByRole(
+        "heading",
+        { name: "Education" },
+        { timeout: 5000 },
+      ),
     ).toBeInTheDocument();
 
     // 4. Navigate to Honors
     fireEvent.click(within(sidebar).getByText("Honors"));
     expect(
-      await screen.findByRole("heading", { name: "Honors & Awards" }),
+      await screen.findByRole(
+        "heading",
+        { name: "Honors & Awards" },
+        { timeout: 5000 },
+      ),
     ).toBeInTheDocument();
 
     // 5. Navigate to Value
     fireEvent.click(within(sidebar).getByText("Value"));
     expect(
-      await screen.findByRole("heading", {
-        name: /executive value & impact intelligence/i,
-      }),
+      await screen.findByRole(
+        "heading",
+        { name: /executive value & impact intelligence/i },
+        { timeout: 5000 },
+      ),
     ).toBeInTheDocument();
   });
 

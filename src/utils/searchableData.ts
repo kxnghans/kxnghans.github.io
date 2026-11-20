@@ -200,7 +200,7 @@ export const searchableData: SearchableItem[] = [
     content: getSkillsContent(item),
     category: "Skills" as const,
     location: {
-      pageName: "Skills",
+      pageName: "Home",
       componentType: "slideshow" as const,
       componentId: "skills-slideshow",
       itemId: index,

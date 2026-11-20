@@ -76,6 +76,8 @@ describe("ValuePage", () => {
 
     expect(screen.getByText("Workflow Velocity")).toBeInTheDocument();
     expect(screen.queryByText("Supply Chain Security")).not.toBeInTheDocument();
+    expect(screen.getAllByText("$9.6M+")[0]).toBeInTheDocument();
+    expect(screen.queryByText("$0")).not.toBeInTheDocument();
   });
 
   it("resets all active filters when Reset Filters is clicked", () => {
